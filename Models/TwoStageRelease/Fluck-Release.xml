@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PropertyList>
+
+ <path>Fluck-Release.ac</path>
+ <nopreview/>
+
+ <animation>
+  <type>select</type>
+  <object-name>Fluck-Release</object-name>
+  <condition>
+   <property>sim/model/MRX13/with-TwoStageRelease_mp</property>
+  </condition>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>UpperHandle</object-name>
+  <property>sim/hitches/open-toprope</property>
+  <interpolation>
+   <entry><ind>0.0</ind> <dep>  0.</dep></entry>
+   <entry><ind>0.5</ind> <dep>-18.</dep></entry>
+   <entry><ind>1.0</ind> <dep>  0.</dep></entry>
+  </interpolation>
+  <center>
+   <x-m>-0.01780</x-m>
+   <y-m> 0.04363</y-m>
+   <z-m> 0.0</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>UpperHook</object-name>
+  <property>sim/hitches/open-toprope</property>
+  <factor>165</factor>
+  <interpolation>
+   <entry><ind>0.5</ind> <dep>  0.</dep></entry>
+   <entry><ind>0.6</ind> <dep>165.</dep></entry>
+  </interpolation>
+  <center>
+   <x-m>-0.02537</x-m>
+   <y-m>-0.01</y-m>
+   <z-m>0.0</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>LowerHandle</object-name>
+  <object-name>UpperHandle</object-name>
+  <property>sim/hitches/open-bottomrope</property>
+  <interpolation>
+   <entry><ind>0.0</ind> <dep>  0.</dep></entry>
+   <entry><ind>0.5</ind> <dep>-18.</dep></entry>
+   <entry><ind>1.0</ind> <dep>  0.</dep></entry>
+  </interpolation>
+  <center>
+   <x-m>-0.01780</x-m>
+   <y-m> 0.04363</y-m>
+   <z-m> 0.0</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>LowerHook</object-name>
+  <property>sim/hitches/open-bottomrope</property>
+  <factor>165</factor>
+  <interpolation>
+   <entry><ind>0.5</ind> <dep>  0.</dep></entry>
+   <entry><ind>0.6</ind> <dep>165.</dep></entry>
+  </interpolation>
+  <center>
+   <x-m>-0.02537</x-m>
+   <y-m>-0.01</y-m>
+   <z-m>0.0</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.</z>
+  </axis>
+ </animation>
+
+
+ <animation>
+  <type>pick</type>
+  <object-name>UpperHandle</object-name>
+  <action>
+   <button>0</button>
+   <button>1</button>
+   <button>2</button>
+   <button>3</button>
+   <button>4</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>property-toggle</command>
+    <property>sim/hitches/open-toprope</property>
+    <value>0</value>
+    <value>1</value>
+   </binding>
+  </action>
+ </animation>
+
+ <animation>
+  <type>pick</type>
+  <object-name>LowerHandle</object-name>
+  <action>
+   <button>0</button>
+   <button>1</button>
+   <button>2</button>
+   <button>3</button>
+   <button>4</button>
+   <repeatable>false</repeatable>
+   <binding>
+    <command>property-toggle</command>
+    <property>sim/hitches/open-bottomrope</property>
+    <value>0</value>
+    <value>1</value>
+   </binding>
+   <binding>
+    <condition>
+     <not>
+      <property>sim/hitches/open-toprope</property>
+     </not>
+    </condition>
+    <command>property-assign</command>
+    <property>sim/hitches/open-toprope</property>
+    <value>1</value>
+   </binding>
+  </action>
+ </animation>
+
+</PropertyList>

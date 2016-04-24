@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+  <title>Icaro Laminar 13 MRX</title>
+    <key>
+      <name>9/PgUp</name>
+      <desc>Running forward / increase throttle</desc>
+    </key>
+    <key>
+      <name>3/PgDn</name>
+      <desc>running backward / decrease throttle</desc>
+    </key>
+    <key>
+      <name>0/INSERT</name>
+      <desc>turn pilot left (on ground / no fdm function in air)</desc>
+    </key>
+    <key>
+      <name>ENTER</name>
+      <desc>turn pilot right (on ground / no fdm function in air)</desc>
+    </key>
+    <key>
+      <name>Arrow Keys</name>
+      <desc>move pilot around (see Checklist: Ground Handling)</desc>
+    </key>
+    <key>
+      <name>g/G</name>
+      <desc>legs into/out of harness</desc>
+    </key>
+    <key>
+      <name>7/Home</name>
+      <desc>more prone pilot</desc>
+    </key>
+    <key>
+      <name>1/End</name>
+      <desc>erect pilot</desc>
+    </key>
+    <key>
+      <name>j/k</name>
+      <desc>VG loosen/tighten (see Checklist: VG-System)</desc>
+    </key>
+    <key>
+      <name>]/[</name>
+      <desc>deploy / retract drogue parachute</desc>
+    </key>
+    <key>
+      <name>}/{</name>
+      <desc>deploy / retract emergency parachute</desc>
+    </key>
+    <key>
+      <name>w, W, Ctrl-w</name>
+      <desc>winch-keys (see Checklist: Winch)</desc>
+    </key>
+    <key>
+      <name>o, O, Ctrl-o</name>
+      <desc>aerotow-keys (see Checklist: Aerotow)</desc>
+    </key>
+    <key>
+      <name>s</name>
+      <desc>toggle start/stop generic engine</desc>
+    </key>    
+    <key>
+      <name>Ctrl-u</name>
+      <desc>jump up 1000ft</desc>
+    </key>
+    <key>
+      <name>P</name>
+      <desc>toggle generic panel on/off</desc>
+    </key>
+    <key>
+      <name>S</name>
+      <desc>toggle imperial/metric units for instruments"</desc>
+    </key>
+    <key>
+      <name>r</name>
+      <desc>recover (pick oneself up after a fall/crash) / repair glider</desc>
+    </key>
+
+
+    <line> </line>
+    <line>Best flown with "Keel View" </line>
+    <line> </line>
+    <line>Important:</line>
+    <line>Detailed descriptions in "Help - Aircraft Checklists"</line> 
+    <line> </line>
+    <line>Choose predefined variant "ZeroVariantForAutosave" to enable autosave of individual color settings.</line>
+    <line>Individual colors are not transmitted over multiplayer</line>
+    <line> </line>
+
+    <line>Note: </line>
+    <line>This hang glider is weight-shift controlled.</line>
+    <line>Flying (under positiv g-force conditions) is quite realistic. </line>
+    <line>Feel the influence of wind, turbulence, thermals and ridge lift!</line>
+    <line>Appropriate settings for ridge lift is wind with 15-20kt normal</line>
+    <line> to the slope orientation in all altitudes.  </line>
+    <line>Be careful with the angle of attack in strong winds on ground!</line>
+    <line> </line>
+
+<!--
+    <text>
+
+    Note:
+    This hang glider is weight shift controlled.
+    Flying (under positiv g-force conditions) is quite realistic.  
+    Feel the influence of wind, turbulence, thermals and ridge lift!
+    Appropriate settings for ridge lift is wind with 15-20kt normal
+     to the slope orientation in all altitudes.
+    Be careful with the angle of attack in strong winds on ground!
+
+    </text>
+-->
+</PropertyList>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+ <path>Wheel.ac</path> 
+
+ <params>
+  <wheel-speed-fps>/fdm/jsbsim/gear/unit[10]/wheel-speed-fps</wheel-speed-fps>
+ </params>
+ 
+ <animation>
+  <type>select</type>
+   <object-name>Wheel</object-name>
+   <condition>
+    <property>sim/model/MRX13/with-wheels_mp</property>
+   </condition>
+ </animation>
+
+ <animation> 
+  <type>spin</type>
+   <object-name>Wheel</object-name>
+   <property alias="../../params/wheel-speed-fps"/>
+   <factor>-32.34</factor>
+   <center>
+    <x-m>0.0</x-m>
+    <y-m>0.0</y-m>
+    <z-m>0.0</z-m>
+   </center>
+   <axis>
+    <x>0.0</x>
+    <y>1.0</y>
+    <z>0.0</z>
+   </axis>
+ </animation>
+
+</PropertyList>

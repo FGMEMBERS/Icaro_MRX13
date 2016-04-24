@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PropertyList>
+
+ <path>Vector.ac</path>
+ <nopreview/>
+
+ <animation>
+  <type>select</type>
+   <object-name>AeroForceVector</object-name>
+   <object-name>AeroForceDirection</object-name>
+   <object-name>CG</object-name>
+   <condition>
+    <property>sim/model/Vector/with-VectorAeroForce</property>
+   </condition>
+ </animation>
+
+ <animation>
+  <type>select</type>
+   <object-name>VectorD</object-name>
+   <object-name>VectorL</object-name>
+   <object-name>VectorS</object-name>
+   <condition>
+    <property>sim/model/Vector/with-vectorW</property>
+   </condition>
+ </animation>
+
+ <animation>
+  <type>select</type>
+   <object-name>VectorX</object-name>
+   <object-name>VectorY</object-name>
+   <object-name>VectorZ</object-name>
+   <condition>
+    <property>sim/model/Vector/with-vectorB</property>
+   </condition>
+ </animation>
+
+ <animation>
+  <type>select</type>
+   <object-name>FlowVectorHead</object-name>
+   <object-name>FlowVectorLength</object-name>
+   <condition>
+    <property>sim/model/Vector/with-flowvector</property>
+   </condition>
+ </animation>
+
+ <!-- __________  translate to C.G. __________ -->
+
+ <animation>
+  <type>translate</type>
+   <object-name>CG</object-name>
+
+   <object-name>AeroForceVector</object-name>
+   <object-name>AeroForceDirection</object-name>
+
+   <object-name>VectorD</object-name>
+   <object-name>VectorL</object-name>
+   <object-name>VectorS</object-name>
+
+   <object-name>VectorX</object-name>
+   <object-name>VectorY</object-name>
+   <object-name>VectorZ</object-name>
+
+   <property>fdm/jsbsim/inertia/cg-x-in</property>
+   <factor>0.0254</factor>
+   <offset-m>0</offset-m>
+   <center>
+    <x-m>0.0</x-m>
+    <y-m>0.0</y-m>
+    <z-m>0.0</z-m>
+   </center>
+   <axis>
+    <x>1.0</x>
+    <y>0.0</y>
+    <z>0.0</z>
+   </axis>
+ </animation>
+
+ <animation>
+  <type>translate</type>
+   <object-name>CG</object-name>
+
+   <object-name>AeroForceVector</object-name>
+   <object-name>AeroForceDirection</object-name>
+
+   <object-name>VectorD</object-name>
+   <object-name>VectorL</object-name>
+   <object-name>VectorS</object-name>
+
+   <object-name>VectorX</object-name>
+   <object-name>VectorY</object-name>
+   <object-name>VectorZ</object-name>
+
+   <property>fdm/jsbsim/inertia/cg-y-in</property>
+   <factor>0.0254</factor>
+   <center>
+    <x-m>0.0</x-m>
+    <y-m>0.0</y-m>
+    <z-m>0.0</z-m>
+   </center>
+   <axis>
+    <x>0.0</x>
+    <y>1.0</y>
+    <z>0.0</z>
+   </axis>
+ </animation>
+
+ <animation>
+  <type>translate</type>
+   <object-name>CG</object-name>
+
+   <object-name>AeroForceVector</object-name>
+   <object-name>AeroForceDirection</object-name>
+
+   <object-name>VectorD</object-name>
+   <object-name>VectorL</object-name>
+   <object-name>VectorS</object-name>
+
+   <object-name>VectorX</object-name>
+   <object-name>VectorY</object-name>
+   <object-name>VectorZ</object-name>
+
+   <property>fdm/jsbsim/inertia/cg-z-in</property>
+   <factor>0.0254</factor>
+   <offset-m>0</offset-m>
+   <center>
+    <x-m>0.0</x-m>
+    <y-m>0.0</y-m>
+    <z-m>0.0</z-m>
+   </center>
+   <axis>
+    <x>0.0</x>
+    <y>0.0</y>
+    <z>1.0</z>
+   </axis>
+ </animation>
+
+ <animation>
+  <type>scale</type>
+   <object-name>CG</object-name>
+   <x-offset>0.25</x-offset>
+   <y-offset>0.25</y-offset>
+   <z-offset>0.25</z-offset>
+ </animation>
+
+
+ <!-- _______  translate in x-direction (due to pitch moment)   _______ -->
+
+ <animation>
+  <type>translate</type>
+   <object-name>AeroForceVector</object-name>
+   <object-name>AeroForceDirection</object-name>
+
+   <object-name>VectorD</object-name>
+   <object-name>VectorL</object-name>
+   <object-name>VectorS</object-name>
+
+   <object-name>VectorX</object-name>
+   <object-name>VectorY</object-name>
+   <object-name>VectorZ</object-name>
+
+   <expression>
+    <product>
+     <div>
+      <property>fdm/jsbsim/moments/m-aero-lbsft</property>
+      <sum>
+      <property>fdm/jsbsim/forces/fbz-aero-lbs</property> <!-- "0" at startup -->
+      <value>0.0001</value> <!-- very ugly workaround to prevent NaN at startup -->
+      </sum>
+     </div>
+     <value>0.30480</value> <!-- ft2m -->
+    </product>
+   </expression>
+   <center>
+    <x-m>0.0</x-m>
+    <y-m>0.0</y-m>
+    <z-m>0.0</z-m>
+   </center>
+   <axis>
+    <x>1.0</x>
+    <y>0.0</y>
+    <z>0.0</z>
+   </axis>
+ </animation>
+
+ <!-- _______  translate in y-direction (due to roll moment)   _______ -->
+
+ <animation>
+  <type>translate</type>
+   <object-name>AeroForceVector</object-name>
+   <object-name>AeroForceDirection</object-name>
+
+   <object-name>VectorD</object-name>
+   <object-name>VectorL</object-name>
+   <object-name>VectorS</object-name>
+
+   <object-name>VectorX</object-name>
+   <object-name>VectorY</object-name>
+   <object-name>VectorZ</object-name>
+
+   <expression>
+    <product>
+     <div>
+      <property>fdm/jsbsim/moments/l-aero-lbsft</property>
+      <sum>
+      <property>fdm/jsbsim/forces/fbz-aero-lbs</property> <!-- "0" at startup -->
+      <value>0.0001</value> <!-- very ugly workaround to prevent NaN at startup -->
+      </sum>
+     </div>
+     <value>0.30480</value> <!-- ft2m -->
+    </product>
+   </expression>
+   <center>
+    <x-m>0.0</x-m>
+    <y-m>0.0</y-m>
+    <z-m>0.0</z-m>
+   </center>
+   <axis>
+    <x>0.0</x>
+    <y>1.0</y>
+    <z>0.0</z>
+   </axis>
+ </animation>
+
+
+ <!-- __________  Resulting Vector  __________ -->
+
+ <animation>
+  <type>rotate</type>
+   <object-name>AeroForceVector</object-name>
+   <object-name>AeroForceDirection</object-name>
+   <expression>
+    <sum>
+     <rad2deg>
+      <atan2>
+       <property>fdm/jsbsim/forces/fbz-aero-lbs</property>
+       <property>fdm/jsbsim/forces/fbx-aero-lbs</property>
+      </atan2>
+     </rad2deg>
+     <value>0</value>
+    </sum>
+   </expression>
+   <offset-deg>0</offset-deg>
+   <center>
+    <x-m>0.0</x-m>
+    <y-m>0.0</y-m>
+    <z-m>0.0</z-m>
+   </center>
+   <axis>
+    <x>0.0</x>
+    <y>-1.0</y>
+    <z>0.0</z>
+   </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+   <object-name>AeroForceVector</object-name>
+   <object-name>AeroForceDirection</object-name>
+   <expression>
+    <sum>
+     <rad2deg>
+      <atan2>
+       <property>fdm/jsbsim/forces/fby-aero-lbs</property>
+       <property>sim/model/Vector/fbxz-aero-lbs</property> <!-- vectorial fz+fx -->
+      </atan2>
+     </rad2deg>
+     <value>180</value>
+    </sum>
+   </expression>
+   <offset-deg>0</offset-deg>
+   <center>
+    <x-m>0.0</x-m>
+    <y-m>0.0</y-m>
+    <z-m>0.0</z-m>
+   </center>
+   <axis>
+    <x>0.0</x>
+    <y>0.0</y>
+    <z>-1.0</z>
+   </axis>
+ </animation>
+
+ <animation>
+  <type>scale</type>
+   <object-name>AeroForceVector</object-name>
+     <!-- scale with expressions doesn't work
+     <expression>
+     <product>
+     <value>-1</value>
+      <sqrt>
+       <sum>
+        <pow>
+     	 <property>fdm/jsbsim/forces/fbz-aero-lbs</property>
+         <value>2</value>
+     	</pow>
+        <pow>
+     	 <property>fdm/jsbsim/forces/fbx-aero-lbs</property>
+         <value>2</value>
+     	</pow>
+       </sum>
+      </sqrt>
+      </product>
+     </expression>
+     -->
+   <property>sim/model/Vector/fbxyz-aero-lbs</property> <!-- Total Aero-Force -->
+   <center>
+    <x-m>0.</x-m>
+    <y-m>0.</y-m>
+    <z-m>0.</z-m>
+   </center>
+   <x-min>-1000</x-min>
+   <y-min>1</y-min>
+   <z-min>1</z-min>
+   <x-factor>0.01</x-factor>
+   <y-factor>0.0</y-factor>
+   <z-factor>0.0</z-factor>
+ </animation>
+
+
+ <!-- __________  Body System  __________ -->
+
+ <animation>
+  <type>scale</type>
+   <object-name>VectorX</object-name>
+   <property>fdm/jsbsim/forces/fbx-aero-lbs</property>
+   <center>
+    <x-m>0.</x-m>
+    <y-m>0.</y-m>
+    <z-m>0.</z-m>
+   </center>
+   <x-min>-100000.</x-min>
+   <y-min>1.</y-min>
+   <z-min>1.</z-min>
+   <x-factor>-0.01</x-factor>
+   <y-factor>0.</y-factor>
+   <z-factor>0.</z-factor>
+ </animation>
+
+ <animation>
+  <type>scale</type>
+   <object-name>VectorY</object-name>
+   <property>fdm/jsbsim/forces/fby-aero-lbs</property>
+   <center>
+    <x-m>0.</x-m>
+    <y-m>0.</y-m>
+    <z-m>0.</z-m>
+   </center>
+   <x-min>1.</x-min>
+   <y-min>-100000.</y-min>
+   <z-min>1.</z-min>
+   <x-factor>0.0</x-factor>
+   <y-factor>0.01</y-factor>
+   <z-factor>0.0</z-factor>
+ </animation>
+
+ <animation>
+  <type>scale</type>
+   <object-name>VectorZ</object-name>
+   <property>fdm/jsbsim/forces/fbz-aero-lbs</property>
+   <center>
+    <x-m>0.</x-m>
+    <y-m>0.</y-m>
+    <z-m>0.</z-m>
+   </center>
+   <x-min>1.</x-min>
+   <y-min>1.</y-min>
+   <z-min>-100000.</z-min>
+   <x-factor>0.0</x-factor>
+   <y-factor>0.0</y-factor>
+   <z-factor>-0.01</z-factor>
+ </animation>
+
+
+ <!-- __________  Wind System  __________ -->
+
+ <animation>
+  <type>rotate</type>
+   <object-name>VectorD</object-name>
+   <object-name>VectorL</object-name>
+   <object-name>VectorS</object-name>
+   <property>fdm/jsbsim/aero/alpha-deg</property>
+   <center>
+    <x-m>0.0</x-m>
+    <y-m>0.0</y-m>
+    <z-m>0.0</z-m>
+   </center>
+   <axis>
+    <x>0.0</x>
+    <y>-1.0</y>
+    <z>0.0</z>
+   </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+   <object-name>VectorD</object-name>
+   <object-name>VectorL</object-name>
+   <object-name>VectorS</object-name>
+   <property>fdm/jsbsim/aero/beta-deg</property>
+   <center>
+    <x-m>0.0</x-m>
+    <y-m>0.0</y-m>
+    <z-m>0.0</z-m>
+   </center>
+   <axis>
+    <x>0.0</x>
+    <y>0.0</y>
+    <z>-1.0</z>
+   </axis>
+ </animation>
+
+
+ <!-- __________  Vector Drag  __________ -->
+
+ <animation>
+  <type>scale</type>
+   <object-name>VectorD</object-name>
+   <property>fdm/jsbsim/forces/fwx-aero-lbs</property>
+   <center>
+    <x-m>0.0</x-m>
+    <y-m>0.0</y-m>
+    <z-m>0.0</z-m>
+   </center>
+   <x-min>-100000.</x-min>
+   <y-min>1.</y-min>
+   <z-min>1.0</z-min>
+   <x-factor>0.01</x-factor>
+   <y-factor>0.0001</y-factor>
+   <z-factor>0.0001</z-factor>
+ </animation>
+
+
+ <!-- __________  Vector Lift  __________ -->
+
+ <animation>
+  <type>scale</type>
+  <object-name>VectorL</object-name>
+  <property>fdm/jsbsim/forces/fwz-aero-lbs</property>
+  <center>
+   <x-m>0.0</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.0</z-m>
+  </center>
+  <x-min>1.</x-min>
+  <y-min>1.</y-min>
+  <z-min>-10000000.0</z-min>
+  <x-factor>0.0001</x-factor>
+  <y-factor>0.0001</y-factor>
+  <z-factor>0.01</z-factor>
+ </animation>
+
+
+ <!-- __________  Vector Side  __________ -->
+
+ <animation>
+  <type>scale</type>
+  <object-name>VectorS</object-name>
+  <property>fdm/jsbsim/forces/fwy-aero-lbs</property>
+  <center>
+   <x-m>0.0</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.0</z-m>
+  </center>
+  <x-min>1.</x-min>
+  <y-min>-10000000.0</y-min>
+  <z-min>1.</z-min>
+  <x-factor>0.0001</x-factor>
+  <y-factor>0.01</y-factor>
+  <z-factor>0.0001</z-factor>
+ </animation>
+
+
+ <!-- __________  Flow Vector  __________ -->
+
+ <animation>
+  <type>translate</type>
+  <object-name>FlowVectorHead</object-name>
+  <object-name>FlowVectorLength</object-name>
+  <offset-m>-2.</offset-m>
+  <center>
+   <x-m>0.0</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.0</z-m>
+  </center>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+ <type>rotate</type>
+  <object-name>FlowVectorHead</object-name>
+  <object-name>FlowVectorLength</object-name>
+  <property>fdm/jsbsim/aero/alpha-deg</property>
+  <center>
+   <x-m>3.0</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-1.0</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>-1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+   <object-name>FlowVectorHead</object-name>
+   <object-name>FlowVectorLength</object-name>
+   <property>fdm/jsbsim/aero/beta-deg</property>
+   <center>
+    <x-m>3.0</x-m>
+    <y-m>0.0</y-m>
+    <z-m>-1.0</z-m>
+   </center>
+   <axis>
+    <x>0.0</x>
+    <y>0.0</y>
+    <z>-1.0</z>
+   </axis>
+ </animation>
+
+ <animation>
+  <type>scale</type>
+   <object-name>FlowVectorLength</object-name>
+   <property>velocities/airspeed-kt</property>
+   <center>
+    <x-m>-0.5</x-m>
+    <y-m>0.</y-m>
+    <z-m>0.</z-m>
+   </center>
+   <x-min>0.</x-min>
+   <y-min>1.</y-min>
+   <z-min>1.</z-min>
+   <x-factor>0.1</x-factor>
+   <y-factor>0.</y-factor>
+   <z-factor>0.</z-factor>
+ </animation>
+
+</PropertyList>
+

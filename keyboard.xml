@@ -1,0 +1,429 @@
+<?xml version="1.0"?>
+<PropertyList>   
+
+  <keyboard>
+
+   <key n="115">
+    <name>s</name>
+    <desc>Toggle Engine Running</desc>
+    <binding>
+     <command>property-toggle</command>
+     <property>/sim/model/MRX13/engine_running</property>
+    </binding>
+   </key>
+
+   <key n="57">
+    <name>9</name>
+    <desc>Increase running force</desc>
+    <repeatable type="bool">true</repeatable>
+    <binding>
+     <command>property-adjust</command>
+     <property>/fdm/jsbsim/fcs/running-force-norm</property>
+     <step>0.02</step>
+     <min>0</min>
+     <max>1</max>
+    </binding>
+    <binding>
+     <command>property-adjust</command>
+     <property>/fdm/jsbsim/fcs/throttle-generic-engine-norm</property>
+     <step>0.02</step>
+     <min>0</min>
+     <max>1</max>
+    </binding>
+   </key>    
+
+   <key n="360">
+    <name>PageUp</name>
+    <desc>Increase running force</desc>
+    <repeatable type="bool">true</repeatable>
+    <binding>
+     <command>property-adjust</command>
+     <property>/fdm/jsbsim/fcs/running-force-norm</property>
+     <step>0.02</step>
+     <min>0</min>
+     <max>1</max>
+    </binding>
+    <binding>
+     <command>property-adjust</command>
+     <property>/fdm/jsbsim/fcs/throttle-generic-engine-norm</property>
+     <step>0.02</step>
+     <min>0</min>
+     <max>1</max>
+    </binding>
+   </key>    
+
+   <key n="51">
+    <name>3</name>
+    <desc>Decrease running force to zero</desc>
+    <repeatable type="bool">true</repeatable>
+    <binding>
+     <command>property-adjust</command>
+     <property>/fdm/jsbsim/fcs/running-force-norm</property>
+     <step>-0.02</step>
+     <min>-1.</min>
+     <max>0.</max>
+    </binding>
+    <binding>
+     <command>property-adjust</command>
+     <property>/fdm/jsbsim/fcs/throttle-generic-engine-norm</property>
+     <step>-0.02</step>
+     <min>0</min>
+     <max>1</max>
+    </binding>
+   </key>
+
+   <key n="361">
+    <name>PageDown</name>
+    <desc>Decrease running force to zero</desc>
+    <repeatable type="bool">true</repeatable>
+    <binding>
+     <command>property-adjust</command>
+     <property>/fdm/jsbsim/fcs/running-force-norm</property>
+     <step>-0.02</step>
+     <min>-1.</min>
+     <max>0.</max>
+    </binding>
+    <binding>
+     <command>property-adjust</command>
+     <property>/fdm/jsbsim/fcs/throttle-generic-engine-norm</property>
+     <step>-0.02</step>
+     <min>0</min>
+     <max>1</max>
+    </binding>
+   </key>
+
+   <key n="10">
+    <name>Enter Keyboard</name>
+    <desc>Turning moment right</desc>
+    <repeatable type="bool">true</repeatable>
+    <binding>
+     <command>property-adjust</command>
+     <property>/fdm/jsbsim/fcs/turning-moment-norm</property>
+     <step type="double">0.05</step>
+     <min>0.</min>
+     <max>1.</max>
+    </binding>
+   </key>
+
+   <key n="13">
+    <name>Enter NumBlock</name>
+    <desc>Turning moment right</desc>
+    <repeatable type="bool">true</repeatable>
+    <binding>
+     <command>property-adjust</command>
+     <property>/fdm/jsbsim/fcs/turning-moment-norm</property>
+     <step type="double">0.05</step>
+     <min>0.</min>
+     <max>1.</max>
+    </binding>
+   </key>
+
+<!--
+   <key n="269">
+    <name>Enter</name>
+    <desc>Move rudder right Turning moment right</desc>
+    <repeatable type="bool">true</repeatable>
+    <binding>
+     <command>property-adjust</command>
+     <property>/fdm/jsbsim/fcs/turning-moment-norm</property>
+     <step type="double">0.05</step>
+     <min>0.</min>
+     <max>1.</max>
+    </binding>
+   </key>
+-->
+   <key n="48">
+    <name>Insert-Num</name>
+    <desc>Turning moment left</desc>
+    <repeatable type="bool">true</repeatable>
+    <binding>
+     <command>property-adjust</command>
+     <property>/fdm/jsbsim/fcs/turning-moment-norm</property>
+     <step type="double">-0.05</step>
+     <min>-1.</min>
+     <max>0.</max>
+    </binding>
+   </key>
+
+   <key n="364">
+    <name>Insert</name>
+    <desc>Turning moment left</desc>
+    <repeatable type="bool">true</repeatable>
+    <binding>
+     <command>property-adjust</command>
+     <property>/fdm/jsbsim/fcs/turning-moment-norm</property>
+     <step type="double">-0.05</step>
+     <min>-1.</min>
+     <max>0.</max>
+    </binding>
+   </key>
+
+   <key n="114">
+    <name>r</name>
+    <desc>recover</desc>
+    <binding>
+     <command>nasal</command>
+     <script>
+      # setprop("orientation/roll-deg", 0); 
+      # setprop("orientation/pitch-deg", 0);
+      MRX13.wing_failure_repair();
+     </script>
+    </binding>
+   </key>
+
+   <key n="356">
+    <name>Left</name>
+    <desc>move left</desc>
+    <repeatable type="bool">true</repeatable>
+    <binding>
+     <command>property-adjust</command>
+     <property>sim/model/MRX13/animation/side</property>
+     <step type="double">-0.05</step>
+     <min>-1.</min>
+     <max>0.</max>
+    </binding>
+   </key>
+
+   <key n="358">
+    <name>Right</name>
+    <desc>move right</desc>
+    <repeatable type="bool">true</repeatable>
+    <binding>
+     <command>property-adjust</command>
+     <property>sim/model/MRX13/animation/side</property>
+     <step type="double">0.05</step>
+     <min>0.</min>
+     <max>1.</max>
+    </binding>
+   </key>
+
+   <key n="357">
+    <name>Up</name>
+    <desc>move forward</desc>
+    <repeatable type="bool">true</repeatable>
+    <binding>
+     <command>property-adjust</command>
+     <property>sim/model/MRX13/animation/ahead</property>
+     <step type="double">0.05</step>
+     <min>0.</min>
+     <max>1.</max>
+    </binding>
+   </key>
+
+   <key n="359">
+    <name>Down</name>
+    <desc>move backward</desc>
+    <repeatable type="bool">true</repeatable>
+    <binding>
+     <command>property-adjust</command>
+     <property>sim/model/MRX13/animation/ahead</property>
+     <step type="double">-0.05</step>
+     <min>-1.</min>
+     <max>0.</max>
+    </binding>
+   </key>
+
+   <key n="15">
+    <name>Ctrl-o</name>
+    <desc>Find towplane</desc>
+    <binding>
+     <command>nasal</command>
+     <script>towing.findBestAIObject()</script>
+    </binding>
+    <binding>
+     <command>property-assign</command>
+     <property>sim/model/MRX13/with-TwoStageRelease</property>
+     <value>1</value>
+    </binding>
+   </key>
+   
+   <key n="111">
+    <name>o</name>
+    <desc>Hook on towplane</desc>
+    <binding>
+     <command>nasal</command>
+     <script>towing.closeHitch()</script>
+    </binding>
+   </key>
+   
+   <key n="79">
+    <name>O</name>
+    <desc>Release drag hook</desc>
+    <binding>
+     <command>nasal</command>
+     <script>towing.releaseHitch("aerotow")</script>
+    </binding>
+   </key>
+
+   <key n="23">
+    <name>Ctrl-w</name>
+    <desc>Place Winch and hook in</desc>
+    <binding>
+     <command>nasal</command>
+      <!--  <script>towing.setWinchPositionAuto()</script> -->
+     <script>MRX13.setWinchPositionTwoStageRelease()</script>
+    </binding>
+    <binding>
+     <command>property-assign</command>
+     <property>sim/model/MRX13/with-TwoStageRelease</property>
+     <value>1</value>
+    </binding>
+   </key>
+   
+   <key n="119">
+    <name>w</name>
+    <desc>Start winch</desc>
+    <binding>
+     <command>nasal</command>
+     <script>towing.runWinch()</script>
+    </binding>
+   </key>
+
+   <key n="87">
+    <name>W</name>
+    <desc>Release winch hook</desc>
+    <binding>
+     <command>nasal</command>
+     <!-- <script>towing.releaseHitch("winch")</script> -->
+     <script>
+      MRX13.releaseHitch();
+      towing.releaseHitch("aerotow")
+     </script>
+    </binding>
+<!--
+<binding>
+ <command>property-assign</command>
+ <property>sim/model/DropTest/hooked</property>
+ <value>0</value>
+</binding>
+-->
+   </key>
+
+   <key n="93">
+    <name>]</name>
+    <desc>Deploy drogue parachute</desc>
+    <binding>
+     <command>property-assign</command>
+     <property>sim/model/MRX13/DrogueChute</property>
+     <value>1</value>
+    </binding>
+   </key>
+
+   <key n="91">
+    <name>[</name>
+    <desc>Retract drogue parachute</desc>
+    <binding>
+     <command>property-assign</command>
+     <property>sim/model/MRX13/DrogueChute</property>
+     <value>0</value>
+    </binding>
+   </key>
+    
+   <key n="362">
+    <name>Home</name>
+    <desc>pilot attitude more upright</desc>
+    <repeatable type="bool">true</repeatable>
+    <binding>
+     <command>property-adjust</command>
+     <property>controls/flight/pilot-attitude-deg</property>
+     <step type="double">-2.5</step>
+     <min>-10.</min>
+     <max>75.</max>
+    </binding>
+   </key>
+
+   <key n="363">
+    <name>End</name>
+    <desc>pilot attitude more prone</desc>
+    <repeatable type="bool">true</repeatable>
+    <binding>
+     <command>property-adjust</command>
+     <property>controls/flight/pilot-attitude-deg</property>
+     <step type="double">2.5</step>
+     <min>-10.</min>
+     <max>75.</max>
+    </binding>
+   </key>
+
+   <key n="55">
+    <name>7</name>
+    <desc>pilot attitude more upright</desc>
+    <repeatable type="bool">true</repeatable>
+    <binding>
+     <command>property-adjust</command>
+     <property>controls/flight/pilot-attitude-deg</property>
+     <step type="double">-2.5</step>
+     <min>-10.</min>
+     <max>75.</max>
+    </binding>
+   </key>
+
+   <key n="49">
+    <name>1</name>
+    <desc>pilot attitude more prone</desc>
+    <repeatable type="bool">true</repeatable>
+    <binding>
+     <command>property-adjust</command>
+     <property>controls/flight/pilot-attitude-deg</property>
+     <step type="double">2.5</step>
+     <min>-10.</min>
+     <max>75.</max>
+    </binding>
+   </key>
+
+<!--    
+    <key n="16">
+      <name>Ctrl-p</name>
+      <desc>Toggle parachute</desc>
+      <binding>
+        <command>property-toggle</command>
+        <property>parachute</property>
+        <value type="bool">true</value>
+      </binding>
+    </key>
+    
+    <key n="111">
+      <name>o</name>
+      <desc>Toggle smoke system</desc>
+      <binding>
+        <command>property-toggle</command>
+        <property>controls/electric/smoke-switch</property>
+      </binding>
+    </key>
+-->
+
+  </keyboard>
+
+  <mice>
+   <mouse n="0">
+    <mode n="1">
+     <cursor>crosshair</cursor>
+     <constrained type="bool">true</constrained>
+     <pass-through type="bool">false</pass-through>
+
+     <!-- extra buttons control elevator trim -->
+     <!-- these are often assigned to mouse-wheel motion in Linux -->
+     <button n="3">
+      <binding>
+       <command>property-adjust</command>
+       <property>/controls/flight/pilot-attitude-deg</property>
+       <step type="double">-5.</step>
+       <min>-10.</min>
+       <max>75.</max>
+      </binding>
+     </button>
+
+     <button n="4">
+      <binding>
+       <command>property-adjust</command>
+       <property>/controls/flight/pilot-attitude-deg</property>
+       <step type="double">5.</step>
+       <min>-10.</min>
+       <max>75.</max>
+      </binding>
+     </button>
+    </mode>
+   </mouse> <!-- of mouse 0 -->
+  </mice>
+
+</PropertyList>

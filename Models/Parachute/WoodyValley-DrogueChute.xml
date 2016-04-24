@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <path>WoodyValley-DrogueChute.ac</path>
+
+ <animation>
+  <type>select</type>
+   <object-name>WoodyValley-DrogueChute</object-name>
+   <condition>
+    <greater-than>
+     <property>fdm/jsbsim/fcs/drogue_chute-pos-norm</property>
+     <value>0.01</value>
+    </greater-than>
+   </condition>
+   <nopreview/>
+ </animation>
+
+ <animation>
+  <type>select</type>
+   <object-name>Handle</object-name>
+   <object-name>LineClosed</object-name>
+   <condition>
+    <less-than>
+     <property>fdm/jsbsim/fcs/drogue_chute-pos-norm</property>
+     <value>0.01</value>
+    </less-than>
+   </condition>
+ </animation>
+
+ <animation>
+  <type>pick</type>
+   <object-name>DrogueChutePocket</object-name>
+   <object-name>Handle</object-name>
+   <action>
+    <button>0</button>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+    <repeatable>false</repeatable>
+     <binding>
+      <command>property-toggle</command>
+      <property>sim/model/MRX13/DrogueChute</property>
+      <value>0</value>
+      <value>1</value>
+     </binding>
+   </action>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+   <object-name>WoodyValley-DrogueChute</object-name>
+    <expression>
+     <product>
+      <property>surface-positions/left-aileron-pos-norm</property>
+      <value>-15</value>
+      <dif>
+       <value>1</value>
+       <property>gear/gear[2]/wow</property>
+      </dif>
+     </product>
+    </expression>
+    <factor>-15</factor>
+    <center>
+      <x-m>0.0</x-m>
+      <y-m>0.0</y-m>
+      <z-m>0.0</z-m>
+    </center>
+    <axis>
+      <x>0.9659258</x>
+      <y>0.0</y>
+      <z>0.2588190</z>
+    </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+   <object-name>WoodyValley-DrogueChute</object-name>
+    <expression>
+     <sum>
+     <table>
+      <product>
+       <property>surface-positions/elevator-pos-norm</property>
+      <dif>
+       <value>1</value>
+       <property>gear/gear[2]/wow</property>
+      </dif>
+
+       <value>-1</value>
+      </product>
+      <entry><ind>-1.0</ind> <dep>-35</dep></entry>
+      <entry><ind>   0</ind> <dep>-15</dep></entry>
+      <entry><ind> 1.0</ind> <dep> 10</dep></entry>
+     </table>
+     <value>15</value>
+     </sum>
+    </expression>
+    <center>
+      <x-m>0.0</x-m>
+      <y-m>0.0</y-m>
+      <z-m>0.0</z-m>
+    </center>
+    <axis>
+      <x>0.0</x>
+      <y>1.0</y>
+      <z>0.0</z>
+    </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+   <object-name>WoodyValley-DrogueChute</object-name>
+    <property>surface-positions/rudder-pos-norm</property>
+    <factor>-25</factor>
+    <center>
+      <x-m>0.0</x-m>
+      <y-m>0.0</y-m>
+      <z-m>0.0</z-m>
+    </center>
+    <axis>
+      <x>-0.2588190</x>
+      <y>0.0</y>
+      <z>0.9659258</z>
+    </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+   <object-name>WoodyValley-DrogueChute</object-name>
+    <property>controls/flight/pilot-attitude-deg</property>
+     <interpolation>
+      <entry><ind> 75</ind> <dep>-75</dep></entry>
+      <entry><ind>  0</ind> <dep>  0</dep></entry>
+      <entry><ind>-10</ind> <dep> 10</dep></entry>
+    </interpolation>
+    <center>
+      <x-m>0.</x-m>
+      <y-m>0.0</y-m>
+      <z-m>-0.</z-m>
+    </center>
+    <axis>
+      <x>0.0</x>
+      <y>1.0</y>
+      <z>0.0</z>
+    </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+   <object-name>WoodyValley-DrogueChute</object-name>
+   <property>fdm/jsbsim/aero/alpha-deg</property>
+   <center>
+    <x-m>0.0</x-m>
+    <y-m>0.0</y-m>
+    <z-m>0.0</z-m>
+   </center>
+   <axis>
+    <x>0.</x>
+    <y>-1.</y>
+    <z>0.</z>
+   </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+   <object-name>WoodyValley-DrogueChute</object-name>
+   <property>fdm/jsbsim/aero/beta-deg</property>
+   <center>
+    <x-m>0.0</x-m>
+    <y-m>0.0</y-m>
+    <z-m>0.0</z-m>
+   </center>
+   <axis>
+    <x>1.</x>
+    <y>0.</y>
+    <z>0.</z>
+   </axis>
+ </animation>
+
+ <!-- belongs here; won't work correct, if positioned in front of rotate-blocks -->
+ <animation>
+  <type>scale</type>
+   <object-name>WoodyValley-DrogueChute</object-name>
+   <property>fdm/jsbsim/fcs/drogue_chute-pos-norm</property>
+   <x-min>0.1</x-min>
+   <y-min>0.1</y-min>
+   <z-min>0.1</z-min>
+   <x-max>1.</x-max>
+   <y-max>0.2</y-max>
+   <z-max>0.2</z-max>
+   <x-factor>2.</x-factor>
+   <y-factor>1.</y-factor>
+   <z-factor>1.</z-factor>
+ </animation>
+
+ <animation>
+  <type>scale</type>
+   <object-name>WoodyValley-DrogueChute</object-name>
+   <property>fdm/jsbsim/fcs/drogue_chute-pos-norm</property>
+   <x-min>1.</x-min>
+   <y-min>0.2</y-min>
+   <z-min>0.2</z-min>
+   <x-max>1.</x-max>
+   <y-max>5.</y-max>
+   <z-max>5.</z-max>
+   <x-factor>1.</x-factor>
+   <y-factor>5.</y-factor>
+   <z-factor>5.</z-factor>
+ </animation>
+
+</PropertyList>

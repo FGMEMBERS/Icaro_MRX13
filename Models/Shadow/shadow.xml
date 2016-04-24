@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <path>MRX13_Shadow.ac</path>
+
+ <nopreview/>
+
+ <offsets>
+  <!-- x/y/z == back/right/up -->
+  <x-m> 0 </x-m>
+  <y-m> 0.0 </y-m>
+  <z-m> -1.3 </z-m> <!-- -1.3 -->
+  <pitch-deg>-15.0</pitch-deg>
+  <roll-deg>0</roll-deg>
+ </offsets>
+
+ <effect>
+  <inherits-from>Effects/shadow-vol</inherits-from>
+  <object-name>Glider_Shadow</object-name>
+  <object-name>Pilot_Shadow</object-name>
+ </effect>
+
+ <!-- roll -->
+ <animation>
+  <type>rotate</type>
+  <property>orientation/roll-deg</property>
+  <factor>1.0</factor>
+  <center>
+   <x-m>0</x-m>
+   <y-m>0</y-m>
+   <z-m>0</z-m>
+  </center>
+  <axis>
+   <x>1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <!-- pitch -->
+ <animation>
+  <type>rotate</type>
+  <property>orientation/pitch-deg</property>
+  <factor>-1.0</factor>
+  <center>
+   <x-m>0</x-m>
+   <y-m>0</y-m>
+   <z-m>0</z-m>
+  </center>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>select</type>
+  <condition>
+   <and>
+    <property>/sim/rendering/shaders/skydome</property>
+    <property>position/altitude-agl-m</property>
+    <not>
+     <property>/sim/rendering/rembrandt/enabled</property>
+    </not>
+   </and>
+  </condition>
+ </animation>
+
+</PropertyList>

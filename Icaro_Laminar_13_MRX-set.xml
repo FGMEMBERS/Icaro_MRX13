@@ -1,0 +1,768 @@
+<?xml version="1.0"?> 
+<!--
+************************************************************************
+Weight shift controlled hang glider for FlightGear
+
+Last update: April 24, 2016 D-NXKT, D_NXKT@yahoo.de
+************************************************************************
+-->
+
+<PropertyList>
+ <sim>
+
+  <author>D-NXKT</author>
+  <description>Icaro Laminar 13 MRX hang glider (MRX13)</description>
+  <long-description></long-description>
+  <tags>
+   <tag>glider</tag>
+   <tag>2000s</tag>
+   <tag>delta</tag>
+   <tag>variable-geometry</tag>
+   <tag>tow</tag>
+   <tag>unpowered</tag>
+  </tags>
+
+  <aircraft-version>April 2016</aircraft-version>
+
+  <status>early production</status>
+  <rating>
+   <FDM type="int">5</FDM>
+   <systems type="int">5</systems>
+   <cockpit type="int">3</cockpit>
+   <model type="int">4</model>
+  </rating>
+
+  <flight-model>jsb</flight-model>
+  <aero>Icaro_MRX13</aero>
+
+  <startup>
+   <splash-title>Laminar 13 MRX (MRX13)</splash-title>
+   <splash-texture>Aircraft/Icaro_MRX13/splash-01.png</splash-texture>
+  </startup>
+
+  <sound>
+   <path>Aircraft/Icaro_MRX13/Sounds/MRX13-sound.xml</path>
+  </sound>
+
+  <panel>
+   <!-- generic panel imperial units -->
+   <path>Aircraft/Icaro_MRX13/Panels/generic-panel-imperial-units.xml</path>
+   <visibility>false</visibility>
+   <hide-nonzero-view>false</hide-nonzero-view>
+   <hide-nonzero-heading-offset>false</hide-nonzero-heading-offset>
+  </panel>
+
+  <panel_2>
+   <!-- generic panel metric units -->
+   <path>Aircraft/Icaro_MRX13/Panels/generic-panel-metric-units.xml</path>
+  </panel_2>
+
+  <model>
+
+   <path>Aircraft/Icaro_MRX13/Models/MRX13.xml</path>
+
+   <livery>
+    <file type="string">Default</file>
+   </livery>
+   
+   <MRX13>
+
+    <animation>
+      <side type="float">0.</side>
+      <ahead type="float">0.</ahead>
+    </animation>
+    
+    <material>
+    
+     <LeadingEdge>
+      <ambient>
+       <red>1.</red>
+       <green>1.</green>
+       <blue>1.</blue>
+      </ambient>
+      <transparency>
+       <alpha>0.99</alpha>
+      </transparency>
+     </LeadingEdge>
+
+     <UpperSail>
+      <ambient>
+       <red>1.0</red>
+       <green>1.0</green>
+       <blue>1.0</blue>
+      </ambient>
+      <transparency>
+       <alpha>0.98</alpha>
+      </transparency>
+     </UpperSail>
+     
+     <LowerSail>
+      <ambient>
+       <red>1.0</red>
+       <green>1.0</green>
+       <blue>1.0</blue>
+      </ambient>
+      <transparency>
+       <alpha>0.97</alpha>
+      </transparency>
+     </LowerSail>
+
+     <SmallStripe>
+      <ambient>
+       <red>1.0</red>
+       <green>1.0</green>
+       <blue>0.0</blue>
+      </ambient>
+      <transparency>
+       <alpha>0.97</alpha>
+      </transparency>
+     </SmallStripe>
+     
+     <WideStripe>
+      <ambient>
+       <red>0.5</red>
+       <green>0.0</green>
+       <blue>0.8</blue>
+      </ambient>
+      <transparency>
+       <alpha>0.97</alpha>
+      </transparency>
+     </WideStripe>
+
+    </material>
+    
+    <with-wheels type="bool">true</with-wheels>
+    <with-woolthread type="bool">true</with-woolthread>
+    <with-TwoStageRelease type="bool">true</with-TwoStageRelease>
+    <wing-failure-enable type="bool">true</wing-failure-enable>
+    <DrogueChute>0</DrogueChute>
+
+    <with-wheels_mp          alias="/sim/model/MRX13/with-wheels"/>          <!-- needed for multiplayer -->
+    <with-woolthread_mp      alias="/sim/model/MRX13/with-woolthread"/>      <!-- needed for multiplayer -->
+    <with-TwoStageRelease_mp alias="/sim/model/MRX13/with-TwoStageRelease"/> <!-- needed for multiplayer -->
+
+   </MRX13>
+   
+   <Vector>
+    <with-vectorB type="bool">false</with-vectorB>
+    <with-vectorW type="bool">false</with-vectorW>
+    <with-VectorAeroForce type="bool">false</with-VectorAeroForce>
+    <with-flowvector type="bool">false</with-flowvector>
+   </Vector>
+   
+   <SmokeTrail>
+     <red>0.8</red>
+     <green>0.0</green>
+     <blue>0.0</blue>
+   </SmokeTrail>
+<!--
+   <DropTest>
+    <hooked>0</hooked>
+    <hooked-old>0</hooked-old>
+   </DropTest>
+-->
+  </model>
+
+  <multiplay>
+   <generic>
+    <int n="0" alias="/fdm/jsbsim/systems/on-ground"/>
+    <int n="1" alias="/sim/model/MRX13/with-wheels_mp"/> 
+    <int n="2" alias="/sim/model/MRX13/with-woolthread_mp"/>
+    <int n="3" alias="/sim/model/MRX13/with-TwoStageRelease_mp"/>
+    <int n="4" alias="/sim/model/MRX13/RotateAboutHangpoint"/>
+    <int n="5" alias="/sim/model/MRX13/RotateAboutPilot"/>
+    <float n="0" alias="/sim/model/MRX13/animation/running_leg_left"/>
+    <float n="1" alias="/sim/model/MRX13/animation/running_leg_right"/>
+    <float n="2" alias="/sim/model/MRX13/animation/running_leg"/>
+    <float n="3" alias="/sim/model/MRX13/animation/running_leg_sign"/>
+    <float n="4" alias="/controls/flight/pilot-attitude-deg"/>
+    <float n="5" alias="/fdm/jsbsim/fcs/drogue_chute-pos-norm"/>
+    <float n="6" alias="/fdm/jsbsim/fcs/parachute-pos-norm"/>
+    <float n="7" alias="/fdm/jsbsim/gear/unit[10]/wheel-speed-fps"/>
+    <float n="8" alias="/fdm/jsbsim/gear/unit[11]/wheel-speed-fps"/>
+    <float n="9" alias="/fdm/jsbsim/aero/alpha-deg"/>
+    <float n="10" alias="/fdm/jsbsim/aero/beta-deg"/>
+    <float n="11" alias="/instrumentation/woolthread/alpha-woolthread-deg"/>
+    <float n="12" alias="/instrumentation/woolthread/beta-woolthread-deg"/>
+    <float n="13" alias="/sim/model/MRX13/LaunchPosition"/>
+    <string n="0" alias="/sim/hitches/winch/force_name_jsbsim"/>
+   </generic>
+  </multiplay>
+
+  <menubar>
+   <default>
+    <menu n="10">
+     <label>Icaro Laminar 13 MRX</label>
+     <enabled type="bool">true</enabled>
+
+     <item>
+      <label>---------------------------</label>
+      <enabled>false</enabled>
+     </item>
+
+     <item>
+      <label>Predefined Variants </label>
+      <binding>
+       <command>nasal</command>
+       <script>aircraft.livery.dialog.open()</script>
+      </binding>
+     </item>
+ 
+     <item>
+      <label>----- Manual Customization -----</label>
+      <enabled>false</enabled>
+     </item>
+
+     <item>
+      <label>Toggle Wheels On/Off</label>
+      <binding>
+       <command>property-toggle</command>
+       <property>sim/model/MRX13/with-wheels</property>
+       <value>0</value>
+      </binding>
+     </item> 
+       
+     <item>
+      <label>Toggle Woolthread On/Off</label>
+      <binding>
+       <command>property-toggle</command>
+       <property>sim/model/MRX13/with-woolthread</property>
+       <value>0</value>
+      </binding>
+     </item>    
+
+     <item>
+      <label>Toggle Wing Failure On/Off</label>
+      <binding>
+       <command>property-toggle</command>
+       <property>sim/model/MRX13/wing-failure-enable</property>
+       <value>0</value> 
+      </binding>
+      <binding>
+       <command>nasal</command>
+       <script>
+         MRX13.wing_failure_repair();
+         if ( getprop("sim/model/MRX13/wing-failure-enable") ) 
+              { setprop("sim/messages/atc", sprintf("wing failure enabled")); }
+         else { setprop("sim/messages/atc", sprintf("wing failure disabled")); }
+       </script>
+      </binding>
+     </item>
+
+     <item>
+      <label>Customise Colours</label>
+      <binding>
+       <command>nasal</command>
+       <script>
+        material.showDialog("/sim/model/MRX13/material/LeadingEdge/", nil, 10);
+        material.showDialog("/sim/model/MRX13/material/UpperSail/", nil, 240);
+        material.showDialog("/sim/model/MRX13/material/LowerSail/", nil, 470);
+        material.showDialog("/sim/model/MRX13/material/SmallStripe/", nil, 710);
+        material.showDialog("/sim/model/MRX13/material/WideStripe/", nil, 950);
+       </script>
+      </binding>
+     </item>       
+
+     <item>
+      <label>---------------------------</label>
+      <enabled>false</enabled>
+     </item>
+
+     <item>
+      <label>Weight and Balance</label>
+      <binding>
+       <command>nasal</command>
+       <script>MRX13.weight_and_balance_dialog.open()</script>
+      </binding>
+      <binding>       
+       <command>nasal</command>
+       <script>
+        var weight_lbs = getprop("/fdm/jsbsim/inertia/empty-weight-lbs");
+        var weight_kg = weight_lbs * 0.453592;
+        setprop("/fdm/jsbsim/inertia/empty-weight-kg",weight_kg);
+        
+        var weight_lbs = getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs");
+        var weight_kg = weight_lbs * 0.453592;
+        setprop("/fdm/jsbsim/inertia/pointmass-weight-kg",weight_kg);
+
+        var weight_lbs = getprop("/fdm/jsbsim/inertia/weight-lbs");
+        var weight_kg = weight_lbs * 0.453592;
+        setprop("/fdm/jsbsim/inertia/weight-kg",weight_kg);
+
+        var area_sqft = getprop("/fdm/jsbsim/metrics/Sw-sqft");
+        var area_sqm = area_sqft * 0.09290;
+        setprop("/fdm/jsbsim/metrics/Sw-sqm",area_sqm);
+       </script>
+      </binding>
+     </item>
+
+     <item>
+      <label>Winch Settings</label>
+      <binding>
+        <command>nasal</command>
+        <script>MRX13.winch_dialog.open()</script>
+      </binding>
+     </item>
+
+     <item>
+      <label>Aerotow Settings</label>
+      <binding>
+        <command>nasal</command>
+        <script>MRX13.aerotow_dialog.open()</script>
+      </binding>
+     </item>
+
+     <item>
+      <label>Select Hook</label>
+      <binding>
+       <command>nasal</command>
+       <script>MRX13.hook_dialog.open()</script>
+      </binding>
+     </item>
+
+     <item>
+      <label>Toggle 2-stage Release</label>
+      <binding>
+       <command>property-toggle</command>
+       <property>sim/model/MRX13/with-TwoStageRelease</property>
+       <value>0</value>
+      </binding>
+     </item>
+    
+     <item>
+      <label>----------- Misc. -----------</label>
+      <enabled>false</enabled>
+     </item>
+
+     <item>
+      <label>Variometer</label>
+      <binding>
+       <command>nasal</command>
+       <script>MRX13.variometer.toggle()</script>
+      </binding>
+     </item>
+
+     <item>
+      <label>Toggle Pilot Animation Rotate + Yaw</label>
+      <binding>
+       <command>property-toggle</command>
+       <property>controls/flight/auto-coordination</property>
+       <value>0</value> 
+      </binding>
+     </item>
+
+     <item>
+      <label>Toggle One Smoke System On/Off</label>
+      <binding>
+       <command>property-toggle</command>
+       <property>controls/electric/smoke-switch</property>
+      </binding>
+     </item>
+
+     <item>
+      <label>Toggle Two Smoke Systems On/Off</label>
+      <binding>
+       <command>property-toggle</command>
+       <property>controls/electric/smoke-switch[1]</property>
+      </binding>
+     </item>
+
+     <item>
+      <label>Toggle Vector Body-System On/Off</label>
+      <binding>
+        <command>property-toggle</command>
+        <property>sim/model/Vector/with-vectorB</property>
+        <value>0</value>
+      </binding>
+     </item>
+
+     <item>
+      <label>Toggle Vector Wind-System On/Off</label>
+      <binding>
+        <command>property-toggle</command>
+        <property>sim/model/Vector/with-vectorW</property>
+        <value>0</value>
+      </binding>
+     </item>
+
+     <item>
+      <label>Toggle Vector Aero Force + C.G. On/Off</label>
+      <binding>
+        <command>property-toggle</command>
+        <property>sim/model/Vector/with-VectorAeroForce</property>
+        <value>0</value>
+      </binding>
+     </item>
+
+     <item>
+      <label>Toggle Flow Vector On/Off</label>
+      <binding>
+        <command>property-toggle</command>
+        <property>sim/model/Vector/with-flowvector</property>
+        <value>0</value>
+      </binding>
+     </item>
+
+<!--
+     <item>
+      <label>Toggle Drop Test On/Off</label>
+       <binding>
+        <command>nasal</command>
+        <script>MRX13.drop_test()</script>
+       </binding>
+     </item>
+-->  
+  
+    </menu>
+   </default>
+  </menubar>
+
+
+<!--
+              y
+              |  x
+              | /
+              |/ 
+              ______z
+
+            View-System
+-->
+
+  <view n="0"> <!-- Pilot View -->
+   <internal archive="y">true</internal>
+   <config>
+    <pitch-offset-deg>-13.0</pitch-offset-deg>
+    <x-offset-m archive="y">0.</x-offset-m>     <!--Right-->
+    <y-offset-m archive="y">-0.322</y-offset-m> <!--Up-->
+    <z-offset-m archive="y">-0.867</z-offset-m> <!--Back-->
+   </config>
+  </view>
+  <view n="1"> <!-- Helicopter View -->
+   <config>
+    <x-offset-m archive="y">0.0</x-offset-m>
+    <y-offset-m archive="y" type="double">0.0</y-offset-m>
+    <z-offset-m archive="y" type="double">-15.0</z-offset-m>
+    <target-y-offset-m archive="y" type="double">-0.92</target-y-offset-m>
+   </config>
+  </view>
+  <view n="2"> <!-- Chase View -->
+   <config>
+    <y-offset-m archive="y" type="double">-0.1</y-offset-m>
+    <z-offset-m archive="y" type="double">-15.0</z-offset-m>
+    <target-y-offset-m archive="y" type="double">-0.92</target-y-offset-m>
+   </config>
+  </view>
+  <view n="3"> <!-- Tower View -->
+   <config>
+    <target-y-offset-m archive="y" type="double">-0.92</target-y-offset-m>
+   </config>
+  </view>
+  <view n="4"> <!-- Tower View Look From -->
+   <config>
+    <target-y-offset-m archive="y" type="double">-0.92</target-y-offset-m>
+   </config>
+  </view>
+  <view n="5"> <!-- Chase View Without Yaw -->
+   <config>
+    <target-y-offset-m archive="y" type="double">-0.92</target-y-offset-m>
+   </config>
+  </view>
+  <view n="6"> <!-- Fly-By View -->
+   <config>
+    <target-y-offset-m archive="y" type="double">-0.92</target-y-offset-m>
+   </config>
+  </view>
+  <view n="7"> <!--Model View -->
+   <config>
+    <z-offset-m archive="y" type="double">-15.0</z-offset-m> <!-- does not work -->
+    <target-y-offset-m archive="y" type="double">-0.92</target-y-offset-m> <!-- does not work -->
+   </config>
+  </view>
+
+  <!-- Specific views -->
+
+  <view n="100">
+   <name>Harness View</name>
+   <enabled type="bool">true</enabled>
+   <type>lookfrom</type>
+   <internal type="bool">true</internal>
+   <config>
+    <from-model type="bool">true</from-model>
+    <from-model-idx type="int">0</from-model-idx>
+    <x-offset-m archive="y" type="double">0.</x-offset-m>
+    <y-offset-m archive="y" type="double">-1.006</y-offset-m>
+    <z-offset-m archive="y" type="double">0.504</z-offset-m>
+    <pitch-offset-deg type="double">0</pitch-offset-deg>
+    <heading-offset-deg type="double">0.</heading-offset-deg>
+   </config>
+  </view>
+
+  <view n="101">
+   <name>Keel View</name>
+   <type>lookfrom</type>
+   <internal type="bool">true</internal>
+   <config>
+    <from-model type="bool">true</from-model>
+    <from-model-idx type="int">0</from-model-idx>
+    <x-offset-m archive="y" type="double">0.00</x-offset-m>
+    <y-offset-m archive="y" type="double">-0.823</y-offset-m>
+    <z-offset-m archive="y" type="double">2.461</z-offset-m>
+    <pitch-offset-deg type="double">0.0</pitch-offset-deg>
+   </config>
+  </view>
+
+  <view n="102">
+   <name>Right Wingtip View</name>
+   <enabled type="bool">true</enabled>
+   <type>lookfrom</type>
+   <internal type="bool">true</internal>
+   <config>
+    <from-model type="bool">true</from-model>
+    <from-model-idx type="int">0</from-model-idx>
+    <x-offset-m archive="y" type="double">5.0</x-offset-m>
+    <y-offset-m archive="y" type="double">-0.635</y-offset-m>
+    <z-offset-m archive="y" type="double">1.372</z-offset-m>
+    <default-pitch-deg type="double">0</default-pitch-deg>
+    <pitch-offset-deg type="double">-5</pitch-offset-deg>
+    <heading-offset-deg type="double">65.0</heading-offset-deg>
+   </config>
+  </view>
+
+  <view n="103">
+   <name>Left Wingtip View</name>
+   <enabled type="bool">true</enabled>
+   <type>lookfrom</type>
+   <internal type="bool">true</internal>
+   <config>
+    <from-model type="bool">true</from-model>
+    <from-model-idx type="int">0</from-model-idx>
+    <x-offset-m archive="y" type="double">-5.0</x-offset-m>
+    <y-offset-m archive="y" type="double">-0.635</y-offset-m>
+    <z-offset-m archive="y" type="double">1.347</z-offset-m>
+    <default-pitch-deg type="double">0</default-pitch-deg>
+    <pitch-offset-deg type="double">-5</pitch-offset-deg>
+    <heading-offset-deg type="double">-65.0</heading-offset-deg>
+   </config>
+  </view>
+
+  <view n="104">
+   <name>Nose View</name>
+   <enabled type="bool">true</enabled>
+   <type>lookfrom</type>
+   <internal type="bool">true</internal>
+   <config>
+    <from-model type="bool">true</from-model>
+    <from-model-idx type="int">0</from-model-idx>
+    <x-offset-m archive="y" type="double">0.0</x-offset-m>
+    <y-offset-m archive="y" type="double">0.186</y-offset-m>
+    <z-offset-m archive="y" type="double">-1.306</z-offset-m>
+    <default-pitch-deg type="double">0</default-pitch-deg>
+    <pitch-offset-deg type="double">-65</pitch-offset-deg>
+    <heading-offset-deg type="double">180.0</heading-offset-deg>
+   </config>
+  </view>    
+
+  <current-view>
+   <view-number type="int">9</view-number>
+  </current-view>
+      
+  <!-- Aircraft specific help. -->
+  <help include="help.xml"/>
+
+  <checklists>
+   <checklist include="Checklists/MRX13-checklists.xml" omit-node="y"/>
+  </checklists>
+
+  <aircraft-data>
+
+   <path>/sim/panel/visibility</path>
+   <path>/sim/panel/path</path>
+
+   <path>/sim/model/MRX13/with-wheels</path>
+   <path>/sim/model/MRX13/with-woolthread</path>
+   <path>/sim/model/MRX13/with-TwoStageRelease</path>
+   <path>/sim/model/MRX13/wing-failure-enable</path>
+
+   <path>/sim/model/MRX13/material/LeadingEdge/ambient/red</path>
+   <path>/sim/model/MRX13/material/LeadingEdge/ambient/green</path>
+   <path>/sim/model/MRX13/material/LeadingEdge/ambient/blue</path>
+   <path>/sim/model/MRX13/material/LeadingEdge/transparency/alpha</path>
+
+   <path>/sim/model/MRX13/material/UpperSail/ambient/red</path>
+   <path>/sim/model/MRX13/material/UpperSail/ambient/green</path>
+   <path>/sim/model/MRX13/material/UpperSail/ambient/blue</path>
+   <path>/sim/model/MRX13/material/UpperSail/transparency/alpha</path>
+
+   <path>/sim/model/MRX13/material/LowerSail/ambient/red</path>
+   <path>/sim/model/MRX13/material/LowerSail/ambient/green</path>
+   <path>/sim/model/MRX13/material/LowerSail/ambient/blue</path>
+   <path>/sim/model/MRX13/material/LowerSail/transparency/alpha</path>
+
+   <path>/sim/model/MRX13/material/SmallStripe/ambient/red</path>
+   <path>/sim/model/MRX13/material/SmallStripe/ambient/green</path>
+   <path>/sim/model/MRX13/material/SmallStripe/ambient/blue</path>
+   <path>/sim/model/MRX13/material/SmallStripe/transparency/alpha</path>
+
+   <path>/sim/model/MRX13/material/WideStripe/ambient/red</path>
+   <path>/sim/model/MRX13/material/WideStripe/ambient/green</path>
+   <path>/sim/model/MRX13/material/WideStripe/ambient/blue</path>
+   <path>/sim/model/MRX13/material/WideStripe/transparency/alpha</path>
+
+   <path>/sim/model/Vector/with-VectorAeroForce</path>
+   <path>/sim/model/Vector/with-flowvector</path>
+
+   <path>/fdm/jsbsim/inertia/pointmass-weight-lbs</path>
+   <path>/fdm/jsbsim/metrics/Sw-sqft</path>
+
+   <path>/controls/flight/auto-coordination</path>
+
+   <path>/sim/hitches/aerotow/tow/length</path>
+   <path>/sim/hitches/aerotow/tow/brake-force</path>
+   <path>/sim/hitches/aerotow/tow/elastic-constant</path>
+   <path>/sim/hitches/aerotow/rope/rope-diameter-mm</path>
+   <path>/sim/hitches/aerotow/force_name_jsbsim</path>
+   <path>/sim/hitches/winch/tow/initial-tow-length-m</path>
+   <path>/sim/hitches/winch/tow/max-tow-length-m</path>
+   <path>/sim/hitches/winch/tow/break-force-N</path>
+   <path>/sim/hitches/winch/tow/elastic-constant</path>
+   <path>/sim/hitches/winch/rope/rope-diameter-mm</path>
+   <path>/sim/hitches/winch/tow/weight-per-m-kg-m</path>
+   <path>/sim/hitches/winch/winch/initial-tow-length-m</path>
+   <path>/sim/hitches/winch/winch/max-tow-length-m</path>
+   <path>/sim/hitches/winch/winch/max-power-kW</path>
+   <path>/sim/hitches/winch/winch/max-force-N</path>
+   <path>/sim/hitches/winch/winch/max-spool-speed-m-s</path>
+   <path>/sim/hitches/winch/winch/max-unspool-speed-m-s</path>
+   <path>/sim/hitches/winch/winch/spool-acceleration-m-s-s</path>
+   <path>/sim/hitches/winch/force_name_jsbsim</path>
+    
+  </aircraft-data>
+
+  <spoilers>
+   <current-setting>0</current-setting>
+   <setting>0.000</setting>    <!-- VG off -->
+   <setting>0.333</setting>
+   <setting>0.666</setting>
+   <setting>1.000</setting>    <!-- VG on  -->
+  </spoilers>
+
+  <hitches>
+   <open-toprope type="float">1</open-toprope>
+   <open-bottomrope type="float">1</open-bottomrope>
+   <aerotow>
+    <!-- see Animation.nas
+    <local-pos-x type="float">1.5</local-pos-x>
+    <local-pos-y type="float"> 0.00</local-pos-y>
+    <local-pos-z type="float">-0.3</local-pos-z>
+    -->
+    <force-is-calculated-by-other type="bool">false</force-is-calculated-by-other>
+    <mp-auto-connect-period type="float">0.0</mp-auto-connect-period>
+    <force_name_jsbsim type="string">chest</force_name_jsbsim>
+    <tow>
+     <brake-force type="float">1000</brake-force>
+     <elastic-constant type="float">9000</elastic-constant>
+     <length type="float">60.</length>
+    </tow>
+    <rope>
+     <rope-diameter-mm type="float">8</rope-diameter-mm>
+    </rope>
+   </aerotow>
+   <winch>
+    <force_name_jsbsim type="string">chest</force_name_jsbsim>
+    <!-- see Animation.nas      
+    <local-pos-x type="float">0.0</local-pos-x>
+    <local-pos-y type="float">0.0</local-pos-y>
+    <local-pos-z type="float">0.0</local-pos-z>
+    -->
+    <automatic-release-angle-deg type="float">380.</automatic-release-angle-deg>
+    <winch>
+      <initial-tow-length-m type="float">800.</initial-tow-length-m>
+      <max-tow-length-m type="float">1500.</max-tow-length-m> 
+      <max-force-N type="float">800.</max-force-N>
+      <max-power-kW type="float">10.</max-power-kW>
+      <max-spool-speed-m-s type="float">20.</max-spool-speed-m-s>
+      <max-unspool-speed-m-s type="float">20.</max-unspool-speed-m-s>
+      <rel-speed alias="/sim/hitches/winch/winch/actual-spool-speed-m-s"/>
+      <spool-acceleration-m-s-s type="float">5.</spool-acceleration-m-s-s>
+    </winch>
+    <tow>
+      <break-force-N type="float">1500</break-force-N>
+      <elastic-constant type="float">40000</elastic-constant>
+      <weight-per-m-kg-m type="float">0.01</weight-per-m-kg-m>
+    </tow>
+    <rope>
+      <path_to_model type="string">Aircraft/Icaro_MRX13/Models/Ropes/towropes_HangGlider.xml</path_to_model>
+      <rope-diameter-mm type="float">20</rope-diameter-mm>
+    </rope>
+   </winch>
+  </hitches>
+
+  <systems>
+   <property-rule n="100">
+    <name>set view-target-offset to current C.G.</name>
+    <path>Systems/view-propertyrules.xml</path>
+    <serviceable type="bool">false</serviceable>
+   </property-rule>
+
+   <property-rule n="101">
+    <name>Helpers for Vector Animation</name>
+    <path>Aircraft/Icaro_MRX13/Models/Vector/VectorHelpers-propertyrules.xml</path>
+    <serviceable alias="/sim/model/Vector/with-VectorAeroForce"/>  <!-- doesn't work; is always true -->
+   </property-rule>
+
+   <property-rule n="102">
+    <name>Helper for Shadow</name>
+    <path>Aircraft/Icaro_MRX13/Models/Shadow/Helper-propertyrule.xml</path>
+    <serviceable type="bool">true</serviceable>
+   </property-rule>
+  </systems>
+
+ </sim>
+
+ <controls>
+  <flight>
+   <pilot-attitude-deg type="double">0.0</pilot-attitude-deg>
+   <auto-coordination-factor type="float">0.5</auto-coordination-factor>
+  </flight>
+  <gear>
+   <brake-parking type="double">1</brake-parking>
+   <antiskid      type="bool">false</antiskid>
+  </gear> 
+ </controls>
+
+ <input include="keyboard.xml"/>
+
+ <nasal>
+  <MRX13>
+   <file>Aircraft/Icaro_MRX13/Nasal/running.nas</file>
+   <file>Aircraft/Icaro_MRX13/Nasal/Animation.nas</file>
+   <file>Aircraft/Icaro_MRX13/Nasal/liveries.nas</file>
+   <file>Aircraft/Icaro_MRX13/Nasal/dialogs.nas</file>
+   <file>Aircraft/Icaro_MRX13/Nasal/SetDefaults.nas</file>
+   <file>Aircraft/Icaro_MRX13/Nasal/TwoStageRelease.nas</file>
+   <file>Aircraft/Icaro_MRX13/Nasal/WoolThread.nas</file>
+  </MRX13>
+ </nasal>
+
+ <instrumentation>
+  <variometer>
+   <switch type="bool">1</switch>
+   <volume type="float">0.5</volume>
+   <sensitivity type="float">0.175</sensitivity>
+  </variometer>
+ </instrumentation>
+
+ <fdm>
+  <jsbsim>
+   <fcs>
+     <parachute-pos-norm type="double">0.</parachute-pos-norm>
+     <drogue_chute-pos-norm type="double">0.</drogue_chute-pos-norm>
+     <running-force-norm type="double">0.</running-force-norm>
+     <throttle-generic-engine-norm type="double">0.</throttle-generic-engine-norm>
+     <turning-moment-norm type="double">0.</turning-moment-norm>
+     <pilot-attitude-pos-deg type="double">0.</pilot-attitude-pos-deg>
+   </fcs>
+  </jsbsim>
+ </fdm>
+
+</PropertyList>

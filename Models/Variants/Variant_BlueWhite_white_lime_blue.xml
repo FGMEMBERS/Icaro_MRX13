@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <sim>
+
+  <model>
+
+   <livery>
+    <name type="string">Blue White white lime blue</name>
+   </livery>
+
+   <MRX13>
+    <name type="string">Blue White white lime blue</name>
+    <with-wheels          type="bool">false</with-wheels>
+    <with-woolthread      type="bool">false</with-woolthread>
+    <with-TwoStageRelease type="bool">true</with-TwoStageRelease>
+
+    <material>
+
+     <LeadingEdge>
+      <ambient>
+       <red>0.</red>
+       <green>0.</green>
+       <blue>1.</blue>
+      </ambient>
+      <transparency>
+       <alpha>0.99</alpha>
+      </transparency>
+     </LeadingEdge>
+
+     <UpperSail>
+       <ambient>
+       <red>1.</red>
+       <green>1.</green>
+       <blue>1.</blue>
+      </ambient>
+      <transparency>
+       <alpha>0.98</alpha>
+      </transparency>
+     </UpperSail>
+
+     <LowerSail>
+      <ambient>
+       <red>0.8</red>
+       <green>0.8</green>
+       <blue>0.8</blue>
+      </ambient>
+      <transparency>
+       <alpha>0.97</alpha>
+      </transparency>
+     </LowerSail>
+
+     <SmallStripe>
+      <ambient>
+       <red>0.64</red>
+       <green>1.0</green>
+       <blue>0.0</blue>
+      </ambient>
+      <transparency>
+       <alpha>0.97</alpha>
+      </transparency>
+     </SmallStripe>
+
+     <WideStripe>
+      <ambient>
+       <red>0.0</red>
+       <green>0.0</green>
+       <blue>0.8</blue>
+      </ambient>
+      <transparency>
+       <alpha>0.97</alpha>
+      </transparency>
+     </WideStripe>
+
+    </material>
+
+   </MRX13>
+  </model>
+ </sim>
+</PropertyList>

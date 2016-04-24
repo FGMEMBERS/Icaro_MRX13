@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<!-- This variant is only needed to make autosave working properly.
+     It changes nothing except the variant name in aircraft-data/Icaro_MRX13.xml
+     (the aircraft autosave file).
+     This trick prevents overwriting the custom settings by the variant settings at restart.
+ -->
+
+ <sim>
+  <model>
+   <livery>
+    <name type="string">ZeroVariantForAutosave</name>
+   </livery>
+   <MRX13>
+     <name type="string">ZeroVariantForAutosave</name>
+   </MRX13>
+  </model>
+ </sim>
+
+</PropertyList>

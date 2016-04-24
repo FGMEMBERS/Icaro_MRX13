@@ -1,0 +1,1583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PropertyList>
+
+ <nasal>
+  <load>
+   var livery_update = aircraft.livery_update.new("Aircraft/Icaro_MRX13/Models/Variants");
+
+   ##############################################################################
+   # The on-load Nasal is not executed when this file is loaded as the user aircraft.
+   ##############################################################################
+   var rplayer = cmdarg();
+   # Set up property aliases for animations.
+
+   rplayer.getNode("fdm/jsbsim/systems/on-ground", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/int[0]"));
+   rplayer.getNode("sim/model/MRX13/with-wheels_mp", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/int[1]"));
+   rplayer.getNode("sim/model/MRX13/with-woolthread_mp", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/int[2]"));
+   rplayer.getNode("sim/model/MRX13/with-TwoStageRelease_mp", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/int[3]"));
+   rplayer.getNode("sim/model/MRX13/RotateAboutHangpoint", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/int[4]"));
+   rplayer.getNode("sim/model/MRX13/RotateAboutPilot", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/int[5]"));
+
+   rplayer.getNode("sim/model/MRX13/animation/running_leg_left", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/float[0]"));
+   rplayer.getNode("sim/model/MRX13/animation/running_leg_right", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/float[1]"));
+   rplayer.getNode("sim/model/MRX13/animation/running_leg", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/float[2]"));
+   rplayer.getNode("sim/model/MRX13/animation/running_leg_sign", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/float[3]"));
+   rplayer.getNode("controls/flight/pilot-attitude-deg", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/float[4]"));
+   rplayer.getNode("fdm/jsbsim/fcs/drogue_chute-pos-norm", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/float[5]"));
+   rplayer.getNode("fdm/jsbsim/fcs/parachute-pos-norm", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/float[6]"));
+   rplayer.getNode("fdm/jsbsim/gear/unit[10]/wheel-speed-fps", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/float[7]"));
+   rplayer.getNode("fdm/jsbsim/gear/unit[11]/wheel-speed-fps", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/float[8]"));
+   rplayer.getNode("fdm/jsbsim/aero/alpha-deg", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/float[9]"));
+   rplayer.getNode("fdm/jsbsim/aero/beta-deg", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/float[10]"));
+   rplayer.getNode("instrumentation/woolthread/alpha-woolthread-deg", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/float[11]"));
+   rplayer.getNode("instrumentation/woolthread/beta-woolthread-deg", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/float[12]"));
+   rplayer.getNode("sim/model/MRX13/LaunchPosition", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/float[13]"));
+
+   rplayer.getNode("sim/hitches/winch/force_name_jsbsim", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/string[0]"));
+
+   rplayer.getNode("sim/current-view/view-number", 1).setIntValue(1); # set view=1 to prevent deselected helmet
+   rplayer.getNode("instrumentation/woolthread/severity1", 1).setValue(0); # severity1 is not transmitted
+   rplayer.getNode("instrumentation/woolthread/severity2", 1).setValue(0); # severity2 is not transmitted
+
+   # print("MRX13 loaded")
+
+  </load>
+
+  <unload>
+   livery_update.stop();
+
+   # unalias
+   rplayer.getNode("fdm/jsbsim/systems/on-ground", 1).unalias();
+   rplayer.getNode("sim/model/MRX13/with-wheels_mp", 1).unalias();
+   rplayer.getNode("sim/model/MRX13/with-woolthread_mp", 1).unalias();
+   rplayer.getNode("sim/model/MRX13/with-TwoStageRelease_mp", 1).unalias();
+   rplayer.getNode("sim/model/MRX13/RotateAboutHangpoint", 1).unalias();
+   rplayer.getNode("sim/model/MRX13/RotateAboutPilot", 1).unalias();   
+   
+   # rplayer.getNode("sim/current-view/view-number", 1).unalias();
+
+   rplayer.getNode("sim/model/MRX13/animation/running_leg_left", 1).unalias();
+   rplayer.getNode("sim/model/MRX13/animation/running_leg_right", 1).unalias();
+   rplayer.getNode("sim/model/MRX13/animation/running_leg", 1).unalias();
+   rplayer.getNode("sim/model/MRX13/animation/running_leg_sign", 1).unalias();
+   rplayer.getNode("controls/flight/pilot-attitude-deg", 1).unalias();
+   rplayer.getNode("fdm/jsbsim/fcs/drogue_chute-pos-norm", 1).unalias();
+   rplayer.getNode("fdm/jsbsim/fcs/parachute-pos-norm", 1).unalias();
+   rplayer.getNode("fdm/jsbsim/gear/unit[10]/wheel-speed-fps", 1).unalias();
+   rplayer.getNode("fdm/jsbsim/gear/unit[11]/wheel-speed-fps", 1).unalias();
+   rplayer.getNode("fdm/jsbsim/aero/alpha-deg", 1).unalias();
+   rplayer.getNode("fdm/jsbsim/aero/beta-deg", 1).unalias();
+   rplayer.getNode("instrumentation/woolthread/alpha-woolthread-deg", 1).unalias();
+   rplayer.getNode("instrumentation/woolthread/beta-woolthread-deg", 1).unalias();
+   rplayer.getNode("sim/model/MRX13/LaunchPosition", 1).unalias();
+   rplayer.getNode("sim/hitches/winch/force_name_jsbsim", 1).unalias();
+   # print("MRX13 unloaded");
+
+  </unload>
+
+ </nasal>
+
+ <path>MRX13.ac</path>
+
+ <offsets>
+  <x-m>-1.280</x-m>
+  <y-m> 0.</y-m>
+  <z-m> 0.283</z-m>
+  <pitch-deg>15</pitch-deg>
+  <roll-deg>0</roll-deg>
+  <heading-deg>0</heading-deg>
+ </offsets>
+
+ <animation>
+  <type>select</type>
+  <object-name>Wing_VG0</object-name>
+  <condition>
+   <and>
+    <less-than>
+     <property>controls/flight/spoilers</property>
+     <value>0.5</value>
+    </less-than>
+    <not>
+     <property>sim/model/MRX13/wing-failure</property>
+    </not>
+   </and>
+  </condition>
+ </animation>
+
+ <animation>
+  <type>select</type>
+  <object-name>Wing_VG1</object-name>
+  <condition>
+   <and>
+    <greater-than-equals>
+     <property>controls/flight/spoilers</property>
+     <value>0.5</value>
+    </greater-than-equals>
+    <not>
+     <property>sim/model/MRX13/wing-failure</property>
+    </not>
+   </and>
+  </condition>
+  <nopreview/>
+ </animation>
+
+
+ <!-- __________________ Smoke __________________ -->
+
+ <model>
+  <path>Aircraft/Icaro_MRX13/Models/SmokeTrail/SmokeTrail.xml</path>
+  <name>SingleSmokeTrail</name>
+  <condition>
+   <property>controls/electric/smoke-switch[0]</property>
+  </condition>
+  <offsets>
+   <x-m>3.8</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-0.2</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <red>/sim/model/SmokeTrail/red</red>
+    <green>/sim/model/SmokeTrail/green</green>
+    <blue>/sim/model/SmokeTrail/blue</blue>
+   </params>
+  </overlay>
+ </model>
+
+ <model>
+  <path>Aircraft/Icaro_MRX13/Models/SmokeTrail/SmokeTrail.xml</path>
+  <name>Left Smoke Trail</name>
+  <condition>
+   <property>controls/electric/smoke-switch[1]</property>
+  </condition>
+  <offsets>
+   <x-m>1.0</x-m>
+   <y-m>-1.0</y-m>
+   <z-m>-1.5</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <red>/sim/model/SmokeTrail/red</red>
+    <green>/sim/model/SmokeTrail/green</green>
+    <blue>/sim/model/SmokeTrail/blue</blue>
+   </params>
+  </overlay>
+ </model>
+
+ <model>
+  <path>Aircraft/Icaro_MRX13/Models/SmokeTrail/SmokeTrail.xml</path>
+  <name>Right Smoke Trail</name>
+  <condition>
+   <property>controls/electric/smoke-switch[1]</property>
+  </condition>
+  <offsets>
+   <x-m>1.0</x-m>
+   <y-m>1.0</y-m>
+   <z-m>-1.5</z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <red>/sim/model/SmokeTrail/red</red>
+    <green>/sim/model/SmokeTrail/green</green>
+    <blue>/sim/model/SmokeTrail/blue</blue>
+   </params>
+  </overlay>
+ </model>
+
+
+ <!-- __________________ Vector __________________ -->
+
+ <model>
+  <path>Aircraft/Icaro_MRX13/Models/Vector/Vector.xml</path>
+  <name>Vector + C.G.</name>
+  <offsets>
+   <x-m>1.31</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.0575</z-m>
+   <pitch-deg>-15.</pitch-deg>
+  </offsets>
+ </model>
+
+
+ <!-- __________________ 2-Stage Release __________________ -->
+
+ <model>
+  <path>Aircraft/Icaro_MRX13/Models/TwoStageRelease/Fluck-Release.xml</path>
+  <name>TwoStageRelease</name>
+  <condition>
+   <equals>
+    <property>sim/hitches/winch/force_name_jsbsim</property>
+    <value>chest</value>
+   </equals>
+  </condition>
+  <offsets>
+   <x-m>0.82</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-1.36</z-m>
+   <pitch-deg>-80.</pitch-deg>
+   <heading-deg>0.</heading-deg>
+   <roll-deg>0.</roll-deg>
+  </offsets>
+ </model>
+
+ <model>
+  <path>Aircraft/Icaro_MRX13/Models/TwoStageRelease/Fluck-Release.xml</path>
+  <name>TwoStageRelease</name>
+  <condition>
+   <equals>
+    <property>sim/hitches/winch/force_name_jsbsim</property>
+    <value>belly</value>
+   </equals>
+  </condition>
+  <offsets>
+   <x-m>1.3</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-1.4</z-m>
+   <pitch-deg>-80.</pitch-deg>
+   <heading-deg>0.</heading-deg>
+   <roll-deg>0.</roll-deg>
+  </offsets>
+ </model>
+
+
+ <!-- __________________ Drogue Chute __________________ -->
+
+ <model>
+  <path>Aircraft/Icaro_MRX13/Models/Parachute/WoodyValley-DrogueChute.xml</path>
+  <name>DrogueChute</name>
+  <offsets>
+   <x-m>1.5</x-m>
+   <y-m>-0.158</y-m>
+   <z-m>-1.3</z-m>
+   <pitch-deg>0.</pitch-deg>
+   <heading-deg>0.</heading-deg>
+   <roll-deg>0.</roll-deg>
+  </offsets>
+ </model>
+
+
+ <!-- __________________ Rescue Parachute __________________ -->
+
+ <model>
+  <name>Parachute</name>
+  <path>Aircraft/Icaro_MRX13/Models/Parachute/parachute.xml</path>
+  <offsets>
+   <x-m>1.5</x-m>
+   <z-m>0.</z-m>
+   <pitch-deg>75</pitch-deg>
+  </offsets>
+ </model>
+
+
+ <!-- __________________ Wool Thread __________________ -->
+
+ <model>
+  <path>Aircraft/Icaro_MRX13/Models/Wool-Thread/wool-thread.xml</path>
+  <name>WoolThread</name>
+  <offsets>
+   <x-m> 0.3311</x-m>
+   <y-m>-0.1725</y-m>
+   <z-m>-0.3990</z-m>
+   <pitch-deg>0.</pitch-deg>
+   <heading-deg>0.</heading-deg>
+   <roll-deg>0.</roll-deg>
+  </offsets>
+ </model>
+
+
+ <!-- __________________ Wheels __________________ -->
+
+ <model>
+  <name>WheelLeft</name>
+  <path>Aircraft/Icaro_MRX13/Models/Wheel/Wheel.xml</path>
+  <offsets>
+   <x-m>1.2546</x-m>
+   <y-m>-0.60</y-m>
+   <z-m>-1.5717</z-m>
+   <heading-deg>0</heading-deg>
+   <pitch-deg>0</pitch-deg>
+   <roll-deg>-6.</roll-deg>
+  </offsets>
+  <overlay>
+   <params>
+    <wheel-speed-fps>/fdm/jsbsim/gear/unit[10]/wheel-speed-fps</wheel-speed-fps>
+   </params>
+  </overlay>
+ </model>
+
+ <model>
+  <name>WheelRight</name>
+  <path>Aircraft/Icaro_MRX13/Models/Wheel/Wheel.xml</path>
+  <offsets>
+   <x-m>1.2546</x-m>
+   <y-m>0.60</y-m>
+   <z-m>-1.5717</z-m>
+   <heading-deg>0</heading-deg>
+   <pitch-deg>0</pitch-deg>
+   <roll-deg>6.</roll-deg>
+  </offsets>
+  <overlay>
+   <params>
+    <wheel-speed-fps>/fdm/jsbsim/gear/unit[11]/wheel-speed-fps</wheel-speed-fps>
+   </params>
+  </overlay>
+ </model>
+
+
+ <!-- __________________ Volumetric shadow object __________________ -->
+
+ <model>
+  <name>shadow</name>
+  <path>Aircraft/Icaro_MRX13/Models/Shadow/shadow.xml</path>
+  <offsets>
+   <!-- x/y/z == back/right/up -->
+   <x-m> 0.00 </x-m>
+   <y-m> 0.00 </y-m>
+   <z-m> 0.00 </z-m>
+  </offsets>
+ </model>
+
+
+ <!-- __________________ Glider __________________ -->
+
+ <animation>
+  <type>rotate</type>
+   <object-name>Glider</object-name>
+   <object-name>WheelLeft</object-name>
+   <object-name>WheelRight</object-name>
+   <object-name>WoolThread</object-name>
+   <object-name>VG_Rope</object-name>
+   <expression>
+    <product>
+     <property>surface-positions/left-aileron-pos-norm</property>
+     <property>fdm/jsbsim/systems/on-ground</property>
+     <value>-15</value>
+     <property>sim/model/MRX13/RotateAboutHangpoint</property>
+    </product>
+   </expression>
+   <center>
+    <x-m>1.31</x-m>
+    <y-m>0.0</y-m>
+    <z-m>0.0575</z-m>
+   </center>
+   <axis>
+    <x>0.9659258</x>
+    <y>0.0</y>
+    <z>0.2588190</z>
+   </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+   <object-name>Glider</object-name>
+   <object-name>WheelLeft</object-name>
+   <object-name>WheelRight</object-name>
+   <object-name>WoolThread</object-name>
+   <object-name>VG_Rope</object-name>
+   <expression>
+    <table>
+     <product>
+      <property>surface-positions/elevator-pos-norm</property>
+      <property>fdm/jsbsim/systems/on-ground</property>
+      <property>sim/model/MRX13/RotateAboutHangpoint</property>
+     </product>
+     <entry><ind>-1.0</ind> <dep> 20</dep></entry>
+     <entry><ind> 0.0</ind> <dep> 0</dep></entry>
+     <entry><ind> 1.0</ind> <dep>-20</dep></entry>
+    </table>
+   </expression>
+   <center>
+    <x-m>1.31</x-m>
+    <y-m>0.0</y-m>
+    <z-m>0.0575</z-m>
+   </center>
+   <axis>
+    <x>0.0</x>
+    <y>1.0</y>
+    <z>0.0</z>
+   </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+   <object-name>Glider</object-name>
+   <object-name>WheelLeft</object-name>
+   <object-name>WheelRight</object-name>
+   <object-name>WoolThread</object-name>
+   <object-name>VG_Rope</object-name>
+   <expression>
+    <product>
+     <property>surface-positions/rudder-pos-norm</property>
+     <property>fdm/jsbsim/systems/on-ground</property>
+     <value>-25</value>
+     <property>sim/model/MRX13/RotateAboutHangpoint</property>
+    </product>
+    </expression>
+    <center>
+     <x-m>1.31</x-m>
+     <y-m>0.0</y-m>
+     <z-m>0.0575</z-m>
+    </center>
+    <axis>
+     <x>-0.2588190</x>
+     <y>0.0</y>
+     <z>0.9659258</z>
+    </axis>
+ </animation>
+
+
+ <!-- __________________ Test On-Ground (Glider) __________________ -->
+
+ <animation>
+  <type>translate</type>
+  <object-name>Glider</object-name>
+  <object-name>WheelLeft</object-name>
+  <object-name>WheelRight</object-name>
+  <object-name>WoolThread</object-name>
+  <object-name>VG_Rope</object-name>
+
+  <object-name>HangLever</object-name>
+  <object-name>HangLoop</object-name>
+
+  <expression>
+   <product>
+    <property>fdm/jsbsim/systems/on-ground</property>
+    <property>sim/model/MRX13/LaunchPosition</property>
+    <table>
+     <property>controls/flight/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep> 0.2</dep></entry>
+     <entry><ind>37.5</ind> <dep> -1.5</dep></entry>
+     <entry><ind> 0.0</ind> <dep> -1.6</dep></entry>
+     <entry><ind>-10.</ind> <dep>-1.5</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <factor>-1</factor>
+  <offset-m>-0.</offset-m>
+  <center>
+   <x-m>0.0</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.0</z-m>
+  </center>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>translate</type>
+  <object-name>Glider</object-name>
+  <object-name>WheelLeft</object-name>
+  <object-name>WheelRight</object-name>
+  <object-name>WoolThread</object-name>
+  <object-name>VG_Rope</object-name>
+
+  <object-name>HangLever</object-name>
+  <object-name>HangLoop</object-name>
+
+  <expression>
+   <product>
+    <property>fdm/jsbsim/systems/on-ground</property>
+    <property>sim/model/MRX13/LaunchPosition</property>
+    <table>
+     <property>controls/flight/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep> -1.5</dep></entry>
+     <entry><ind>  0.</ind> <dep> -5.5</dep></entry>
+     <entry><ind>-10.</ind> <dep>-5.9</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <factor>-1</factor>
+  <offset-m>-0.</offset-m>
+  <center>
+   <x-m>0.0</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.0</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Glider</object-name>
+  <object-name>WheelLeft</object-name>
+  <object-name>WheelRight</object-name>
+  <object-name>WoolThread</object-name>
+  <object-name>VG_Rope</object-name>
+
+  <object-name>HangLever</object-name>
+  <object-name>HangLoop</object-name>
+  <expression>
+   <product>
+    <property>surface-positions/left-aileron-pos-norm</property>
+    <property>fdm/jsbsim/systems/on-ground</property>
+    <property>sim/model/MRX13/RotateAboutPilot</property>
+    <value>-15</value>
+    <value>1</value>
+   </product>
+  </expression>
+  <center>
+   <x-m>1.3655</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-0.6</z-m>
+  </center>
+  <axis>
+   <x>0.9659258</x>
+   <y>0.0</y>
+   <z>0.2588190</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Glider</object-name>
+  <object-name>WheelLeft</object-name>
+  <object-name>WheelRight</object-name>
+  <object-name>WoolThread</object-name>
+  <object-name>VG_Rope</object-name>
+
+  <object-name>HangLever</object-name>
+  <object-name>HangLoop</object-name>
+  <expression>
+   <table>
+    <product>
+     <property>surface-positions/elevator-pos-norm</property>
+     <property>fdm/jsbsim/systems/on-ground</property>
+     <property>sim/model/MRX13/RotateAboutPilot</property>
+     <value>1</value>
+    </product>
+    <entry><ind>-1.0</ind> <dep> 20</dep></entry>
+    <entry><ind> 0.0</ind> <dep> 0</dep></entry>
+    <entry><ind> 1.0</ind> <dep>-20</dep></entry>
+   </table>
+  </expression>
+  <center>
+   <x-m>1.3655</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-0.4137</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+<!-- End Test On-Ground (Glider) -->
+
+ <!-- __________________ Pilot __________________ -->
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Pilot</object-name>
+  <object-name>HangLever</object-name>
+  <object-name>HangLoop</object-name>
+  <object-name>KarabinerAlu</object-name>
+  <object-name>Stubai5000</object-name>
+  <object-name>HangStrap</object-name>
+  <object-name>TwoStageRelease</object-name>
+  <object-name>DrogueChute</object-name>
+  <expression>
+   <product>
+    <property>surface-positions/left-aileron-pos-norm</property>
+    <value>15</value>
+    <dif>
+     <value>1</value>
+     <property>fdm/jsbsim/systems/on-ground</property>
+    </dif>
+   </product>
+  </expression>
+  <factor>15</factor>
+  <center>
+   <x-m>1.31</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.0575</z-m>
+  </center>
+  <axis>
+   <x>0.9659258</x>
+   <y>0.0</y>
+   <z>0.2588190</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Pilot</object-name>
+  <object-name>HangLoop</object-name>
+  <object-name>KarabinerAlu</object-name>
+  <object-name>Stubai5000</object-name>
+  <object-name>HangStrap</object-name>
+  <object-name>TwoStageRelease</object-name>
+  <object-name>DrogueChute</object-name>
+  <expression>
+   <table>
+    <product>
+     <property>surface-positions/elevator-pos-norm</property>
+     <dif>
+      <value>1</value>
+      <property>fdm/jsbsim/systems/on-ground</property>
+     </dif>
+     <value>1</value>
+    </product>
+    <entry><ind>-1.0</ind> <dep>-35</dep></entry>
+    <entry><ind>   0</ind> <dep>-15</dep></entry>
+    <entry><ind> 1.0</ind> <dep>  5</dep></entry>
+   </table>
+  </expression>
+
+  <center>
+   <x-m>1.31</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.0575</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Pilot</object-name>
+  <object-name>HangLever</object-name>
+  <object-name>HangLoop</object-name>
+  <object-name>KarabinerAlu</object-name>
+  <object-name>Stubai5000</object-name>
+  <object-name>HangStrap</object-name>
+  <object-name>TwoStageRelease</object-name>
+  <object-name>DrogueChute</object-name>
+  <property>surface-positions/rudder-pos-norm</property>
+  <factor>25</factor>
+  <center>
+   <x-m>1.31</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.0575</z-m>
+  </center>
+  <axis>
+   <x>-0.2588190</x>
+   <y>0.0</y>
+   <z>0.9659258</z>
+  </axis>
+ </animation>
+
+ <!-- in air -->
+ <animation>
+  <type>rotate</type>
+  <object-name>Pilot</object-name>
+  <object-name>TwoStageRelease</object-name>
+  <object-name>DrogueChute</object-name>
+  <expression>
+   <product>
+    <property>controls/flight/pilot-attitude-deg</property>
+    <dif>
+     <value>1</value>
+     <property>fdm/jsbsim/systems/on-ground</property>
+    </dif>
+   </product>
+  </expression>
+  <center>
+   <x-m>1.330</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-1.088</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <!-- on ground -->
+ <animation>
+  <type>rotate</type>
+  <object-name>Pilot</object-name>
+  <object-name>TwoStageRelease</object-name>
+  <object-name>DrogueChute</object-name>
+  <expression>
+   <product>
+    <property>controls/flight/pilot-attitude-deg</property>
+    <property>fdm/jsbsim/systems/on-ground</property>
+   </product>
+  </expression>
+  <center>
+   <x-m>1.3456</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-1.2492</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+
+ <!-- Test on-ground -->
+
+ <animation>
+  <type>rotate</type>
+  <object-name>KarabinerAlu</object-name>
+  <object-name>Stubai5000</object-name>
+  <object-name>HangStrap</object-name>
+  <expression>
+   <product>
+    <property>fdm/jsbsim/systems/on-ground</property>
+    <property>sim/model/MRX13/RotateAboutPilot</property>
+    <property>sim/model/MRX13/LaunchPosition</property>
+    <value>6</value>
+    <table>
+     <property>controls/flight/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep> -0</dep></entry>
+     <entry><ind>  0.</ind> <dep> -60</dep></entry>
+     <entry><ind>-10.</ind> <dep>-70</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m>1.330</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-1.088</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+
+ <!-- new position -->
+ <animation>
+  <type>rotate</type>
+  <object-name>LeftUpperArm</object-name>
+  <object-name>LeftForearm</object-name>
+  <object-name>LeftHand</object-name>
+  <object-name>RightUpperArm</object-name>
+  <object-name>RightForearm</object-name>
+  <object-name>RightHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutPilot</property>
+    <table>
+     <property>controls/flight/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>-40</dep></entry>
+     <entry><ind>  0.</ind> <dep>0.0</dep></entry>
+     <entry><ind>-10.</ind> <dep>15.</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m>0.8159</x-m>
+   <y-m> 0.190</y-m>
+   <z-m>-1.1982</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>LeftUpperArm</object-name>
+  <object-name>LeftForearm</object-name>
+  <object-name>LeftHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutPilot</property>
+    <table>
+     <property>surface-positions/left-aileron-pos-norm</property>
+     <entry><ind>-1</ind> <dep> -20</dep></entry>
+     <entry><ind> 0.0</ind> <dep>-35</dep></entry>
+     <entry><ind> 1.0</ind> <dep> -60</dep></entry>
+    </table>
+   </product>
+  </expression>
+
+  <factor>-45</factor>
+  <center>
+   <x-m>0.8159</x-m>
+   <y-m>-0.190</y-m>
+   <z-m>-1.1982</z-m>
+  </center>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>RightUpperArm</object-name>
+  <object-name>RightForearm</object-name>
+  <object-name>RightHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutPilot</property>
+    <table>
+     <property>surface-positions/left-aileron-pos-norm</property>
+     <entry><ind>-1</ind> <dep> 60</dep></entry>
+     <entry><ind> 0.0</ind> <dep>35</dep></entry>
+     <entry><ind> 1.0</ind> <dep> 20</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <factor>-45</factor>
+  <center>
+   <x-m>0.8159</x-m>
+   <y-m> 0.190</y-m>
+   <z-m>-1.1982</z-m>
+  </center>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>LeftUpperArm</object-name>
+  <object-name>LeftForearm</object-name>
+  <object-name>LeftHand</object-name>
+  <object-name>RightUpperArm</object-name>
+  <object-name>RightForearm</object-name>
+  <object-name>RightHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutPilot</property>
+    <table>
+     <property>surface-positions/elevator-pos-norm</property>
+     <entry><ind>-1.0 </ind> <dep>85.</dep></entry> <!-- pilot backward -->
+     <entry><ind> 0.0 </ind> <dep>65.0</dep></entry>
+     <entry><ind> 1.0 </ind> <dep>35.</dep></entry> <!-- pilot forward -->
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m>0.8159</x-m>
+   <y-m> 0.190</y-m>
+   <z-m>-1.1982</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>LeftForearm</object-name>
+  <object-name>LeftHand</object-name>
+  <object-name>RightForearm</object-name>
+  <object-name>RightHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutPilot</property>
+    <table>
+     <property>controls/flight/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>-60</dep></entry>
+     <entry><ind>  0.</ind> <dep>-0.0</dep></entry>
+     <entry><ind>-10.</ind> <dep>-10.</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m> 1.1029</x-m>
+   <y-m> 0.1878</y-m>
+   <z-m>-1.2894</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <!-- End Test on-ground -->
+
+
+ <!-- __________________ Upper Arms __________________ -->
+
+ <animation>
+  <type>rotate</type>
+  <object-name>LeftUpperArm</object-name>
+  <object-name>LeftForearm</object-name>
+  <object-name>LeftHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutHangpoint</property>
+    <property>surface-positions/left-aileron-pos-norm</property>
+    <value>-45</value>
+   </product>
+  </expression>
+  <factor>-45</factor>
+  <center>
+   <x-m> 0.8160</x-m>
+   <y-m>-0.1460</y-m>
+   <z-m>-1.1973</z-m>
+  </center>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>RightUpperArm</object-name>
+  <object-name>RightForearm</object-name>
+  <object-name>RightHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutHangpoint</property>
+    <property>surface-positions/left-aileron-pos-norm</property>
+    <value>-45</value>
+   </product>
+  </expression>
+  <factor>-45</factor>
+  <center>
+   <x-m> 0.8160</x-m>
+   <y-m> 0.1460</y-m>
+   <z-m>-1.1973</z-m>
+  </center>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>LeftUpperArm</object-name>
+  <object-name>LeftForearm</object-name>
+  <object-name>LeftHand</object-name>
+  <object-name>RightUpperArm</object-name>
+  <object-name>RightForearm</object-name>
+  <object-name>RightHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutHangpoint</property>
+    <value>1</value>
+   <table>
+    <property>surface-positions/elevator-pos-norm</property>
+    <entry><ind>-1.0 </ind> <dep>160.</dep></entry> <!-- pilot backward -->
+    <entry><ind>-0.75</ind> <dep>115.</dep></entry>
+    <entry><ind>-0.5 </ind> <dep>90.</dep></entry>
+    <entry><ind> 0.0 </ind> <dep>33.0</dep></entry>
+    <entry><ind> 0.25</ind> <dep>15.</dep></entry>
+    <entry><ind> 0.5 </ind> <dep>-0.</dep></entry>
+    <entry><ind> 0.75</ind> <dep>0.</dep></entry>
+    <entry><ind> 1.00</ind> <dep>25.</dep></entry> <!-- pilot forward -->
+   </table>
+   </product>
+  </expression>
+  <center>
+   <x-m> 0.8160</x-m>
+   <y-m> 0.0</y-m>
+   <z-m>-1.1973</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>LeftUpperArm</object-name>
+  <object-name>LeftForearm</object-name>
+  <object-name>LeftHand</object-name>
+  <object-name>RightUpperArm</object-name>
+  <object-name>RightForearm</object-name>
+  <object-name>RightHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutHangpoint</property>
+    <value>1</value>
+    <table>
+     <property>controls/flight/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep> -40</dep></entry>
+     <entry><ind> 30.</ind> <dep>10</dep></entry>
+     <entry><ind>10.00</ind> <dep>-8</dep></entry>
+     <entry><ind>0.00</ind> <dep>+0</dep></entry>
+     <entry><ind>-10.</ind> <dep>+4</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m> 0.8160</x-m>
+   <y-m> 0.0</y-m>
+   <z-m>-1.1973</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+
+ <!-- __________________ Lower Arms __________________ -->
+
+ <animation>
+  <type>rotate</type>
+  <object-name>LeftForearm</object-name>
+  <object-name>LeftHand</object-name>
+  <object-name>RightForearm</object-name>
+  <object-name>RightHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutHangpoint</property>
+    <value>1</value>
+    <table>
+     <property>surface-positions/elevator-pos-norm</property>
+     <entry><ind>-1.0 </ind> <dep>-60.</dep></entry> <!-- pilot backward -->
+     <entry><ind>-0.75</ind> <dep>10.</dep></entry>
+     <entry><ind>-0.5 </ind> <dep> 35.</dep></entry>
+     <entry><ind> 0.0 </ind> <dep>  55.</dep></entry>
+     <entry><ind> 0.5 </ind> <dep> 30.</dep></entry>
+     <entry><ind> 0.75</ind> <dep>   0.</dep></entry>
+     <entry><ind> 1.0 </ind> <dep>-70.</dep></entry> <!-- pilot forward -->
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m> 1.1029</x-m>
+   <y-m> 0.1878</y-m>
+   <z-m>-1.2894</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+  </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>LeftForearm</object-name>
+  <object-name>LeftHand</object-name>
+  <object-name>RightForearm</object-name>
+  <object-name>RightHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutHangpoint</property>
+    <value>1</value>
+    <table>
+     <property>controls/flight/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep> 50</dep></entry>
+     <entry><ind> 30.</ind> <dep>-80</dep></entry>
+     <entry><ind> 10.</ind> <dep>-20</dep></entry>
+     <entry><ind>0.00</ind> <dep>+0</dep></entry>
+     <entry><ind>-10.</ind> <dep>+20</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m> 1.1029</x-m>
+   <y-m> 0.1878</y-m>
+   <z-m>-1.2894</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+
+ <!-- __________________ Helmet+Vizor __________________ -->
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Helmet</object-name>
+  <object-name>Vizor</object-name>
+  <object-name>Head</object-name>
+  <property>controls/flight/pilot-attitude-deg</property>
+   <interpolation>
+    <entry><ind>75. </ind> <dep>-20.</dep></entry>
+    <entry><ind>0.0 </ind> <dep> 35.</dep></entry>
+    <entry><ind>-10.</ind> <dep>+45</dep></entry>
+   </interpolation>
+   <center>
+    <x-m>0.6492</x-m>
+    <y-m>0.0</y-m>
+    <z-m>-1.1898</z-m>
+   </center>
+   <axis>
+    <x>0.0</x>
+    <y>1.0</y>
+    <z>0.0</z>
+   </axis>
+ </animation>
+
+ <!-- hide helmet in Pilot-View  -->
+ <animation>
+  <type>select</type>
+  <object-name>Helmet</object-name>
+  <object-name>Vizor</object-name>
+  <object-name>Head</object-name>
+  <condition>
+   <greater-than>
+    <property>sim/current-view/view-number</property>
+    <value>0</value>
+   </greater-than>
+  </condition>
+ </animation>
+
+
+ <!-- __________________ Upper Legs __________________ -->
+
+ <!-- left leg -->
+ <animation>
+  <type>rotate</type>
+  <object-name>LeftThigh</object-name>
+  <object-name>LeftLowerLeg</object-name>
+  <object-name>LeftFoot</object-name>
+  <expression>
+   <product>
+    <dif>
+     <property>sim/model/MRX13/animation/running_leg_left</property>
+     <property>controls/flight/pilot-attitude-deg</property>
+    </dif>
+    <property>gear/gear[1]/position-norm</property>
+   </product>   
+  </expression>
+  <center>
+   <x-m>1.3456</x-m>
+   <y-m>-0.07567</y-m>
+   <z-m>-1.2492</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <!-- right leg -->
+ <animation>
+  <type>rotate</type>
+  <object-name>RightThigh</object-name>
+  <object-name>RightLowerLeg</object-name>
+  <object-name>RightFoot</object-name>
+  <expression>
+   <product>
+    <dif>
+     <property>sim/model/MRX13/animation/running_leg_right</property>
+     <property>controls/flight/pilot-attitude-deg</property>
+    </dif>
+    <property>gear/gear[1]/position-norm</property>
+   </product>   
+  </expression>
+  <center>
+   <x-m>1.3456</x-m>
+   <y-m>0.07567</y-m>
+   <z-m>-1.2492</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+
+ <!-- __________________ Lower Legs __________________ -->
+
+ <!-- lower left leg -->
+ <animation>
+  <type>rotate</type>
+  <object-name>LeftLowerLeg</object-name>
+  <object-name>LeftFoot</object-name>
+  <property>sim/model/MRX13/animation/running_leg</property>
+  <factor type="double">1.0</factor>
+  <condition>
+   <greater-than-equals>
+    <property>sim/model/MRX13/animation/running_leg_sign</property>
+    <value>0</value>
+   </greater-than-equals>
+  </condition>
+  <interpolation>
+   <entry><ind>-30.0</ind> <dep>  0.0</dep></entry>
+   <entry><ind>  0.0</ind> <dep>-60.0</dep></entry>
+   <entry><ind> 30.0</ind> <dep>  0.0</dep></entry>
+  </interpolation>
+  <center>
+   <x-m>1.6884</x-m>
+   <y-m>-0.06863</y-m>
+   <z-m>-1.2950</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <!-- lower right leg -->
+ <animation>
+  <type>rotate</type>
+  <object-name>RightLowerLeg</object-name>
+  <object-name>RightFoot</object-name>
+  <property>sim/model/MRX13/animation/running_leg</property>
+  <factor type="double">-1.0</factor>
+  <condition>
+   <less-than-equals>
+    <property>sim/model/MRX13/animation/running_leg_sign</property>
+    <value>0</value>
+   </less-than-equals>
+  </condition>
+  <interpolation>
+   <entry><ind>-30.0</ind> <dep>  0.0</dep></entry>
+   <entry><ind>  0.0</ind> <dep>-60.0</dep></entry>
+   <entry><ind> 30.0</ind> <dep>  0.0</dep></entry>
+  </interpolation>
+  <center>
+   <x-m>1.6884</x-m>
+   <y-m>-0.06863</y-m>
+   <z-m>-1.2950</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+
+ <!-- __________________ Shoes __________________ -->
+
+ <!--  get shoes inside harness  -->
+ <animation>-->
+  <type>rotate</type>
+  <object-name>LeftFoot</object-name>
+  <object-name>RightFoot</object-name>
+  <property>gear/gear[1]/position-norm</property>
+  <interpolation>
+   <entry><ind>0.0</ind> <dep> 0</dep></entry>
+   <entry><ind>0.3</ind> <dep>35</dep></entry>
+   <entry><ind>1.0</ind> <dep>35</dep></entry>
+  </interpolation>
+  <center>
+   <x-m>2.1090</x-m>
+   <y-m>-0.05259</y-m>
+   <z-m>-1.2659</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+
+ <!-- __________________ Colours __________________ -->
+
+ <animation>
+  <type>material</type>
+  <object-name>LeadingEdgeVG0</object-name>
+  <object-name>LeadingEdgeVG1</object-name>
+  <object-name>NoseCone</object-name>
+  <property-base>sim/model/MRX13/material/LeadingEdge</property-base>
+  <diffuse>
+   <red-prop>ambient/red</red-prop>
+   <green-prop>ambient/green</green-prop>
+   <blue-prop>ambient/blue</blue-prop>
+  </diffuse>
+  <ambient>
+   <red-prop>ambient/red</red-prop>
+   <green-prop>ambient/green</green-prop>
+   <blue-prop>ambient/blue</blue-prop>
+  </ambient>
+  <transparency>
+   <alpha-prop>transparency/alpha</alpha-prop>
+  </transparency>
+ </animation>
+
+ <animation>
+  <type>material</type>
+  <object-name>SailUpperVG0</object-name>
+  <object-name>SailUpperVG1</object-name>
+  <property-base>sim/model/MRX13/material/UpperSail</property-base>
+  <diffuse>
+   <red-prop>ambient/red</red-prop>
+   <green-prop>ambient/green</green-prop>
+   <blue-prop>ambient/blue</blue-prop>
+  </diffuse>
+  <ambient>
+   <red-prop>ambient/red</red-prop>
+   <green-prop>ambient/green</green-prop>
+   <blue-prop>ambient/blue</blue-prop>
+  </ambient>
+  <transparency>
+   <alpha-prop>transparency/alpha</alpha-prop>
+  </transparency>
+ </animation>
+
+ <animation>
+  <type>material</type>
+  <object-name>SailLowerVG0</object-name>
+  <object-name>SailLowerVG1</object-name>
+  <property-base>sim/model/MRX13/material/LowerSail</property-base>
+  <diffuse>
+   <red-prop>ambient/red</red-prop>
+   <green-prop>ambient/green</green-prop>
+   <blue-prop>ambient/blue</blue-prop>
+  </diffuse>
+  <ambient>
+   <red-prop>ambient/red</red-prop>
+   <green-prop>ambient/green</green-prop>
+   <blue-prop>ambient/blue</blue-prop>
+  </ambient>
+  <transparency>
+   <alpha-prop>transparency/alpha</alpha-prop>
+  </transparency>
+ </animation>
+
+ <animation>
+  <type>material</type>
+  <object-name>StripeSmallVG0</object-name>
+  <object-name>StripeSmallVG1</object-name>
+  <property-base>sim/model/MRX13/material/SmallStripe</property-base>
+  <diffuse>
+   <red-prop>ambient/red</red-prop>
+   <green-prop>ambient/green</green-prop>
+   <blue-prop>ambient/blue</blue-prop>
+  </diffuse>
+  <ambient>
+   <red-prop>ambient/red</red-prop>
+   <green-prop>ambient/green</green-prop>
+   <blue-prop>ambient/blue</blue-prop>
+  </ambient>
+  <transparency>
+   <alpha-prop>transparency/alpha</alpha-prop>
+  </transparency>
+ </animation>
+
+ <animation>
+  <type>material</type>
+  <object-name>StripeWideVG0</object-name>
+  <object-name>StripeWideVG1</object-name>
+  <property-base>sim/model/MRX13/material/WideStripe</property-base>
+  <diffuse>
+   <red-prop>ambient/red</red-prop>
+   <green-prop>ambient/green</green-prop>
+   <blue-prop>ambient/blue</blue-prop>
+  </diffuse>
+  <ambient>
+   <red-prop>ambient/red</red-prop>
+   <green-prop>ambient/green</green-prop>
+   <blue-prop>ambient/blue</blue-prop>
+  </ambient>
+  <transparency>
+   <alpha-prop>transparency/alpha</alpha-prop>
+  </transparency>
+ </animation>
+
+
+ <!-- __________________ VG-Rope__________________ -->
+
+ <animation>
+  <type>rotate</type>
+  <object-name>VG_Rope</object-name>
+  <expression>
+   <product>
+    <property>surface-positions/left-aileron-pos-norm</property>
+     <property>fdm/jsbsim/systems/on-ground</property>
+    <value>15.</value>
+   </product>
+  </expression>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+  <center>
+   <x-m>1.2534</x-m>
+   <y-m>0.4860</y-m>
+   <z-m>-1.5592</z-m>
+  </center>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>VG_Rope</object-name>
+  <property>instrumentation/woolthread/alpha-woolthread-deg</property>
+  <factor>1.</factor>
+  <expression>
+   <sum>
+    <property>instrumentation/woolthread/alpha-woolthread-deg</property>
+    <table>
+     <product>
+      <property>surface-positions/elevator-pos-norm</property>
+      <property>fdm/jsbsim/systems/on-ground</property>
+     </product>
+     <entry><ind>-1.0</ind> <dep> 20</dep></entry>
+     <entry><ind> 0.0</ind> <dep> 0</dep></entry>
+     <entry><ind> 1.0</ind> <dep>-20</dep></entry>
+    </table>
+   </sum>
+  </expression>
+
+  <axis>
+   <x>0.0</x>
+   <y>-1.0</y>
+   <z>0.0</z>
+  </axis>
+  <center>
+   <x-m>1.2534</x-m>
+   <y-m>0.4860</y-m>
+   <z-m>-1.5592</z-m>
+  </center>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>VG_Rope</object-name>
+  <property>instrumentation/woolthread/beta-woolthread-deg</property>
+  <offset-deg>0</offset-deg>
+  <factor>-1.</factor>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.0</z>
+  </axis>
+  <center>
+   <x-m>1.2534</x-m>
+   <y-m>0.4860</y-m>
+   <z-m>-1.5592</z-m>
+  </center>
+ </animation>
+
+ <animation>
+  <type>scale</type>
+  <object-name>VG_Rope</object-name>
+  <property>controls/flight/spoilers</property>
+  <center>
+   <x-m>1.2534</x-m>
+   <y-m>0.4860</y-m>
+   <z-m>-1.5592</z-m>
+  </center>
+  <x-min>0.525</x-min>
+  <y-min>1.</y-min>
+  <z-min>1.</z-min>
+  <x-factor>3.25</x-factor>
+  <y-factor>1.0</y-factor>
+  <z-factor>1.0</z-factor>
+ </animation>
+
+ <animation>
+  <type>pick</type>
+  <object-name>Clamcleat</object-name>
+  <action>
+   <button>1</button> <!-- MMB -->
+   <button>2</button> <!-- RMB doesn't work -->
+   <button>4</button> <!-- MWB -->
+   <repeatable>false</repeatable>
+   <binding>
+    <command>nasal</command>
+    <script>
+     controls.stepSpoilers(-1)
+    </script>
+   </binding>
+  </action>
+
+  <hovered>
+   <binding>
+    <command>set-tooltip</command>
+    <label>VG: %3d%%</label>
+    <measure-text>VG: 100%</measure-text>
+    <tooltip-id>VG-Setting</tooltip-id>
+    <mapping>percent</mapping>
+    <property>controls/flight/spoilers</property>
+   </binding>
+  </hovered>
+
+ </animation>
+
+ <animation>
+  <type>pick</type>
+  <object-name>Clamcleat</object-name>
+  <action>
+   <button>0</button> <!-- LMB -->
+   <button>3</button> <!-- MWF -->
+   <repeatable>false</repeatable>
+   <binding>
+    <command>nasal</command>
+    <script>
+     controls.stepSpoilers(1)
+    </script>
+   </binding>
+  </action>
+ </animation>
+
+ <animation>
+  <type>pick</type>
+   <object-name>RescueContainer</object-name>
+   <object-name>RescueContainer2</object-name>
+   <object-name>RescueHandle</object-name>
+   <action>
+    <button>0</button>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+    <repeatable>false</repeatable>
+     <binding>
+      <command>property-toggle</command>
+      <property>controls/engines/engine/magnetos</property>
+      <value>0</value>
+      <value>1</value>
+     </binding>
+   </action>
+ </animation>
+
+ <animation>
+  <type>select</type>
+  <object-name>RescueContainer2</object-name>
+  <object-name>RescueHandle</object-name>
+  <condition>
+   <not>
+    <property>fdm/jsbsim/fcs/parachute-pos-norm</property> 
+   </not>
+  </condition>
+ </animation>
+
+ 
+</PropertyList>
