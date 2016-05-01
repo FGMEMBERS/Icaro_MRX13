@@ -1,7 +1,7 @@
 var ViewAnimation = func {
 #
 # ---------------------------------------------------------------------------------
-#                        View and Hitch Animation               Status: 17.04.2016
+#                        View and Hitch Animation               Status: 1.05.2016
 # ---------------------------------------------------------------------------------
 #
 #
@@ -95,10 +95,10 @@ for (var n=0; n < n_loop; n = n+1) {
       var x = 1.35;
       var y = -5.;
       var z = -0.73;
-      if ( on_ground == 1 ) { 
+      if ( on_ground == 1 ) {
         var rotation = 1; 
         # experimental
-# rotation point moves, too! 	
+# rotation point moves, too!
         var length = getprop("sim/model/MRX13/LaunchPosition");
         var pilot_attitude_deg = getprop("controls/flight/pilot-attitude-deg");
         x = x - length * (( 75. - pilot_attitude_deg ) / 75. * 1.5 + 1.8 ) ;
@@ -179,29 +179,30 @@ for (var n=0; n < n_loop; n = n+1) {
     var heading_zyx = 0.;
     #----------------------------------------------------------------------------------
 
-    # get variables
-    var aileron            = getprop("controls/flight/aileron");
-    var elevator           = getprop("controls/flight/elevator");
-    var rudder             = getprop("controls/flight/rudder");
-    var pilot_attitude_deg = getprop("controls/flight/pilot-attitude-deg");
-
-
-    # Deflections
     var fak = math.pi / 180.;
     var fakh = fak;
     if ( on_ground == 1 ) { fak = -1 * fak};  # switch reference system
 
-    var roll_offset_deg = aileron * 15.;
-    var sin_alpha = math.sin(aileron * 15. * fak);
-    var cos_alpha = math.cos(aileron * 15. * fak);
+    # get variables
+    var aileron_rad        = getprop("surface-positions/left-aileron-pos-norm") * 15. * fak;
+    var elevator_rad       = getprop("surface-positions/elevator-pos-norm") * 20. * fak;
+    var rudder_rad         = getprop("surface-positions/rudder-pos-norm") * 25.* fak;
+    var pilot_attitude_deg = getprop("controls/flight/pilot-attitude-deg");
 
-    var pitch_offset_deg = elevator * 20.;
-    var sin_beta  = math.sin(elevator * 20. * fak);
-    var cos_beta  = math.cos(elevator * 20. * fak);
 
-    var heading_offset_deg = rudder * 25.;
-    var sin_gamma = math.sin(rudder * 25.* fak);
-    var cos_gamma = math.cos(rudder * 25.* fak);
+    # Deflections
+
+    var roll_offset_deg = aileron_rad / fak;
+    var sin_alpha = math.sin(aileron_rad);
+    var cos_alpha = math.cos(aileron_rad);
+
+    var pitch_offset_deg = elevator_rad / fak;
+    var sin_beta  = math.sin(elevator_rad);
+    var cos_beta  = math.cos(elevator_rad);
+
+    var heading_offset_deg = rudder_rad / fak;
+    var sin_gamma = math.sin(rudder_rad);
+    var cos_gamma = math.cos(rudder_rad);
     var sin_theta = math.sin( pilot_attitude_deg * fakh );
     var cos_theta = math.cos( pilot_attitude_deg * fakh );
 

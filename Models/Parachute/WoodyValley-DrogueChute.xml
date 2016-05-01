@@ -78,23 +78,14 @@
   <type>rotate</type>
    <object-name>WoodyValley-DrogueChute</object-name>
     <expression>
-     <sum>
-     <table>
-      <product>
-       <property>surface-positions/elevator-pos-norm</property>
+     <product>
+      <property>surface-positions/elevator-pos-norm</property>
       <dif>
        <value>1</value>
-       <property>gear/gear[2]/wow</property>
+       <property>fdm/jsbsim/systems/on-ground</property>
       </dif>
-
-       <value>-1</value>
-      </product>
-      <entry><ind>-1.0</ind> <dep>-35</dep></entry>
-      <entry><ind>   0</ind> <dep>-15</dep></entry>
-      <entry><ind> 1.0</ind> <dep> 10</dep></entry>
-     </table>
-     <value>15</value>
-     </sum>
+      <value>-20</value>
+     </product>
     </expression>
     <center>
       <x-m>0.0</x-m>
@@ -111,8 +102,16 @@
  <animation>
   <type>rotate</type>
    <object-name>WoodyValley-DrogueChute</object-name>
-    <property>surface-positions/rudder-pos-norm</property>
-    <factor>-25</factor>
+    <expression>
+     <product>
+      <property>surface-positions/rudder-pos-norm</property>
+      <dif>
+       <value>1</value>
+       <property>fdm/jsbsim/systems/on-ground</property>
+      </dif>
+      <value>-25</value>
+     </product>
+    </expression>
     <center>
       <x-m>0.0</x-m>
       <y-m>0.0</y-m>
@@ -172,9 +171,9 @@
     <z-m>0.0</z-m>
    </center>
    <axis>
-    <x>1.</x>
+    <x>0.</x>
     <y>0.</y>
-    <z>0.</z>
+    <z>-1.</z>
    </axis>
  </animation>
 

@@ -25,7 +25,7 @@
   <expression>
     <product>
      <property>surface-positions/left-aileron-pos-norm</property>
-     <property>gear/gear[2]/wow</property>
+     <property>fdm/jsbsim/systems/on-ground</property>
      <value>15.</value>
     </product>
   </expression>
@@ -50,15 +50,11 @@
   <expression>
    <sum>
     <property>instrumentation/woolthread/alpha-woolthread-deg</property>
-    <table>
      <product>
       <property>surface-positions/elevator-pos-norm</property>
-      <property>gear/gear[2]/wow</property>
+      <property>fdm/jsbsim/systems/on-ground</property>
+      <value>-20.</value>
      </product>
-     <entry><ind>-1.0</ind> <dep>20</dep></entry>
-     <entry><ind> 0.0</ind> <dep> 0</dep></entry>
-     <entry><ind> 1.0</ind> <dep>-25</dep></entry>
-    </table>
    </sum>
   </expression>
   <axis>

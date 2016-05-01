@@ -30,7 +30,7 @@
      <min>0</min>
      <max>1</max>
     </binding>
-   </key>    
+   </key>
 
    <key n="360">
     <name>PageUp</name>
@@ -50,7 +50,7 @@
      <min>0</min>
      <max>1</max>
     </binding>
-   </key>    
+   </key>
 
    <key n="51">
     <name>3</name>
@@ -236,7 +236,7 @@
      <value>1</value>
     </binding>
    </key>
-   
+
    <key n="111">
     <name>o</name>
     <desc>Hook on towplane</desc>
@@ -245,7 +245,7 @@
      <script>towing.closeHitch()</script>
     </binding>
    </key>
-   
+
    <key n="79">
     <name>O</name>
     <desc>Release drag hook</desc>
@@ -269,7 +269,7 @@
      <value>1</value>
     </binding>
    </key>
-   
+
    <key n="119">
     <name>w</name>
     <desc>Start winch</desc>
@@ -318,7 +318,7 @@
      <value>0</value>
     </binding>
    </key>
-    
+
    <key n="362">
     <name>Home</name>
     <desc>pilot attitude more upright</desc>

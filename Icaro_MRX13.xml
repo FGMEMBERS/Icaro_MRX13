@@ -274,6 +274,12 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
     and hence moves with pilot
     -->
     <force name="pilotdrag" frame="WIND">
+      <location unit="M">
+        <x>0.0</x>
+        <y>0.0</y>
+        <z>-1.35</z>
+      </location>
+
       <direction>
         <x>-1.0</x>
         <y>0.0</y>
@@ -427,36 +433,65 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
 
     <channel name="Pitch">
 
-      <summer name="Pitch Trim Sum">
-        <input>fcs/elevator-cmd-norm</input>
-        <input>fcs/pitch-trim-cmd-norm</input>
-        <clipto>
-          <min>-1</min>
-          <max>1</max>
-        </clipto>
-      </summer>
+      <!-- datum: elevator-pos-norm = 1 refers to -20deg deflection -->
 
-      <aerosurface_scale name="Elevator Control">
-        <input>fcs/pitch-trim-sum</input>
-        <range>
-          <min>-0.349</min>
-          <max> 0.349</max>
-        </range>
-        <output>fcs/elevator-pos-rad</output>   <!-- used for weightshift -->
-      </aerosurface_scale>
+      <fcs_function name="fcs/pull-in-limit">
+       <function>
+        <description>Limit for pull-in deflection</description>
+        <table>
+         <independentVar lookup="row">/controls/flight/pilot-attitude-deg</independentVar>
+         <tableData>
+           -10.   2.
+             0.   2.
+            30.   2.
+            70.   0.5
+         </tableData>
+        </table>
+       </function>
+      </fcs_function>
 
-      <aerosurface_scale name="elevator normalization">
-        <input>fcs/elevator-pos-rad</input>
-        <domain>
-          <min>-0.349</min>  <!-- 0.349rad = 20deg   /   0.52rad = 30deg -->
-          <max> 0.349</max>  <!-- 0.436rad = 25deg -->
-        </domain>
-        <range>
-          <min>-1</min>
-          <max>1</max>
-        </range>
-        <output>fcs/elevator-pos-norm</output>
-      </aerosurface_scale>
+      <fcs_function name="fcs/push-out-factor">
+       <function>
+        <description>Upright pilot can farther push out</description>
+        <table>
+         <independentVar lookup="row">/controls/flight/pilot-attitude-deg</independentVar>
+         <tableData>
+           -10.   1.
+             0.   1.
+            30.   1.
+            70.   2.
+         </tableData>
+        </table>
+       </function>
+      </fcs_function>
+
+      <switch name="fcs/elevator-factor">
+       <default value="1"/>
+       <test value="fcs/push-out-factor">
+        fcs/elevator-cmd-norm le 0
+       </test>
+      </switch> 
+
+      <fcs_function name="elevator pos norm jsbsim"> <!-- w/o name message in shell: Failed to tie property fcs/ to object methods -->
+       <function>
+        <description>Upright pilot can farther push out</description>
+        <product>
+         <property>fcs/elevator-cmd-norm</property>
+         <property>fcs/elevator-factor</property>
+        </product>
+       </function>
+       <clipto>
+        <min>-999</min>
+        <max>fcs/pull-in-limit</max>
+       </clipto>
+       <output>fcs/elevator-pos-norm</output> <!-- used for animation and MP -->
+      </fcs_function>
+
+      <pure_gain name="fcs/elevator-pos-rad-jsbsim"> <!-- w/o name message in shell: Failed to tie property fcs/ to object methods -->
+       <input>fcs/elevator-pos-norm-jsbsim</input>
+       <gain>0.349</gain> <!-- 0.349rad = 20deg -->
+       <output>fcs/elevator-pos-rad</output> <!-- used for weightshift -->
+      </pure_gain> 
 
     </channel>
 
@@ -521,15 +556,15 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
     </channel>
 
     <channel name="Pilot Attitude">
-      <aerosurface_scale name="fcs/pilot-attitude-pos-deg">
-        <input>fcs/pitch-trim-cmd-norm</input>
+      <aerosurface_scale name="fcs/pilot-attitude-pos-deg"> <!-- used for PilotDrag -->
+        <input>/controls/flight/pilot-attitude-deg</input>
         <domain>
-          <min>-0.05</min>
-          <max> 0.05</max>
+          <min>-10</min>
+          <max> 70</max>
         </domain>
         <range>
-          <min>70</min>
-          <max>-10</max>
+          <min>-10</min>
+          <max> 70</max>
         </range>
         <clipto>
           <min>-10.</min>

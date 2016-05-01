@@ -71,7 +71,7 @@
 
   <channel name="PiLoTdRaG">
 
-   <summer>
+   <summer name="dummy magnitude pilotdrag"> <!-- w/o name message in shell: Failed to tie property fcs/ to object methods -->
     <input>aero/coefficient/CD_Pilot_Trim</input>
     <input>aero/coefficient/CD_Pilot_Attitude</input>
     <input>aero/coefficient/CD_Pilot_Legs</input>
