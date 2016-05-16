@@ -86,48 +86,29 @@
 
  <channel name="AlphaBetaDueToPilotInput">
 
-  <fcs_function name="aero/beta-ground-rudder-deg">
-   <function>
-    <description>beta due to rudder input on ground</description>
-    <product>
-     <property>/controls/flight/rudder</property>
-     <value>-25.0</value>
-    </product>
-   </function>
-  </fcs_function>
-
   <switch name="aero/beta-onground-deg">
    <default value="0.0"/>
-   <test value="aero/beta-ground-rudder-deg">
-    gear/unit[2]/WOW == 1
+   <test value="fcs/rudder-pos-deg">
+    systems/on-ground == 1
    </test>
   </switch>
 
-  <fcs_function name="aero/beta-eff-deg">
-   <function>
-    <sum>
-     <property>aero/beta-deg</property>
-     <property>aero/beta-onground-deg</property>
-    </sum>
-   </function>
-  </fcs_function>
+  <summer name="aero/beta-eff-deg">
+   <input>aero/beta-deg</input>
+   <input>aero/beta-onground-deg</input>
+  </summer>
 
-  <fcs_function name="aero/beta-eff-rad">
-   <function>
-    <description>beta-eff-deg to beta-eff-rad</description>
-    <product>
-     <property>aero/beta-eff-deg</property>
-     <value>0.0174532</value>  <!-- pi/180 -->
-    </product>
-   </function>
-  </fcs_function>
+  <pure_gain name="aero/beta-eff-rad">
+   <input>aero/beta-eff-deg</input>
+   <gain>0.0174532</gain>  <!-- pi/180 -->
+  </pure_gain>
 
   <fcs_function name="aero/alpha-ground-elevator-deg">
    <function>
     <description>alpha due to elevator input on ground</description>
     <product>
-     <property>/controls/flight/elevator</property>
-     <value>-20.0</value>
+     <property>fcs/elevator-pos-deg</property>
+     <value>-1.</value>
      <cos>
       <property>aero/beta-eff-rad</property>
      </cos>
@@ -138,19 +119,15 @@
   <switch name="aero/alpha-onground-deg">
    <default value="0.0"/>
    <test value="aero/alpha-ground-elevator-deg">
-    gear/unit[2]/WOW == 1
+    systems/on-ground == 1
    </test>
   </switch>
 
-  <fcs_function name="aero/alpha-eff-deg">
-   <function>
-    <sum>
-     <property>aero/alpha-deg</property>
-     <value>15.0</value>
-     <property>aero/alpha-onground-deg</property>
-    </sum>
-   </function>
-  </fcs_function>
+  <summer name="aero/alpha-eff-deg">
+   <input>aero/alpha-deg</input>
+   <input>aero/alpha-onground-deg</input>
+   <bias>15.0</bias>
+  </summer>
 
  </channel>
 

@@ -34,7 +34,7 @@
     <item> <name>                                                                </name><value></value></item>
     <item> <name>Touch down:                                                     </name><value></value></item>
     <item> <name>1. erect pilot (this is important for reasonable flares!)       </name><value></value></item>
-    <item> <name>2. wait until running animation starts (altitude less than 10ft)</name><value></value></item>
+    <item> <name>2. wait until running animation starts (altitude less than 6ft)</name><value></value></item>
     <item> <name>3. reduce speed to trim speed while keeping altitude            </name><value></value></item>
     <item> <name>4. push A-frame (pull joystick/mouse)                           </name><value></value></item>
     <item> <name>                                                                </name><value></value></item>

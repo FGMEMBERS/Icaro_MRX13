@@ -176,9 +176,12 @@ var Walking = func(){
 #
 var GliderLaunchPosition = func {
 
-  # f=m*a  a=f/m  a=v/t=s/(t*t)      s=f/m*t*t
-  # m = fdm/jsbsim/inertia/empty-weight-lbs  (35kg)
-  # t = sim/time/delta-sec
+ # f=m*a  a=f/m  a=v/t=s/(t*t)      s=f/m*t*t
+ # m = fdm/jsbsim/inertia/empty-weight-lbs  (35kg)
+ # t = sim/time/delta-sec
+
+ var on_ground   = getprop("fdm/jsbsim/systems/on-ground");
+ if ( on_ground > 0 ){
 
   var length    = getprop("sim/model/MRX13/LaunchPosition");
   var pilot_attitude_rad = 0.0174532 * getprop("controls/flight/pilot-attitude-deg");
@@ -213,6 +216,12 @@ var GliderLaunchPosition = func {
   }
  
   setprop("sim/model/MRX13/LaunchPosition",length);
+
+ }
+ else{
+  setprop("sim/model/MRX13/RotateAboutHangpoint", 1 );
+  setprop("sim/model/MRX13/RotateAboutPilot", 0 );
+ }
 
   settimer(GliderLaunchPosition,0);
 }

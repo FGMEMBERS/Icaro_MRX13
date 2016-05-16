@@ -386,9 +386,9 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
     <!-- external forces for winch start, aerotowing and dropping -->
     <force name="chest" frame="BODY" unit="LBS" >
      <location unit="M">
-      <x>-0.25</x>
+      <x>-0.51</x>
       <y> 0.0</y>
-      <z>-0.3</z>
+      <z>-1.45</z>
      </location>
      <direction>
       <x>0.0</x>
@@ -399,9 +399,9 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
 
     <force name="belly" frame="BODY" unit="LBS" >
      <location unit="M">
-      <x> 0.</x>
+      <x>-0.03</x>
       <y> 0.0</y>
-      <z>-0.39</z>
+      <z>-1.50</z>
      </location>
      <direction>
       <x>0.0</x>
@@ -710,6 +710,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
                 -30.  -1.2    -0.7800
                 -15.  -0.6    -0.3894
                   5.   0.0000  0.0000
+                  6.2  0.018   0.1
                   7.   0.1552  0.1552
                   8.   0.2000  0.2000
                   9.   0.3000  0.3000
@@ -781,6 +782,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
                 -30.    0.4693    0.4680
                 -15.    0.0924    0.0924
                   5.    0.1039    0.0539
+                  6.2   0.1       0.0239
                   7.    0.0339    0.0189
                   8.    0.0289    0.0169
                   9.    0.0299    0.0189
@@ -789,7 +791,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
                  20.    0.0839    0.0799
                  25.    0.1339    0.1639
                  30.    0.1539    0.3539
-                 35.5   0.1539    0.5539
+                 35.5   0.1539    0.5039
                  45.    0.2539    0.7539
                  60.    0.7539    0.7539
                  75.    1.0239    1.0239
@@ -965,20 +967,22 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
               -45.    -0.18   0.151293
               -30.    -0.12   0.000279
               -15.     0.06  -0.021971
-                0.     0.04   0.01
-                5.     0.036  0.036      <!-- 0.02   0.005  Ca=0 Garantiepunkt -->
-               10.     0.03   0.0
+                0.     0.06   0.01
+                5.     0.06   0.01      <!-- 0.02   0.005  Cl=0 guarantee point -->
+                6.2    0.06   0.0       <!-- VG=1 vmax=110km/h cm = 0 Vmax = f(CD only!) guarantee point -->
+                9.     0.040  0.0       <!-- VG=0 vmax=80km/h cm = 0.04 guarantee point -->
+               10.     0.033  0.0
                15.     0.0    0.0
                20.    -0.04  -0.04
-               25.    -0.06  -0.06
-               30.    -0.08  -0.08
-               35.5   -0.08  -0.12
-               45.    -0.10  -0.3
-               60.    -0.40  -0.5
-               75.    -0.4   -0.6
-               90.    -0.40  -0.6
-              105.    -0.40  -0.8
-              120.    -0.50  -0.398209
+               25.    -0.08  -0.06
+               30.    -0.12  -0.08      <!-- VG=0 vmin=34km/h cm = xxx guarantee point -->
+               35.5   -0.16  -0.12
+               45.    -0.24  -0.3
+               60.    -0.50  -0.5
+               75.    -0.8   -0.6
+               90.    -0.80  -0.6
+              105.    -0.80  -0.8
+              120.    -0.60  -0.398209
               135.    -0.50  -0.496202
               150.    -0.3   -0.596416
               165.    -0.15  -0.310003
@@ -1009,8 +1013,8 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
                 -30.  -3.2   -3.2
                   0.  -3.2   -3.2
                  30.  -3.2   -3.2
-                 45.  -1.6   -1.6
-                 90.  -1.    -1.
+                 45.  -3.   -1.6
+                 90.  -3.    -1.
                 135.  -2.    -2.
                 180.  -3.2   -3.2
             </tableData>

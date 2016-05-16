@@ -79,16 +79,17 @@ for (var n=0; n < n_loop; n = n+1) {
       var x = -0.867;
       var y = 0;
       var z = -1.287;
-      if ( on_ground == 0 ) { var rotation = 1; };
-      var rotation_harness = 1;
+      if ( on_ground == 0 ) { rotation = 1; };
+      rotation_harness = 1;
     }
     else if ( view_number == 8 ) {
       # Point to rotate = X = (x,y,z) (Harness View; FDM-system)
       var x = 0.504;
       var y = 0.;
-      var z = -1.106;
-      if ( on_ground == 0 ) { var rotation = 1; };
-      var rotation_harness = 1;
+      #var z = -1.106;
+      var z = -1.0;
+      if ( on_ground == 0 ) { rotation = 1; };
+      rotation_harness = 1;
     }
     else if ( view_number == 11 ) {
       # Point to rotate = X = (x,y,z) (Left Wingtip View; FDM-system)
@@ -96,7 +97,7 @@ for (var n=0; n < n_loop; n = n+1) {
       var y = -5.;
       var z = -0.73;
       if ( on_ground == 1 ) {
-        var rotation = 1; 
+        rotation = 1; 
         # experimental
 # rotation point moves, too!
         var length = getprop("sim/model/MRX13/LaunchPosition");
@@ -104,21 +105,21 @@ for (var n=0; n < n_loop; n = n+1) {
         x = x - length * (( 75. - pilot_attitude_deg ) / 75. * 1.5 + 1.8 ) ;
         z = z - length * (( 75. - pilot_attitude_deg ) / 75. * 4.0 + 1.5 ) ;
       };
-      var rotation_harness = 0;
+      rotation_harness = 0;
     }
   } # end mode view_animation
 
   else if ( mode[n] == "hitch_animation") {
     # Point to rotate = X = (x,y,z) (hitch; FDM-system)
     if ( hitch[n] == "belly" ) {
-      var x = 0.0;
+      var x = -0.03;
       var y =  0.;
       var z = -1.5;
       if ( on_ground == 0 ) rotation = 1;
       rotation_harness = 1;
     }
     else if ( hitch[n] == "chest" ) {
-      var x =  -0.45;
+      var x =  -0.51;      
       var y =  0.;
       var z = -1.45;
       if ( on_ground == 0 ) rotation = 1;
@@ -145,8 +146,8 @@ for (var n=0; n < n_loop; n = n+1) {
       var x = 0.;
       var y = 0;
       var z = -1.2;
-      if ( on_ground == 0 ) { var rotation = 1; };
-      var rotation_harness = 1;
+      if ( on_ground == 0 ) { rotation = 1; };
+      rotation_harness = 1;
   } # end mode droguechute_animation
 
 
@@ -167,9 +168,9 @@ for (var n=0; n < n_loop; n = n+1) {
     else{
      var xrh = 0.036;
      var yrh = 0.0;
-     var zrh = -1.272;  
+     var zrh = -1.307;
     }
-    
+
     # defaults are necessary to avoid nasal runtime errors
     var x_new = x;
     var y_new = y;
