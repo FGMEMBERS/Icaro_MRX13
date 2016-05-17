@@ -167,7 +167,7 @@
 
  <model>
   <path>Aircraft/Icaro_MRX13/Models/SmokeTrail/SmokeTrail.xml</path>
-  <name>Left Smoke Trail</name>
+  <name>LeftSmokeTrail</name>
   <condition>
    <property>controls/electric/smoke-switch[1]</property>
   </condition>
@@ -187,7 +187,7 @@
 
  <model>
   <path>Aircraft/Icaro_MRX13/Models/SmokeTrail/SmokeTrail.xml</path>
-  <name>Right Smoke Trail</name>
+  <name>RightSmokeTrail</name>
   <condition>
    <property>controls/electric/smoke-switch[1]</property>
   </condition>
@@ -368,6 +368,9 @@
    <object-name>WheelRight</object-name>
    <object-name>WoolThread</object-name>
    <object-name>VG_Rope</object-name>
+   <object-name>SingleSmokeTrail</object-name>
+   <object-name>LeftSmokeTrail</object-name>
+   <object-name>RightSmokeTrail</object-name>
    <expression>
     <product>
      <property>surface-positions/left-aileron-pos-norm</property>
@@ -395,6 +398,9 @@
    <object-name>WheelRight</object-name>
    <object-name>WoolThread</object-name>
    <object-name>VG_Rope</object-name>
+   <object-name>SingleSmokeTrail</object-name>
+   <object-name>LeftSmokeTrail</object-name>
+   <object-name>RightSmokeTrail</object-name>
    <expression>
     <product>
      <property>surface-positions/elevator-pos-norm</property>
@@ -422,6 +428,9 @@
    <object-name>WheelRight</object-name>
    <object-name>WoolThread</object-name>
    <object-name>VG_Rope</object-name>
+   <object-name>SingleSmokeTrail</object-name>
+   <object-name>LeftSmokeTrail</object-name>
+   <object-name>RightSmokeTrail</object-name>
    <expression>
     <product>
      <property>surface-positions/rudder-pos-norm</property>
@@ -458,6 +467,9 @@
   <object-name>WheelRight</object-name>
   <object-name>WoolThread</object-name>
   <object-name>VG_Rope</object-name>
+  <object-name>SingleSmokeTrail</object-name>
+  <object-name>LeftSmokeTrail</object-name>
+  <object-name>RightSmokeTrail</object-name>
 
   <object-name>HangLever</object-name>
   <object-name>HangLoop</object-name>
@@ -496,6 +508,9 @@
   <object-name>WheelRight</object-name>
   <object-name>WoolThread</object-name>
   <object-name>VG_Rope</object-name>
+  <object-name>SingleSmokeTrail</object-name>
+  <object-name>LeftSmokeTrail</object-name>
+  <object-name>RightSmokeTrail</object-name>
 
   <object-name>HangLever</object-name>
   <object-name>HangLoop</object-name>
@@ -533,6 +548,9 @@
   <object-name>WheelRight</object-name>
   <object-name>WoolThread</object-name>
   <object-name>VG_Rope</object-name>
+  <object-name>SingleSmokeTrail</object-name>
+  <object-name>LeftSmokeTrail</object-name>
+  <object-name>RightSmokeTrail</object-name>
 
   <object-name>HangLever</object-name>
   <object-name>HangLoop</object-name>
@@ -564,6 +582,9 @@
   <object-name>WheelRight</object-name>
   <object-name>WoolThread</object-name>
   <object-name>VG_Rope</object-name>
+  <object-name>SingleSmokeTrail</object-name>
+  <object-name>LeftSmokeTrail</object-name>
+  <object-name>RightSmokeTrail</object-name>
 
   <object-name>HangLever</object-name>
   <object-name>HangLoop</object-name>
