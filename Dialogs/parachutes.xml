@@ -1,0 +1,384 @@
+<?xml version="1.0"?>
+<!-- Version: 2016-05-29 -->
+
+<PropertyList>
+ <name>parachutes_dialog</name>
+ <layout>vbox</layout>
+ <default-padding>2</default-padding>
+ <modal>false</modal>
+ <width>420</width>
+
+ <!-- title bar -->
+ <group>
+  <layout>hbox</layout>
+  <empty><stretch>true</stretch></empty>
+  <text>
+   <label>Parachutes Configuration</label>
+  </text>
+  <empty><stretch>true</stretch></empty>
+  <button>
+   <legend/>
+   <key>Esc</key>
+   <pref-width>16</pref-width>
+   <pref-height>16</pref-height>
+   <border>2</border>
+   <binding>
+    <command>dialog-close</command>
+   </binding>
+  </button>
+ </group>
+
+ <hrule/>
+ <hrule/>
+
+ <!-- drogue chute parameters -->
+ <frame>
+  <layout>vbox</layout>
+  <empty><stretch>true</stretch></empty>
+
+  <text>
+   <label>Drogue Parachute Settings</label>
+  </text>
+  <empty><stretch>true</stretch></empty>
+
+
+  <!-- CD -->
+  <group>
+   <layout>hbox</layout>
+   <text>
+    <halign>left</halign>
+    <label>Drag coefficient CD</label>
+   </text>
+   <group>
+    <layout>hbox</layout>
+    <halign>right</halign>
+    <text>
+     <label>9999</label>
+     <live>true</live>
+     <format>% 2.2f</format>
+     <property>sim/model/Parachutes/cd-DrogueChute</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+    <empty><stretch>true</stretch></empty>
+    <vrule/>
+    <group>
+     <width>40</width>
+     <text>
+      <label>0.0</label>
+     </text>
+    </group>
+    <slider>
+     <name>CD-DrogueChute</name>
+     <live>true</live>
+     <property>sim/model/Parachutes/cd-DrogueChute</property>
+     <min>0.0</min>
+     <max>5.0</max>
+     <step>0.05</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+     <binding>
+      <command>nasal</command>
+      <script>
+       MRX13.DrogueChute()
+      </script>
+     </binding>
+    </slider>
+    <group>
+     <width>50</width>
+     <text>
+      <label>5.0</label>
+     </text>
+    </group>
+   </group>
+  </group>
+
+  <!-- Area -->
+  <group>
+   <layout>hbox</layout>
+   <text>
+    <halign>left</halign>
+    <label>Area A</label>
+   </text>
+   <group>
+    <layout>hbox</layout>
+    <halign>right</halign>
+    <text>
+     <label>9999</label>
+     <live>true</live>
+     <format>%2.1fsqm </format>
+     <property>sim/model/Parachutes/area-DrogueChute-sqm</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+    <empty><stretch>true</stretch></empty>
+    <vrule/>
+    <group>
+     <width>40</width>
+     <text>
+      <label>0sqm</label>
+     </text>
+    </group>
+    <slider>
+     <name>area-DroguecChute</name>
+     <live>true</live>
+     <property>sim/model/Parachutes/area-DrogueChute-sqm</property>
+     <min>0</min>
+     <max>5</max>
+     <step>0.1</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+     <binding>
+      <command>nasal</command>
+      <script>
+       MRX13.DrogueChute()
+      </script>
+     </binding>
+    </slider>
+    <group>
+     <width>50</width>
+     <text>
+      <label>5sqm</label>
+     </text>
+    </group>
+   </group>
+  </group>
+
+  <!-- CD*A -->
+  <group>
+   <layout>hbox</layout>
+   <text>
+    <halign>left</halign>
+    <label>CDxA [sqm], [sqft]</label>
+   </text>
+   <text>
+    <live>true</live>
+    <format>%14.2fsqm </format>
+    <property>sim/model/Parachutes/CDxA-DrogueChute-sqm</property>
+    <color>
+     <red>0.2</red>
+     <green>0.9</green>
+     <blue>0.2</blue>
+    </color>
+   </text>
+   <text>
+    <live>true</live>
+    <format>%28.2fsqft </format>
+    <property>sim/model/Parachutes/CDxA-DrogueChute-sqft</property>
+    <color>
+     <red>0.2</red>
+     <green>0.9</green>
+     <blue>0.2</blue>
+    </color>
+   </text>
+   <empty><stretch>true</stretch></empty>
+  </group>
+
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+   <button>
+    <legend>Set Defaults</legend>
+    <binding>
+     <command>nasal</command>
+      <script>MRX13.DrogueChute_defaults()</script>
+    </binding>
+   </button>
+   <empty><stretch>true</stretch></empty>
+  </group>
+
+ </frame>
+
+  <hrule/>
+
+ <!-- emergency chute parameters -->
+ <frame>
+  <layout>vbox</layout>
+  <empty><stretch>true</stretch></empty>
+
+  <text>
+   <label>Emergency Parachute Settings</label>
+  </text>
+  <empty><stretch>true</stretch></empty>
+
+
+  <!-- CD -->
+  <group>
+   <layout>hbox</layout>
+   <text>
+    <halign>left</halign>
+    <label>Drag coefficient CD</label>
+   </text>
+   <group>
+    <layout>hbox</layout>
+    <halign>right</halign>
+    <text>
+     <label>9999</label>
+     <live>true</live>
+     <format>% 2.2f</format>
+     <property>sim/model/Parachutes/cd-EmergencyChute</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+    <empty><stretch>true</stretch></empty>
+    <vrule/>
+    <group>
+     <width>40</width>
+     <text>
+      <label>0.0</label>
+     </text>
+    </group>
+    <slider>
+     <name>CD-EmergencyChute</name>
+     <live>true</live>
+     <property>sim/model/Parachutes/cd-EmergencyChute</property>
+     <min>0.0</min>
+     <max>5.0</max>
+     <step>0.05</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+     <binding>
+      <command>nasal</command>
+      <script>
+       MRX13.EmergencyChute()
+      </script>
+     </binding>
+    </slider>
+    <group>
+     <width>50</width>
+     <text>
+      <label>5.0</label>
+     </text>
+    </group>
+   </group>
+  </group>
+
+  <!-- Area -->
+  <group>
+   <layout>hbox</layout>
+   <text>
+    <halign>left</halign>
+    <label>Area A</label>
+   </text>
+   <group>
+    <layout>hbox</layout>
+    <halign>right</halign>
+    <text>
+     <label>99999</label>
+     <live>true</live>
+     <format>%2.1fsqm </format>
+     <property>sim/model/Parachutes/area-EmergencyChute-sqm</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+    <empty><stretch>true</stretch></empty>
+    <vrule/>
+    <group>
+     <width>40</width>
+     <text>
+      <label>0sqm</label>
+     </text>
+    </group>
+    <slider>
+     <name>area-EmergencyChute</name>
+     <live>true</live>
+     <property>sim/model/Parachutes/area-EmergencyChute-sqm</property>
+     <min>0</min>
+     <max>50</max>
+     <step>0.1</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+     <binding>
+      <command>nasal</command>
+      <script>
+       MRX13.EmergencyChute()
+      </script>
+     </binding>
+    </slider>
+    <group>
+     <width>50</width>
+     <text>
+      <label>50sqm</label>
+     </text>
+    </group>
+   </group>
+  </group>
+
+  <!-- CD*A -->
+  <group>
+   <layout>hbox</layout>
+   <text>
+    <halign>left</halign>
+    <label>CDxA [sqm], [sqft]</label>
+   </text>
+   <text>
+    <live>true</live>
+    <format>%12.2fsqm </format>
+    <property>sim/model/Parachutes/CDxA-EmergencyChute-sqm</property>
+    <color>
+     <red>0.2</red>
+     <green>0.9</green>
+     <blue>0.2</blue>
+    </color>
+   </text>
+   <text>
+    <live>true</live>
+    <format>%30.2fsqft </format>
+    <property>sim/model/Parachutes/CDxA-EmergencyChute-sqft</property>
+    <color>
+     <red>0.2</red>
+     <green>0.9</green>
+     <blue>0.2</blue>
+    </color>
+   </text>
+   <empty><stretch>true</stretch></empty>
+  </group>
+
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+   <button>
+    <legend>Set Defaults</legend>
+    <binding>
+     <command>nasal</command>
+      <script>MRX13.EmergencyChute_defaults()</script>
+    </binding>
+   </button>
+   <empty><stretch>true</stretch></empty>
+  </group>
+
+ </frame>
+
+ <hrule/>
+ <hrule/>
+
+ <!-- bottom line -->
+ <group>
+  <layout>hbox</layout>
+  <empty><stretch>true</stretch></empty>
+  <button>
+   <legend>Close</legend>
+   <binding>
+    <command>dialog-close</command>
+   </binding>
+  </button>
+  <empty><stretch>true</stretch></empty>
+ </group>
+
+</PropertyList>

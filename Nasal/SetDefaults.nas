@@ -103,9 +103,51 @@ var weight_and_balance_defaults = func {
   setprop("/fdm/jsbsim/inertia/pointmass-weight-kg",weight_kg) ;
   setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs",weight_lbs);
 
-  # wing aerea
+  # wing area
   var area_sqm  = 13.5;
   var area_sqft = area_sqm / 0.09290;
   setprop("fdm/jsbsim/metrics/Sw-sqm" , area_sqm);
   setprop("fdm/jsbsim/metrics/Sw-sqft", area_sqft);
+}
+
+
+################################################################################################
+#
+# Set default parachutes values
+#
+################################################################################################
+
+var DrogueChute_defaults = func {
+
+  var cd = 0.75 ;     # Full drag coefficient 0.6 - 0.75
+  var area_sqm = 1.;  # Full droguechute area 1m^2
+  
+  var area_sqft = area_sqm * 10.7639;
+  var CDxA_sqm  = cd * area_sqm;
+  var CDxA_sqft = cd * area_sqft;
+  
+  setprop("sim/model/Parachutes/cd-DrogueChute", cd) ;
+  setprop("sim/model/Parachutes/area-DrogueChute-sqm", area_sqm);
+
+  setprop("sim/model/Parachutes/CDxA-DrogueChute-sqm" , CDxA_sqm);
+  setprop("sim/model/Parachutes/CDxA-DrogueChute-sqft", CDxA_sqft);
+
+}
+
+
+var EmergencyChute_defaults = func {
+
+  var cd = 2.45 ;      # Full drag coefficient 2.45
+  var area_sqm = 32.;  # Full parachute area 32m^2
+
+  var area_sqft = area_sqm * 10.7639;
+  var CDxA_sqm  = cd * area_sqm;
+  var CDxA_sqft = cd * area_sqft;
+
+  setprop("sim/model/Parachutes/cd-EmergencyChute", cd) ;
+  setprop("sim/model/Parachutes/area-EmergencyChute-sqm", area_sqm);
+
+  setprop("sim/model/Parachutes/CDxA-EmergencyChute-sqm" , CDxA_sqm);
+  setprop("sim/model/Parachutes/CDxA-EmergencyChute-sqft", CDxA_sqft);
+
 }

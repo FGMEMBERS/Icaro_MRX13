@@ -287,16 +287,10 @@
      <!-- <script>towing.releaseHitch("winch")</script> -->
      <script>
       MRX13.releaseHitch();
-      towing.releaseHitch("aerotow")
+      towing.releaseHitch("aerotow");
+      setprop("fdm/jsbsim/forces/hold-down",0);
      </script>
     </binding>
-<!--
-<binding>
- <command>property-assign</command>
- <property>sim/model/DropTest/hooked</property>
- <value>0</value>
-</binding>
--->
    </key>
 
    <key n="93">

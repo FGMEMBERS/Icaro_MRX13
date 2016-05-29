@@ -71,6 +71,7 @@
       </group>
       <slider>
         <name>tow_length</name>
+        <live>true</live>
         <property>/sim/hitches/aerotow/tow/length</property>
         <min>5</min>
         <max>200</max>
@@ -121,6 +122,7 @@
       </group>
       <slider>
         <name>break_force</name>
+        <live>true</live>
         <property>/sim/hitches/aerotow/tow/brake-force</property>
         <min>100</min>
         <max>10000</max>
@@ -171,6 +173,7 @@
       </group>
       <slider>
         <name>elastic_constant</name>
+        <live>true</live>
         <property>/sim/hitches/aerotow/tow/elastic-constant</property>
         <min>0</min>
         <max>15000</max>
@@ -221,6 +224,7 @@
       </group>
       <slider>
         <name>rope_diameter</name>
+        <live>true</live>
         <property>/sim/hitches/aerotow/rope/rope-diameter-mm</property>
         <min>0</min>
         <max>50</max>
@@ -272,6 +276,7 @@
       </group>
       <slider>
         <name>rope_diameter</name>
+        <live>true</live>
         <property>/sim/hitches/aerotow/tow/weight-per-m-kg-m</property>
         <min>0</min>
         <max>1</max>

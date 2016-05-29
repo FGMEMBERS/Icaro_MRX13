@@ -1,2 +1,8 @@
 
+Changes May 2016 by D-NXKT:
+
+- configurable drogue and emergency parachute (with GUI)
+- drop test (with GUI)
+- make sliders in dialogs 'live'
+
 Initial release April 24, 2016 by D-NXKT

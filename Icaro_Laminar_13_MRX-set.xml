@@ -155,12 +155,27 @@ Last update: April 24, 2016 D-NXKT, D_NXKT@yahoo.de
      <green>0.0</green>
      <blue>0.0</blue>
    </SmokeTrail>
-<!--
+
    <DropTest>
-    <hooked>0</hooked>
-    <hooked-old>0</hooked-old>
+    <height-agl-m type="float">100.</height-agl-m>
+    <glider-heading-deg type="float">0.</glider-heading-deg>
+    <glider-pitch-deg type="float">0.</glider-pitch-deg>
+    <glider-roll-deg type="float">0.</glider-roll-deg>
+    <pilot-elevator-cmd type="float">0.</pilot-elevator-cmd>
+    <pilot-aileron-cmd type="float">0.</pilot-aileron-cmd>
    </DropTest>
--->
+
+   <Parachutes>
+    <cd-DrogueChute type="float">0.75</cd-DrogueChute>
+    <area-DrogueChute-sqm type="float">1.</area-DrogueChute-sqm>
+    <CDxA-DrogueChute-sqm type="float">0.75</CDxA-DrogueChute-sqm>
+    <CDxA-DrogueChute-sqft type="float">8.07</CDxA-DrogueChute-sqft>
+    <cd-EmergencyChute type="float">2.45</cd-EmergencyChute>
+    <area-EmergencyChute-sqm type="float">32.</area-EmergencyChute-sqm>
+    <CDxA-EmergencyChute-sqm type="float">78.4</CDxA-EmergencyChute-sqm>
+    <CDxA-EmergencyChute-sqft type="float">843.89</CDxA-EmergencyChute-sqft>
+   </Parachutes>
+
   </model>
 
   <multiplay>
@@ -297,6 +312,14 @@ Last update: April 24, 2016 D-NXKT, D_NXKT@yahoo.de
      </item>
 
      <item>
+      <label>Parachutes</label>
+      <binding>
+       <command>nasal</command>
+       <script>MRX13.parachutes_dialog.open()</script>
+      </binding>
+     </item>
+
+     <item>
       <label>Winch Settings</label>
       <binding>
         <command>nasal</command>
@@ -328,7 +351,7 @@ Last update: April 24, 2016 D-NXKT, D_NXKT@yahoo.de
        <value>0</value>
       </binding>
      </item>
-    
+
      <item>
       <label>----------- Misc. -----------</label>
       <enabled>false</enabled>
@@ -403,16 +426,18 @@ Last update: April 24, 2016 D-NXKT, D_NXKT@yahoo.de
       </binding>
      </item>
 
-<!--
      <item>
-      <label>Toggle Drop Test On/Off</label>
+      <label>Drop Test</label>
        <binding>
         <command>nasal</command>
-        <script>MRX13.drop_test()</script>
+        <script>MRX13.DropTest()</script>
        </binding>
+      <binding>
+       <command>nasal</command>
+       <script>MRX13.DropTest_dialog.open()</script>
+      </binding>
      </item>
--->  
-  
+
     </menu>
    </default>
   </menubar>
@@ -608,6 +633,15 @@ Last update: April 24, 2016 D-NXKT, D_NXKT@yahoo.de
    <path>/sim/model/MRX13/material/WideStripe/ambient/blue</path>
    <path>/sim/model/MRX13/material/WideStripe/transparency/alpha</path>
 
+   <path>sim/model/Parachutes/cd-DrogueChute</path>
+   <path>sim/model/Parachutes/area-DrogueChute-sqm</path>
+   <path>sim/model/Parachutes/CDxA-DrogueChute-sqm</path>
+   <path>sim/model/Parachutes/CDxA-DrogueChute-sqft</path>
+   <path>sim/model/Parachutes/cd-EmergencyChute</path>
+   <path>sim/model/Parachutes/area-EmergencyChute-sqm</path>
+   <path>sim/model/Parachutes/CDxA-EmergencyChute-sqm</path>
+   <path>sim/model/Parachutes/CDxA-EmergencyChute-sqft</path>
+
    <path>/sim/model/Vector/with-VectorAeroForce</path>
    <path>/sim/model/Vector/with-flowvector</path>
 
@@ -635,7 +669,7 @@ Last update: April 24, 2016 D-NXKT, D_NXKT@yahoo.de
    <path>/sim/hitches/winch/winch/max-unspool-speed-m-s</path>
    <path>/sim/hitches/winch/winch/spool-acceleration-m-s-s</path>
    <path>/sim/hitches/winch/force_name_jsbsim</path>
-    
+
   </aircraft-data>
 
   <spoilers>
@@ -741,6 +775,8 @@ Last update: April 24, 2016 D-NXKT, D_NXKT@yahoo.de
    <file>Aircraft/Icaro_MRX13/Nasal/SetDefaults.nas</file>
    <file>Aircraft/Icaro_MRX13/Nasal/TwoStageRelease.nas</file>
    <file>Aircraft/Icaro_MRX13/Nasal/WoolThread.nas</file>
+   <file>Aircraft/Icaro_MRX13/Nasal/DropTest.nas</file>
+   <file>Aircraft/Icaro_MRX13/Nasal/Parachutes.nas</file>
   </MRX13>
  </nasal>
 

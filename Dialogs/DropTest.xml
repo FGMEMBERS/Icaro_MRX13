@@ -1,0 +1,493 @@
+<?xml version="1.0"?>
+<!-- Version: 2016-05-24 -->
+
+<PropertyList>
+ <name>DropTest_dialog</name>
+ <layout>vbox</layout>
+ <default-padding>2</default-padding>
+ <modal>false</modal>
+ <width>400</width>
+
+<!-- title bar -->
+ <group>
+  <layout>hbox</layout>
+  <empty><stretch>true</stretch></empty>
+  <text>
+   <label>Drop Test Configuration</label>
+  </text>
+  <empty><stretch>true</stretch></empty>
+  <button>
+   <legend/>
+   <key>Esc</key>
+   <pref-width>16</pref-width>
+   <pref-height>16</pref-height>
+   <border>2</border>
+   <binding>
+    <command>dialog-close</command>
+   </binding>
+  </button>
+ </group>
+
+ <hrule/>
+ <hrule/>
+
+<!-- drop test parameters -->
+ <frame>
+  <layout>vbox</layout>
+  <empty><stretch>true</stretch></empty>
+
+  <!-- height -->
+  <group>
+   <layout>hbox</layout>
+   <text>
+    <halign>left</halign>
+    <label>height-agl</label>
+   </text>
+   <group>
+    <layout>hbox</layout>
+    <halign>right</halign>
+    <text>
+     <label>9999</label>
+     <live>true</live>
+     <format>%4.0fm </format>
+     <property>sim/model/DropTest/height-agl-m</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+    <empty><stretch>true</stretch></empty>
+    <vrule/>
+    <group>
+     <width>60</width>
+     <text>
+      <label>0m</label>
+     </text>
+    </group>
+    <slider>
+     <name>height</name>
+     <property>sim/model/DropTest/height-agl-m</property>
+     <min>0</min>
+     <max>1000</max>
+     <step>1.</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+     <binding>
+      <command>nasal</command>
+       <script>
+        if(getprop("fdm/jsbsim/forces/hold-down") )
+        setprop("fdm/jsbsim/position/h-agl-km",getprop("sim/model/DropTest/height-agl-m")/1000.);
+       </script>
+     </binding>
+     </slider>
+    <group>
+     <width>60</width>
+     <text>
+      <label>1000m</label>
+     </text>
+    </group>
+   </group>
+  </group>
+
+  <!-- heading -->
+  <group>
+   <layout>hbox</layout>
+   <text>
+    <halign>left</halign>
+    <label>heading</label>
+   </text>
+   <group>
+    <layout>hbox</layout>
+    <halign>right</halign>
+    <text>
+     <label>99999</label>
+     <live>true</live>
+     <format>%5.0fdeg </format>
+     <property>sim/model/DropTest/glider-heading-deg</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+    <empty><stretch>true</stretch></empty>
+    <vrule/>
+    <group>
+     <width>60</width>
+     <text>
+      <label>0deg</label>
+     </text>
+     </group>
+     <slider>
+      <name>orientation</name>
+      <property>sim/model/DropTest/glider-heading-deg</property>
+      <min>0</min>
+      <max>360</max>
+      <step>5</step>
+      <binding>
+       <command>dialog-apply</command>
+      </binding>
+      <binding>
+       <command>nasal</command>
+        <script>
+         if(getprop("fdm/jsbsim/forces/hold-down") )
+         setprop("orientation/heading-deg",getprop("sim/model/DropTest/glider-heading-deg") );
+        </script>
+      </binding>
+     </slider>
+     <group>
+      <width>60</width>
+      <text>
+       <label>360deg</label>
+      </text>
+     </group>
+    </group>
+   </group>
+
+  <!-- glider pitch -->
+  <group>
+   <layout>hbox</layout>
+   <text>
+    <halign>left</halign>
+    <label>glider pitch</label>
+   </text>
+   <group>
+    <layout>hbox</layout>
+    <halign>right</halign>
+    <text>
+     <label>99999</label>
+     <live>true</live>
+     <format>%4.0fdeg</format>
+     <property>sim/model/DropTest/glider-pitch-deg</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+    <empty><stretch>true</stretch></empty>
+    <vrule/>
+    <group>
+     <width>60</width>
+     <text>
+      <label>-180deg</label>
+     </text>
+    </group>
+    <slider>
+     <name>glider_pitch</name>
+     <property>sim/model/DropTest/glider-pitch-deg</property>
+     <min>-180</min>
+     <max>+180</max>
+     <step>5</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+     <binding>
+      <command>nasal</command>
+      <script>
+       if(getprop("fdm/jsbsim/forces/hold-down") )
+       setprop("orientation/pitch-deg",getprop("sim/model/DropTest/glider-pitch-deg") -15. );
+      </script>
+     </binding>
+    </slider>
+    <group>
+     <width>60</width>
+     <text>
+      <label>+180deg</label>
+     </text>
+    </group>
+   </group>
+  </group>
+
+  <!-- glider roll -->
+  <group>
+   <layout>hbox</layout>
+   <text>
+    <halign>left</halign>
+    <label>glider roll</label>
+   </text>
+   <group>
+    <layout>hbox</layout>
+    <halign>right</halign>
+    <text>
+     <label>99999</label>
+     <live>true</live>
+     <format>%4.0fdeg</format>
+     <property>sim/model/DropTest/glider-roll-deg</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+     </text>
+     <empty><stretch>true</stretch></empty>
+     <vrule/>
+     <group>
+      <width>60</width>
+      <text>
+       <label>-180deg</label>
+      </text>
+     </group>
+     <slider>
+      <name>glider_pitch</name>
+      <property>sim/model/DropTest/glider-roll-deg</property>
+      <min>-180</min>
+      <max>+180</max>
+      <step>5</step>
+      <binding>
+       <command>dialog-apply</command>
+      </binding>
+      <binding>
+       <command>nasal</command>
+        <script>
+         if(getprop("fdm/jsbsim/forces/hold-down") )
+         setprop("orientation/roll-deg",getprop("sim/model/DropTest/glider-roll-deg") );
+        </script>
+      </binding>
+     </slider>
+     <group>
+      <width>60</width>
+      <text>
+      <label>+180deg</label>
+     </text>
+    </group>
+   </group>
+  </group>
+
+  <!-- pilot pitch -->
+  <group>
+   <layout>hbox</layout>
+   <text>
+    <halign>left</halign>
+    <label>pilot pitch deflection</label>
+   </text>
+   <group>
+    <layout>hbox</layout>
+    <halign>right</halign>
+    <text>
+     <label>999</label>
+     <live>true</live>
+     <property>sim/model/DropTest/pilot-elevator-cmd</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+    <empty><stretch>true</stretch></empty>
+    <vrule/>
+    <group>
+     <width>60</width>
+     <text>
+      <x>36</x> 
+      <label>-1</label>
+     </text>
+    </group>
+    <slider>
+     <name>pilot_pitch</name>
+     <property>sim/model/DropTest/pilot-elevator-cmd</property>
+     <min>-1</min>
+     <max>+1</max>
+     <step>0.1</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+     <binding>
+      <command>nasal</command>
+      <script>
+       if(getprop("fdm/jsbsim/forces/hold-down") )
+       setprop("controls/flight/elevator",getprop("sim/model/DropTest/pilot-elevator-cmd") );
+      </script>
+     </binding>
+    </slider>
+    <group>
+     <width>60</width>
+     <text>
+      <label>+1</label>
+     </text>
+    </group>
+   </group>
+  </group>
+
+  <!-- pilot roll -->
+  <group>
+   <layout>hbox</layout>
+   <text>
+    <halign>left</halign>
+    <label>pilot roll deflection</label>
+   </text>
+   <group>
+    <layout>hbox</layout>
+    <halign>right</halign>
+    <text>
+     <label>999</label>
+     <live>true</live>
+     <property>sim/model/DropTest/pilot-aileron-cmd</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+    <empty><stretch>true</stretch></empty>
+    <vrule/>
+    <group>
+     <width>60</width>
+     <text>
+      <x>36</x>     
+      <label>-1</label>
+     </text>
+    </group>
+    <slider>
+     <name>pilot_pitch</name>
+     <property>sim/model/DropTest/pilot-aileron-cmd</property>
+     <min>-1</min>
+     <max>+1</max>
+     <step>0.1</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+     <binding>
+      <command>nasal</command>
+       <script>
+        if(getprop("fdm/jsbsim/forces/hold-down") )
+        setprop("controls/flight/aileron",getprop("sim/model/DropTest/pilot-aileron-cmd") );
+       </script>
+     </binding>
+    </slider>
+    <group>
+     <width>60</width>
+     <text>
+      <label>+1</label>
+     </text>
+    </group>
+   </group>
+  </group>
+
+ </frame>
+
+ <hrule/>
+
+ <frame>
+  <layout>vbox</layout>
+  <valign>center</valign>
+  <empty><stretch>true</stretch></empty>
+
+  <!-- view vector -->
+  <group>
+   <layout>hbox</layout>
+   <text>
+    <halign>left</halign>
+    <label>Show:</label>
+   </text>
+   <checkbox>
+    <halign>left</halign>
+    <label>Flow Vector</label>
+    <property>sim/model/Vector/with-flowvector</property>
+    <binding>
+     <command>dialog-apply</command>
+    </binding>
+   </checkbox>
+   <checkbox>
+    <halign>left</halign>
+    <label>Force Vector</label>
+    <property>sim/model/Vector/with-VectorAeroForce</property>
+    <binding>
+     <command>dialog-apply</command>
+    </binding>
+   </checkbox>
+  </group>
+
+  <empty><stretch>true</stretch></empty>
+ </frame>
+
+ <hrule/>
+
+ <frame>
+  <layout>hbox</layout>
+
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+   <button>
+    <x>80</x>
+    <y>0</y>
+    <legend>Release</legend>
+    <binding>
+     <command>dialog-apply</command>
+    </binding>
+    <binding>
+     <command>property-assign</command>
+     <property>fdm/jsbsim/forces/hold-down</property>
+     <value>0</value>
+    </binding>
+    <default>false</default>
+   </button>
+
+   <empty><stretch>true</stretch></empty>
+   <button>
+    <legend>Release + Close</legend>
+    <binding>
+     <command>dialog-apply</command>
+    </binding>
+    <binding>
+     <command>property-assign</command>
+     <property>fdm/jsbsim/forces/hold-down</property>
+     <value>0</value>
+    </binding>
+    <binding>
+     <command>dialog-close</command>
+    </binding>
+    <default>false</default>
+   </button>
+
+   <empty><stretch>true</stretch></empty>
+   <text>
+    <halign>center</halign>
+    <label>or press "W"      </label>
+   </text>
+  </group>
+
+ </frame>
+
+ <hrule/>
+
+ <frame>
+  <layout>hbox</layout>
+
+  <!-- bottom line -->
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+   <button>
+    <legend>Reposition</legend>
+    <binding>
+     <command>dialog-apply</command>
+    </binding>
+    <binding>
+     <command>property-assign</command>
+     <property>fdm/jsbsim/forces/hold-down</property>
+     <value>1</value>
+    </binding>
+    <binding>
+     <command>nasal</command>
+      <script>MRX13.DropTest()</script>
+    </binding>
+    <default>false</default>
+   </button>
+
+   <empty><stretch>true</stretch></empty>
+   <button>
+    <legend>Close</legend>
+    <binding>
+     <command>dialog-close</command>
+    </binding>
+   </button>
+   <empty><stretch>true</stretch></empty>
+  </group>
+
+ </frame>
+
+</PropertyList>

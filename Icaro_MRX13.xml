@@ -325,8 +325,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
         <p>fcs/parachute-pos-norm</p>
         <v>4</v>
        </pow>
-       <v>2.45</v>  <!-- Full drag coefficient 2.45 -->
-       <v>344.4</v> <!-- Full parachute area 32m^2-->
+       <p>/sim/model/Parachutes/CDxA-EmergencyChute-sqft</p> <!-- Full parachute area 32m^2 * Full drag coefficient 2.45 * sqm2sqft-->
       </product>
      </function>
      <location unit="M">
@@ -351,8 +350,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
         <p>fcs/drogue_chute-pos-norm</p>
         <v>4</v>
        </pow>
-       <v>0.75</v>  <!-- Full drag coefficient 0.6 - 0.75 -->
-       <v>10.75</v> <!-- Full droguechute area 1m^2-->
+       <p>/sim/model/Parachutes/CDxA-DrogueChute-sqft</p>
       </product>
      </function>
 

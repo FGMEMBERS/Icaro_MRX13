@@ -151,10 +151,11 @@
       <halign>center</halign>
       <slider>
         <name>pilots_weight</name>
+         <live>true</live>
         <property>/fdm/jsbsim/inertia/pointmass-weight-lbs</property>
         <min>100.0</min>
         <max>350.0</max>
-    <step>0.5</step>
+        <step>0.5</step>
         <binding>
           <command>dialog-apply</command>
         </binding>
@@ -304,6 +305,7 @@
       <halign>center</halign>
       <slider>
         <name>wing_area</name>
+        <live>true</live>
         <property>/fdm/jsbsim/metrics/Sw-sqft</property>
         <min>0.0</min>
         <max>300.0</max>
