@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!-- Version: 2016-06-09 -->
+<PropertyList>
+ <name>handling_help_dialog</name>
+ <layout>vbox</layout>
+ <default-padding>2</default-padding>
+ <modal>false</modal>
+ <width>480</width>
+ <group>
+  <layout>hbox</layout>
+  <empty><stretch>true</stretch></empty>
+  <text>
+   <label>Help</label>
+  </text>
+  <empty><stretch>true</stretch></empty>
+  <button>
+   <legend/>
+   <key>Esc</key>
+   <pref-width>16</pref-width>
+   <pref-height>16</pref-height>
+   <border>2</border>
+   <binding>
+    <command>dialog-close</command>
+   </binding>
+  </button>
+ </group>
+
+ <hrule/>
+ <hrule/>
+
+ <group>
+  <height>240</height>
+  <text>
+   <x>2</x>
+   <y>220</y>
+   <label>
+   For some special applications (e.g. first training lesson in hang gliding
+   school) the handling of this glider is too responsive.
+
+   This dialog enables an adjustment of the handling characteristic to your
+   special needs. For this purpose, factors for some roll and pitch coefficients
+   are introduced. Note that this manipulation makes only sense in the 'normal'
+   flight regime. Stall and spin behavior could be falsified.  
+
+   In order to conveniently switch between different requirements, three settings
+   are predefined: Rookie, Student and Pilot. The values for 'Rookie' and 'Student'
+   are hard-coded in the file 'Nasal/Handling.nas'. Adapt them to your needs.
+
+   This variables are NOT auto-saved.
+   Default is 'Pilot' (the original settings / handling characteristics).
+   </label>
+  </text>
+ </group>
+
+ <hrule/>
+ <hrule/>
+
+ <group>
+  <layout>hbox</layout>
+  <empty><stretch>true</stretch></empty>
+  <button>
+   <legend>Close</legend>
+   <binding>
+    <command>dialog-close</command>
+   </binding>
+  </button>
+  <empty><stretch>true</stretch></empty>
+ </group>
+
+</PropertyList>

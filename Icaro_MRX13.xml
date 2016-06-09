@@ -891,6 +891,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
                180.0   -0.5    -0.5
             </tableData>
           </table>
+          <property>/sim/model/MRX13/handling/factor-Clp</property>
         </product>
       </function>
 
@@ -934,6 +935,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
                  1.0    0.02     <!-- JSB   0.05 -->
             </tableData>
           </table>
+          <property>/sim/model/MRX13/handling/factor-Clda</property>
         </product>
       </function>
 
@@ -987,6 +989,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
               180.     0.0   -0.005435
             </tableData>
           </table>
+          <property>/sim/model/MRX13/handling/factor-Cmalpha</property>
         </product>
       </function>
 
@@ -1017,6 +1020,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
                 180.  -3.2   -3.2
             </tableData>
           </table>
+          <property>/sim/model/MRX13/handling/factor-Cmq</property>
         </product>
       </function>
 

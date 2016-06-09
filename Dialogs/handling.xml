@@ -1,0 +1,430 @@
+<?xml version="1.0"?>
+<!-- Version: 2016-06-09 -->
+
+<PropertyList>
+ <name>handling_dialog</name>
+ <layout>vbox</layout>
+ <default-padding>2</default-padding>
+ <modal>false</modal>
+ <width>380</width>
+
+ <!-- title bar -->
+ <group>
+  <layout>hbox</layout>
+  <empty><stretch>true</stretch></empty>
+  <text>
+   <label>Handling Configuration</label>
+  </text>
+  <empty><stretch>true</stretch></empty>
+  <button>
+   <legend/>
+   <key>Esc</key>
+   <pref-width>16</pref-width>
+   <pref-height>16</pref-height>
+   <border>2</border>
+   <binding>
+    <command>dialog-close</command>
+   </binding>
+  </button>
+ </group>
+
+ <hrule/>
+ <hrule/>
+
+ <frame>
+  <layout>vbox</layout>
+  <empty><stretch>true</stretch></empty>
+
+  <text>
+   <label>Predefined Handling Settings</label>
+  </text>
+  <empty><stretch>true</stretch></empty>
+
+  <group>
+   <layout>hbox</layout>
+
+   <checkbox>
+    <name>Rookie</name>
+    <label>Rookie</label>
+    <live>true</live>
+    <property>sim/model/MRX13/handling/Rookie</property>
+    <binding>
+     <command>dialog-apply</command>
+    </binding>
+    <binding>
+     <command>nasal</command>
+     <script>
+      if(getprop("sim/model/MRX13/handling/Rookie")){
+       setprop("sim/model/MRX13/handling/Student",0);
+       setprop("sim/model/MRX13/handling/Pilot",0);
+      }
+     </script>
+    </binding>
+    <binding>
+     <command>nasal</command>
+     <script>
+      MRX13.handling();
+     </script>
+    </binding>
+   </checkbox>
+
+   <checkbox>
+    <name>Student</name>
+    <label>Student</label>
+    <live>true</live>
+    <property>sim/model/MRX13/handling/Student</property>
+    <binding>
+     <command>dialog-apply</command>
+    </binding>
+    <binding>
+     <command>nasal</command>
+     <script>
+      if(getprop("sim/model/MRX13/handling/Student")){
+       setprop("sim/model/MRX13/handling/Rookie",0);
+       setprop("sim/model/MRX13/handling/Pilot",0);
+      }
+     </script>
+    </binding>
+    <binding>
+     <command>nasal</command>
+     <script>
+      MRX13.handling();
+     </script>
+    </binding>
+   </checkbox>
+
+   <checkbox>
+    <name>Pilot</name>
+    <label>Pilot (Default)</label>
+    <live>true</live>
+    <property>sim/model/MRX13/handling/Pilot</property>
+    <binding>
+     <command>dialog-apply</command>
+    </binding>
+    <binding>
+     <command>nasal</command>
+     <script>
+      if(getprop("sim/model/MRX13/handling/Pilot")){
+       setprop("sim/model/MRX13/handling/Student",0);
+       setprop("sim/model/MRX13/handling/Rookie",0);
+      }
+     </script>
+    </binding>
+    <binding>
+     <command>nasal</command>
+     <script>
+      MRX13.handling();
+     </script>
+    </binding>
+   </checkbox>
+
+  </group>
+ </frame>
+
+ <hrule/>
+
+ <!-- roll parameters -->
+ <frame>
+  <layout>vbox</layout>
+  <empty><stretch>true</stretch></empty>
+
+  <text>
+   <label>Roll Settings</label>
+  </text>
+  <empty><stretch>true</stretch></empty>
+
+  <!-- aileron -->
+  <group>
+   <layout>hbox</layout>
+   <text>
+    <halign>left</halign>
+    <label>factor for Clda (roll moment)</label>
+   </text>
+   <group>
+    <layout>hbox</layout>
+    <halign>right</halign>
+    <text>
+     <label>999</label>
+     <live>true</live>
+     <format>% 2.2f</format>
+     <property>sim/model/MRX13/handling/factor-Clda</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+    <empty><stretch>true</stretch></empty>
+    <vrule/>
+    <group>
+     <width>25</width>
+     <text>
+      <label>-5</label>
+     </text>
+    </group>
+    <slider>
+     <name>factor-Clda</name>
+     <live>true</live>
+     <property>sim/model/MRX13/handling/factor-Clda</property>
+     <min>-5.00001</min>
+     <max>5</max>
+     <step>0.05</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+     <binding>
+      <command>nasal</command>
+      <script>
+       MRX13.custom();
+      </script>
+     </binding>
+    </slider>
+    <group>
+     <width>25</width>
+     <text>
+      <label>5</label>
+     </text>
+    </group>
+   </group>
+  </group>
+
+  <!-- roll damping -->
+  <group>
+   <layout>hbox</layout>
+   <text>
+    <halign>left</halign>
+    <label>factor for Clp (roll damping)</label>
+   </text>
+   <group>
+    <layout>hbox</layout>
+    <halign>right</halign>
+    <text>
+     <label>999</label>
+     <live>true</live>
+     <format>%2.2f</format>
+     <property>/sim/model/MRX13/handling/factor-Clp</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+    <empty><stretch>true</stretch></empty>
+    <vrule/>
+    <group>
+     <width>25</width>
+     <text>
+      <label> 0</label>
+     </text>
+    </group>
+    <slider>
+     <name>factor Clp</name>
+     <live>true</live>
+     <property>/sim/model/MRX13/handling/factor-Clp</property>
+     <min>0</min>
+     <max>5</max>
+     <step>0.05</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+     <binding>
+      <command>nasal</command>
+      <script>
+       MRX13.custom();
+      </script>
+     </binding>
+    </slider>
+    <group>
+     <width>25</width>
+     <text>
+      <label>5</label>
+     </text>
+    </group>
+   </group>
+  </group>
+
+  <!-- roll defaults -->
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+   <button>
+    <legend>Roll Defaults</legend>
+    <binding>
+     <command>nasal</command>
+      <script>
+       MRX13.handling_roll_defaults();
+       MRX13.custom();
+      </script>
+    </binding>
+   </button>
+   <empty><stretch>true</stretch></empty>
+  </group>
+
+ </frame>
+
+ <hrule/>
+
+ <!-- pitch parameters -->
+ <frame>
+  <layout>vbox</layout>
+  <empty><stretch>true</stretch></empty>
+
+  <text>
+   <label>Pitch Settings</label>
+  </text>
+  <empty><stretch>true</stretch></empty>
+
+  <!-- moment due to alpha -->
+  <group>
+   <layout>hbox</layout>
+   <text>
+    <halign>left</halign>
+    <label>factor Cmalpha (pitch moment)</label>
+   </text>
+   <group>
+    <layout>hbox</layout>
+    <halign>right</halign>
+    <text>
+     <label>999</label>
+     <live>true</live>
+     <format>% 2.2f</format>
+     <property>sim/model/MRX13/handling/factor-Cmalpha</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+    <empty><stretch>true</stretch></empty>
+    <vrule/>
+    <group>
+     <width>25</width>
+     <text>
+      <label>-5</label>
+     </text>
+    </group>
+    <slider>
+     <name>factor-Clda</name>
+     <live>true</live>
+     <property>sim/model/MRX13/handling/factor-Cmalpha</property>
+     <min>-5.00001</min>
+     <max>5</max>
+     <step>0.05</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+     <binding>
+      <command>nasal</command>
+      <script>
+       MRX13.custom();
+      </script>
+     </binding>
+    </slider>
+    <group>
+     <width>25</width>
+     <text>
+      <label>5</label>
+     </text>
+    </group>
+   </group>
+  </group>
+
+  <!-- roll damping -->
+  <group>
+   <layout>hbox</layout>
+   <text>
+    <halign>left</halign>
+    <label>factor for Cmq (pitch damping)</label>
+   </text>
+   <group>
+    <layout>hbox</layout>
+    <halign>right</halign>
+    <text>
+     <label>999</label>
+     <live>true</live>
+     <format>%2.2f</format>
+     <property>/sim/model/MRX13/handling/factor-Cmq</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+    <empty><stretch>true</stretch></empty>
+    <vrule/>
+    <group>
+     <width>25</width>
+     <text>
+      <label>0</label>
+     </text>
+    </group>
+    <slider>
+     <name>factor Clp</name>
+     <live>true</live>
+     <property>/sim/model/MRX13/handling/factor-Cmq</property>
+     <min>0</min>
+     <max>5</max>
+     <step>0.05</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+     <binding>
+      <command>nasal</command>
+      <script>
+       MRX13.custom();
+      </script>
+     </binding>
+    </slider>
+    <group>
+     <width>25</width>
+     <text>
+      <label>5</label>
+     </text>
+    </group>
+   </group>
+  </group>
+
+  <!-- pitch defaults -->
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+   <button>
+    <legend>Pitch Defaults</legend>
+    <binding>
+     <command>nasal</command>
+     <script>
+      MRX13.handling_pitch_defaults();
+      MRX13.custom();
+     </script>
+    </binding>
+   </button>
+   <empty><stretch>true</stretch></empty>
+  </group>
+
+ </frame>
+
+ <hrule/>
+ <hrule/>
+
+ <!-- bottom line -->
+ <group>
+  <layout>hbox</layout>
+  <empty><stretch>true</stretch></empty>
+  <button>
+   <legend>Help</legend>
+   <binding>
+    <command>nasal</command>
+    <script>MRX13.handling_help_dialog.open()</script>
+   </binding>
+  </button>
+  <empty><stretch>true</stretch></empty>
+  <button>
+   <legend>Close</legend>
+   <binding>
+    <command>dialog-close</command>
+   </binding>
+  </button>
+  <empty><stretch>true</stretch></empty>
+ </group>
+
+</PropertyList>

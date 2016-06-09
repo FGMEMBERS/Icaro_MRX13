@@ -3,7 +3,7 @@
 ************************************************************************
 Weight shift controlled hang glider for FlightGear
 
-Last update: April 24, 2016 D-NXKT, D_NXKT@yahoo.de
+Last update: June 9, 2016 D-NXKT, D_NXKT@yahoo.de
 ************************************************************************
 -->
 
@@ -22,7 +22,7 @@ Last update: April 24, 2016 D-NXKT, D_NXKT@yahoo.de
    <tag>unpowered</tag>
   </tags>
 
-  <aircraft-version>May 2016</aircraft-version>
+  <aircraft-version>June 2016</aircraft-version>
 
   <status>early production</status>
   <rating>
@@ -140,6 +140,13 @@ Last update: April 24, 2016 D-NXKT, D_NXKT@yahoo.de
     <with-wheels_mp          alias="/sim/model/MRX13/with-wheels"/>          <!-- needed for multiplayer -->
     <with-woolthread_mp      alias="/sim/model/MRX13/with-woolthread"/>      <!-- needed for multiplayer -->
     <with-TwoStageRelease_mp alias="/sim/model/MRX13/with-TwoStageRelease"/> <!-- needed for multiplayer -->
+
+    <handling>
+     <factor-Clda type="float">1.</factor-Clda>
+     <factor-Clp  type="float">1.</factor-Clp>
+     <factor-Cmalpha type="float">1.</factor-Cmalpha>
+     <factor-Cmq  type="float">1.</factor-Cmq>
+    </handling>
 
    </MRX13>
    
@@ -435,6 +442,19 @@ Last update: April 24, 2016 D-NXKT, D_NXKT@yahoo.de
       <binding>
        <command>nasal</command>
        <script>MRX13.DropTest_dialog.open()</script>
+      </binding>
+     </item>
+
+     <item>
+      <label>----------- Expert -----------</label>
+      <enabled>false</enabled>
+     </item>
+
+     <item>
+      <label>Handling</label>
+      <binding>
+       <command>nasal</command>
+       <script>MRX13.handling_dialog.open()</script>
       </binding>
      </item>
 
@@ -777,6 +797,7 @@ Last update: April 24, 2016 D-NXKT, D_NXKT@yahoo.de
    <file>Aircraft/Icaro_MRX13/Nasal/WoolThread.nas</file>
    <file>Aircraft/Icaro_MRX13/Nasal/DropTest.nas</file>
    <file>Aircraft/Icaro_MRX13/Nasal/Parachutes.nas</file>
+   <file>Aircraft/Icaro_MRX13/Nasal/Handling.nas</file>
   </MRX13>
  </nasal>
 

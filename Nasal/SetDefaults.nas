@@ -151,3 +151,24 @@ var EmergencyChute_defaults = func {
   setprop("sim/model/Parachutes/CDxA-EmergencyChute-sqft", CDxA_sqft);
 
 }
+
+
+################################################################################################
+#
+# Set default handling factor values
+#
+################################################################################################
+
+var handling_roll_defaults = func {
+
+  setprop("sim/model/MRX13/handling/factor-Clda", 1.);
+  setprop("sim/model/MRX13/handling/factor-Clp" , 1.);
+
+}
+
+var handling_pitch_defaults = func {
+
+  setprop("sim/model/MRX13/handling/factor-Cmalpha", 1.);
+  setprop("sim/model/MRX13/handling/factor-Cmq" , 1.);
+
+}

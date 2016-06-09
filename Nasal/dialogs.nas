@@ -18,3 +18,9 @@ var DropTest_dialog = gui.Dialog.new("/sim/gui/dialogs/MRX13/DropTest/dialog",
 
 var parachutes_dialog = gui.Dialog.new("/sim/gui/dialogs/MRX13/parachutes/dialog",
                                       "Aircraft/Icaro_MRX13/Dialogs/parachutes.xml");
+
+var handling_dialog = gui.Dialog.new("/sim/gui/dialogs/MRX13/handling/dialog",
+                                      "Aircraft/Icaro_MRX13/Dialogs/handling.xml");
+
+var handling_help_dialog = gui.Dialog.new("/sim/gui/dialogs/MRX13/handling_help/dialog",
+                                      "Aircraft/Icaro_MRX13/Dialogs/handling_help.xml");
