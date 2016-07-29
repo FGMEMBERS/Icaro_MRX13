@@ -60,8 +60,8 @@
    <object-name>VectorY</object-name>
    <object-name>VectorZ</object-name>
 
-   <property>fdm/jsbsim/inertia/cg-x-in</property>
-   <factor>0.0254</factor>
+   <property>sim/model/inertia/cg-x-m</property>
+   <factor>1</factor>
    <offset-m>0</offset-m>
    <center>
     <x-m>0.0</x-m>
@@ -90,8 +90,8 @@
    <object-name>VectorY</object-name>
    <object-name>VectorZ</object-name>
 
-   <property>fdm/jsbsim/inertia/cg-y-in</property>
-   <factor>0.0254</factor>
+   <property>sim/model/inertia/cg-y-m</property>
+   <factor>1</factor>
    <center>
     <x-m>0.0</x-m>
     <y-m>0.0</y-m>
@@ -119,8 +119,8 @@
    <object-name>VectorY</object-name>
    <object-name>VectorZ</object-name>
 
-   <property>fdm/jsbsim/inertia/cg-z-in</property>
-   <factor>0.0254</factor>
+   <property>sim/model/inertia/cg-z-m</property>
+   <factor>1</factor>
    <offset-m>0</offset-m>
    <center>
     <x-m>0.0</x-m>
@@ -159,16 +159,13 @@
    <object-name>VectorZ</object-name>
 
    <expression>
-    <product>
-     <div>
-      <property>fdm/jsbsim/moments/m-aero-lbsft</property>
-      <sum>
-      <property>fdm/jsbsim/forces/fbz-aero-lbs</property> <!-- "0" at startup -->
-      <value>0.0001</value> <!-- very ugly workaround to prevent NaN at startup -->
-      </sum>
-     </div>
-     <value>0.30480</value> <!-- ft2m -->
-    </product>
+    <div>
+     <property>sim/model/moments/m-aero-Nm</property>
+     <sum>
+     <property>sim/model/forces/fbz-aero-N</property> <!-- "0" at startup -->
+     <value>0.0001</value> <!-- very ugly workaround to prevent NaN at startup -->
+     </sum>
+    </div>
    </expression>
    <center>
     <x-m>0.0</x-m>
@@ -198,16 +195,13 @@
    <object-name>VectorZ</object-name>
 
    <expression>
-    <product>
-     <div>
-      <property>fdm/jsbsim/moments/l-aero-lbsft</property>
-      <sum>
-      <property>fdm/jsbsim/forces/fbz-aero-lbs</property> <!-- "0" at startup -->
-      <value>0.0001</value> <!-- very ugly workaround to prevent NaN at startup -->
-      </sum>
-     </div>
-     <value>0.30480</value> <!-- ft2m -->
-    </product>
+    <div>
+     <property>sim/model/moments/l-aero-Nm</property>
+     <sum>
+     <property>sim/model/forces/fbz-aero-N</property> <!-- "0" at startup -->
+     <value>0.0001</value> <!-- very ugly workaround to prevent NaN at startup -->
+     </sum>
+    </div>
    </expression>
    <center>
     <x-m>0.0</x-m>
@@ -232,8 +226,8 @@
     <sum>
      <rad2deg>
       <atan2>
-       <property>fdm/jsbsim/forces/fbz-aero-lbs</property>
-       <property>fdm/jsbsim/forces/fbx-aero-lbs</property>
+       <property>sim/model/forces/fbz-aero-N</property>
+       <property>sim/model/forces/fbx-aero-N</property>
       </atan2>
      </rad2deg>
      <value>0</value>
@@ -260,8 +254,8 @@
     <sum>
      <rad2deg>
       <atan2>
-       <property>fdm/jsbsim/forces/fby-aero-lbs</property>
-       <property>sim/model/Vector/fbxz-aero-lbs</property> <!-- vectorial fz+fx -->
+       <property>sim/model/forces/fby-aero-N</property>
+       <property>sim/model/forces/fbxz-aero-N</property> <!-- vectorial fz+fx -->
       </atan2>
      </rad2deg>
      <value>180</value>
@@ -290,19 +284,19 @@
       <sqrt>
        <sum>
         <pow>
-     	 <property>fdm/jsbsim/forces/fbz-aero-lbs</property>
+         <property>sim/model/forces/fbz-aero-N</property>
          <value>2</value>
-     	</pow>
+        </pow>
         <pow>
-     	 <property>fdm/jsbsim/forces/fbx-aero-lbs</property>
+         <property>sim/model/forces/fbx-aero-N</property>
          <value>2</value>
-     	</pow>
+        </pow>
        </sum>
       </sqrt>
       </product>
      </expression>
      -->
-   <property>sim/model/Vector/fbxyz-aero-lbs</property> <!-- Total Aero-Force -->
+   <property>sim/model/forces/fbxyz-aero-N</property> <!-- Total Aero-Force -->
    <center>
     <x-m>0.</x-m>
     <y-m>0.</y-m>
@@ -311,7 +305,7 @@
    <x-min>-1000</x-min>
    <y-min>1</y-min>
    <z-min>1</z-min>
-   <x-factor>0.01</x-factor>
+   <x-factor>0.0025</x-factor>
    <y-factor>0.0</y-factor>
    <z-factor>0.0</z-factor>
  </animation>
@@ -322,7 +316,7 @@
  <animation>
   <type>scale</type>
    <object-name>VectorX</object-name>
-   <property>fdm/jsbsim/forces/fbx-aero-lbs</property>
+   <property>sim/model/forces/fbx-aero-N</property>
    <center>
     <x-m>0.</x-m>
     <y-m>0.</y-m>
@@ -331,7 +325,7 @@
    <x-min>-100000.</x-min>
    <y-min>1.</y-min>
    <z-min>1.</z-min>
-   <x-factor>-0.01</x-factor>
+   <x-factor>-0.0025</x-factor>
    <y-factor>0.</y-factor>
    <z-factor>0.</z-factor>
  </animation>
@@ -339,7 +333,7 @@
  <animation>
   <type>scale</type>
    <object-name>VectorY</object-name>
-   <property>fdm/jsbsim/forces/fby-aero-lbs</property>
+   <property>sim/model/forces/fby-aero-N</property>
    <center>
     <x-m>0.</x-m>
     <y-m>0.</y-m>
@@ -349,14 +343,14 @@
    <y-min>-100000.</y-min>
    <z-min>1.</z-min>
    <x-factor>0.0</x-factor>
-   <y-factor>0.01</y-factor>
+   <y-factor>0.0025</y-factor>
    <z-factor>0.0</z-factor>
  </animation>
 
  <animation>
   <type>scale</type>
    <object-name>VectorZ</object-name>
-   <property>fdm/jsbsim/forces/fbz-aero-lbs</property>
+   <property>sim/model/forces/fbz-aero-N</property>
    <center>
     <x-m>0.</x-m>
     <y-m>0.</y-m>
@@ -367,7 +361,7 @@
    <z-min>-100000.</z-min>
    <x-factor>0.0</x-factor>
    <y-factor>0.0</y-factor>
-   <z-factor>-0.01</z-factor>
+   <z-factor>-0.0025</z-factor>
  </animation>
 
 
@@ -378,7 +372,7 @@
    <object-name>VectorD</object-name>
    <object-name>VectorL</object-name>
    <object-name>VectorS</object-name>
-   <property>fdm/jsbsim/aero/alpha-deg</property>
+   <property>sim/model/aero/alpha-deg</property>
    <center>
     <x-m>0.0</x-m>
     <y-m>0.0</y-m>
@@ -396,7 +390,7 @@
    <object-name>VectorD</object-name>
    <object-name>VectorL</object-name>
    <object-name>VectorS</object-name>
-   <property>fdm/jsbsim/aero/beta-deg</property>
+   <property>sim/model/aero/beta-deg</property>
    <center>
     <x-m>0.0</x-m>
     <y-m>0.0</y-m>
@@ -415,7 +409,7 @@
  <animation>
   <type>scale</type>
    <object-name>VectorD</object-name>
-   <property>fdm/jsbsim/forces/fwx-aero-lbs</property>
+   <property>sim/model/forces/fwx-aero-N</property>
    <center>
     <x-m>0.0</x-m>
     <y-m>0.0</y-m>
@@ -424,9 +418,9 @@
    <x-min>-100000.</x-min>
    <y-min>1.</y-min>
    <z-min>1.0</z-min>
-   <x-factor>0.01</x-factor>
-   <y-factor>0.0001</y-factor>
-   <z-factor>0.0001</z-factor>
+   <x-factor>0.0025</x-factor>
+   <y-factor>0.000025</y-factor>
+   <z-factor>0.000025</z-factor>
  </animation>
 
 
@@ -435,7 +429,7 @@
  <animation>
   <type>scale</type>
   <object-name>VectorL</object-name>
-  <property>fdm/jsbsim/forces/fwz-aero-lbs</property>
+  <property>sim/model/forces/fwz-aero-N</property>
   <center>
    <x-m>0.0</x-m>
    <y-m>0.0</y-m>
@@ -444,9 +438,9 @@
   <x-min>1.</x-min>
   <y-min>1.</y-min>
   <z-min>-10000000.0</z-min>
-  <x-factor>0.0001</x-factor>
-  <y-factor>0.0001</y-factor>
-  <z-factor>0.01</z-factor>
+  <x-factor>0.000025</x-factor>
+  <y-factor>0.000025</y-factor>
+  <z-factor>0.0025</z-factor>
  </animation>
 
 
@@ -455,7 +449,7 @@
  <animation>
   <type>scale</type>
   <object-name>VectorS</object-name>
-  <property>fdm/jsbsim/forces/fwy-aero-lbs</property>
+  <property>sim/model/forces/fwy-aero-N</property>
   <center>
    <x-m>0.0</x-m>
    <y-m>0.0</y-m>
@@ -464,9 +458,9 @@
   <x-min>1.</x-min>
   <y-min>-10000000.0</y-min>
   <z-min>1.</z-min>
-  <x-factor>0.0001</x-factor>
-  <y-factor>0.01</y-factor>
-  <z-factor>0.0001</z-factor>
+  <x-factor>0.000025</x-factor>
+  <y-factor>0.0025</y-factor>
+  <z-factor>0.000025</z-factor>
  </animation>
 
 
@@ -493,7 +487,7 @@
  <type>rotate</type>
   <object-name>FlowVectorHead</object-name>
   <object-name>FlowVectorLength</object-name>
-  <property>fdm/jsbsim/aero/alpha-deg</property>
+  <property>sim/model/aero/alpha-deg</property>
   <center>
    <x-m>3.0</x-m>
    <y-m>0.0</y-m>
@@ -510,7 +504,7 @@
   <type>rotate</type>
    <object-name>FlowVectorHead</object-name>
    <object-name>FlowVectorLength</object-name>
-   <property>fdm/jsbsim/aero/beta-deg</property>
+   <property>sim/model/aero/beta-deg</property>
    <center>
     <x-m>3.0</x-m>
     <y-m>0.0</y-m>

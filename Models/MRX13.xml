@@ -11,7 +11,7 @@
    var rplayer = cmdarg();
    # Set up property aliases for animations.
 
-   rplayer.getNode("fdm/jsbsim/systems/on-ground", 1).
+   rplayer.getNode("sim/model/MRX13/on-ground", 1).
      alias(rplayer.getNode("sim/multiplay/generic/int[0]"));
    rplayer.getNode("sim/model/MRX13/with-wheels_mp", 1).
      alias(rplayer.getNode("sim/multiplay/generic/int[1]"));
@@ -23,6 +23,9 @@
      alias(rplayer.getNode("sim/multiplay/generic/int[4]"));
    rplayer.getNode("sim/model/MRX13/RotateAboutPilot", 1).
      alias(rplayer.getNode("sim/multiplay/generic/int[5]"));
+   rplayer.getNode("sim/model/MRX13/wing-failure", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/int[6]"));
+
 
    rplayer.getNode("sim/model/MRX13/animation/running_leg_left", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[0]"));
@@ -34,17 +37,17 @@
      alias(rplayer.getNode("sim/multiplay/generic/float[3]"));
    rplayer.getNode("controls/flight/pilot-attitude-deg", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[4]"));
-   rplayer.getNode("fdm/jsbsim/fcs/drogue_chute-pos-norm", 1).
+   rplayer.getNode("sim/model/Parachutes/drogue_chute-pos-norm", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[5]"));
-   rplayer.getNode("fdm/jsbsim/fcs/parachute-pos-norm", 1).
+   rplayer.getNode("sim/model/Parachutes/parachute-pos-norm", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[6]"));
    rplayer.getNode("fdm/jsbsim/gear/unit[10]/wheel-speed-fps", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[7]"));
    rplayer.getNode("fdm/jsbsim/gear/unit[11]/wheel-speed-fps", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[8]"));
-   rplayer.getNode("fdm/jsbsim/aero/alpha-deg", 1).
+   rplayer.getNode("sim/model/aero/alpha-deg", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[9]"));
-   rplayer.getNode("fdm/jsbsim/aero/beta-deg", 1).
+   rplayer.getNode("sim/model/aero/beta-deg", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[10]"));
    rplayer.getNode("instrumentation/woolthread/alpha-woolthread-deg", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[11]"));
@@ -59,7 +62,7 @@
    rplayer.getNode("sim/current-view/view-number", 1).setIntValue(1); # set view=1 to prevent deselected helmet
    rplayer.getNode("instrumentation/woolthread/severity1", 1).setValue(0); # severity1 is not transmitted
    rplayer.getNode("instrumentation/woolthread/severity2", 1).setValue(0); # severity2 is not transmitted
-
+   rplayer.getNode("gear/gear[1]/position-norm", 1).setValue(0); # property is not transmitted
    # print("MRX13 loaded")
 
   </load>
@@ -68,13 +71,14 @@
    livery_update.stop();
 
    # unalias
-   rplayer.getNode("fdm/jsbsim/systems/on-ground", 1).unalias();
+   rplayer.getNode("sim/model/MRX13/on-ground", 1).unalias();
    rplayer.getNode("sim/model/MRX13/with-wheels_mp", 1).unalias();
    rplayer.getNode("sim/model/MRX13/with-woolthread_mp", 1).unalias();
    rplayer.getNode("sim/model/MRX13/with-TwoStageRelease_mp", 1).unalias();
    rplayer.getNode("sim/model/MRX13/RotateAboutHangpoint", 1).unalias();
    rplayer.getNode("sim/model/MRX13/RotateAboutPilot", 1).unalias();   
-   
+   rplayer.getNode("sim/model/MRX13/wing-failure", 1).unalias();      
+
    # rplayer.getNode("sim/current-view/view-number", 1).unalias();
 
    rplayer.getNode("sim/model/MRX13/animation/running_leg_left", 1).unalias();
@@ -82,12 +86,12 @@
    rplayer.getNode("sim/model/MRX13/animation/running_leg", 1).unalias();
    rplayer.getNode("sim/model/MRX13/animation/running_leg_sign", 1).unalias();
    rplayer.getNode("controls/flight/pilot-attitude-deg", 1).unalias();
-   rplayer.getNode("fdm/jsbsim/fcs/drogue_chute-pos-norm", 1).unalias();
-   rplayer.getNode("fdm/jsbsim/fcs/parachute-pos-norm", 1).unalias();
+   rplayer.getNode("sim/model/Parachutes/drogue_chute-pos-norm", 1).unalias();
+   rplayer.getNode("sim/model/Parachutes/parachute-pos-norm", 1).unalias();
    rplayer.getNode("fdm/jsbsim/gear/unit[10]/wheel-speed-fps", 1).unalias();
    rplayer.getNode("fdm/jsbsim/gear/unit[11]/wheel-speed-fps", 1).unalias();
-   rplayer.getNode("fdm/jsbsim/aero/alpha-deg", 1).unalias();
-   rplayer.getNode("fdm/jsbsim/aero/beta-deg", 1).unalias();
+   rplayer.getNode("sim/model/aero/alpha-deg", 1).unalias();
+   rplayer.getNode("sim/model/aero/beta-deg", 1).unalias();
    rplayer.getNode("instrumentation/woolthread/alpha-woolthread-deg", 1).unalias();
    rplayer.getNode("instrumentation/woolthread/beta-woolthread-deg", 1).unalias();
    rplayer.getNode("sim/model/MRX13/LaunchPosition", 1).unalias();
@@ -374,7 +378,7 @@
    <expression>
     <product>
      <property>surface-positions/left-aileron-pos-norm</property>
-     <property>fdm/jsbsim/systems/on-ground</property>
+     <property>sim/model/MRX13/on-ground</property>
      <value>-15</value>
      <property>sim/model/MRX13/RotateAboutHangpoint</property>
     </product>
@@ -404,7 +408,7 @@
    <expression>
     <product>
      <property>surface-positions/elevator-pos-norm</property>
-     <property>fdm/jsbsim/systems/on-ground</property>
+     <property>sim/model/MRX13/on-ground</property>
      <property>sim/model/MRX13/RotateAboutHangpoint</property>
      <value>-20.</value>
     </product>
@@ -434,7 +438,7 @@
    <expression>
     <product>
      <property>surface-positions/rudder-pos-norm</property>
-     <property>fdm/jsbsim/systems/on-ground</property>
+     <property>sim/model/MRX13/on-ground</property>
      <value>-25</value>
     </product>
     </expression>
@@ -476,7 +480,7 @@
 
   <expression>
    <product>
-    <property>fdm/jsbsim/systems/on-ground</property>
+    <property>sim/model/MRX13/on-ground</property>
     <property>sim/model/MRX13/LaunchPosition</property>
     <table>
      <property>controls/flight/pilot-attitude-deg</property>
@@ -517,7 +521,7 @@
 
   <expression>
    <product>
-    <property>fdm/jsbsim/systems/on-ground</property>
+    <property>sim/model/MRX13/on-ground</property>
     <property>sim/model/MRX13/LaunchPosition</property>
     <table>
      <property>controls/flight/pilot-attitude-deg</property>
@@ -557,7 +561,7 @@
   <expression>
    <product>
     <property>surface-positions/left-aileron-pos-norm</property>
-    <property>fdm/jsbsim/systems/on-ground</property>
+    <property>sim/model/MRX13/on-ground</property>
     <property>sim/model/MRX13/RotateAboutPilot</property>
     <value>-15</value>
     <value>1</value>
@@ -591,7 +595,7 @@
   <expression>
    <product>
     <property>surface-positions/elevator-pos-norm</property>
-    <property>fdm/jsbsim/systems/on-ground</property>
+    <property>sim/model/MRX13/on-ground</property>
     <property>sim/model/MRX13/RotateAboutPilot</property>
     <value>-20.</value>
    </product>
@@ -628,7 +632,7 @@
     <value>15</value>
     <dif>
      <value>1</value>
-     <property>fdm/jsbsim/systems/on-ground</property>
+     <property>sim/model/MRX13/on-ground</property>
     </dif>
    </product>
   </expression>
@@ -660,7 +664,7 @@
     <property>surface-positions/elevator-pos-norm</property>
     <dif>
      <value>1</value>
-     <property>fdm/jsbsim/systems/on-ground</property>
+     <property>sim/model/MRX13/on-ground</property>
     </dif>
     <value>20</value>
    </product>
@@ -694,7 +698,7 @@
     <property>surface-positions/rudder-pos-norm</property>
     <dif>
      <value>1</value>
-     <property>fdm/jsbsim/systems/on-ground</property>
+     <property>sim/model/MRX13/on-ground</property>
     </dif>
     <value>25</value>
    </product>
@@ -723,7 +727,7 @@
     <property>controls/flight/pilot-attitude-deg</property>
     <dif>
      <value>1</value>
-     <property>fdm/jsbsim/systems/on-ground</property>
+     <property>sim/model/MRX13/on-ground</property>
     </dif>
    </product>
   </expression>
@@ -748,7 +752,7 @@
   <expression>
    <product>
     <property>controls/flight/pilot-attitude-deg</property>
-    <property>fdm/jsbsim/systems/on-ground</property>
+    <property>sim/model/MRX13/on-ground</property>
    </product>
   </expression>
   <center>
@@ -773,7 +777,7 @@
   <object-name>HangStrap</object-name>
   <expression>
    <product>
-    <property>fdm/jsbsim/systems/on-ground</property>
+    <property>sim/model/MRX13/on-ground</property>
     <property>sim/model/MRX13/RotateAboutPilot</property>
     <property>sim/model/MRX13/LaunchPosition</property>
     <value>6</value>
@@ -1445,7 +1449,7 @@
   <expression>
    <product>
     <property>surface-positions/left-aileron-pos-norm</property>
-     <property>fdm/jsbsim/systems/on-ground</property>
+     <property>sim/model/MRX13/on-ground</property>
     <value>15.</value>
    </product>
   </expression>
@@ -1471,7 +1475,7 @@
     <property>instrumentation/woolthread/alpha-woolthread-deg</property>
     <product>
      <property>surface-positions/elevator-pos-norm</property>
-     <property>fdm/jsbsim/systems/on-ground</property>
+     <property>sim/model/MRX13/on-ground</property>
      <value>-20.</value>
     </product>
    </sum>
@@ -1596,7 +1600,7 @@
   <object-name>RescueHandle</object-name>
   <condition>
    <not>
-    <property>fdm/jsbsim/fcs/parachute-pos-norm</property> 
+    <property>sim/model/Parachutes/parachute-pos-norm</property> 
    </not>
   </condition>
  </animation>

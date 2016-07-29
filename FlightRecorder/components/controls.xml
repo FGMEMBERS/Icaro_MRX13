@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- flight recorder configuration -->
+<!-- controls -->
+
+<PropertyList>
+
+ <signal>
+  <type>float</type>
+  <property type="string">/controls/flight/spoilers</property>
+ </signal>
+
+ <signal>
+  <type>float</type>
+  <property type="string">/controls/flight/pilot-attitude-deg</property>
+ </signal>
+
+ <signal>
+  <type>bool</type>
+  <property type="string">/controls/gear/gear-down</property>
+ </signal>
+
+ <signal>
+  <type>bool</type>
+  <property type="string">/controls/gear/brake-parking</property>
+ </signal>
+
+ <signal>
+  <type>bool</type>
+  <property type="string">/sim/model/MRX13/engine_running</property>
+ </signal>
+
+ <signal>
+  <type>bool</type>
+  <property type="string">/sim/model/MRX13/wing-failure</property>
+ </signal>
+
+</PropertyList>

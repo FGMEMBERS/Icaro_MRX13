@@ -10,7 +10,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
     <author> D-NXKT </author>
     <email> d_nxkt@yahoo.de </email>
     <filecreationdate> April 24, 2016 </filecreationdate>
-    <version> $Version 1.0 $ </version>
+    <version> $Version 1.1 $ </version>
     <description> Models a weight-shift controlled hang glider</description>
     <note> some kind of remarks</note>
     <limitation> realistic only for positive g-forces (rigid hang strap)</limitation>
@@ -25,6 +25,9 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
               and Operations (ATIO) Conference, 13-15 September 2010, Fort Worth, Texas
        Ref 5: Jones, Nathan H, "Glider Ground Effect Investigation" Thesis, Department of The Air Force
               Air University, Wright-Patterson Air force Base Ohio, USA, 1989, Storming Media, Washington DC 20002
+       Ref 6: Karl Nickel, Michael Wohlfahrt, "Schwanzlose Flugzeuge: Ihre Auslegung und ihre Eigenschaften",
+              Basel, Boston, Berlin, Birkhaeuser, 1990, ISBN 3-7643-2502-X
+       Ref 7: Steve Seibel, http://www.aeroexperiments.org/newhomepage.html
     </reference>
   </fileheader>
 
@@ -618,6 +621,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
         <clipto>
           <max>1</max>
         </clipto>
+        <output>/sim/model/Parachutes/parachute-pos-norm</output>
       </fcs_function>
     </channel>
 
@@ -651,6 +655,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
         <clipto>
           <max>1</max>
         </clipto>
+        <output>/sim/model/Parachutes/drogue_chute-pos-norm</output>
       </fcs_function>
     </channel>
 
@@ -671,7 +676,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
           <sum>
            <property>position/h-agl-ft</property> <!-- Achtung: hier wird der Abstand Fluegel-Boden benoetigt! (Abstand Schwerpunkt-Fluegel addieren! -->
            <!-- <property>/position/altitude-agl-ft</property> --> <!-- use if initialization problem -->
-           <value>3.</value>  <!-- Abstand Schwerpunkt-Fluegel (checken!!!) -->
+           <value>3.</value>  <!-- distance c.g. - wing (hang point) in ft (must be verified!!!) -->
           </sum>
          </product>
          <property>metrics/bw-ft</property>
@@ -825,7 +830,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
           <property>metrics/Sw-sqft</property>
           <property>aero/beta-eff-rad</property>
           <value>-0.6</value>
-<value>1.</value>
+          <property>/sim/model/MRX13/stability/factor-Cyb</property>
         </product>
       </function>
 
@@ -837,7 +842,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
           <property>aero/bi2vel</property>
           <property>velocities/p-aero-rad_sec</property>
           <value>-0.2</value>  <!-- checked  -->
-<value>1.</value>
+          <property>/sim/model/MRX13/stability/factor-Cyp</property>
         </product>
       </function>
 
@@ -848,8 +853,8 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
           <property>metrics/Sw-sqft</property>
           <property>aero/bi2vel</property>
           <property>velocities/r-aero-rad_sec</property>
-<value>1.</value>
           <value>0.4</value>
+          <property>/sim/model/MRX13/stability/factor-Cyr</property>
         </product>
       </function>
 
@@ -859,12 +864,38 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
 
       <function name="aero/coefficient/Clb">
         <description>Roll_moment_due_to_beta</description>
+        <description>
+          - Nickel chapter 3.6 p. 139: clb due to dihedral is NOT f(CL)
+                   chapter 3.8 p. 149: clb due to sweep IS f(CL)
+          - Kroo p. 98-100 Figure 60, 61, 62
+          - MRX13 has approx. 2deg anhedral. 
+            Assumption: Clb +0.0005/deg = 0.029/rad increase due to anhedral
+            (different anhedral due to VG-setting not yet taken into account /
+            up to now only values from alpha -5.deg to +30deg are adjusted)
+          - compared to real life experience the anhedral effect seems to 
+            be overestimated in high wingovers - needs further investigation
+        </description>
         <product>
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
           <property>metrics/bw-ft</property>
           <property>aero/beta-eff-rad</property>
-          <value>-0.08</value> <!-- -0.08 -->
+          <!-- <value>-0.08</value> -->
+          <table>
+            <independentVar lookup="row">aero/alpha-eff-deg</independentVar>
+            <independentVar lookup="column">/controls/flight/spoilers</independentVar>
+            <tableData>
+                        0.     1.0
+              -180.0   -0.08    -0.08
+                -5.0    0.139    0.139
+                 5.0    0.115    0.115
+                30.0   -0.143   -0.143
+                60.0   -0.08    -0.08
+                90.0   -0.08    -0.08
+               180.0   -0.08    -0.08
+            </tableData>
+          </table>
+          <property>/sim/model/MRX13/stability/factor-Clb</property>
         </product>
       </function>
 
@@ -876,7 +907,6 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
           <property>metrics/bw-ft</property>
           <property>aero/bi2vel</property>
           <property>velocities/p-aero-rad_sec</property>
-<value>1.</value>
           <table>
             <independentVar lookup="row">aero/alpha-eff-deg</independentVar>
             <independentVar lookup="column">/controls/flight/spoilers</independentVar>
@@ -891,7 +921,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
                180.0   -0.5    -0.5
             </tableData>
           </table>
-          <property>/sim/model/MRX13/handling/factor-Clp</property>
+          <property>/sim/model/MRX13/stability/factor-Clp</property>
         </product>
       </function>
 
@@ -918,6 +948,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
                180.0    0.06    0.06
              </tableData>
           </table>
+          <property>/sim/model/MRX13/stability/factor-Clr</property>
         </product>
       </function>
 
@@ -935,7 +966,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
                  1.0    0.02     <!-- JSB   0.05 -->
             </tableData>
           </table>
-          <property>/sim/model/MRX13/handling/factor-Clda</property>
+          <property>/sim/model/MRX13/stability/factor-Clda</property>
         </product>
       </function>
 
@@ -949,7 +980,6 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
           <property>metrics/cbarw-ft</property>
-<value>1.</value>
           <table>
             <independentVar lookup="row">aero/alpha-eff-deg</independentVar>
             <independentVar lookup="column">/controls/flight/spoilers</independentVar>
@@ -989,7 +1019,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
               180.     0.0   -0.005435
             </tableData>
           </table>
-          <property>/sim/model/MRX13/handling/factor-Cmalpha</property>
+          <property>/sim/model/MRX13/stability/factor-Cmalpha</property>
         </product>
       </function>
 
@@ -1020,7 +1050,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
                 180.  -3.2   -3.2
             </tableData>
           </table>
-          <property>/sim/model/MRX13/handling/factor-Cmq</property>
+          <property>/sim/model/MRX13/stability/factor-Cmq</property>
         </product>
       </function>
 
@@ -1030,27 +1060,53 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
 
       <function name="aero/coefficient/Cnb">
         <description>Yaw_moment_due_to_beta</description>
+        <description>
+          - Nickel chapter 3.7 p. 145: cnb due to dihedral is NOT f(CL)
+                   chapter 3.8 p. 149: cnb due to sweep IS f(CL*CL)
+          - Kroo p. 97 Figure 59, see also Fig. 61, 62, 64
+          - up to now only values from -5.deg to +30deg are adjusted
+        </description>
         <product>
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
           <property>metrics/bw-ft</property>
           <property>aero/beta-eff-rad</property>
-          <value>0.10</value> <!-- 0.10 -->
-<value>1.</value>
+          <!-- <value>0.1</value> -->
+           <table>
+            <independentVar lookup="row">aero/alpha-eff-deg</independentVar>
+            <independentVar lookup="column">/controls/flight/spoilers</independentVar>
+            <tableData>
+                        0.     1.0
+              -180.0    0.0573 0.0573
+                -5.0    0.02    0.02
+                 5.0    0.0229 0.0229
+                15.0    0.0300 0.0300
+                25.0    0.0573 0.0573
+                30.0    0.1    0.1
+                60.0    0.1    0.1
+                90.0    0.0573 0.0573
+               180.0    0.0573 0.0573
+            </tableData>
+          </table>
+
+          <property>/sim/model/MRX13/stability/factor-Cnb</property>
         </product>
       </function>
 
       <function name="aero/coefficient/Cnp">
         <description>Yaw_moment_due_to_roll_rate</description>
+        <description>
+          -correct sign?
+        </description>
         <product>
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
           <property>metrics/bw-ft</property>
           <property>aero/bi2vel</property>
           <property>velocities/p-aero-rad_sec</property>
-          <!--    <value>-0.06</value> --> <!-- -0.06 -->
-<value>1.</value> <!-- -1 erzielt einfachere Trudeleinleitung; -1 ist rollen in Kurve erzeutgt Yaw in Kurve -->
-          <table>           <!-- increasing factor -->
+          <!--    <value>-0.06</value> -->
+          <!-- -1 erzielt einfachere Trudeleinleitung; -1 ist rollen in Kurve erzeutgt Yaw in Kurve -->
+          <table>
             <independentVar lookup="row">aero/alpha-eff-deg</independentVar>
             <independentVar lookup="column">/controls/flight/spoilers</independentVar>
             <tableData>
@@ -1058,12 +1114,13 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
               -180.0   -0.06   -0.06
                  0.0   -0.06   -0.06
                 25.0   -0.06   -0.06
-                30.0   -0.06    0.
-                60.0   -0.06    0.   <!-- -0.5 -->
+                30.0   -0.06    0.0   <!-- -0. -->
+                60.0   -0.06    0.0   <!-- -0.5 --><!-- -0. -->
                 90.0   -0.06   -0.06
                180.0   -0.06   -0.06
             </tableData>
           </table>
+          <property>/sim/model/MRX13/stability/factor-Cnp</property>
         </product>
       </function>
 
@@ -1076,8 +1133,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
           <property>aero/bi2vel</property>
           <property>velocities/r-aero-rad_sec</property>
           <!-- <value>-0.08</value> -->
-<value>1</value>
-          <table>           <!-- increasing factor -->
+          <table>
             <independentVar lookup="row">aero/alpha-eff-deg</independentVar>
             <independentVar lookup="column">/controls/flight/spoilers</independentVar>
             <tableData>
@@ -1091,6 +1147,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
                180.0   -0.08   -0.08
             </tableData>
           </table>
+          <property>/sim/model/MRX13/stability/factor-Cnr</property>
         </product>
       </function>
 

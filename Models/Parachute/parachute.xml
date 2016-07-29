@@ -18,7 +18,7 @@
    <object-name>Parachute</object-name>
    <condition>
     <greater-than>
-     <property>fdm/jsbsim/fcs/parachute-pos-norm</property>
+     <property>sim/model/Parachutes/parachute-pos-norm</property>
      <value>0.01</value>
     </greater-than>
    </condition>
@@ -27,7 +27,7 @@
  <animation>
   <type>scale</type>
    <object-name>Parachute</object-name>
-   <property>fdm/jsbsim/fcs/parachute-pos-norm</property>
+   <property>sim/model/Parachutes/parachute-pos-norm</property>
    <x-min>0.1</x-min>
    <y-min>0.1</y-min>
    <z-min>0.1</z-min>
@@ -39,7 +39,7 @@
  <animation>
   <type>rotate</type>
    <object-name>Parachute</object-name>
-   <property>fdm/jsbsim/aero/alpha-deg</property>
+   <property>sim/model/aero/alpha-deg</property>
    <center>
     <x-m>0.0</x-m>
     <y-m>0.0</y-m>
@@ -55,7 +55,7 @@
  <animation>
   <type>rotate</type>
    <object-name>Parachute</object-name>
-   <property>fdm/jsbsim/aero/beta-deg</property>
+   <property>sim/model/aero/beta-deg</property>
    <center>
     <x-m>0.0</x-m>
     <y-m>0.0</y-m>

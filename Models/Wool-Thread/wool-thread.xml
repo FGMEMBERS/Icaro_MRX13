@@ -25,7 +25,7 @@
   <expression>
     <product>
      <property>surface-positions/left-aileron-pos-norm</property>
-     <property>fdm/jsbsim/systems/on-ground</property>
+     <property>sim/model/MRX13/on-ground</property>
      <value>15.</value>
     </product>
   </expression>
@@ -52,7 +52,7 @@
     <property>instrumentation/woolthread/alpha-woolthread-deg</property>
      <product>
       <property>surface-positions/elevator-pos-norm</property>
-      <property>fdm/jsbsim/systems/on-ground</property>
+      <property>sim/model/MRX13/on-ground</property>
       <value>-20.</value>
      </product>
    </sum>

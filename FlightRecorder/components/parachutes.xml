@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- flight recorder configuration -->
+<!-- emergency and drogue parachute animation -->
+
+<PropertyList>
+
+ <signal>
+  <type>bool</type>
+  <property type="string">/sim/model/MRX13/DrogueChute</property>
+ </signal>
+
+ <signal>
+  <type>float</type>
+  <property type="string">/sim/model/Parachutes/drogue_chute-pos-norm</property>
+ </signal>
+
+ <signal>
+  <type>float</type>
+  <property type="string">/controls/engines/engine/magnetos</property>
+ </signal>
+
+ <signal>
+  <type>float</type>
+  <property type="string">/sim/model/Parachutes/parachute-pos-norm</property>
+ </signal>
+
+</PropertyList>

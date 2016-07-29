@@ -37,7 +37,7 @@ var ViewAnimation = func {
 var m2in = 39.3700787;
 
 var view_number = getprop("sim/current-view/view-number");
-var on_ground   = getprop("fdm/jsbsim/systems/on-ground");
+var on_ground   = getprop("sim/model/MRX13/on-ground");
 #var rotation = 0;          # help variable (0:= do not run rotation routine / 1:= run rotation routine
 #var rotation_harness = 0;  # help variable (0:= do not rotate harness / 1:= rotate harness
 

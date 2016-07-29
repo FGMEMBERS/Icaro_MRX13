@@ -69,7 +69,8 @@ var wing_failure_repair = func {
 #      setprop("fdm/jsbsim/metrics/Sw-sqft", 113. );
 #      setprop("ai/submodels/submodel[0]/count", 1 );
 #      setprop("ai/submodels/submodel[1]/count", 1 );
-      if ( getprop("position/altitude-agl-ft") < 4. ) {
+      if ( getprop("position/altitude-agl-ft") < 4. or
+           getprop("sim/model/MRX13/on-ground") ) {
         setprop("orientation/roll-deg", 0. );
         setprop("orientation/pitch-deg", 0. );
       }
@@ -155,20 +156,39 @@ var EmergencyChute_defaults = func {
 
 ################################################################################################
 #
-# Set default handling factor values
+# Set default stability factor values
 #
 ################################################################################################
 
-var handling_roll_defaults = func {
+var stability_roll_defaults = func {
 
-  setprop("sim/model/MRX13/handling/factor-Clda", 1.);
-  setprop("sim/model/MRX13/handling/factor-Clp" , 1.);
+  setprop("sim/model/MRX13/stability/factor-Clda", 1.);
+  setprop("sim/model/MRX13/stability/factor-Clb" , 1.);
+  setprop("sim/model/MRX13/stability/factor-Clr" , 1.);  
+  setprop("sim/model/MRX13/stability/factor-Clp" , 1.);
+
+}
+
+var stability_pitch_defaults = func {
+
+  setprop("sim/model/MRX13/stability/factor-Cmalpha", 1.);
+  setprop("sim/model/MRX13/stability/factor-Cmq" , 1.);
 
 }
 
-var handling_pitch_defaults = func {
+var stability_yaw_defaults = func {
 
-  setprop("sim/model/MRX13/handling/factor-Cmalpha", 1.);
-  setprop("sim/model/MRX13/handling/factor-Cmq" , 1.);
+  setprop("sim/model/MRX13/stability/factor-Cnb" , 1.);
+  setprop("sim/model/MRX13/stability/factor-Cnp" , 1.);
+  setprop("sim/model/MRX13/stability/factor-Cnr" , 1.);
+  
+}
+
+var stability_SideForce_defaults = func {
+
+  setprop("sim/model/MRX13/stability/factor-Cyb" , 1.);
+  setprop("sim/model/MRX13/stability/factor-Cyp" , 1.);
+  setprop("sim/model/MRX13/stability/factor-Cyr" , 1.);
 
 }
+

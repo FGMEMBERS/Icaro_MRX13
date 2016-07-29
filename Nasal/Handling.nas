@@ -28,22 +28,22 @@ var handling = func {
   ################## Do not edit below this line #################
 
   if(getprop("sim/model/MRX13/handling/Rookie")){
-   setprop("sim/model/MRX13/handling/factor-Clda",Rookie_factor_for_Clda);
-   setprop("sim/model/MRX13/handling/factor-Clp",Rookie_factor_for_Clp);
-   setprop("sim/model/MRX13/handling/factor-Cmalpha",Rookie_factor_for_Cmalpha );
-   setprop("sim/model/MRX13/handling/factor-Cmq",Rookie_factor_for_Cmq);
+   setprop("sim/model/MRX13/stability/factor-Clda",Rookie_factor_for_Clda);
+   setprop("sim/model/MRX13/stability/factor-Clp",Rookie_factor_for_Clp);
+   setprop("sim/model/MRX13/stability/factor-Cmalpha",Rookie_factor_for_Cmalpha );
+   setprop("sim/model/MRX13/stability/factor-Cmq",Rookie_factor_for_Cmq);
   }
   else if(getprop("sim/model/MRX13/handling/Student")){
-   setprop("sim/model/MRX13/handling/factor-Clda",Student_factor_for_Clda);
-   setprop("sim/model/MRX13/handling/factor-Clp",Student_factor_for_Clp);
-   setprop("sim/model/MRX13/handling/factor-Cmalpha",Student_factor_for_Cmalpha);
-   setprop("sim/model/MRX13/handling/factor-Cmq",Student_factor_for_Cmq);
+   setprop("sim/model/MRX13/stability/factor-Clda",Student_factor_for_Clda);
+   setprop("sim/model/MRX13/stability/factor-Clp",Student_factor_for_Clp);
+   setprop("sim/model/MRX13/stability/factor-Cmalpha",Student_factor_for_Cmalpha);
+   setprop("sim/model/MRX13/stability/factor-Cmq",Student_factor_for_Cmq);
   }
   else if(getprop("sim/model/MRX13/handling/Pilot")){
-   setprop("sim/model/MRX13/handling/factor-Clda",1);
-   setprop("sim/model/MRX13/handling/factor-Clp",1);
-   setprop("sim/model/MRX13/handling/factor-Cmalpha",1);
-   setprop("sim/model/MRX13/handling/factor-Cmq",1);
+   setprop("sim/model/MRX13/stability/factor-Clda",1);
+   setprop("sim/model/MRX13/stability/factor-Clp",1);
+   setprop("sim/model/MRX13/stability/factor-Cmalpha",1);
+   setprop("sim/model/MRX13/stability/factor-Cmq",1);
   }
 
 }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- flight recorder configuration -->
+<!-- pilot and wing animation -->
+
+<PropertyList>
+
+ <signal>
+  <type>float</type>
+  <property type="string">/surface-positions/elevator-pos-norm</property>
+ </signal>
+
+ <signal>
+  <type>float</type>
+  <property type="string">/surface-positions/left-aileron-pos-norm</property>
+ </signal>
+
+ <signal>
+  <type>float</type>
+  <property type="string">/surface-positions/rudder-pos-norm</property>
+ </signal>
+
+ <signal>
+  <type>bool</type>
+  <property type="string">/sim/model/MRX13/on-ground</property>
+ </signal>
+
+ <signal>
+  <type>float</type>
+  <property type="string">/sim/model/MRX13/LaunchPosition</property>
+ </signal>
+
+ <signal>
+  <type>bool</type>
+  <property type="string">/sim/model/MRX13/RotateAboutHangpoint</property>
+ </signal>
+
+ <signal>
+  <type>bool</type>
+  <property type="string">/sim/model/MRX13/RotateAboutPilot</property>
+ </signal>
+
+ <signal>
+  <type>float</type>
+  <property type="string">/sim/model/MRX13/animation/running_leg_left</property>
+ </signal>
+
+ <signal>
+  <type>float</type>
+  <property type="string">/sim/model/MRX13/animation/running_leg_right</property>
+ </signal>
+ <signal>
+  <type>float</type>
+  <property type="string">/sim/model/MRX13/animation/running_leg</property>
+ </signal>
+ <signal>
+  <type>float</type>
+  <property type="string">/sim/model/MRX13/animation/running_leg_sign</property>
+ </signal>
+
+ <signal>
+  <type>float</type>
+  <property type="string">/gear/gear[1]/position-norm</property>
+ </signal>
+
+</PropertyList>

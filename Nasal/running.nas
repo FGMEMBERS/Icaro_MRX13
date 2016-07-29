@@ -1,8 +1,10 @@
 var RunningAnimation = func {
 #
 # ---------------------------------------------------------------------------------
-#                        Running Animation                      Status: 09.04.2016
+#                        Running Animation                      Status: 10.07.2016
 # ---------------------------------------------------------------------------------
+#
+if( !getprop("sim/replay/replay-state") ) { # skip in flight recorder replay mode
 #
 # Variables:
 # ----------
@@ -69,7 +71,7 @@ var RunningAnimation = func {
 
   setprop("sim/model/MRX13/animation/running_leg_left" ,leg_pos_left);
   setprop("sim/model/MRX13/animation/running_leg_right",leg_pos_right);
-
+}
   settimer(RunningAnimation,0);
 
 #
@@ -176,6 +178,8 @@ var Walking = func(){
 #
 var GliderLaunchPosition = func {
 
+if( !getprop("sim/replay/replay-state") ) { # skip in flight recorder replay mode
+
  # f=m*a  a=f/m  a=v/t=s/(t*t)      s=f/m*t*t
  # m = fdm/jsbsim/inertia/empty-weight-lbs  (35kg)
  # t = sim/time/delta-sec
@@ -222,7 +226,7 @@ var GliderLaunchPosition = func {
   setprop("sim/model/MRX13/RotateAboutHangpoint", 1 );
   setprop("sim/model/MRX13/RotateAboutPilot", 0 );
  }
-
+}
   settimer(GliderLaunchPosition,0);
 }
 

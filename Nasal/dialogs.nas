@@ -14,13 +14,19 @@ var variometer = gui.Dialog.new("/sim/gui/dialogs/MRX13/variometer/dialog",
                                 "Aircraft/Icaro_MRX13/Dialogs/variometer.xml");
 
 var DropTest_dialog = gui.Dialog.new("/sim/gui/dialogs/MRX13/DropTest/dialog",
-                                      "Aircraft/Icaro_MRX13/Dialogs/DropTest.xml");
+                                     "Aircraft/Icaro_MRX13/Dialogs/DropTest.xml");
 
 var parachutes_dialog = gui.Dialog.new("/sim/gui/dialogs/MRX13/parachutes/dialog",
-                                      "Aircraft/Icaro_MRX13/Dialogs/parachutes.xml");
+                                       "Aircraft/Icaro_MRX13/Dialogs/parachutes.xml");
 
 var handling_dialog = gui.Dialog.new("/sim/gui/dialogs/MRX13/handling/dialog",
-                                      "Aircraft/Icaro_MRX13/Dialogs/handling.xml");
+                                     "Aircraft/Icaro_MRX13/Dialogs/handling.xml");
 
 var handling_help_dialog = gui.Dialog.new("/sim/gui/dialogs/MRX13/handling_help/dialog",
                                       "Aircraft/Icaro_MRX13/Dialogs/handling_help.xml");
+
+var stability_dialog = gui.Dialog.new("/sim/gui/dialogs/MRX13/stability/dialog",
+                                      "Aircraft/Icaro_MRX13/Dialogs/stability.xml");
+
+var stability_help_dialog = gui.Dialog.new("/sim/gui/dialogs/MRX13/stability_help/dialog",
+                                       "Aircraft/Icaro_MRX13/Dialogs/stability_help.xml");

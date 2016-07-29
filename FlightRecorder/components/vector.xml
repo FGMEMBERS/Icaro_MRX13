@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- flight recorder configuration -->
+<!-- vector and CG animation -->
+
+<PropertyList>
+
+ <signal>
+  <type>float</type>
+  <property type="string">/sim/model/inertia/cg-x-m</property>
+ </signal>
+
+ <signal>
+  <type>float</type>
+  <property type="string">/sim/model/inertia/cg-y-m</property>
+ </signal>
+
+ <signal>
+  <type>float</type>
+  <property type="string">/sim/model/inertia/cg-z-m</property>
+ </signal>
+
+ <signal>
+  <type>float</type>
+  <property type="string">/sim/model/forces/fbx-aero-N</property>
+ </signal>
+ <signal>
+  <type>float</type>
+  <property type="string">/sim/model/forces/fby-aero-N</property>
+ </signal>
+ <signal>
+  <type>float</type>
+  <property type="string">/sim/model/forces/fbz-aero-N</property>
+ </signal>
+
+ <signal>
+  <type>float</type>
+  <property type="string">/sim/model/forces/fwx-aero-N</property>
+ </signal>
+ <signal>
+  <type>float</type>
+  <property type="string">/sim/model/forces/fwy-aero-N</property>
+ </signal>
+ <signal>
+  <type>float</type>
+  <property type="string">/sim/model/forces/fwz-aero-N</property>
+ </signal>
+
+ <signal>
+  <type>float</type>
+  <property type="string">/sim/model/forces/fbxz-aero-N</property>
+ </signal>
+
+ <signal>
+  <type>float</type>
+  <property type="string">/sim/model/forces/fbxyz-aero-N</property>
+ </signal>
+
+ <signal>
+  <type>float</type>
+  <property type="string">/sim/model/moments/m-aero-Nm</property>
+ </signal>
+
+ <signal>
+  <type>float</type>
+  <property type="string">/sim/model/moments/l-aero-Nm</property>
+ </signal>
+
+</PropertyList>

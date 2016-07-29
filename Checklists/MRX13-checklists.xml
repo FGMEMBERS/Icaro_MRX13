@@ -136,6 +136,24 @@
     <item> <name></name><value></value></item>
   </checklist>
 
+  <checklist>
+    <title>Known Issues</title>
+    <item> <name>- Up to now only a rigid glider-pilot connection (rigid hangstrap) is modeled.                                       </name><value></value></item>
+    <item> <name>                                                                                                                     </name><value></value></item>
+    <item> <name>- Wing flexibility is not taken into account in detail.                                                              </name><value></value></item>
+    <item> <name>                                                                                                                     </name><value></value></item>
+    <item> <name>- No interaction between towrope and glider frame.                                                                   </name><value></value></item>
+    <item> <name>                                                                                                                     </name><value></value></item>
+    <item> <name>- Flight Recorder is not fool proof:                                                                                 </name><value></value></item>
+    <item> <name>  - Don't change winch position while recording.                                                                     </name><value></value></item>
+    <item> <name>  - Ensure before replay that tow length setting is equal or greater than initial tow length used in recorded flight.</name><value></value></item>
+    <item> <name>                                                                                                                     </name><value></value></item>
+    <item> <name>- Effective anhedral effect on roll stability seems to be overestimated. Could lead to negative angle of attack in   </name><value></value></item>
+    <item> <name>   deep wingover with subsequent tumble or rollover.                                                                             </name><value></value></item>
+    <item> <name>                                                                                                                     </name><value></value></item>
+    <item> <name>- Spin entry is harder than in real life.                                                                            </name><value></value></item>
+  </checklist>
+
 </PropertyList>
 
 

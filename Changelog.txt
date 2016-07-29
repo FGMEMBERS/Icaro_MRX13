@@ -1,3 +1,16 @@
+Changes July 2016:
+
+- flight recorder (incl. vector, cg and winch animation;
+  winch animation is not fool-proof)
+- make some more JSBSim-coefficients adjustable on-the-fly (GUI "Stability")
+- tweak some JSBSim coefficients for lateral and directional stability
+
+
+Changes June 2016 by D-NXKT:
+
+- make some JSBSim-coefficients adjustable on-the-fly
+- customizable handling (via dialog)
+
 
 Changes May 2016 by D-NXKT:
 

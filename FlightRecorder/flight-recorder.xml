@@ -1,0 +1,52 @@
+ <PropertyList>
+
+ <!-- Generic components -->
+ <signals include="/Aircraft/Generic/flightrecorder/components/position.xml"/>
+ <signals include="/Aircraft/Generic/flightrecorder/components/environment.xml"/>
+
+ <!-- MRX13 specific -->
+ <signals include="components/controls.xml"/>
+ <signals include="components/surfaces.xml"/>
+ <signals include="components/parachutes.xml"/>
+ <signals include="components/vector.xml"/>
+
+ <signal>
+  <type>float</type>
+  <interpolation>angular-deg</interpolation>
+  <property type="string">/sim/model/aero/alpha-deg</property>
+ </signal>
+
+ <signal>
+  <type>float</type>
+  <interpolation>angular-deg</interpolation>
+  <property type="string">/sim/model/aero/beta-deg</property>
+ </signal>
+
+ <!-- sound -->
+ <signal>
+  <type>bool</type>
+  <property type="string">/gear/gear[6]/wow</property>
+ </signal>
+
+ <signal>
+  <type>float</type>
+  <property type="string">/sim/model/GenericEngine/magnitude</property>
+ </signal>
+
+ <!-- winch -->
+ <signal>
+  <type>bool</type>
+  <property type="string">/sim/hitches/open-toprope</property>
+ </signal>
+
+ <signal>
+  <type>bool</type>
+  <property type="string">/sim/hitches/open-bottomrope</property>
+ </signal>
+
+ <signal>
+  <type>int16</type> <!-- int16 is sufficient -->
+  <property type="string">/sim/hitches/winch/tow/length</property>
+ </signal>
+
+</PropertyList>

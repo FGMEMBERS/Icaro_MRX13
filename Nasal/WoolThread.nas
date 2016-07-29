@@ -15,8 +15,9 @@ var woolthread = func {
    var severity2 = (airspeed / 20) * ( rand() - 0.5 ) ;
 
    #var alpha_aero_deg  = getprop("orientation/alpha-deg");    not initialized at beginning? Doesn't work!
-   var alpha_aero_deg  = getprop("fdm/jsbsim/aero/alpha-deg");
-   var beta_aero_deg   = getprop("fdm/jsbsim/aero/beta-deg");
+   var alpha_aero_deg  = getprop("sim/model/aero/alpha-deg");
+   var beta_aero_deg   = getprop("sim/model/aero/beta-deg");
+   
 
    # influence of gravity on wool-thread only for low airspeed
    # deflection_gravity:  0:= no deflection due to gravity / 1:= only deflection due to gravity

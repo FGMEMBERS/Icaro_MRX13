@@ -147,7 +147,7 @@
      <label>999</label>
      <live>true</live>
      <format>% 2.2f</format>
-     <property>sim/model/MRX13/handling/factor-Clda</property>
+     <property>sim/model/MRX13/stability/factor-Clda</property>
      <color>
       <red>0.2</red>
       <green>0.9</green>
@@ -165,7 +165,7 @@
     <slider>
      <name>factor-Clda</name>
      <live>true</live>
-     <property>sim/model/MRX13/handling/factor-Clda</property>
+     <property>sim/model/MRX13/stability/factor-Clda</property>
      <min>-5.00001</min>
      <max>5</max>
      <step>0.05</step>
@@ -202,7 +202,7 @@
      <label>999</label>
      <live>true</live>
      <format>%2.2f</format>
-     <property>/sim/model/MRX13/handling/factor-Clp</property>
+     <property>/sim/model/MRX13/stability/factor-Clp</property>
      <color>
       <red>0.2</red>
       <green>0.9</green>
@@ -220,7 +220,7 @@
     <slider>
      <name>factor Clp</name>
      <live>true</live>
-     <property>/sim/model/MRX13/handling/factor-Clp</property>
+     <property>/sim/model/MRX13/stability/factor-Clp</property>
      <min>0</min>
      <max>5</max>
      <step>0.05</step>
@@ -252,7 +252,7 @@
     <binding>
      <command>nasal</command>
       <script>
-       MRX13.handling_roll_defaults();
+       MRX13.stability_roll_defaults();
        MRX13.custom();
       </script>
     </binding>
@@ -288,7 +288,7 @@
      <label>999</label>
      <live>true</live>
      <format>% 2.2f</format>
-     <property>sim/model/MRX13/handling/factor-Cmalpha</property>
+     <property>sim/model/MRX13/stability/factor-Cmalpha</property>
      <color>
       <red>0.2</red>
       <green>0.9</green>
@@ -306,7 +306,7 @@
     <slider>
      <name>factor-Clda</name>
      <live>true</live>
-     <property>sim/model/MRX13/handling/factor-Cmalpha</property>
+     <property>sim/model/MRX13/stability/factor-Cmalpha</property>
      <min>-5.00001</min>
      <max>5</max>
      <step>0.05</step>
@@ -343,7 +343,7 @@
      <label>999</label>
      <live>true</live>
      <format>%2.2f</format>
-     <property>/sim/model/MRX13/handling/factor-Cmq</property>
+     <property>/sim/model/MRX13/stability/factor-Cmq</property>
      <color>
       <red>0.2</red>
       <green>0.9</green>
@@ -361,7 +361,7 @@
     <slider>
      <name>factor Clp</name>
      <live>true</live>
-     <property>/sim/model/MRX13/handling/factor-Cmq</property>
+     <property>/sim/model/MRX13/stability/factor-Cmq</property>
      <min>0</min>
      <max>5</max>
      <step>0.05</step>
@@ -393,7 +393,7 @@
     <binding>
      <command>nasal</command>
      <script>
-      MRX13.handling_pitch_defaults();
+      MRX13.stability_pitch_defaults();
       MRX13.custom();
      </script>
     </binding>

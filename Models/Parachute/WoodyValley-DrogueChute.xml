@@ -9,7 +9,7 @@
    <object-name>WoodyValley-DrogueChute</object-name>
    <condition>
     <greater-than>
-     <property>fdm/jsbsim/fcs/drogue_chute-pos-norm</property>
+     <property>sim/model/Parachutes/drogue_chute-pos-norm</property>
      <value>0.01</value>
     </greater-than>
    </condition>
@@ -22,7 +22,7 @@
    <object-name>LineClosed</object-name>
    <condition>
     <less-than>
-     <property>fdm/jsbsim/fcs/drogue_chute-pos-norm</property>
+     <property>sim/model/Parachutes/drogue_chute-pos-norm</property>
      <value>0.01</value>
     </less-than>
    </condition>
@@ -57,7 +57,7 @@
       <value>-15</value>
       <dif>
        <value>1</value>
-       <property>gear/gear[2]/wow</property>
+       <property>sim/model/MRX13/on-ground</property>
       </dif>
      </product>
     </expression>
@@ -82,7 +82,7 @@
       <property>surface-positions/elevator-pos-norm</property>
       <dif>
        <value>1</value>
-       <property>fdm/jsbsim/systems/on-ground</property>
+       <property>sim/model/MRX13/on-ground</property>
       </dif>
       <value>-20</value>
      </product>
@@ -107,7 +107,7 @@
       <property>surface-positions/rudder-pos-norm</property>
       <dif>
        <value>1</value>
-       <property>fdm/jsbsim/systems/on-ground</property>
+       <property>sim/model/MRX13/on-ground</property>
       </dif>
       <value>-25</value>
      </product>
@@ -148,7 +148,7 @@
  <animation>
   <type>rotate</type>
    <object-name>WoodyValley-DrogueChute</object-name>
-   <property>fdm/jsbsim/aero/alpha-deg</property>
+   <property>sim/model/aero/alpha-deg</property>
    <center>
     <x-m>0.0</x-m>
     <y-m>0.0</y-m>
@@ -164,7 +164,7 @@
  <animation>
   <type>rotate</type>
    <object-name>WoodyValley-DrogueChute</object-name>
-   <property>fdm/jsbsim/aero/beta-deg</property>
+   <property>sim/model/aero/beta-deg</property>
    <center>
     <x-m>0.0</x-m>
     <y-m>0.0</y-m>
@@ -181,7 +181,7 @@
  <animation>
   <type>scale</type>
    <object-name>WoodyValley-DrogueChute</object-name>
-   <property>fdm/jsbsim/fcs/drogue_chute-pos-norm</property>
+   <property>sim/model/Parachutes/drogue_chute-pos-norm</property>
    <x-min>0.1</x-min>
    <y-min>0.1</y-min>
    <z-min>0.1</z-min>
@@ -196,7 +196,7 @@
  <animation>
   <type>scale</type>
    <object-name>WoodyValley-DrogueChute</object-name>
-   <property>fdm/jsbsim/fcs/drogue_chute-pos-norm</property>
+   <property>sim/model/Parachutes/drogue_chute-pos-norm</property>
    <x-min>1.</x-min>
    <y-min>0.2</y-min>
    <z-min>0.2</z-min>

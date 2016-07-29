@@ -11,6 +11,7 @@
     gear/unit[2]/WOW == 1
     gear/unit[3]/WOW == 1
    </test> 
+   <output>/sim/model/MRX13/on-ground</output>
   </switch>
 
   <summer name="systems/in-air">
@@ -18,7 +19,7 @@
    <bias>1</bias>
   </summer>
  </channel>
- 
+
  <channel name="RunningForce">
   <switch name="systems/running-force">
    <default value="fcs/running-force-norm"/>

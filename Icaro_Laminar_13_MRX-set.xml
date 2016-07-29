@@ -3,7 +3,7 @@
 ************************************************************************
 Weight shift controlled hang glider for FlightGear
 
-Last update: June 9, 2016 D-NXKT, D_NXKT@yahoo.de
+Last update: July 24, 2016 D-NXKT, D_NXKT@yahoo.de
 ************************************************************************
 -->
 
@@ -22,7 +22,7 @@ Last update: June 9, 2016 D-NXKT, D_NXKT@yahoo.de
    <tag>unpowered</tag>
   </tags>
 
-  <aircraft-version>June 2016</aircraft-version>
+  <aircraft-version>July 2016</aircraft-version>
 
   <status>early production</status>
   <rating>
@@ -64,16 +64,16 @@ Last update: June 9, 2016 D-NXKT, D_NXKT@yahoo.de
    <livery>
     <file type="string">Default</file>
    </livery>
-   
+
    <MRX13>
 
     <animation>
       <side type="float">0.</side>
       <ahead type="float">0.</ahead>
     </animation>
-    
+
     <material>
-    
+
      <LeadingEdge>
       <ambient>
        <red>1.</red>
@@ -95,7 +95,7 @@ Last update: June 9, 2016 D-NXKT, D_NXKT@yahoo.de
        <alpha>0.98</alpha>
       </transparency>
      </UpperSail>
-     
+
      <LowerSail>
       <ambient>
        <red>1.0</red>
@@ -117,7 +117,7 @@ Last update: June 9, 2016 D-NXKT, D_NXKT@yahoo.de
        <alpha>0.97</alpha>
       </transparency>
      </SmallStripe>
-     
+
      <WideStripe>
       <ambient>
        <red>0.5</red>
@@ -142,21 +142,35 @@ Last update: June 9, 2016 D-NXKT, D_NXKT@yahoo.de
     <with-TwoStageRelease_mp alias="/sim/model/MRX13/with-TwoStageRelease"/> <!-- needed for multiplayer -->
 
     <handling>
+     <Rookie  type="bool">false</Rookie>
+     <Student type="bool">false</Student>
+     <Pilot   type="bool">false</Pilot>
+    </handling>
+
+    <stability>
      <factor-Clda type="float">1.</factor-Clda>
+     <factor-Clb  type="float">1.</factor-Clb>
+     <factor-Clr  type="float">1.</factor-Clr>
      <factor-Clp  type="float">1.</factor-Clp>
      <factor-Cmalpha type="float">1.</factor-Cmalpha>
      <factor-Cmq  type="float">1.</factor-Cmq>
-    </handling>
+     <factor-Cnb  type="float">1.</factor-Cnb>
+     <factor-Cnp  type="float">1.</factor-Cnp>
+     <factor-Cnr  type="float">1.</factor-Cnr>
+     <factor-Cyb  type="float">1.</factor-Cyb>
+     <factor-Cyp  type="float">1.</factor-Cyp>
+     <factor-Cyr  type="float">1.</factor-Cyr>
+    </stability>
 
    </MRX13>
-   
+
    <Vector>
     <with-vectorB type="bool">false</with-vectorB>
     <with-vectorW type="bool">false</with-vectorW>
     <with-VectorAeroForce type="bool">false</with-VectorAeroForce>
     <with-flowvector type="bool">false</with-flowvector>
    </Vector>
-   
+
    <SmokeTrail>
      <red>0.8</red>
      <green>0.0</green>
@@ -183,16 +197,22 @@ Last update: June 9, 2016 D-NXKT, D_NXKT@yahoo.de
     <CDxA-EmergencyChute-sqft type="float">843.89</CDxA-EmergencyChute-sqft>
    </Parachutes>
 
+   <aero>
+    <alpha-deg type="float">0.</alpha-deg>
+    <beta-deg type="float">0.</beta-deg>
+   </aero>
+
   </model>
 
   <multiplay>
    <generic>
-    <int n="0" alias="/fdm/jsbsim/systems/on-ground"/>
+    <int n="0" alias="/sim/model/MRX13/on-ground"/>
     <int n="1" alias="/sim/model/MRX13/with-wheels_mp"/> 
     <int n="2" alias="/sim/model/MRX13/with-woolthread_mp"/>
     <int n="3" alias="/sim/model/MRX13/with-TwoStageRelease_mp"/>
     <int n="4" alias="/sim/model/MRX13/RotateAboutHangpoint"/>
     <int n="5" alias="/sim/model/MRX13/RotateAboutPilot"/>
+    <int n="6" alias="/sim/model/MRX13/wing-failure"/>
     <float n="0" alias="/sim/model/MRX13/animation/running_leg_left"/>
     <float n="1" alias="/sim/model/MRX13/animation/running_leg_right"/>
     <float n="2" alias="/sim/model/MRX13/animation/running_leg"/>
@@ -229,7 +249,7 @@ Last update: June 9, 2016 D-NXKT, D_NXKT@yahoo.de
        <script>aircraft.livery.dialog.open()</script>
       </binding>
      </item>
- 
+
      <item>
       <label>----- Manual Customization -----</label>
       <enabled>false</enabled>
@@ -242,8 +262,8 @@ Last update: June 9, 2016 D-NXKT, D_NXKT@yahoo.de
        <property>sim/model/MRX13/with-wheels</property>
        <value>0</value>
       </binding>
-     </item> 
-       
+     </item>
+
      <item>
       <label>Toggle Woolthread On/Off</label>
       <binding>
@@ -251,7 +271,7 @@ Last update: June 9, 2016 D-NXKT, D_NXKT@yahoo.de
        <property>sim/model/MRX13/with-woolthread</property>
        <value>0</value>
       </binding>
-     </item>    
+     </item>
 
      <item>
       <label>Toggle Wing Failure On/Off</label>
@@ -283,7 +303,7 @@ Last update: June 9, 2016 D-NXKT, D_NXKT@yahoo.de
         material.showDialog("/sim/model/MRX13/material/WideStripe/", nil, 950);
        </script>
       </binding>
-     </item>       
+     </item>
 
      <item>
       <label>---------------------------</label>
@@ -296,13 +316,13 @@ Last update: June 9, 2016 D-NXKT, D_NXKT@yahoo.de
        <command>nasal</command>
        <script>MRX13.weight_and_balance_dialog.open()</script>
       </binding>
-      <binding>       
+      <binding>
        <command>nasal</command>
        <script>
         var weight_lbs = getprop("/fdm/jsbsim/inertia/empty-weight-lbs");
         var weight_kg = weight_lbs * 0.453592;
         setprop("/fdm/jsbsim/inertia/empty-weight-kg",weight_kg);
-        
+
         var weight_lbs = getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs");
         var weight_kg = weight_lbs * 0.453592;
         setprop("/fdm/jsbsim/inertia/pointmass-weight-kg",weight_kg);
@@ -458,6 +478,14 @@ Last update: June 9, 2016 D-NXKT, D_NXKT@yahoo.de
       </binding>
      </item>
 
+     <item>
+      <label>Stability (Lateral, Longitudinal, Directional)</label>
+      <binding>
+       <command>nasal</command>
+       <script>MRX13.stability_dialog.open()</script>
+      </binding>
+     </item>
+
     </menu>
    </default>
   </menubar>
@@ -605,12 +633,12 @@ Last update: June 9, 2016 D-NXKT, D_NXKT@yahoo.de
     <pitch-offset-deg type="double">-65</pitch-offset-deg>
     <heading-offset-deg type="double">180.0</heading-offset-deg>
    </config>
-  </view>    
+  </view>
 
   <current-view>
    <view-number type="int">9</view-number>
   </current-view>
-      
+
   <!-- Aircraft specific help. -->
   <help include="help.xml"/>
 
@@ -723,32 +751,39 @@ Last update: June 9, 2016 D-NXKT, D_NXKT@yahoo.de
    </aerotow>
    <winch>
     <force_name_jsbsim type="string">chest</force_name_jsbsim>
-    <!-- see Animation.nas      
+    <!-- see Animation.nas
     <local-pos-x type="float">0.0</local-pos-x>
     <local-pos-y type="float">0.0</local-pos-y>
     <local-pos-z type="float">0.0</local-pos-z>
     -->
     <automatic-release-angle-deg type="float">380.</automatic-release-angle-deg>
     <winch>
-      <initial-tow-length-m type="float">800.</initial-tow-length-m>
-      <max-tow-length-m type="float">1500.</max-tow-length-m> 
-      <max-force-N type="float">800.</max-force-N>
-      <max-power-kW type="float">10.</max-power-kW>
-      <max-spool-speed-m-s type="float">20.</max-spool-speed-m-s>
-      <max-unspool-speed-m-s type="float">20.</max-unspool-speed-m-s>
-      <rel-speed alias="/sim/hitches/winch/winch/actual-spool-speed-m-s"/>
-      <spool-acceleration-m-s-s type="float">5.</spool-acceleration-m-s-s>
+     <initial-tow-length-m type="float">800.</initial-tow-length-m>
+     <max-tow-length-m type="float">1500.</max-tow-length-m> 
+     <min-tow-length-m type="float">1.</min-tow-length-m> 
+     <max-force-N type="float">800.</max-force-N>
+     <max-power-kW type="float">10.</max-power-kW>
+     <max-spool-speed-m-s type="float">20.</max-spool-speed-m-s>
+     <max-unspool-speed-m-s type="float">20.</max-unspool-speed-m-s>
+     <rel-speed alias="/sim/hitches/winch/winch/actual-spool-speed-m-s"/>
+     <spool-acceleration-m-s-s type="float">5.</spool-acceleration-m-s-s>
     </winch>
     <tow>
-      <break-force-N type="float">1500</break-force-N>
-      <elastic-constant type="float">40000</elastic-constant>
-      <weight-per-m-kg-m type="float">0.01</weight-per-m-kg-m>
+     <break-force-N type="float">1500</break-force-N>
+     <elastic-constant type="float">40000</elastic-constant>
+     <weight-per-m-kg-m type="float">0.01</weight-per-m-kg-m>
     </tow>
     <rope>
-      <path_to_model type="string">Aircraft/Icaro_MRX13/Models/Ropes/towropes_HangGlider.xml</path_to_model>
-      <rope-diameter-mm type="float">20</rope-diameter-mm>
+     <path_to_model type="string">Aircraft/Icaro_MRX13/Models/Ropes/towropes_HangGlider.xml</path_to_model>
+     <rope-diameter-mm type="float">20</rope-diameter-mm>
     </rope>
    </winch>
+
+   <Replay>
+    <winch-trigger type="bool">false</winch-trigger>
+    <open-trigger type="bool">false</open-trigger>
+   </Replay> 
+ 
   </hitches>
 
   <systems>
@@ -759,9 +794,9 @@ Last update: June 9, 2016 D-NXKT, D_NXKT@yahoo.de
    </property-rule>
 
    <property-rule n="101">
-    <name>Helpers for Vector Animation</name>
-    <path>Aircraft/Icaro_MRX13/Models/Vector/VectorHelpers-propertyrules.xml</path>
-    <serviceable alias="/sim/model/Vector/with-VectorAeroForce"/>  <!-- doesn't work; is always true -->
+    <name>Helpers for Vector Animation and Flight Recorder</name>
+    <path>Aircraft/Icaro_MRX13/Systems/JSBSimProperty_to_FG.xml</path>
+    <serviceable type="bool" alias="/sim/replay/replay-state" />
    </property-rule>
 
    <property-rule n="102">
@@ -769,7 +804,15 @@ Last update: June 9, 2016 D-NXKT, D_NXKT@yahoo.de
     <path>Aircraft/Icaro_MRX13/Models/Shadow/Helper-propertyrule.xml</path>
     <serviceable type="bool">true</serviceable>
    </property-rule>
+
   </systems>
+
+  <flight-recorder>
+   <replay-config type="int">0</replay-config>
+   <config n="0" include="FlightRecorder/flight-recorder.xml">
+    <name type="string">Icaro Laminar 13 Flight Recorder</name>
+   </config>
+  </flight-recorder>
 
  </sim>
 
@@ -798,6 +841,7 @@ Last update: June 9, 2016 D-NXKT, D_NXKT@yahoo.de
    <file>Aircraft/Icaro_MRX13/Nasal/DropTest.nas</file>
    <file>Aircraft/Icaro_MRX13/Nasal/Parachutes.nas</file>
    <file>Aircraft/Icaro_MRX13/Nasal/Handling.nas</file>
+   <file>Aircraft/Icaro_MRX13/Nasal/ReplayWinch.nas</file>
   </MRX13>
  </nasal>
 
