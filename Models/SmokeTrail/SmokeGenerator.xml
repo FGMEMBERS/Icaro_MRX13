@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+ <path>SmokeGenerator.ac</path> 
+
+ <params>
+  <generator>/sim/model/SmokeTrail/Keel/Generator</generator>
+ </params>
+
+ <animation>
+  <type>select</type>
+  <object-name>StrutKeel</object-name>
+  <condition>
+   <property alias="../../../params/GeneratorKeel"/>
+  </condition>
+ </animation>
+
+ <animation>
+  <type>select</type>
+  <object-name>StrutControlBarLeft</object-name>
+  <condition>
+   <property alias="../../../params/GeneratorControlBarLeft"/>
+  </condition>
+ </animation>
+
+ <animation>
+  <type>select</type>
+  <object-name>StrutControlBarRight</object-name>
+  <condition>
+   <property alias="../../../params/GeneratorControlBarRight"/>
+  </condition>
+ </animation>
+ 
+</PropertyList>

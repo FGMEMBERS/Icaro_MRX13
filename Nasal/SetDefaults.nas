@@ -192,3 +192,33 @@ var stability_SideForce_defaults = func {
 
 }
 
+
+################################################################################################
+#
+# Set default smoke generator values
+#
+################################################################################################
+
+var smoke_defaults = func {
+
+  setprop("sim/model/SmokeTrail/Keel/Generator", 0);
+  setprop("sim/model/SmokeTrail/Keel/burning-time-sec", 240);
+  setprop("sim/model/SmokeTrail/Keel/red", 0.8);
+  setprop("sim/model/SmokeTrail/Keel/green", 0.);
+  setprop("sim/model/SmokeTrail/Keel/blue", 0.);
+
+  setprop("sim/model/SmokeTrail/ControlBarLeft/Generator", 0);
+  setprop("sim/model/SmokeTrail/ControlBarLeft/burning-time-sec", 180);
+  setprop("sim/model/SmokeTrail/ControlBarLeft/red", 0.8);
+  setprop("sim/model/SmokeTrail/ControlBarLeft/green", 0.);
+  setprop("sim/model/SmokeTrail/ControlBarLeft/blue", 0.);
+
+  setprop("sim/model/SmokeTrail/ControlBarRight/Generator", 0);
+  setprop("sim/model/SmokeTrail/ControlBarRight/burning-time-sec", 185); 
+  setprop("sim/model/SmokeTrail/ControlBarRight/red", 0.8);
+  setprop("sim/model/SmokeTrail/ControlBarRight/green", 0.);
+  setprop("sim/model/SmokeTrail/ControlBarRight/blue", 0.);
+
+}
+
+

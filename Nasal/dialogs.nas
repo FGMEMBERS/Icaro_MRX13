@@ -30,3 +30,6 @@ var stability_dialog = gui.Dialog.new("/sim/gui/dialogs/MRX13/stability/dialog",
 
 var stability_help_dialog = gui.Dialog.new("/sim/gui/dialogs/MRX13/stability_help/dialog",
                                        "Aircraft/Icaro_MRX13/Dialogs/stability_help.xml");
+
+var smoke_dialog = gui.Dialog.new("/sim/gui/dialogs/MRX13/smoke/dialog",
+                                      "Aircraft/Icaro_MRX13/Dialogs/smoke.xml");

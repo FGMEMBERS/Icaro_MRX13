@@ -3,7 +3,7 @@
 ************************************************************************
 Weight shift controlled hang glider for FlightGear
 
-Last update: July 24, 2016 D-NXKT, D_NXKT@yahoo.de
+Last update: August 12, 2016 D-NXKT, D_NXKT@yahoo.de
 ************************************************************************
 -->
 
@@ -22,7 +22,7 @@ Last update: July 24, 2016 D-NXKT, D_NXKT@yahoo.de
    <tag>unpowered</tag>
   </tags>
 
-  <aircraft-version>July 2016</aircraft-version>
+  <aircraft-version>August 2016</aircraft-version>
 
   <status>early production</status>
   <rating>
@@ -172,9 +172,37 @@ Last update: July 24, 2016 D-NXKT, D_NXKT@yahoo.de
    </Vector>
 
    <SmokeTrail>
-     <red>0.8</red>
-     <green>0.0</green>
-     <blue>0.0</blue>
+    <Smoke type="bool">false</Smoke>
+    <Keel>
+     <Smoke type="bool">false</Smoke>
+     <Generator type="bool">false</Generator>
+     <burning-time-sec type="float">240</burning-time-sec>
+     <burning-end-sec type="float">0</burning-end-sec>
+     <red type="float">0.8</red>
+     <green type="float">0.0</green>
+     <blue type="float">0.0</blue>
+    </Keel>
+    <ControlBarLeft>
+     <Smoke type="bool">false</Smoke>
+     <Generator type="bool">false</Generator>
+     <burning-time-sec type="float">180</burning-time-sec>
+     <burning-end-sec type="float">0</burning-end-sec>
+     <red type="float">0.8</red>
+     <green type="float">0.0</green>
+     <blue type="float">0.0</blue>
+    </ControlBarLeft>
+    <ControlBarRight>
+     <Smoke type="bool">false</Smoke>
+     <Generator type="bool">false</Generator>
+     <burning-time-sec type="float">185</burning-time-sec>
+     <burning-end-sec type="float">0</burning-end-sec>
+     <red type="float">0.8</red>
+     <green type="float">0.0</green>
+     <blue type="float">0.0</blue>
+    </ControlBarRight>
+    <help>
+     <off type="bool">false</off>
+    </help>
    </SmokeTrail>
 
    <DropTest>
@@ -213,6 +241,9 @@ Last update: July 24, 2016 D-NXKT, D_NXKT@yahoo.de
     <int n="4" alias="/sim/model/MRX13/RotateAboutHangpoint"/>
     <int n="5" alias="/sim/model/MRX13/RotateAboutPilot"/>
     <int n="6" alias="/sim/model/MRX13/wing-failure"/>
+    <int n="7" alias="/sim/model/SmokeTrail/Keel/Generator"/>
+    <int n="8" alias="/sim/model/SmokeTrail/ControlBarLeft/Generator"/>
+    <int n="9" alias="/sim/model/SmokeTrail/ControlBarRight/Generator"/>
     <float n="0" alias="/sim/model/MRX13/animation/running_leg_left"/>
     <float n="1" alias="/sim/model/MRX13/animation/running_leg_right"/>
     <float n="2" alias="/sim/model/MRX13/animation/running_leg"/>
@@ -347,6 +378,19 @@ Last update: July 24, 2016 D-NXKT, D_NXKT@yahoo.de
      </item>
 
      <item>
+      <label>Variometer</label>
+      <binding>
+       <command>nasal</command>
+       <script>MRX13.variometer.toggle()</script>
+      </binding>
+     </item>
+
+     <item>
+      <label>---------- Towing ----------</label>
+      <enabled>false</enabled>
+     </item>
+
+     <item>
       <label>Winch Settings</label>
       <binding>
         <command>nasal</command>
@@ -380,16 +424,33 @@ Last update: July 24, 2016 D-NXKT, D_NXKT@yahoo.de
      </item>
 
      <item>
-      <label>----------- Misc. -----------</label>
+      <label>--------- Smoke Trail ---------</label>
       <enabled>false</enabled>
      </item>
 
      <item>
-      <label>Variometer</label>
+      <label>Toggle Smoke On/Off</label>
+      <binding>
+       <command>property-toggle</command>
+       <property>sim/model/SmokeTrail/Smoke</property>
+      </binding>
       <binding>
        <command>nasal</command>
-       <script>MRX13.variometer.toggle()</script>
+       <script>MRX13.smoke()</script>
       </binding>
+     </item>
+
+     <item>
+      <label>Smoke Generator Configuration</label>
+      <binding>
+       <command>nasal</command>
+       <script>MRX13.smoke_dialog.open()</script>
+      </binding>
+     </item>
+
+     <item>
+      <label>----------- Misc. -----------</label>
+      <enabled>false</enabled>
      </item>
 
      <item>
@@ -402,35 +463,15 @@ Last update: July 24, 2016 D-NXKT, D_NXKT@yahoo.de
      </item>
 
      <item>
-      <label>Toggle One Smoke System On/Off</label>
-      <binding>
-       <command>property-toggle</command>
-       <property>controls/electric/smoke-switch</property>
-      </binding>
+      <label>---------- Analysis ----------</label>
+      <enabled>false</enabled>
      </item>
 
      <item>
-      <label>Toggle Two Smoke Systems On/Off</label>
-      <binding>
-       <command>property-toggle</command>
-       <property>controls/electric/smoke-switch[1]</property>
-      </binding>
-     </item>
-
-     <item>
-      <label>Toggle Vector Body-System On/Off</label>
+      <label>Toggle Flow Vector On/Off</label>
       <binding>
         <command>property-toggle</command>
-        <property>sim/model/Vector/with-vectorB</property>
-        <value>0</value>
-      </binding>
-     </item>
-
-     <item>
-      <label>Toggle Vector Wind-System On/Off</label>
-      <binding>
-        <command>property-toggle</command>
-        <property>sim/model/Vector/with-vectorW</property>
+        <property>sim/model/Vector/with-flowvector</property>
         <value>0</value>
       </binding>
      </item>
@@ -445,10 +486,19 @@ Last update: July 24, 2016 D-NXKT, D_NXKT@yahoo.de
      </item>
 
      <item>
-      <label>Toggle Flow Vector On/Off</label>
+      <label>Toggle Vector Wind-System On/Off</label>
       <binding>
         <command>property-toggle</command>
-        <property>sim/model/Vector/with-flowvector</property>
+        <property>sim/model/Vector/with-vectorW</property>
+        <value>0</value>
+      </binding>
+     </item>
+
+     <item>
+      <label>Toggle Vector Body-System On/Off</label>
+      <binding>
+        <command>property-toggle</command>
+        <property>sim/model/Vector/with-vectorB</property>
         <value>0</value>
       </binding>
      </item>
@@ -718,6 +768,24 @@ Last update: July 24, 2016 D-NXKT, D_NXKT@yahoo.de
    <path>/sim/hitches/winch/winch/spool-acceleration-m-s-s</path>
    <path>/sim/hitches/winch/force_name_jsbsim</path>
 
+   <path>/sim/model/SmokeTrail/Keel/Generator</path>
+   <path>/sim/model/SmokeTrail/Keel/burning-time-sec</path>
+   <path>/sim/model/SmokeTrail/Keel/red</path>
+   <path>/sim/model/SmokeTrail/Keel/green</path>
+   <path>/sim/model/SmokeTrail/Keel/blue</path>
+
+   <path>/sim/model/SmokeTrail/ControlBarLeft/Generator</path>
+   <path>/sim/model/SmokeTrail/ControlBarLeft/burning-time-sec</path>
+   <path>/sim/model/SmokeTrail/ControlBarLeft/red</path>
+   <path>/sim/model/SmokeTrail/ControlBarLeft/green</path>
+   <path>/sim/model/SmokeTrail/ControlBarLeft/blue</path>
+
+   <path>/sim/model/SmokeTrail/ControlBarRight/Generator</path>
+   <path>/sim/model/SmokeTrail/ControlBarRight/burning-time-sec</path>
+   <path>/sim/model/SmokeTrail/ControlBarRight/red</path>
+   <path>/sim/model/SmokeTrail/ControlBarRight/green</path>
+   <path>/sim/model/SmokeTrail/ControlBarRight/blue</path>
+
   </aircraft-data>
 
   <spoilers>
@@ -824,7 +892,7 @@ Last update: July 24, 2016 D-NXKT, D_NXKT@yahoo.de
   <gear>
    <brake-parking type="double">1</brake-parking>
    <antiskid      type="bool">false</antiskid>
-  </gear> 
+  </gear>
  </controls>
 
  <input include="keyboard.xml"/>
@@ -842,6 +910,7 @@ Last update: July 24, 2016 D-NXKT, D_NXKT@yahoo.de
    <file>Aircraft/Icaro_MRX13/Nasal/Parachutes.nas</file>
    <file>Aircraft/Icaro_MRX13/Nasal/Handling.nas</file>
    <file>Aircraft/Icaro_MRX13/Nasal/ReplayWinch.nas</file>
+   <file>Aircraft/Icaro_MRX13/Nasal/SmokeTrail.nas</file>
   </MRX13>
  </nasal>
 

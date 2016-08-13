@@ -1,0 +1,543 @@
+<?xml version="1.0"?>
+<!-- Version: 2016-08-11 -->
+
+<PropertyList>
+ <name>smoke_dialog</name>
+ <layout>vbox</layout>
+ <default-padding>2</default-padding>
+ <modal>false</modal>
+ <width>250</width>
+ <!-- title bar -->
+ <group>
+  <layout>hbox</layout>
+  <empty><stretch>true</stretch></empty>
+  <text>
+   <label>Smoke Generator Configuration</label>
+  </text>
+  <empty><stretch>true</stretch></empty>
+  <button>
+   <legend/>
+   <key>Esc</key>
+   <pref-width>16</pref-width>
+   <pref-height>16</pref-height>
+   <border>2</border>
+   <binding>
+    <command>dialog-close</command>
+   </binding>
+  </button>
+ </group>
+
+ <hrule/>
+ <hrule/>
+
+ <frame>
+  <layout>vbox</layout>
+  <empty><stretch>true</stretch></empty>
+  <!-- Smoke Generator on/off -->
+  <group>
+   <layout>hbox</layout>
+   <checkbox>
+    <halign>center</halign>
+    <label>Generate Smoke</label>
+    <live>true</live>
+    <property>sim/model/SmokeTrail/Smoke</property>
+    <binding>
+     <command>dialog-apply</command>
+    </binding>
+    <binding>
+     <command>nasal</command>
+     <script>MRX13.smoke()</script>
+    </binding>
+   </checkbox>
+  </group>
+  <empty><stretch>true</stretch></empty>
+ </frame>
+
+ <hrule/>
+
+ <!-- keel generator -->
+ <frame>
+  <layout>vbox</layout>
+  <empty><stretch>true</stretch></empty>
+  <group>
+   <layout>hbox</layout>
+   <checkbox>
+    <halign>left</halign>
+    <label>Rear Keel Smoke Generator</label>
+    <live>true</live>
+    <property>sim/model/SmokeTrail/Keel/Generator</property>
+    <binding>
+     <command>dialog-apply</command>
+    </binding>
+    <binding>
+     <command>nasal</command>
+     <script>
+      if(getprop("sim/model/SmokeTrail/Smoke")) setprop("sim/model/SmokeTrail/Keel/Smoke",1);
+      MRX13.smoke_control( "Keel",getprop("sim/model/SmokeTrail/Keel/Smoke") );
+     </script>
+    </binding>
+   </checkbox>
+  </group>
+  <empty><stretch>true</stretch></empty>
+
+  <!-- Burning Time -->
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+   <text>
+    <label>Burning Time</label>
+   </text>
+   <input>
+    <pref-width>50</pref-width>
+    <label>[sec]</label>
+    <property>sim/model/SmokeTrail/Keel/burning-time-sec</property>
+   </input>
+   <empty><stretch>true</stretch></empty>
+  </group>
+
+  <!-- Color -->
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+    <text>
+     <pref-width>30</pref-width>
+     <label>Red</label>
+    </text>
+    <slider>
+     <name>red</name>
+     <live>true</live>
+     <property>sim/model/SmokeTrail/Keel/red</property>
+     <min>0</min>
+     <max>1</max>
+     <step>0.01</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+    </slider>
+   <group>
+    <width>50</width>
+    <halign>right</halign>
+    <text>
+     <label>9999</label>
+     <live>true</live>
+     <format>%2.2f </format>
+     <property>sim/model/SmokeTrail/Keel/red</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+   </group>
+  </group>
+
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+    <text>
+     <pref-width>30</pref-width>
+     <label>Green</label>
+    </text>
+    <slider>
+     <name>green</name>
+     <live>true</live>
+     <property>sim/model/SmokeTrail/Keel/green</property>
+     <min>0</min>
+     <max>1</max>
+     <step>0.01</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+    </slider>
+   <group>
+    <width>50</width>
+    <halign>right</halign>
+    <text>
+     <label>9999</label>
+     <live>true</live>
+     <format>%2.2f </format>
+     <property>sim/model/SmokeTrail/Keel/green</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+   </group>
+  </group>
+
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+    <text>
+     <pref-width>30</pref-width>
+     <label>Blue</label>
+    </text>
+    <slider>
+     <name>blue</name>
+     <live>true</live>
+     <property>sim/model/SmokeTrail/Keel/blue</property>
+     <min>0</min>
+     <max>1</max>
+     <step>0.01</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+    </slider>
+   <group>
+    <width>50</width>
+    <halign>right</halign>
+    <text>
+     <label>9999</label>
+     <live>true</live>
+     <format>%2.2f </format>
+     <property>sim/model/SmokeTrail/Keel/blue</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+   </group>
+  </group>
+
+  <empty><stretch>true</stretch></empty>
+ </frame>
+
+ <hrule/>
+
+ <!-- left control bar generator -->
+ <frame>
+  <layout>vbox</layout>
+  <empty><stretch>true</stretch></empty>
+
+  <group>
+   <layout>hbox</layout>
+   <checkbox>
+    <halign>left</halign>
+    <label>Left Control Bar Smoke Generator</label>
+    <live>true</live>
+    <property>sim/model/SmokeTrail/ControlBarLeft/Generator</property>
+    <binding>
+     <command>dialog-apply</command>
+    </binding>
+    <binding>
+     <command>nasal</command>
+     <script>
+      if(getprop("sim/model/SmokeTrail/Smoke")) setprop("sim/model/SmokeTrail/ControlBarLeft/Smoke",1);
+      MRX13.smoke_control( "ControlBarLeft" , getprop("sim/model/SmokeTrail/ControlBarLeft/Smoke") );
+     </script>
+    </binding>
+   </checkbox>
+  </group>
+  <empty><stretch>true</stretch></empty>
+
+  <!-- Burning Time -->
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+   <text>
+    <label>Burning Time</label>
+   </text>
+   <input>
+    <pref-width>50</pref-width>
+    <label>[sec]</label>
+    <property>sim/model/SmokeTrail/ControlBarLeft/burning-time-sec</property>
+   </input>
+   <empty><stretch>true</stretch></empty>
+  </group>
+
+  <!-- Color -->
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+    <text>
+     <pref-width>30</pref-width>
+     <label>Red</label>
+    </text>
+    <slider>
+     <name>red</name>
+     <live>true</live>
+     <property>sim/model/SmokeTrail/ControlBarLeft/red</property>
+     <min>0</min>
+     <max>1</max>
+     <step>0.01</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+    </slider>
+   <group>
+    <width>50</width>
+    <halign>right</halign>
+    <text>
+     <label>9999</label>
+     <live>true</live>
+     <format>%2.2f </format>
+     <property>sim/model/SmokeTrail/ControlBarLeft/red</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+   </group>
+  </group>
+
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+    <text>
+     <pref-width>30</pref-width>
+     <label>Green</label>
+    </text>
+    <slider>
+     <name>green</name>
+     <live>true</live>
+     <property>sim/model/SmokeTrail/ControlBarLeft/green</property>
+     <min>0</min>
+     <max>1</max>
+     <step>0.01</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+    </slider>
+   <group>
+    <width>50</width>
+    <halign>right</halign>
+    <text>
+     <label>9999</label>
+     <live>true</live>
+     <format>%2.2f </format>
+     <property>sim/model/SmokeTrail/ControlBarLeft/green</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+   </group>
+  </group>
+
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+    <text>
+     <pref-width>30</pref-width>
+     <label>Blue</label>
+    </text>
+    <slider>
+     <name>blue</name>
+     <live>true</live>
+     <property>sim/model/SmokeTrail/ControlBarLeft/blue</property>
+     <min>0</min>
+     <max>1</max>
+     <step>0.01</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+    </slider>
+   <group>
+    <width>50</width>
+    <halign>right</halign>
+    <text>
+     <label>9999</label>
+     <live>true</live>
+     <format>%2.2f </format>
+     <property>sim/model/SmokeTrail/ControlBarLeft/blue</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+   </group>
+  </group>
+
+  <empty><stretch>true</stretch></empty>
+ </frame>
+
+ <hrule/>
+
+ <!-- right control bar generator -->
+ <frame>
+  <layout>vbox</layout>
+  <empty><stretch>true</stretch></empty>
+
+  <group>
+   <layout>hbox</layout>
+   <checkbox>
+    <halign>Right</halign>
+    <label>Right Control Bar Smoke Generator</label>
+    <live>true</live>
+    <property>sim/model/SmokeTrail/ControlBarRight/Generator</property>
+    <binding>
+     <command>dialog-apply</command>
+    </binding>
+    <binding>
+     <command>nasal</command>
+     <script>
+      if(getprop("sim/model/SmokeTrail/Smoke")) setprop("sim/model/SmokeTrail/ControlBarRight/Smoke",1);
+      MRX13.smoke_control( "ControlBarRight", getprop("sim/model/SmokeTrail/ControlBarRight/Smoke") );
+     </script>
+    </binding>
+
+   </checkbox>
+  </group>
+  <empty><stretch>true</stretch></empty>
+
+  <!-- Burning Time -->
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+   <text>
+    <label>Burning Time</label>
+   </text>
+   <input>
+    <pref-width>50</pref-width>
+    <label>[sec]</label>
+    <property>sim/model/SmokeTrail/ControlBarRight/burning-time-sec</property>
+   </input>
+   <empty><stretch>true</stretch></empty>
+  </group>
+
+  <!-- Color -->
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+    <text>
+     <pref-width>30</pref-width>
+     <label>Red</label>
+    </text>
+    <slider>
+     <name>red</name>
+     <live>true</live>
+     <property>sim/model/SmokeTrail/ControlBarRight/red</property>
+     <min>0</min>
+     <max>1</max>
+     <step>0.01</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+    </slider>
+   <group>
+    <width>50</width>
+    <halign>right</halign>
+    <text>
+     <label>9999</label>
+     <live>true</live>
+     <format>%2.2f </format>
+     <property>sim/model/SmokeTrail/ControlBarRight/red</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+   </group>
+  </group>
+
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+    <text>
+     <pref-width>30</pref-width>
+     <label>Green</label>
+    </text>
+    <slider>
+     <name>green</name>
+     <live>true</live>
+     <property>sim/model/SmokeTrail/ControlBarRight/green</property>
+     <min>0</min>
+     <max>1</max>
+     <step>0.01</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+    </slider>
+   <group>
+    <width>50</width>
+    <halign>right</halign>
+    <text>
+     <label>9999</label>
+     <live>true</live>
+     <format>%2.2f </format>
+     <property>sim/model/SmokeTrail/ControlBarRight/green</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+   </group>
+  </group>
+
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+    <text>
+     <pref-width>30</pref-width>
+     <label>Blue</label>
+    </text>
+    <slider>
+     <name>blue</name>
+     <live>true</live>
+     <property>sim/model/SmokeTrail/ControlBarRight/blue</property>
+     <min>0</min>
+     <max>1</max>
+     <step>0.01</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+    </slider>
+   <group>
+    <width>50</width>
+    <halign>right</halign>
+    <text>
+     <label>9999</label>
+     <live>true</live>
+     <format>%2.2f </format>
+     <property>sim/model/SmokeTrail/ControlBarRight/blue</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+   </group>
+  </group>
+
+  <empty><stretch>true</stretch></empty>
+ </frame>
+
+ <hrule/>
+ <hrule/>
+
+ <!-- bottom line -->
+
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+   <button>
+    <legend>Set Defaults</legend>
+    <binding>
+     <command>nasal</command>
+      <script>
+       MRX13.smoke_defaults();
+       MRX13.smoke();
+      </script>
+    </binding>
+   </button>
+   <empty><stretch>true</stretch></empty>
+
+  <layout>hbox</layout>
+  <empty><stretch>true</stretch></empty>
+  <button>
+   <legend>Close</legend>
+   <binding>
+    <command>dialog-close</command>
+   </binding>
+  </button>
+  <empty><stretch>true</stretch></empty>
+ </group>
+
+</PropertyList>

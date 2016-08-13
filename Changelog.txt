@@ -1,3 +1,9 @@
+Changes August 2016:
+
+- customizable smoke system (gui, smoke color, burning time)
+- add smoke generator model
+
+
 Changes July 2016:
 
 - flight recorder (incl. vector, cg and winch animation;

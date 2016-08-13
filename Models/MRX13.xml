@@ -25,7 +25,12 @@
      alias(rplayer.getNode("sim/multiplay/generic/int[5]"));
    rplayer.getNode("sim/model/MRX13/wing-failure", 1).
      alias(rplayer.getNode("sim/multiplay/generic/int[6]"));
-
+   rplayer.getNode("sim/model/SmokeTrail/Keel/Generator", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/int[7]"));
+   rplayer.getNode("sim/model/SmokeTrail/ControlBarLeft/Generator", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/int[8]"));
+   rplayer.getNode("sim/model/SmokeTrail/ControlBarRight/Generator", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/int[9]"));
 
    rplayer.getNode("sim/model/MRX13/animation/running_leg_left", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[0]"));
@@ -63,6 +68,7 @@
    rplayer.getNode("instrumentation/woolthread/severity1", 1).setValue(0); # severity1 is not transmitted
    rplayer.getNode("instrumentation/woolthread/severity2", 1).setValue(0); # severity2 is not transmitted
    rplayer.getNode("gear/gear[1]/position-norm", 1).setValue(0); # property is not transmitted
+   rplayer.getNode("sim/model/SmokeTrail/help/off", 1).setIntValue(0); # property is not transmitted
    # print("MRX13 loaded")
 
   </load>
@@ -76,8 +82,11 @@
    rplayer.getNode("sim/model/MRX13/with-woolthread_mp", 1).unalias();
    rplayer.getNode("sim/model/MRX13/with-TwoStageRelease_mp", 1).unalias();
    rplayer.getNode("sim/model/MRX13/RotateAboutHangpoint", 1).unalias();
-   rplayer.getNode("sim/model/MRX13/RotateAboutPilot", 1).unalias();   
-   rplayer.getNode("sim/model/MRX13/wing-failure", 1).unalias();      
+   rplayer.getNode("sim/model/MRX13/RotateAboutPilot", 1).unalias();
+   rplayer.getNode("sim/model/MRX13/wing-failure", 1).unalias();
+   rplayer.getNode("sim/model/SmokeTrail/Keel/Generator", 1).unalias();
+   rplayer.getNode("sim/model/SmokeTrail/ControlBarLeft/Generator", 1).unalias();
+   rplayer.getNode("sim/model/SmokeTrail/ControlBarRight/Generator", 1).unalias();
 
    # rplayer.getNode("sim/current-view/view-number", 1).unalias();
 
@@ -147,24 +156,24 @@
  </animation>
 
 
- <!-- __________________ Smoke __________________ -->
+ <!-- __________________ Smoke Trail __________________ -->
 
  <model>
   <path>Aircraft/Icaro_MRX13/Models/SmokeTrail/SmokeTrail.xml</path>
   <name>SingleSmokeTrail</name>
   <condition>
-   <property>controls/electric/smoke-switch[0]</property>
+   <property>sim/model/SmokeTrail/Keel/Smoke</property>
   </condition>
   <offsets>
-   <x-m>3.8</x-m>
+   <x-m>3.6</x-m>
    <y-m>0.0</y-m>
-   <z-m>-0.2</z-m>
+   <z-m>-0.15</z-m>
   </offsets>
   <overlay>
    <params>
-    <red>/sim/model/SmokeTrail/red</red>
-    <green>/sim/model/SmokeTrail/green</green>
-    <blue>/sim/model/SmokeTrail/blue</blue>
+    <red>/sim/model/SmokeTrail/Keel/red</red>
+    <green>/sim/model/SmokeTrail/Keel/green</green>
+    <blue>/sim/model/SmokeTrail/Keel/blue</blue>
    </params>
   </overlay>
  </model>
@@ -173,18 +182,18 @@
   <path>Aircraft/Icaro_MRX13/Models/SmokeTrail/SmokeTrail.xml</path>
   <name>LeftSmokeTrail</name>
   <condition>
-   <property>controls/electric/smoke-switch[1]</property>
+   <property>sim/model/SmokeTrail/ControlBarLeft/Smoke</property>
   </condition>
   <offsets>
-   <x-m>1.0</x-m>
+   <x-m>1.33</x-m>
    <y-m>-1.0</y-m>
-   <z-m>-1.5</z-m>
+   <z-m>-1.55</z-m>
   </offsets>
   <overlay>
    <params>
-    <red>/sim/model/SmokeTrail/red</red>
-    <green>/sim/model/SmokeTrail/green</green>
-    <blue>/sim/model/SmokeTrail/blue</blue>
+    <red>/sim/model/SmokeTrail/ControlBarLeft/red</red>
+    <green>/sim/model/SmokeTrail/ControlBarLeft/green</green>
+    <blue>/sim/model/SmokeTrail/ControlBarLeft/blue</blue>
    </params>
   </overlay>
  </model>
@@ -193,18 +202,90 @@
   <path>Aircraft/Icaro_MRX13/Models/SmokeTrail/SmokeTrail.xml</path>
   <name>RightSmokeTrail</name>
   <condition>
-   <property>controls/electric/smoke-switch[1]</property>
+   <property>sim/model/SmokeTrail/ControlBarRight/Smoke</property>
   </condition>
   <offsets>
-   <x-m>1.0</x-m>
+   <x-m>1.33</x-m>
    <y-m>1.0</y-m>
-   <z-m>-1.5</z-m>
+   <z-m>-1.55</z-m>
   </offsets>
   <overlay>
    <params>
-    <red>/sim/model/SmokeTrail/red</red>
-    <green>/sim/model/SmokeTrail/green</green>
-    <blue>/sim/model/SmokeTrail/blue</blue>
+    <red>/sim/model/SmokeTrail/ControlBarRight/red</red>
+    <green>/sim/model/SmokeTrail/ControlBarRight/green</green>
+    <blue>/sim/model/SmokeTrail/ControlBarRight/blue</blue>
+   </params>
+  </overlay>
+ </model>
+
+ <!-- __________________ Smoke Generator __________________ -->
+
+ <model>
+  <name>KeelSmokeGenerator</name>
+  <path>Aircraft/Icaro_MRX13/Models/SmokeTrail/SmokeGenerator.xml</path>
+  <condition>
+   <property>sim/model/SmokeTrail/Keel/Generator</property>
+  </condition>
+  <offsets>
+   <x-m>3.6</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-0.15</z-m>
+   <heading-deg>0</heading-deg>
+   <pitch-deg>0</pitch-deg>
+   <roll-deg>0</roll-deg>
+  </offsets>
+  <overlay>
+   <params>
+    <GeneratorKeel>/sim/model/SmokeTrail/Keel/Generator</GeneratorKeel>
+    <GeneratorControlBarLeft>/sim/model/SmokeTrail/help/off</GeneratorControlBarLeft>
+    <GeneratorControlBarRight>/sim/model/SmokeTrail/help/off</GeneratorControlBarRight>
+   </params>
+  </overlay>
+
+ </model>
+
+ <model>
+  <name>LeftSmokeGenerator</name>
+  <path>Aircraft/Icaro_MRX13/Models/SmokeTrail/SmokeGenerator.xml</path>
+  <condition>
+   <property>sim/model/SmokeTrail/ControlBarLeft/Generator</property>
+  </condition>
+  <offsets>
+   <x-m>1.33</x-m>
+   <y-m>-1.0</y-m>
+   <z-m>-1.55</z-m>
+   <heading-deg>0</heading-deg>
+   <pitch-deg>-10</pitch-deg>
+   <roll-deg>0</roll-deg>
+  </offsets>
+  <overlay>
+   <params>
+    <GeneratorKeel>/sim/model/SmokeTrail/help/off</GeneratorKeel>
+    <GeneratorControlBarLeft>/sim/model/SmokeTrail/ControlBarLeft/Generator</GeneratorControlBarLeft>
+    <GeneratorControlBarRight>/sim/model/SmokeTrail/help/off</GeneratorControlBarRight>
+   </params>
+  </overlay>
+ </model>
+
+ <model>
+  <name>RightSmokeGenerator</name>
+  <path>Aircraft/Icaro_MRX13/Models/SmokeTrail/SmokeGenerator.xml</path>
+  <condition>
+   <property>sim/model/SmokeTrail/ControlBarRight/Generator</property>
+  </condition>
+  <offsets>
+   <x-m>1.33</x-m>
+   <y-m>1.0</y-m>
+   <z-m>-1.55</z-m>
+   <heading-deg>0</heading-deg>
+   <pitch-deg>-10</pitch-deg>
+   <roll-deg>0</roll-deg>
+  </offsets>
+  <overlay>
+   <params>
+    <GeneratorKeel>/sim/model/SmokeTrail/help/off</GeneratorKeel>
+    <GeneratorControlBarLeft>/sim/model/SmokeTrail/help/off</GeneratorControlBarLeft>
+    <GeneratorControlBarRight>/sim/model/SmokeTrail/ControlBarRight/Generator</GeneratorControlBarRight>
    </params>
   </overlay>
  </model>
@@ -375,6 +456,9 @@
    <object-name>SingleSmokeTrail</object-name>
    <object-name>LeftSmokeTrail</object-name>
    <object-name>RightSmokeTrail</object-name>
+   <object-name>KeelSmokeGenerator</object-name>
+   <object-name>LeftSmokeGenerator</object-name>
+   <object-name>RightSmokeGenerator</object-name>
    <expression>
     <product>
      <property>surface-positions/left-aileron-pos-norm</property>
@@ -405,6 +489,9 @@
    <object-name>SingleSmokeTrail</object-name>
    <object-name>LeftSmokeTrail</object-name>
    <object-name>RightSmokeTrail</object-name>
+   <object-name>KeelSmokeGenerator</object-name>
+   <object-name>LeftSmokeGenerator</object-name>
+   <object-name>RightSmokeGenerator</object-name>
    <expression>
     <product>
      <property>surface-positions/elevator-pos-norm</property>
@@ -435,6 +522,9 @@
    <object-name>SingleSmokeTrail</object-name>
    <object-name>LeftSmokeTrail</object-name>
    <object-name>RightSmokeTrail</object-name>
+   <object-name>KeelSmokeGenerator</object-name>
+   <object-name>LeftSmokeGenerator</object-name>
+   <object-name>RightSmokeGenerator</object-name>
    <expression>
     <product>
      <property>surface-positions/rudder-pos-norm</property>
@@ -474,6 +564,9 @@
   <object-name>SingleSmokeTrail</object-name>
   <object-name>LeftSmokeTrail</object-name>
   <object-name>RightSmokeTrail</object-name>
+  <object-name>KeelSmokeGenerator</object-name>
+  <object-name>LeftSmokeGenerator</object-name>
+  <object-name>RightSmokeGenerator</object-name>
 
   <object-name>HangLever</object-name>
   <object-name>HangLoop</object-name>
@@ -515,6 +608,9 @@
   <object-name>SingleSmokeTrail</object-name>
   <object-name>LeftSmokeTrail</object-name>
   <object-name>RightSmokeTrail</object-name>
+  <object-name>KeelSmokeGenerator</object-name>
+  <object-name>LeftSmokeGenerator</object-name>
+  <object-name>RightSmokeGenerator</object-name>
 
   <object-name>HangLever</object-name>
   <object-name>HangLoop</object-name>
@@ -555,6 +651,9 @@
   <object-name>SingleSmokeTrail</object-name>
   <object-name>LeftSmokeTrail</object-name>
   <object-name>RightSmokeTrail</object-name>
+  <object-name>KeelSmokeGenerator</object-name>
+  <object-name>LeftSmokeGenerator</object-name>
+  <object-name>RightSmokeGenerator</object-name>
 
   <object-name>HangLever</object-name>
   <object-name>HangLoop</object-name>
@@ -589,6 +688,9 @@
   <object-name>SingleSmokeTrail</object-name>
   <object-name>LeftSmokeTrail</object-name>
   <object-name>RightSmokeTrail</object-name>
+  <object-name>KeelSmokeGenerator</object-name>
+  <object-name>LeftSmokeGenerator</object-name>
+  <object-name>RightSmokeGenerator</object-name>
 
   <object-name>HangLever</object-name>
   <object-name>HangLoop</object-name>
@@ -1605,5 +1707,79 @@
   </condition>
  </animation>
 
+ <animation>
+  <type>pick</type>
+   <object-name>KeelSmokeGenerator</object-name>
+   <action>
+    <button>0</button>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+    <repeatable>false</repeatable>
+     <binding>
+      <command>property-toggle</command>
+      <property>sim/model/SmokeTrail/Keel/Smoke</property>
+      <value>0</value>
+      <value>1</value>
+     </binding>
+     <binding>
+      <command>nasal</command>
+      <script>
+       MRX13.smoke_control( "Keel",getprop("sim/model/SmokeTrail/Keel/Smoke") );
+      </script>
+     </binding>
+   </action>
+ </animation>
+
+ <animation>
+  <type>pick</type>
+   <object-name>LeftSmokeGenerator</object-name>
+   <action>
+    <button>0</button>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+    <repeatable>false</repeatable>
+     <binding>
+      <command>property-toggle</command>
+      <property>sim/model/SmokeTrail/ControlBarLeft/Smoke</property>
+      <value>0</value>
+      <value>1</value>
+     </binding>
+     <binding>
+      <command>nasal</command>
+      <script>
+       MRX13.smoke_control( "ControlBarLeft",getprop("sim/model/SmokeTrail/ControlBarLeft/Smoke") );
+      </script>
+     </binding>
+   </action>
+ </animation>
+
+ <animation>
+  <type>pick</type>
+   <object-name>RightSmokeGenerator</object-name>
+   <action>
+    <button>0</button>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+    <repeatable>false</repeatable>
+     <binding>
+      <command>property-toggle</command>
+      <property>sim/model/SmokeTrail/ControlBarRight/Smoke</property>
+      <value>0</value>
+      <value>1</value>
+     </binding>
+     <binding>
+      <command>nasal</command>
+      <script>
+       MRX13.smoke_control( "ControlBarRight",getprop("sim/model/SmokeTrail/ControlBarRight/Smoke") );
+      </script>
+     </binding>
+   </action>
+ </animation>
  
 </PropertyList>
