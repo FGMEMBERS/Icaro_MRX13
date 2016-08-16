@@ -3,6 +3,7 @@
 <PropertyList>
 
  <path>SmokeGenerator.ac</path> 
+ <nopreview/>
 
  <params>
   <generator>/sim/model/SmokeTrail/Keel/Generator</generator>

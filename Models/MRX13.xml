@@ -31,6 +31,12 @@
      alias(rplayer.getNode("sim/multiplay/generic/int[8]"));
    rplayer.getNode("sim/model/SmokeTrail/ControlBarRight/Generator", 1).
      alias(rplayer.getNode("sim/multiplay/generic/int[9]"));
+   rplayer.getNode("sim/model/SmokeTrail/Keel/Smoke", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/int[10]"));
+   rplayer.getNode("sim/model/SmokeTrail/ControlBarLeft/Smoke", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/int[11]"));
+   rplayer.getNode("sim/model/SmokeTrail/ControlBarRight/Smoke", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/int[12]"));
 
    rplayer.getNode("sim/model/MRX13/animation/running_leg_left", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[0]"));
@@ -64,11 +70,22 @@
    rplayer.getNode("sim/hitches/winch/force_name_jsbsim", 1).
      alias(rplayer.getNode("sim/multiplay/generic/string[0]"));
 
+   # set some not transmitted properties (to default values)
    rplayer.getNode("sim/current-view/view-number", 1).setIntValue(1); # set view=1 to prevent deselected helmet
    rplayer.getNode("instrumentation/woolthread/severity1", 1).setValue(0); # severity1 is not transmitted
    rplayer.getNode("instrumentation/woolthread/severity2", 1).setValue(0); # severity2 is not transmitted
    rplayer.getNode("gear/gear[1]/position-norm", 1).setValue(0); # property is not transmitted
-   rplayer.getNode("sim/model/SmokeTrail/help/off", 1).setIntValue(0); # property is not transmitted
+   # smoke system
+   rplayer.getNode("sim/model/SmokeTrail/help/off", 1).setIntValue(0);
+   rplayer.getNode("sim/model/SmokeTrail/Keel/red", 1).setValue(0.8);
+   rplayer.getNode("sim/model/SmokeTrail/Keel/green", 1).setValue(0.);
+   rplayer.getNode("sim/model/SmokeTrail/Keel/blue", 1).setValue(0.);
+   rplayer.getNode("sim/model/SmokeTrail/ControlBarLeft/red", 1).setValue(0.8);
+   rplayer.getNode("sim/model/SmokeTrail/ControlBarLeft/green", 1).setValue(0.);
+   rplayer.getNode("sim/model/SmokeTrail/ControlBarLeft/blue", 1).setValue(0.);
+   rplayer.getNode("sim/model/SmokeTrail/ControlBarRight/red", 1).setValue(0.8);
+   rplayer.getNode("sim/model/SmokeTrail/ControlBarRight/green", 1).setValue(0.);
+   rplayer.getNode("sim/model/SmokeTrail/ControlBarRight/blue", 1).setValue(0.);
    # print("MRX13 loaded")
 
   </load>
@@ -87,6 +104,9 @@
    rplayer.getNode("sim/model/SmokeTrail/Keel/Generator", 1).unalias();
    rplayer.getNode("sim/model/SmokeTrail/ControlBarLeft/Generator", 1).unalias();
    rplayer.getNode("sim/model/SmokeTrail/ControlBarRight/Generator", 1).unalias();
+   rplayer.getNode("sim/model/SmokeTrail/Keel/Smoke", 1).unalias();
+   rplayer.getNode("sim/model/SmokeTrail/ControlBarLeft/Smoke", 1).unalias();
+   rplayer.getNode("sim/model/SmokeTrail/ControlBarRight/Smoke", 1).unalias();
 
    # rplayer.getNode("sim/current-view/view-number", 1).unalias();
 
@@ -171,9 +191,9 @@
   </offsets>
   <overlay>
    <params>
-    <red>/sim/model/SmokeTrail/Keel/red</red>
-    <green>/sim/model/SmokeTrail/Keel/green</green>
-    <blue>/sim/model/SmokeTrail/Keel/blue</blue>
+    <red>sim/model/SmokeTrail/Keel/red</red>
+    <green>sim/model/SmokeTrail/Keel/green</green>
+    <blue>sim/model/SmokeTrail/Keel/blue</blue>
    </params>
   </overlay>
  </model>
@@ -191,9 +211,9 @@
   </offsets>
   <overlay>
    <params>
-    <red>/sim/model/SmokeTrail/ControlBarLeft/red</red>
-    <green>/sim/model/SmokeTrail/ControlBarLeft/green</green>
-    <blue>/sim/model/SmokeTrail/ControlBarLeft/blue</blue>
+    <red>sim/model/SmokeTrail/ControlBarLeft/red</red>
+    <green>sim/model/SmokeTrail/ControlBarLeft/green</green>
+    <blue>sim/model/SmokeTrail/ControlBarLeft/blue</blue>
    </params>
   </overlay>
  </model>
@@ -211,9 +231,9 @@
   </offsets>
   <overlay>
    <params>
-    <red>/sim/model/SmokeTrail/ControlBarRight/red</red>
-    <green>/sim/model/SmokeTrail/ControlBarRight/green</green>
-    <blue>/sim/model/SmokeTrail/ControlBarRight/blue</blue>
+    <red>sim/model/SmokeTrail/ControlBarRight/red</red>
+    <green>sim/model/SmokeTrail/ControlBarRight/green</green>
+    <blue>sim/model/SmokeTrail/ControlBarRight/blue</blue>
    </params>
   </overlay>
  </model>
@@ -236,9 +256,9 @@
   </offsets>
   <overlay>
    <params>
-    <GeneratorKeel>/sim/model/SmokeTrail/Keel/Generator</GeneratorKeel>
-    <GeneratorControlBarLeft>/sim/model/SmokeTrail/help/off</GeneratorControlBarLeft>
-    <GeneratorControlBarRight>/sim/model/SmokeTrail/help/off</GeneratorControlBarRight>
+    <GeneratorKeel>sim/model/SmokeTrail/Keel/Generator</GeneratorKeel>
+    <GeneratorControlBarLeft>sim/model/SmokeTrail/help/off</GeneratorControlBarLeft>
+    <GeneratorControlBarRight>sim/model/SmokeTrail/help/off</GeneratorControlBarRight>
    </params>
   </overlay>
 
@@ -260,9 +280,9 @@
   </offsets>
   <overlay>
    <params>
-    <GeneratorKeel>/sim/model/SmokeTrail/help/off</GeneratorKeel>
-    <GeneratorControlBarLeft>/sim/model/SmokeTrail/ControlBarLeft/Generator</GeneratorControlBarLeft>
-    <GeneratorControlBarRight>/sim/model/SmokeTrail/help/off</GeneratorControlBarRight>
+    <GeneratorKeel>sim/model/SmokeTrail/help/off</GeneratorKeel>
+    <GeneratorControlBarLeft>sim/model/SmokeTrail/ControlBarLeft/Generator</GeneratorControlBarLeft>
+    <GeneratorControlBarRight>sim/model/SmokeTrail/help/off</GeneratorControlBarRight>
    </params>
   </overlay>
  </model>
@@ -283,9 +303,9 @@
   </offsets>
   <overlay>
    <params>
-    <GeneratorKeel>/sim/model/SmokeTrail/help/off</GeneratorKeel>
-    <GeneratorControlBarLeft>/sim/model/SmokeTrail/help/off</GeneratorControlBarLeft>
-    <GeneratorControlBarRight>/sim/model/SmokeTrail/ControlBarRight/Generator</GeneratorControlBarRight>
+    <GeneratorKeel>sim/model/SmokeTrail/help/off</GeneratorKeel>
+    <GeneratorControlBarLeft>sim/model/SmokeTrail/help/off</GeneratorControlBarLeft>
+    <GeneratorControlBarRight>sim/model/SmokeTrail/ControlBarRight/Generator</GeneratorControlBarRight>
    </params>
   </overlay>
  </model>
