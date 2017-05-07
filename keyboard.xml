@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<PropertyList>   
+<PropertyList>
 
   <keyboard>
 
@@ -164,7 +164,7 @@
     <binding>
      <command>nasal</command>
      <script>
-      # setprop("orientation/roll-deg", 0); 
+      # setprop("orientation/roll-deg", 0);
       # setprop("orientation/pitch-deg", 0);
       MRX13.wing_failure_repair();
      </script>
@@ -365,7 +365,30 @@
     </binding>
    </key>
 
-<!--    
+   <key n="61">
+    <name>=</name>
+    <desc>Smoke Grenade</desc>
+    <binding>
+     <command>property-toggle</command>
+     <property>sim/model/SmokeTrail/SmokeGrenade/ReleaseSmokeGrenade</property>
+    </binding>
+    <binding>
+     <command>nasal</command>
+     <script>
+      setprop("sim/model/SmokeTrail/SmokeGrenade/burning-end-sec",
+      getprop("sim/time/elapsed-sec") +
+      getprop("sim/model/SmokeTrail/SmokeGrenade/burning-time-sec") );
+     </script>
+    </binding>
+    <mod-up>
+     <binding>
+      <command>property-toggle</command>
+      <property>sim/model/SmokeTrail/SmokeGrenade/ReleaseSmokeGrenade</property>
+     </binding>
+    </mod-up>
+   </key>
+
+<!--
     <key n="16">
       <name>Ctrl-p</name>
       <desc>Toggle parachute</desc>

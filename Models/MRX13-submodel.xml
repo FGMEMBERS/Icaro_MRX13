@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+************************************************************************
+Submodel for smoke grenade in air 
+(Params do NOT work in the model. A special model is used instead.
+Drawback: No customizable smoke colors
+************************************************************************
+-->
+
+<PropertyList>
+
+<submodel>
+  <name>SmokeGrenade-submodel</name>
+  <model>Aircraft/Icaro_MRX13/Models/SmokeTrail/SmokeGrenade_workaround.xml</model>
+
+  <trigger>sim/model/SmokeTrail/SmokeGrenade/ReleaseSmokeGrenade</trigger>
+  <repeat>false</repeat>
+  <delay>0.1</delay>
+  <count>-1</count>
+  <speed>0</speed>
+  <wind>true</wind>
+  <aero-stabilised>false</aero-stabilised>
+  <eda>50.</eda>
+  <cd>0.5</cd>
+  <weight>160.</weight>
+  <offsets>
+   <x-m>0.</x-m>
+   <y-m>0.</y-m>
+   <z-m>-1.5</z-m>
+   <pitch-deg>0</pitch-deg>
+   <heading-deg>0</heading-deg>
+  </offsets>
+  <buoyancy>0.</buoyancy>
+  <life>60.</life>
+  <expiry>false</expiry>
+  <delay>0</delay>
+  <impact>true</impact>
+  <impact-reports>ai/models/model-impact</impact-reports>
+</submodel>
+
+</PropertyList>

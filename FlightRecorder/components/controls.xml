@@ -11,11 +11,6 @@
  </signal>
 
  <signal>
-  <type>float</type>
-  <property type="string">/controls/flight/pilot-attitude-deg</property>
- </signal>
-
- <signal>
   <type>bool</type>
   <property type="string">/controls/gear/gear-down</property>
  </signal>

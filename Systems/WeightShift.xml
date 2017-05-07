@@ -23,7 +23,10 @@
  <property value="   0.0"> systems/weightshift/cg_pilot-y-inch </property>
  <property value="-53.15"> systems/weightshift/cg_pilot-z-inch </property>
 
-
+ <!-- Pilot mass shift due to loose hangstrap -->
+ <property value="0"> systems/weightshift/cg_pilot_shift-z-inch </property>
+ 
+ 
  <channel name="WeightShift">
 
   <!--
@@ -144,6 +147,7 @@
   <summer name="systems/weightshift/cg_pilot-zglobal-inch">
    <input> systems/weightshift/delta-z-inch </input>
    <input> systems/weightshift/hangpoint-z-inch </input>
+   <input> systems/weightshift/cg_pilot_shift-z-inch </input>
   </summer>
 
   <!-- weightshift only in air / no weighshift on ground -->

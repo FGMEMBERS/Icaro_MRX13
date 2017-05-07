@@ -55,9 +55,13 @@
       <desc>aerotow-keys (see Checklist: Aerotow)</desc>
     </key>
     <key>
+      <name>=</name>
+      <desc>drop smoke grenade (to show ground wind)</desc>
+    </key>
+    <key>
       <name>s</name>
       <desc>toggle start/stop generic engine</desc>
-    </key>    
+    </key>
     <key>
       <name>Ctrl-u</name>
       <desc>jump up 1000ft</desc>
@@ -88,10 +92,10 @@
 
     <line>Note: </line>
     <line>This hang glider is weight-shift controlled.</line>
-    <line>Flying (under positiv g-force conditions) is quite realistic. </line>
+    <line>The hang strap is semiflexible.</line>
+    <line>Flying - even outside the normal flight envelope - is quite realistic. </line>
     <line>Feel the influence of wind, turbulence, thermals and ridge lift!</line>
-    <line>Appropriate settings for ridge lift is wind with 15-20kt normal</line>
-    <line> to the slope orientation in all altitudes.  </line>
+    <line>Appropriate settings for ridge lift is wind with 15-20kt normal to the slope orientation in all altitudes.  </line>
     <line>Be careful with the angle of attack in strong winds on ground!</line>
     <line> </line>
 

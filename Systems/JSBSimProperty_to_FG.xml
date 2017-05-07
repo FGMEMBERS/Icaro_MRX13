@@ -67,6 +67,23 @@
 <filter>
   <type>gain</type>
   <gain>4.44822</gain>
+
+  <input>
+   <condition>
+    <and>
+     <greater-than>
+      <property>fdm/jsbsim/forces/fbz-aero-lbs</property>
+      <value>-0.1</value>
+     </greater-than>
+     <less-than>
+      <property>fdm/jsbsim/forces/fbz-aero-lbs</property>
+      <value>0.1</value>
+     </less-than>
+    </and>
+   </condition>
+   <value>0.1</value>
+  </input>
+
   <input>fdm/jsbsim/forces/fbz-aero-lbs</input>
   <output>sim/model/forces/fbz-aero-N</output>
 </filter>

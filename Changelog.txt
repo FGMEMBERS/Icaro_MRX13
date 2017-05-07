@@ -1,3 +1,21 @@
+Changes May 2017:
+
+- semiflexible hang strap (pilot can shift in z-direction)
+- customizable hang strap length
+- smoother running animation
+- animation in walking mode
+- more flexible harness
+- hinged vizor
+- jettisonable smoke grenade (to show ground wind)
+- smoke generator gui: bugfix for input burning time
+- split the Icaro_Laminar gui in two different gui
+  (MRX13 specific and hang glider analysis related)
+
+Note: 
+  animations in multiplayer are incompatible to
+  previous MRX13 versions
+
+
 Changes August 2016:
 
 - customizable smoke system (gui, smoke color, burning time)

@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<!-- Version: 2017-04-02 -->
+
+<PropertyList>
+ <name>Hang_Strap_Length_dialog</name>
+ <layout>vbox</layout>
+ <default-padding>2</default-padding>
+ <modal>false</modal>
+ <width>300</width>
+ <!-- title bar -->
+ <group>
+  <layout>hbox</layout>
+  <empty><stretch>true</stretch></empty>
+  <text>
+   <label>Hang Strap Length Configuration</label>
+  </text>
+  <empty><stretch>true</stretch></empty>
+  <button>
+   <legend/>
+   <key>Esc</key>
+   <pref-width>16</pref-width>
+   <pref-height>16</pref-height>
+   <border>2</border>
+   <binding>
+    <command>dialog-close</command>
+   </binding>
+  </button>
+ </group>
+
+ <hrule/>
+ <hrule/>
+
+ <frame>
+  <layout>vbox</layout>
+  <empty><stretch>true</stretch></empty>
+
+  <text>
+   <label>hang strap length</label>
+  </text>
+  <empty><stretch>true</stretch></empty>
+  <group>
+  <layout>hbox</layout>
+  <text>
+  <halign>left</halign>
+  <label>offset [inch]</label>
+  </text>
+  <group>
+   <layout>hbox</layout>
+   <halign>right</halign>
+    <text>
+     <label>99999</label>
+     <live>true</live>
+     <format>% 2.2f</format>
+     <property>fdm/jsbsim/systems/weightshift/cg_pilot_shift-z-inch-custom</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+    <empty><stretch>true</stretch></empty>
+    <vrule/>
+    <group>
+     <width>38</width>
+     <text>
+      <label>-100</label>
+     </text>
+    </group>
+    <slider>
+     <name>hsl</name>
+     <live>true</live>
+     <property>fdm/jsbsim/systems/weightshift/cg_pilot_shift-z-inch-custom</property>
+     <min>-100</min>
+     <max>100</max>
+     <step>1.</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+    </slider>
+    <group>
+     <width>38</width>
+     <text>
+      <label>100</label>
+     </text>
+    </group>
+   </group>
+  </group>
+
+  <empty><stretch>true</stretch></empty>
+ </frame>
+
+ <hrule/>
+ <hrule/>
+
+ <!-- bottom line -->
+
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+   <button>
+    <legend>Set Defaults</legend>
+    <binding>
+     <command>nasal</command>
+      <script>
+       MRX13.hang_strap_length_defaults();
+      </script>
+    </binding>
+   </button>
+   <empty><stretch>true</stretch></empty>
+
+  <layout>hbox</layout>
+  <empty><stretch>true</stretch></empty>
+  <button>
+   <legend>Close</legend>
+   <binding>
+    <command>dialog-close</command>
+   </binding>
+  </button>
+  <empty><stretch>true</stretch></empty>
+ </group>
+
+</PropertyList>

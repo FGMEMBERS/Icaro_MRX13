@@ -21,13 +21,18 @@
  </signal>
 
  <signal>
+  <type>float</type>
+  <property type="string">/surface-positions/pilot-attitude-deg</property>
+ </signal>
+
+ <signal>
   <type>bool</type>
   <property type="string">/sim/model/MRX13/on-ground</property>
  </signal>
 
  <signal>
   <type>float</type>
-  <property type="string">/sim/model/MRX13/LaunchPosition</property>
+  <property type="string">/surface-positions/pilot_shift-z-norm</property>
  </signal>
 
  <signal>
@@ -44,7 +49,6 @@
   <type>float</type>
   <property type="string">/sim/model/MRX13/animation/running_leg_left</property>
  </signal>
-
  <signal>
   <type>float</type>
   <property type="string">/sim/model/MRX13/animation/running_leg_right</property>
@@ -56,6 +60,10 @@
  <signal>
   <type>float</type>
   <property type="string">/sim/model/MRX13/animation/running_leg_sign</property>
+ </signal>
+ <signal>
+  <type>float</type>
+  <property type="string">/sim/model/MRX13/animation/sidestep-deg</property>
  </signal>
 
  <signal>

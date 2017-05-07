@@ -164,7 +164,7 @@ var stability_roll_defaults = func {
 
   setprop("sim/model/MRX13/stability/factor-Clda", 1.);
   setprop("sim/model/MRX13/stability/factor-Clb" , 1.);
-  setprop("sim/model/MRX13/stability/factor-Clr" , 1.);  
+  setprop("sim/model/MRX13/stability/factor-Clr" , 1.);
   setprop("sim/model/MRX13/stability/factor-Clp" , 1.);
 
 }
@@ -214,11 +214,55 @@ var smoke_defaults = func {
   setprop("sim/model/SmokeTrail/ControlBarLeft/blue", 0.);
 
   setprop("sim/model/SmokeTrail/ControlBarRight/Generator", 0);
-  setprop("sim/model/SmokeTrail/ControlBarRight/burning-time-sec", 185); 
+  setprop("sim/model/SmokeTrail/ControlBarRight/burning-time-sec", 185);
   setprop("sim/model/SmokeTrail/ControlBarRight/red", 0.8);
   setprop("sim/model/SmokeTrail/ControlBarRight/green", 0.);
   setprop("sim/model/SmokeTrail/ControlBarRight/blue", 0.);
 
 }
 
+
+################################################################################################
+#
+# Set default smoke grenade values
+#
+################################################################################################
+
+var smoke_grenade_defaults = func {
+
+  setprop("sim/model/SmokeTrail/SmokeGrenade/burning-time-sec", 60);
+  setprop("sim/model/SmokeTrail/SmokeGrenade/red", 1.0);
+  setprop("sim/model/SmokeTrail/SmokeGrenade/green", 0.5);
+  setprop("sim/model/SmokeTrail/SmokeGrenade/blue", 0.);
+
+}
+
+
+################################################################################################
+#
+# Set default hang strap length values
+#
+################################################################################################
+
+var hang_strap_length_defaults = func {
+
+  setprop("fdm/jsbsim/systems/weightshift/cg_pilot_shift-z-inch-custom", 0);
+
+}
+
+
+################################################################################################
+#
+# Set default test property values
+#
+################################################################################################
+
+var test_property_defaults = func {
+
+#  setprop("sim/model/SmokeTrail/SmokeGrenade/burning-time-sec", 60);
+#  setprop("sim/model/SmokeTrail/SmokeGrenade/red", 1.0);
+#  setprop("sim/model/SmokeTrail/SmokeGrenade/green", 0.5);
+#  setprop("sim/model/SmokeTrail/SmokeGrenade/blue", 0.);
+
+}
 

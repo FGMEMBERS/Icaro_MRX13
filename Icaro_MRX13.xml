@@ -11,9 +11,10 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
     <email> d_nxkt@yahoo.de </email>
     <filecreationdate> April 24, 2016 </filecreationdate>
     <version> $Version 1.1 $ </version>
-    <description> Models a weight-shift controlled hang glider</description>
+    <description> Models a weight-shift controlled hang glider with
+                  a semiflexible hang strap </description>
     <note> some kind of remarks</note>
-    <limitation> realistic only for positive g-forces (rigid hang strap)</limitation>
+    <limitation> flexibility of sail not taken into account</limitation>
     <documentation>
     </documentation>
     <reference>
@@ -440,7 +441,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
        <function>
         <description>Limit for pull-in deflection</description>
         <table>
-         <independentVar lookup="row">/controls/flight/pilot-attitude-deg</independentVar>
+         <independentVar lookup="row">fcs/pilot-attitude-pos-deg</independentVar>
          <tableData>
            -10.   2.
              0.   2.
@@ -455,7 +456,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
        <function>
         <description>Upright pilot can farther push out</description>
         <table>
-         <independentVar lookup="row">/controls/flight/pilot-attitude-deg</independentVar>
+         <independentVar lookup="row">fcs/pilot-attitude-pos-deg</independentVar>
          <tableData>
            -10.   1.
              0.   1.
@@ -557,21 +558,11 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
     </channel>
 
     <channel name="Pilot Attitude">
-      <aerosurface_scale name="fcs/pilot-attitude-pos-deg"> <!-- used for PilotDrag -->
+      <actuator name="fcs/pilot-attitude-pos-deg"> <!-- used for PilotDrag -->
         <input>/controls/flight/pilot-attitude-deg</input>
-        <domain>
-          <min>-10</min>
-          <max> 70</max>
-        </domain>
-        <range>
-          <min>-10</min>
-          <max> 70</max>
-        </range>
-        <clipto>
-          <min>-10.</min>
-          <max> 70.</max>
-        </clipto>
-      </aerosurface_scale>
+        <rate_limit>55</rate_limit>
+        <output>/surface-positions/pilot-attitude-deg</output>
+      </actuator>
     </channel>
 
     <channel name="Landing Gear">
@@ -1179,6 +1170,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
 
   <system file="GroundHandling"/>
   <system file="WeightShift"/>
+  <system file="HangStrapFlexible"/>
   <system file="PilotDrag"/>
   <system file="Wheels"/>
   <system file="GenericEngine"/>
