@@ -2,18 +2,22 @@
 
 <system name="HangStrapFlexible">
 
- <!-- Pilot mass shift due to loose hangstrap -->
+ <!-- Pilot mass shift due to loose hang strap -->
  <property value="0"> systems/weightshift/cg_pilot_shift-z-inch-custom </property>
 
 
  <channel name="distance wing pilot">
 
   <!-- variables
-  distance pivot upper legs to pilot shoulder = 0.55m = 21.6535inch
-  distance upright pilot shoulder to hangpoint = 0.15m = 5.9055inch (?)
+  distance pivot upper legs to pilot shoulder pivot = 0.532m = 20.945inch (absolute distance)
+  distance-z upright (90deg) pilot shoulder pivot to hangpoint = 0.777m = 30.590inch
+  distance-z pivot upper legs to pilot shoulder pivot = 0.5297m = 20.854inch
+  distance-z pivot upper legs to RotateAboutPilot pivot = 0.8355m = 32.894inch
+  angle between pivot upper legs and horizontal pilot shoulder pivot = 5.50deg
+  distance-z pivot upper legs to hangpoint = 1.3067m = 51.445inch
   distance pivot upper legs to pivot hang strap = 0.1612m = 6.3386inch (only distance-z)
   distance pivot upper legs to pivot hang strap = 0.16195m = 6.37600inch (absolute distance)
-  angle between vertical and pivot upper legs to pivot hang strap = 5.55deg
+  angle between vertical and pivot upper legs to pivot hang strap = 5.53deg
   systems/HangStrapFlexible/distance_wing_pilot_max-z-inch
   fcs/pilot-attitude-pos-deg
 
@@ -22,36 +26,46 @@
 
   <fcs_function name="systems/HangStrapFlexible/distance_wing_pilot-z-inch-max">
    <function>
-    <description>maximal possible distance from hangpoint to pilot shoulder</description>
+    <description>maximal possible distance from hangpoint to pilot shoulder pivot</description>
     <sum>
-     <!-- delta z due to distance upright pilot shoulder to hangpoint -->
-     <value>5.9055</value>
-     <!-- delta z due to distance pivot upper legs to pilot shoulder -->
-     <product>
-      <value>21.6535</value>
-      <difference>
-       <value>1.</value>
-       <sin>
-        <product>
-        <property>fcs/pilot-attitude-pos-deg</property>
-        <value>0.0174532</value>
-        </product>
-       </sin>
-      </difference>
-     </product>
-     <!-- delta z due to different pivot upper legs to pivot hang strap -->
-     <product>
-      <value>6.37600</value>
-      <cos>
-       <product>
-        <sum>
-         <property>fcs/pilot-attitude-pos-deg</property>
-         <value>5.55</value>
-        </sum>
-        <value>0.0174532</value>
+     <difference>
+      <!-- delta z pivot upper legs to RotateAboutPilot pivot (NOT hangpoint!) -->
+      <value>51.445</value>
+      <!-- delta z due to distance pivot upper legs to pilot shoulder pivot-->
+      <product>
+       <value>20.945</value>
+        <sin>
+         <product>
+          <sum>
+           <property>fcs/pilot-attitude-pos-deg</property>
+           <value>5.50</value>
+          </sum>
+          <value>0.0174532</value>
+         </product>
+        </sin>
        </product>
-      </cos>
-     </product>
+      </difference>
+
+      <!-- delta z due to difference pivot upper leg to pivot hang strap -->
+      <sum>
+       <!-- distance-z pivot upper legs to pivot hang strap -->
+       <value>-6.339</value>
+       <product>
+        <!-- absolute distance pivot upper legs to pivot hang strap -->
+        <value>6.376</value>
+        <cos>
+         <product>
+          <sum>
+           <property>fcs/pilot-attitude-pos-deg</property>
+           <value>-5.53</value>
+          </sum>
+         <value>0.0174532</value>
+        </product>
+       </cos>
+      </product>
+     </sum>
+     <!-- distance-z RotatAboutPilot pivot to hang point -->
+     <value>-18.55</value>
     </sum>
    </function>
   </fcs_function>

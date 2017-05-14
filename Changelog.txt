@@ -4,6 +4,7 @@ Changes May 2017:
 - customizable hang strap length
 - smoother running animation
 - animation in walking mode
+- improved arm animation
 - more flexible harness
 - hinged vizor
 - jettisonable smoke grenade (to show ground wind)

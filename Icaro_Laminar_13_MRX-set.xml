@@ -147,7 +147,7 @@ Last update: May 5th, 2017 D-NXKT, D_NXKT@yahoo.de
     
     <with-wheels type="bool">true</with-wheels>
     <with-woolthread type="bool">true</with-woolthread>
-    <with-TwoStageRelease type="bool">true</with-TwoStageRelease>
+    <with-TwoStageRelease type="bool">false</with-TwoStageRelease>
     <wing-failure-enable type="bool">true</wing-failure-enable>
     <hang-strap-flexible type="bool">true</hang-strap-flexible>
     <DrogueChute>0</DrogueChute>
