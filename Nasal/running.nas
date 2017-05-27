@@ -1,7 +1,7 @@
 var RunningAnimation = func {
 #
 # ---------------------------------------------------------------------------------
-#                        Running Animation                      Status: 10.07.2016
+#                        Running Animation                      Status: 01.04.2017
 # ---------------------------------------------------------------------------------
 #
 if( !getprop("sim/replay/replay-state") ) { # skip in flight recorder replay mode
@@ -16,61 +16,103 @@ if( !getprop("sim/replay/replay-state") ) { # skip in flight recorder replay mod
 #                            gear and prone
 # -------------------------------------------------------------
 #
-  var gear_pos_norm = getprop("gear/gear[1]/position-norm"); # gear in-out (0-1)
+var gear_pos_norm = getprop("gear/gear[1]/position-norm"); # gear in-out (0-1)
+
+if( gear_pos_norm > 0) {
+
+  # trick: slight time shift to ensure that legs are entirely inside
+  #harness before this routine stops
+  gear_pos_norm = math.max(0, (gear_pos_norm-0.02)*1.02);
+
   var legs_pos_gear = gear_pos_norm * 90.;
-#
-# -------------------------------------------------------------
-#                              running
-# -------------------------------------------------------------
-#
-  var legs_pos_run = 0 ;    #initializing
-  var time = getprop("sim/time/elapsed-sec");
 
-    var altitude = getprop("position/altitude-agl-ft");
-    var brake    = getprop("controls/gear/brake-parking");
-    var u_fps    = getprop("/fdm/jsbsim/velocities/u-fps");
+  # -------------------------------------------------------------
+  #                              running
+  # -------------------------------------------------------------
 
-    if(altitude < 10. ) {
+  var legs_pos_run = 7.5 ;    #initializing
+  var position_lower_leg = -30.;
+  var position_dot_sign = 0.;
+  var weighting_altitude = 0.;
 
-      var groundspeed = getprop("velocities/groundspeed-kt");
+  var altitude = getprop("position/altitude-agl-ft");
+  # var brake    = getprop("controls/gear/brake-parking");
 
-      var direction = 1;
-      if ( u_fps < 0. ) {var direction = -1; }
+  if(altitude < 15. ) {
 
-      var omega = 0.;
-      if      ( groundspeed < .25 ) { var omega = 0; }
-      else if ( groundspeed <  5  ) { var omega = 2. * math.pi / 4 * direction; }
-      else if ( groundspeed <  20 ) { var omega = 2. * math.pi / 2 * direction; }
-      else if ( groundspeed <  40 ) { var omega = 2. * math.pi     * direction; }
-      else                          { var omega = 2. * math.pi * 2 * direction;}
+    var groundspeed = getprop("velocities/uBody-fps") +
+                      getprop("sim/model/MRX13/animation/ahead")*15;
+    var phi_rad = getprop("sim/model/MRX13/animation/phi-rad");
+    var dt = getprop("sim/time/delta-sec");
 
-      var legs_pos_run = 30. * math.sin( omega * time );
-      var position_dot_sign = math.cos( omega * time );
+    weighting_altitude = math.clamp( (15-altitude)/10 , 0, 1);
 
-      if ( groundspeed < .25  )
-        { var legs_pos_run = 0. ;
-          var position_dot_sign = 0.;
-          var position_lower_leg = 30; }
-      else
-        { var position_lower_leg = legs_pos_run; }
-    }    # end altitude<10
-    else # above altitude 10
-    {
-    #  var legs_pos_run = 0.; # straight
-      var legs_pos_run = 7.5;
-      var position_dot_sign = 0.;
-    #  var position_lower_leg = 30;  # straight
-      var position_lower_leg = 15;
+    var step_length_deg = math.min( math.sqrt( abs(groundspeed) ) * 10 , 50 );
+    step_length_deg = step_length_deg * weighting_altitude + 0.0000001;
+
+    var delta_phi_rad = 2. * math.pi * math.min(groundspeed , 35 ) / math.sqrt(step_length_deg) / 2 * dt ;
+    delta_phi_rad = delta_phi_rad * weighting_altitude;
+
+    phi_rad = phi_rad + delta_phi_rad;
+    phi_rad = math.periodic(0, 2*math.pi, phi_rad);
+
+    legs_pos_run = step_length_deg * math.sin( phi_rad );
+
+    position_dot_sign = math.cos( phi_rad );
+
+    if ( abs(groundspeed) < .01 ) {
+      legs_pos_run = 0.;
+      position_dot_sign = 0.;
+      position_lower_leg = 0;
     }
-    var position2 = position_lower_leg *  gear_pos_norm + 30 * (  1 - gear_pos_norm );
-    setprop("sim/model/MRX13/animation/running_leg",position2);
-    setprop("sim/model/MRX13/animation/running_leg_sign",position_dot_sign);
+    else {
+      var position_lower_leg = -2. * step_length_deg + 2. * abs( legs_pos_run );
+    }
+    setprop("sim/model/MRX13/animation/phi-rad",phi_rad);
+
+    legs_pos_run = 7.5 * (1-weighting_altitude) + legs_pos_run * weighting_altitude;
+    position_lower_leg = -30 * (1-weighting_altitude) + position_lower_leg * weighting_altitude;
+
+  } # end altitude<15
+
+  var position2 = position_lower_leg *  gear_pos_norm;
+  setprop("sim/model/MRX13/animation/running_leg",position2);
+  setprop("sim/model/MRX13/animation/running_leg_sign",position_dot_sign);
 
   var leg_pos_left  = legs_pos_gear + legs_pos_run * gear_pos_norm;
   var leg_pos_right = legs_pos_gear - legs_pos_run * gear_pos_norm;
 
   setprop("sim/model/MRX13/animation/running_leg_left" ,leg_pos_left);
   setprop("sim/model/MRX13/animation/running_leg_right",leg_pos_right);
+
+  # -------------------------------------------------------------
+  #                              sidestep
+  # -------------------------------------------------------------
+
+  sidestep_deg = 0.;
+
+  if(altitude < 10. ) {
+
+    var sidespeed = getprop("sim/model/MRX13/animation/side");
+    phi_rad = getprop("sim/model/MRX13/animation/phi_side-rad");
+
+    if ( sidespeed == 0. ) phi_rad = 0.;
+
+    delta_phi_rad = 2. * math.pi * 0.7 * dt ;
+
+    phi_rad = phi_rad + delta_phi_rad;
+    phi_rad = math.periodic(0, math.pi, phi_rad);
+
+    sidestep_deg = math.min( abs(sidespeed) * 40 , 30 );
+    sidestep_deg = sidestep_deg * math.sin( phi_rad );
+
+    setprop("sim/model/MRX13/animation/phi_side-rad",phi_rad);
+
+  } # end altitude<10
+
+  setprop("sim/model/MRX13/animation/sidestep-deg" ,sidestep_deg);
+
+ } # end gear out
 }
   settimer(RunningAnimation,0);
 
@@ -166,73 +208,3 @@ var Walking = func(){
   setprop("fdm/jsbsim/position/lat-gc-deg" ,latitude_deg);
 
 }
-
-
-#########################################################################
-#########################################################################
-
-#
-# ---------------------------------------------------------------------------------
-#               Launch Position (experimental)                  Status: 30.08.2014
-# ---------------------------------------------------------------------------------
-#
-var GliderLaunchPosition = func {
-
-if( !getprop("sim/replay/replay-state") ) { # skip in flight recorder replay mode
-
- # f=m*a  a=f/m  a=v/t=s/(t*t)      s=f/m*t*t
- # m = fdm/jsbsim/inertia/empty-weight-lbs  (35kg)
- # t = sim/time/delta-sec
-
- var on_ground   = getprop("fdm/jsbsim/systems/on-ground");
- if ( on_ground > 0 ){
-
-  var length    = getprop("sim/model/MRX13/LaunchPosition");
-  var pilot_attitude_rad = 0.0174532 * getprop("controls/flight/pilot-attitude-deg");
-  var length_max = 1.0 - 0.35 - 0.5*math.sin(pilot_attitude_rad);
-  #var length_max = 0.15 + 75-1.0 - 0.35 - 0.5*math.sin(pilot_attitude_rad);
-  var length_max = 0.15;  # valid for upright position only 
-  
-  var force_aero = - getprop("fdm/jsbsim/forces/fbz-aero-lbs") * 4.4482216153 ;
-  var dt        = getprop("sim/time/delta-sec"); #check if this is valid for nasal update-time
-  var mass_wing = 35.;  # m = fdm/jsbsim/inertia/empty-weight-lbs  (35kg)
-  var force_gravity = mass_wing * 9.81 ;
-
-
-  var force_wing = force_aero - force_gravity ;  # we assume a horizontal position of the wing!
-
-  var delta_length = force_wing / mass_wing * dt*dt ;
-  length = length - delta_length;  # 0:= flying position / length_max := launch position
-
-  if ( length < 0. ) {
-    length = 0.;
-    setprop("sim/model/MRX13/RotateAboutHangpoint", 1 );
-    setprop("sim/model/MRX13/RotateAboutPilot", 0 );
-    }
-  else if ( length > length_max ) {
-    length = length_max;
-    setprop("sim/model/MRX13/RotateAboutHangpoint", 0 );
-    setprop("sim/model/MRX13/RotateAboutPilot", 1 );
-  }
-  else {
-    setprop("sim/model/MRX13/RotateAboutHangpoint", 0 );
-    setprop("sim/model/MRX13/RotateAboutPilot", 1 );
-  }
- 
-  setprop("sim/model/MRX13/LaunchPosition",length);
-
- }
- else{
-  setprop("sim/model/MRX13/RotateAboutHangpoint", 1 );
-  setprop("sim/model/MRX13/RotateAboutPilot", 0 );
- }
-}
-  settimer(GliderLaunchPosition,0);
-}
-
-# Start GliderLaunchPosition ASAP
-setprop("sim/model/MRX13/LaunchPosition", 0.15 );      # default/initialization
-setprop("sim/model/MRX13/RotateAboutHangpoint", 0 );
-setprop("sim/model/MRX13/RotateAboutPilot", 1 );
-
-GliderLaunchPosition();

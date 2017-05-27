@@ -3,7 +3,7 @@
 ************************************************************************
 Weight shift controlled hang glider for FlightGear
 
-Last update: August 12, 2016 D-NXKT, D_NXKT@yahoo.de
+Last update: May 5th, 2017 D-NXKT, D_NXKT@yahoo.de
 ************************************************************************
 -->
 
@@ -11,8 +11,11 @@ Last update: August 12, 2016 D-NXKT, D_NXKT@yahoo.de
  <sim>
 
   <author>D-NXKT</author>
-  <description>Icaro Laminar 13 MRX hang glider (MRX13)</description>
-  <long-description></long-description>
+  <description>Icaro Laminar 13 MRX</description>
+  <long-description>
+    Weight shift controlled hang glider with
+    semiflexible hang strap
+  </long-description>
   <tags>
    <tag>glider</tag>
    <tag>2000s</tag>
@@ -22,7 +25,7 @@ Last update: August 12, 2016 D-NXKT, D_NXKT@yahoo.de
    <tag>unpowered</tag>
   </tags>
 
-  <aircraft-version>August 2016</aircraft-version>
+  <aircraft-version>May 2017</aircraft-version>
 
   <status>early production</status>
   <rating>
@@ -36,9 +39,17 @@ Last update: August 12, 2016 D-NXKT, D_NXKT@yahoo.de
   <aero>Icaro_MRX13</aero>
 
   <startup>
-   <splash-title>Laminar 13 MRX (MRX13)</splash-title>
+   <splash-title>Laminar 13 MRX</splash-title>
    <splash-texture>Aircraft/Icaro_MRX13/splash-01.png</splash-texture>
   </startup>
+
+  <previews>
+   <preview>
+    <type>exterior</type>
+    <path>splash-01.png</path>
+    <splash type="bool">true</splash>
+   </preview>
+  </previews>
 
   <sound>
    <path>Aircraft/Icaro_MRX13/Sounds/MRX13-sound.xml</path>
@@ -70,6 +81,9 @@ Last update: August 12, 2016 D-NXKT, D_NXKT@yahoo.de
     <animation>
       <side type="float">0.</side>
       <ahead type="float">0.</ahead>
+      <phi-rad type="float">0.</phi-rad>
+      <phi_side-rad type="float">0.</phi_side-rad>
+      <vizor-pos-deg type="float">0.</vizor-pos-deg>
     </animation>
 
     <material>
@@ -133,8 +147,9 @@ Last update: August 12, 2016 D-NXKT, D_NXKT@yahoo.de
     
     <with-wheels type="bool">true</with-wheels>
     <with-woolthread type="bool">true</with-woolthread>
-    <with-TwoStageRelease type="bool">true</with-TwoStageRelease>
+    <with-TwoStageRelease type="bool">false</with-TwoStageRelease>
     <wing-failure-enable type="bool">true</wing-failure-enable>
+    <hang-strap-flexible type="bool">true</hang-strap-flexible>
     <DrogueChute>0</DrogueChute>
 
     <with-wheels_mp          alias="/sim/model/MRX13/with-wheels"/>          <!-- needed for multiplayer -->
@@ -200,6 +215,14 @@ Last update: August 12, 2016 D-NXKT, D_NXKT@yahoo.de
      <green type="float">0.0</green>
      <blue type="float">0.0</blue>
     </ControlBarRight>
+    <SmokeGrenade>
+     <ReleaseSmokeGrenade type="bool">false</ReleaseSmokeGrenade>
+     <burning-time-sec type="float">60</burning-time-sec>
+     <burning-end-sec type="float">0</burning-end-sec>
+     <red type="float">1.0</red>
+     <green type="float">0.5</green>
+     <blue type="float">0.0</blue>
+    </SmokeGrenade>
     <help>
      <off type="bool">false</off>
     </help>
@@ -230,7 +253,16 @@ Last update: August 12, 2016 D-NXKT, D_NXKT@yahoo.de
     <beta-deg type="float">0.</beta-deg>
    </aero>
 
+   <forces>
+    <fbz-aero-N type="float">0.0001</fbz-aero-N>
+   </forces>
+
   </model>
+
+  <submodels>
+    <serviceable type="bool">true</serviceable>
+    <path>Aircraft/Icaro_MRX13/Models/MRX13-submodel.xml</path>
+  </submodels>
 
   <multiplay>
    <generic>
@@ -247,20 +279,22 @@ Last update: August 12, 2016 D-NXKT, D_NXKT@yahoo.de
     <int n="10" alias="/sim/model/SmokeTrail/Keel/Smoke"/>
     <int n="11" alias="/sim/model/SmokeTrail/ControlBarLeft/Smoke"/>
     <int n="12" alias="/sim/model/SmokeTrail/ControlBarRight/Smoke"/>
+    <int n="13" alias="/sim/model/MRX13/animation/vizor-pos-deg"/>
     <float n="0" alias="/sim/model/MRX13/animation/running_leg_left"/>
     <float n="1" alias="/sim/model/MRX13/animation/running_leg_right"/>
     <float n="2" alias="/sim/model/MRX13/animation/running_leg"/>
     <float n="3" alias="/sim/model/MRX13/animation/running_leg_sign"/>
-    <float n="4" alias="/controls/flight/pilot-attitude-deg"/>
-    <float n="5" alias="/fdm/jsbsim/fcs/drogue_chute-pos-norm"/>
-    <float n="6" alias="/fdm/jsbsim/fcs/parachute-pos-norm"/>
-    <float n="7" alias="/fdm/jsbsim/gear/unit[10]/wheel-speed-fps"/>
-    <float n="8" alias="/fdm/jsbsim/gear/unit[11]/wheel-speed-fps"/>
-    <float n="9" alias="/fdm/jsbsim/aero/alpha-deg"/>
-    <float n="10" alias="/fdm/jsbsim/aero/beta-deg"/>
-    <float n="11" alias="/instrumentation/woolthread/alpha-woolthread-deg"/>
-    <float n="12" alias="/instrumentation/woolthread/beta-woolthread-deg"/>
-    <float n="13" alias="/sim/model/MRX13/LaunchPosition"/>
+    <float n="4" alias="/sim/model/MRX13/animation/sidestep-deg"/>
+    <float n="5" alias="/surface-positions/pilot-attitude-deg"/>
+    <float n="6" alias="/fdm/jsbsim/fcs/drogue_chute-pos-norm"/>
+    <float n="7" alias="/fdm/jsbsim/fcs/parachute-pos-norm"/>
+    <float n="8" alias="/fdm/jsbsim/gear/unit[10]/wheel-speed-fps"/>
+    <float n="9" alias="/fdm/jsbsim/gear/unit[11]/wheel-speed-fps"/>
+    <float n="10" alias="/fdm/jsbsim/aero/alpha-deg"/>
+    <float n="11" alias="/fdm/jsbsim/aero/beta-deg"/>
+    <float n="12" alias="/instrumentation/woolthread/alpha-woolthread-deg"/>
+    <float n="13" alias="/instrumentation/woolthread/beta-woolthread-deg"/>
+    <float n="14" alias="/surface-positions/pilot_shift-z-norm"/>
     <string n="0" alias="/sim/hitches/winch/force_name_jsbsim"/>
    </generic>
   </multiplay>
@@ -304,24 +338,6 @@ Last update: August 12, 2016 D-NXKT, D_NXKT@yahoo.de
        <command>property-toggle</command>
        <property>sim/model/MRX13/with-woolthread</property>
        <value>0</value>
-      </binding>
-     </item>
-
-     <item>
-      <label>Toggle Wing Failure On/Off</label>
-      <binding>
-       <command>property-toggle</command>
-       <property>sim/model/MRX13/wing-failure-enable</property>
-       <value>0</value> 
-      </binding>
-      <binding>
-       <command>nasal</command>
-       <script>
-         MRX13.wing_failure_repair();
-         if ( getprop("sim/model/MRX13/wing-failure-enable") ) 
-              { setprop("sim/messages/atc", sprintf("wing failure enabled")); }
-         else { setprop("sim/messages/atc", sprintf("wing failure disabled")); }
-       </script>
       </binding>
      </item>
 
@@ -452,6 +468,14 @@ Last update: August 12, 2016 D-NXKT, D_NXKT@yahoo.de
      </item>
 
      <item>
+      <label>Smoke Grenade Configuration</label>
+      <binding>
+       <command>nasal</command>
+       <script>MRX13.smoke_grenade_dialog.open()</script>
+      </binding>
+     </item>
+
+     <item>
       <label>----------- Misc. -----------</label>
       <enabled>false</enabled>
      </item>
@@ -462,6 +486,90 @@ Last update: August 12, 2016 D-NXKT, D_NXKT@yahoo.de
        <command>property-toggle</command>
        <property>controls/flight/auto-coordination</property>
        <value>0</value> 
+      </binding>
+     </item>
+
+     <item>
+      <label>----------- About -----------</label>
+      <enabled>false</enabled>
+     </item>
+
+     <item>
+      <label>Show Wiki-page in web browser</label>
+      <binding>
+       <command>nasal</command>
+       <script>fgcommand("open-browser", props.Node.new({"url":"http://wiki.flightgear.org/Icaro_Laminar_13_MRX"}));</script>
+      </binding>
+     </item>
+
+    </menu>
+
+    <menu n="11">
+     <label>Hang Glider Analysis</label>
+     <enabled type="bool">true</enabled>
+
+     <item>
+      <label>---------- Settings ----------</label>
+      <enabled>false</enabled>
+     </item>
+
+     <item>
+      <label>Toggle Wing Failure On/Off</label>
+      <binding>
+       <command>property-toggle</command>
+       <property>sim/model/MRX13/wing-failure-enable</property>
+       <value>0</value> 
+      </binding>
+      <binding>
+       <command>nasal</command>
+       <script>
+         MRX13.wing_failure_repair();
+         if ( getprop("sim/model/MRX13/wing-failure-enable") )
+              { setprop("sim/messages/atc", sprintf("wing failure enabled")); }
+         else { setprop("sim/messages/atc", sprintf("wing failure disabled")); }
+       </script>
+      </binding>
+     </item>
+
+     <item>
+      <label>Toggle Hang Strap Flexible/Rigid</label>
+      <binding>
+       <command>property-toggle</command>
+       <property>sim/model/MRX13/hang-strap-flexible</property>
+       <value>0</value> 
+      </binding>
+      <binding>
+       <command>nasal</command>
+       <script>
+         if ( getprop("sim/model/MRX13/hang-strap-flexible") )
+              { setprop("sim/messages/atc", sprintf("hang strap is flexible")); }
+         else { setprop("sim/messages/atc", sprintf("hang strap is rigid")); }
+       </script>
+      </binding>
+     </item>
+
+     <item>
+      <label>---------- Testing ----------</label>
+      <enabled>false</enabled>
+     </item>
+
+     <item>
+      <label>Hang Strap Length Configuration</label>
+      <binding>
+       <command>nasal</command>
+       <script>MRX13.hang_strap_length_dialog.open()</script>
+      </binding>
+     </item>
+
+     <item>
+      <label>Drop Test</label>
+       <binding>
+        <command>nasal</command>
+        <script>MRX13.DropTest()</script>
+       </binding>
+      <binding>
+       <command>nasal</command>
+       <script>MRX13.DropTest_dialog.open()</script>
       </binding>
      </item>
 
@@ -507,18 +615,6 @@ Last update: August 12, 2016 D-NXKT, D_NXKT@yahoo.de
      </item>
 
      <item>
-      <label>Drop Test</label>
-       <binding>
-        <command>nasal</command>
-        <script>MRX13.DropTest()</script>
-       </binding>
-      <binding>
-       <command>nasal</command>
-       <script>MRX13.DropTest_dialog.open()</script>
-      </binding>
-     </item>
-
-     <item>
       <label>----------- Expert -----------</label>
       <enabled>false</enabled>
      </item>
@@ -539,7 +635,17 @@ Last update: August 12, 2016 D-NXKT, D_NXKT@yahoo.de
       </binding>
      </item>
 
+<!--
+     <item>
+      <label>Test Property Configuration</label>
+      <binding>
+       <command>nasal</command>
+       <script>MRX13.test_property_dialog.open()</script>
+      </binding>
+     </item>
+-->
     </menu>
+
    </default>
   </menubar>
 
@@ -708,6 +814,7 @@ Last update: August 12, 2016 D-NXKT, D_NXKT@yahoo.de
    <path>/sim/model/MRX13/with-woolthread</path>
    <path>/sim/model/MRX13/with-TwoStageRelease</path>
    <path>/sim/model/MRX13/wing-failure-enable</path>
+   <path>/sim/model/MRX13/hang-strap-flexible</path>
 
    <path>/sim/model/MRX13/material/LeadingEdge/ambient/red</path>
    <path>/sim/model/MRX13/material/LeadingEdge/ambient/green</path>
@@ -789,10 +896,15 @@ Last update: August 12, 2016 D-NXKT, D_NXKT@yahoo.de
    <path>/sim/model/SmokeTrail/ControlBarRight/green</path>
    <path>/sim/model/SmokeTrail/ControlBarRight/blue</path>
 
+   <path>/sim/model/SmokeTrail/SmokeGrenade/burning-time-sec</path>
+   <path>/sim/model/SmokeTrail/SmokeGrenade/red</path>
+   <path>/sim/model/SmokeTrail/SmokeGrenade/green</path>
+   <path>/sim/model/SmokeTrail/SmokeGrenade/blue</path>
+
   </aircraft-data>
 
   <spoilers>
-   <current-setting>0</current-setting>
+   <current-setting>1</current-setting>
    <setting>0.000</setting>    <!-- VG off -->
    <setting>0.333</setting>
    <setting>0.666</setting>
@@ -876,6 +988,12 @@ Last update: August 12, 2016 D-NXKT, D_NXKT@yahoo.de
     <serviceable type="bool">true</serviceable>
    </property-rule>
 
+   <property-rule n="103">
+    <name>Helper for Animation</name>
+    <path>Aircraft/Icaro_MRX13/Systems/Animation-propertyrule.xml</path>
+    <serviceable type="bool">true</serviceable>
+   </property-rule>
+
   </systems>
 
   <flight-recorder>
@@ -897,6 +1015,10 @@ Last update: August 12, 2016 D-NXKT, D_NXKT@yahoo.de
    <antiskid      type="bool">false</antiskid>
   </gear>
  </controls>
+
+ <surface-positions>
+   <pilot-attitude-deg type="double">0.0</pilot-attitude-deg>
+ </surface-positions>
 
  <input include="keyboard.xml"/>
 

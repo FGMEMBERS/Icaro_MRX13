@@ -1,0 +1,222 @@
+<?xml version="1.0"?>
+<!-- Version: 2017-04-03 -->
+
+<PropertyList>
+ <name>smoke_grenade_dialog</name>
+ <layout>vbox</layout>
+ <default-padding>2</default-padding>
+ <modal>false</modal>
+ <width>220</width>
+ <!-- title bar -->
+ <group>
+  <layout>hbox</layout>
+  <empty><stretch>true</stretch></empty>
+  <text>
+   <label>Smoke Grenade Configuration</label>
+  </text>
+  <empty><stretch>true</stretch></empty>
+  <button>
+   <legend/>
+   <key>Esc</key>
+   <pref-width>16</pref-width>
+   <pref-height>16</pref-height>
+   <border>2</border>
+   <binding>
+    <command>dialog-close</command>
+   </binding>
+  </button>
+ </group>
+
+ <hrule/>
+ <hrule/>
+
+ <!-- jettisonable smoke grenade -->
+ <frame>
+  <layout>vbox</layout>
+  <group>
+   <height>100</height>
+   <text>
+    <y>82</y>
+    <label>
+     Jettisonable Smoke Grenade
+    </label>
+   </text>
+   <text>
+   <y>65</y>
+    <label>
+     (to show ground wind)
+    </label>
+   </text>
+   <text>
+   <y>37</y>
+    <label>
+     Note: Smoke color for falling
+    </label>
+   </text>
+   <text>
+   <y>20</y>
+    <label>
+     grenade is NOT customizable
+    </label>
+   </text>
+  </group>
+
+  <!-- Burning Time -->
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+   <text>
+    <label>Burning Time</label>
+   </text>
+   <input>
+    <pref-width>50</pref-width>
+    <label>[sec]</label>
+    <live>true</live>
+    <property>sim/model/SmokeTrail/SmokeGrenade/burning-time-sec</property>
+    <binding>
+     <command>dialog-apply</command>
+    </binding>
+   </input>
+   <empty><stretch>true</stretch></empty>
+  </group>
+
+  <!-- Color -->
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+    <text>
+     <pref-width>30</pref-width>
+     <label>Red</label>
+    </text>
+    <slider>
+     <name>red</name>
+     <live>true</live>
+     <property>sim/model/SmokeTrail/SmokeGrenade/red</property>
+     <min>0</min>
+     <max>1</max>
+     <step>0.01</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+    </slider>
+   <group>
+    <width>50</width>
+    <halign>right</halign>
+    <text>
+     <label>9999</label>
+     <live>true</live>
+     <format>%2.2f </format>
+     <property>sim/model/SmokeTrail/SmokeGrenade/red</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+   </group>
+  </group>
+
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+    <text>
+     <pref-width>30</pref-width>
+     <label>Green</label>
+    </text>
+    <slider>
+     <name>green</name>
+     <live>true</live>
+     <property>sim/model/SmokeTrail/SmokeGrenade/green</property>
+     <min>0</min>
+     <max>1</max>
+     <step>0.01</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+    </slider>
+   <group>
+    <width>50</width>
+    <halign>right</halign>
+    <text>
+     <label>9999</label>
+     <live>true</live>
+     <format>%2.2f </format>
+     <property>sim/model/SmokeTrail/SmokeGrenade/green</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+   </group>
+  </group>
+
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+    <text>
+     <pref-width>30</pref-width>
+     <label>Blue</label>
+    </text>
+    <slider>
+     <name>blue</name>
+     <live>true</live>
+     <property>sim/model/SmokeTrail/SmokeGrenade/blue</property>
+     <min>0</min>
+     <max>1</max>
+     <step>0.01</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+    </slider>
+   <group>
+    <width>50</width>
+    <halign>right</halign>
+    <text>
+     <label>9999</label>
+     <live>true</live>
+     <format>%2.2f </format>
+     <property>sim/model/SmokeTrail/SmokeGrenade/blue</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+   </group>
+  </group>
+
+  <empty><stretch>true</stretch></empty>
+ </frame>
+
+ <hrule/>
+ <hrule/>
+
+ <!-- bottom line -->
+
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+   <button>
+    <legend>Set Defaults</legend>
+    <binding>
+     <command>nasal</command>
+      <script>
+       MRX13.smoke_grenade_defaults();
+      </script>
+    </binding>
+   </button>
+   <empty><stretch>true</stretch></empty>
+
+  <layout>hbox</layout>
+  <empty><stretch>true</stretch></empty>
+  <button>
+   <legend>Close</legend>
+   <binding>
+    <command>dialog-close</command>
+   </binding>
+  </button>
+  <empty><stretch>true</stretch></empty>
+ </group>
+
+</PropertyList>

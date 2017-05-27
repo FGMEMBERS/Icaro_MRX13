@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+ <path>SmokeGrenade.ac</path>
+ <nopreview/>
+
+ <model>
+  <name>SmokeGrenade_workaround</name>
+  <path>Aircraft/Icaro_MRX13/Models/SmokeTrail/SmokeGrenadeTrail_workaround.xml</path>
+ </model>
+
+</PropertyList>

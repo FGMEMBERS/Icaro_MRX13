@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+ <path>SmokeGrenade.ac</path>
+ <nopreview/>
+
+ <model>
+  <path>Aircraft/Icaro_MRX13/Models/SmokeTrail/SmokeGrenadeTrail.xml</path>
+  <name>SmokeGrenade</name>
+
+  <condition>
+   <less-than>
+    <property>sim/time/elapsed-sec</property>
+    <property>sim/model/SmokeTrail/SmokeGrenade/burning-end-sec</property>
+   </less-than>
+  </condition>
+
+  <offsets>
+   <x-m>0.</x-m>
+   <y-m>0.</y-m>
+   <z-m>0.</z-m>
+  </offsets>
+
+  <overlay>
+   <params>
+    <red>sim/model/SmokeTrail/SmokeGrenade/red</red>
+    <green>sim/model/SmokeTrail/SmokeGrenade/green</green>
+    <blue>sim/model/SmokeTrail/SmokeGrenade/blue</blue>
+   </params>
+  </overlay>
+
+ </model>
+
+</PropertyList>

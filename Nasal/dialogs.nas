@@ -33,3 +33,12 @@ var stability_help_dialog = gui.Dialog.new("/sim/gui/dialogs/MRX13/stability_hel
 
 var smoke_dialog = gui.Dialog.new("/sim/gui/dialogs/MRX13/smoke/dialog",
                                       "Aircraft/Icaro_MRX13/Dialogs/smoke.xml");
+
+var smoke_grenade_dialog = gui.Dialog.new("/sim/gui/dialogs/MRX13/smoke_grenade/dialog",
+                                      "Aircraft/Icaro_MRX13/Dialogs/smoke_grenade.xml");
+
+var hang_strap_length_dialog = gui.Dialog.new("/sim/gui/dialogs/MRX13/HangStrapLength/dialog",
+                                      "Aircraft/Icaro_MRX13/Dialogs/HangStrapLength.xml");
+
+var test_property_dialog = gui.Dialog.new("/sim/gui/dialogs/MRX13/test_property/dialog",
+                                      "Aircraft/Icaro_MRX13/Dialogs/test_property.xml");

@@ -1,7 +1,7 @@
 var ViewAnimation = func {
 #
 # ---------------------------------------------------------------------------------
-#                        View and Hitch Animation               Status: 1.05.2016
+#                        View and Hitch Animation               Status: 6.05.2017
 # ---------------------------------------------------------------------------------
 #
 #
@@ -28,11 +28,17 @@ var ViewAnimation = func {
 # view-no |       name        | animation on ground |  animation in air    |
 #---------|-------------------|---------------------|----------------------|
 #     0   | Pilot View        |      only prone     | deflection w/o angle |
-#    11   | Left Wingtip View | deflection + angle  |           -          |
+#         |                   |                     |      + pilot-shift   |
+#    11   | Left Wingtip View | deflection + angle  |                      |
+#                             |     + pilot-shift   |           -          |
+#         |                   |                     |                      |
 #     8   | Harness View      |      only prone     | deflection + angle   |
-#     9   | Keel View
+#                             |     + pilot-shift   |           -          |
+#         |                   |                     |                      |
+#     9   | Keel View         |                     |                      |
+#         |                   |                     |                      |
 #         | Hitch             |          -          | deflection w/o angle |
-#----------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------
 
 var m2in = 39.3700787;
 
@@ -99,11 +105,8 @@ for (var n=0; n < n_loop; n = n+1) {
       if ( on_ground == 1 ) {
         rotation = 1; 
         # experimental
-# rotation point moves, too!
-        var length = getprop("sim/model/MRX13/LaunchPosition");
-        var pilot_attitude_deg = getprop("controls/flight/pilot-attitude-deg");
-        x = x - length * (( 75. - pilot_attitude_deg ) / 75. * 1.5 + 1.8 ) ;
-        z = z - length * (( 75. - pilot_attitude_deg ) / 75. * 4.0 + 1.5 ) ;
+        # pivot point moves, too!
+        # under construction
       };
       rotation_harness = 0;
     }
@@ -129,7 +132,15 @@ for (var n=0; n < n_loop; n = n+1) {
       var x = 0.;
       var y = 0.;
       var z = 0.1;
-      if ( on_ground == 1 ) rotation = 1;
+
+# under construction
+      # only a first approximation
+      var shift = getprop("surface-positions/pilot_shift-z-norm");
+      var angel = math.acos( math.clamp( (0.637 - shift) / 0.55 ,-1,1) );
+      x = x - math.sin( angel ) * 0.55;
+      z = z - shift * 1.35;
+      #print("angel = ",angel*R2D);
+      if ( on_ground == 1 ) rotation = 0;
       rotation_harness = 0;
     }
     else {
@@ -188,7 +199,7 @@ for (var n=0; n < n_loop; n = n+1) {
     var aileron_rad        = getprop("surface-positions/left-aileron-pos-norm") * 15. * fak;
     var elevator_rad       = getprop("surface-positions/elevator-pos-norm") * 20. * fak;
     var rudder_rad         = getprop("surface-positions/rudder-pos-norm") * 25.* fak;
-    var pilot_attitude_deg = getprop("controls/flight/pilot-attitude-deg");
+    var pilot_attitude_deg = getprop("surface-positions/pilot-attitude-deg");
 
 
     # Deflections
@@ -252,7 +263,7 @@ for (var n=0; n < n_loop; n = n+1) {
       var y_new = y;
       var z_new = z;
       var roll_zyx    = 0.;
-# nur wenn harness view
+# only in harness view
       var pitch_zyx   = pilot_attitude_deg;
       var heading_zyx = 0.;
   }
@@ -365,6 +376,22 @@ for (var n=0; n < n_loop; n = n+1) {
   }
 
   if( mode[n] == "view_animation") {
+
+    # accounts for pilot-shift (flexible hang strap)
+    if ( on_ground == 0 ) {
+      if ( view_number == 0 or view_number == 8 ){
+        z_new = z_new + 1.35 * getprop("surface-positions/pilot_shift-z-norm");
+     }}
+    else {
+      if ( view_number == 11 ){
+# under construction
+      # only a first approximation
+      var shift = getprop("surface-positions/pilot_shift-z-norm");
+      var angel = math.acos( math.clamp( (0.637 - shift) / 0.55 ,-1,1) );
+      x_new = x_new - math.sin( angel ) * 0.55;
+      z_new = z_new - shift * 1.35;
+
+     }}
 
     # View-System
     setprop("sim/current-view/x-offset-m",y_new);

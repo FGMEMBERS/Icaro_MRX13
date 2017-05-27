@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!-- Version: 2016-08-11 -->
+<!-- Version: 2017-04-03 -->
 
 <PropertyList>
  <name>smoke_dialog</name>
@@ -90,7 +90,11 @@
    <input>
     <pref-width>50</pref-width>
     <label>[sec]</label>
+    <live>true</live>
     <property>sim/model/SmokeTrail/Keel/burning-time-sec</property>
+    <binding>
+     <command>dialog-apply</command>
+    </binding>
    </input>
    <empty><stretch>true</stretch></empty>
   </group>
@@ -242,7 +246,11 @@
    <input>
     <pref-width>50</pref-width>
     <label>[sec]</label>
+    <live>true</live>
     <property>sim/model/SmokeTrail/ControlBarLeft/burning-time-sec</property>
+    <binding>
+     <command>dialog-apply</command>
+    </binding>
    </input>
    <empty><stretch>true</stretch></empty>
   </group>
@@ -395,7 +403,11 @@
    <input>
     <pref-width>50</pref-width>
     <label>[sec]</label>
+    <live>true</live>
     <property>sim/model/SmokeTrail/ControlBarRight/burning-time-sec</property>
+    <binding>
+     <command>dialog-apply</command>
+    </binding>
    </input>
    <empty><stretch>true</stretch></empty>
   </group>

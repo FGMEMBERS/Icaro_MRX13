@@ -161,10 +161,7 @@
    <expression>
     <div>
      <property>sim/model/moments/m-aero-Nm</property>
-     <sum>
      <property>sim/model/forces/fbz-aero-N</property> <!-- "0" at startup -->
-     <value>0.0001</value> <!-- very ugly workaround to prevent NaN at startup -->
-     </sum>
     </div>
    </expression>
    <center>
@@ -197,10 +194,7 @@
    <expression>
     <div>
      <property>sim/model/moments/l-aero-Nm</property>
-     <sum>
      <property>sim/model/forces/fbz-aero-N</property> <!-- "0" at startup -->
-     <value>0.0001</value> <!-- very ugly workaround to prevent NaN at startup -->
-     </sum>
     </div>
    </expression>
    <center>

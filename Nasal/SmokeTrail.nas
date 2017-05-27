@@ -96,3 +96,20 @@ var burning = func {
 
 }
 
+
+#----------------------------------------------------------------------------------------
+
+# jettisonable smoke grenade
+var SmokeGrenadeAI = func(n) {
+    var node = props.globals.getNode(n.getValue(), 1);
+
+    geo.put_model("Aircraft/Icaro_MRX13/Models/SmokeTrail/SmokeGrenade.xml",
+        node.getNode("impact/latitude-deg").getValue(),
+        node.getNode("impact/longitude-deg").getValue(),
+        node.getNode("impact/elevation-m").getValue() + 0.1, # +0.1 to ensure the smoke grenade isn't buried
+        node.getNode("impact/heading-deg").getValue(),
+    0, 0);
+}
+
+setlistener("/ai/models/model-impact", SmokeGrenadeAI);
+

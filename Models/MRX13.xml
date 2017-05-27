@@ -37,6 +37,8 @@
      alias(rplayer.getNode("sim/multiplay/generic/int[11]"));
    rplayer.getNode("sim/model/SmokeTrail/ControlBarRight/Smoke", 1).
      alias(rplayer.getNode("sim/multiplay/generic/int[12]"));
+   rplayer.getNode("sim/model/MRX13/animation/vizor-pos-deg", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/int[13]"));
 
    rplayer.getNode("sim/model/MRX13/animation/running_leg_left", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[0]"));
@@ -46,26 +48,28 @@
      alias(rplayer.getNode("sim/multiplay/generic/float[2]"));
    rplayer.getNode("sim/model/MRX13/animation/running_leg_sign", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[3]"));
-   rplayer.getNode("controls/flight/pilot-attitude-deg", 1).
+   rplayer.getNode("sim/model/MRX13/animation/sidestep-deg", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[4]"));
-   rplayer.getNode("sim/model/Parachutes/drogue_chute-pos-norm", 1).
+   rplayer.getNode("surface-positions/pilot-attitude-deg", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[5]"));
-   rplayer.getNode("sim/model/Parachutes/parachute-pos-norm", 1).
+   rplayer.getNode("sim/model/Parachutes/drogue_chute-pos-norm", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[6]"));
-   rplayer.getNode("fdm/jsbsim/gear/unit[10]/wheel-speed-fps", 1).
+   rplayer.getNode("sim/model/Parachutes/parachute-pos-norm", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[7]"));
-   rplayer.getNode("fdm/jsbsim/gear/unit[11]/wheel-speed-fps", 1).
+   rplayer.getNode("fdm/jsbsim/gear/unit[10]/wheel-speed-fps", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[8]"));
-   rplayer.getNode("sim/model/aero/alpha-deg", 1).
+   rplayer.getNode("fdm/jsbsim/gear/unit[11]/wheel-speed-fps", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[9]"));
-   rplayer.getNode("sim/model/aero/beta-deg", 1).
+   rplayer.getNode("sim/model/aero/alpha-deg", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[10]"));
-   rplayer.getNode("instrumentation/woolthread/alpha-woolthread-deg", 1).
+   rplayer.getNode("sim/model/aero/beta-deg", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[11]"));
-   rplayer.getNode("instrumentation/woolthread/beta-woolthread-deg", 1).
+   rplayer.getNode("instrumentation/woolthread/alpha-woolthread-deg", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[12]"));
-   rplayer.getNode("sim/model/MRX13/LaunchPosition", 1).
+   rplayer.getNode("instrumentation/woolthread/beta-woolthread-deg", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[13]"));
+   rplayer.getNode("surface-positions/pilot_shift-z-norm", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/float[14]"));
 
    rplayer.getNode("sim/hitches/winch/force_name_jsbsim", 1).
      alias(rplayer.getNode("sim/multiplay/generic/string[0]"));
@@ -74,7 +78,6 @@
    rplayer.getNode("sim/current-view/view-number", 1).setIntValue(1); # set view=1 to prevent deselected helmet
    rplayer.getNode("instrumentation/woolthread/severity1", 1).setValue(0); # severity1 is not transmitted
    rplayer.getNode("instrumentation/woolthread/severity2", 1).setValue(0); # severity2 is not transmitted
-   rplayer.getNode("gear/gear[1]/position-norm", 1).setValue(0); # property is not transmitted
    # smoke system
    rplayer.getNode("sim/model/SmokeTrail/help/off", 1).setIntValue(0);
    rplayer.getNode("sim/model/SmokeTrail/Keel/red", 1).setValue(0.8);
@@ -107,6 +110,7 @@
    rplayer.getNode("sim/model/SmokeTrail/Keel/Smoke", 1).unalias();
    rplayer.getNode("sim/model/SmokeTrail/ControlBarLeft/Smoke", 1).unalias();
    rplayer.getNode("sim/model/SmokeTrail/ControlBarRight/Smoke", 1).unalias();
+   rplayer.getNode("sim/model/MRX13/animation/vizor-pos-deg", 1).unalias();
 
    # rplayer.getNode("sim/current-view/view-number", 1).unalias();
 
@@ -114,7 +118,8 @@
    rplayer.getNode("sim/model/MRX13/animation/running_leg_right", 1).unalias();
    rplayer.getNode("sim/model/MRX13/animation/running_leg", 1).unalias();
    rplayer.getNode("sim/model/MRX13/animation/running_leg_sign", 1).unalias();
-   rplayer.getNode("controls/flight/pilot-attitude-deg", 1).unalias();
+   rplayer.getNode("sim/model/MRX13/animation/sidestep-deg", 1).unalias();
+   rplayer.getNode("surface-positions/pilot-attitude-deg", 1).unalias();
    rplayer.getNode("sim/model/Parachutes/drogue_chute-pos-norm", 1).unalias();
    rplayer.getNode("sim/model/Parachutes/parachute-pos-norm", 1).unalias();
    rplayer.getNode("fdm/jsbsim/gear/unit[10]/wheel-speed-fps", 1).unalias();
@@ -123,7 +128,8 @@
    rplayer.getNode("sim/model/aero/beta-deg", 1).unalias();
    rplayer.getNode("instrumentation/woolthread/alpha-woolthread-deg", 1).unalias();
    rplayer.getNode("instrumentation/woolthread/beta-woolthread-deg", 1).unalias();
-   rplayer.getNode("sim/model/MRX13/LaunchPosition", 1).unalias();
+   rplayer.getNode("surface-positions/pilot_shift-z-norm", 1).unalias();
+
    rplayer.getNode("sim/hitches/winch/force_name_jsbsim", 1).unalias();
    # print("MRX13 unloaded");
 
@@ -562,17 +568,10 @@
      <y>0.0</y>
      <z>0.9659258</z>
     </axis>
-    <!--
-    <axis>
-     <x>0.0</x>
-     <y>0.0</y>
-     <z>1.0</z>
-    </axis>
-    -->
  </animation>
 
 
- <!-- __________________ Test On-Ground (Glider) __________________ -->
+ <!-- __________________ On-Ground (Glider) __________________ -->
 
  <animation>
   <type>translate</type>
@@ -590,22 +589,24 @@
 
   <object-name>HangLever</object-name>
   <object-name>HangLoop</object-name>
+  <object-name>KarabinerAlu</object-name>
+  <object-name>Stubai5000</object-name>
 
   <expression>
    <product>
     <property>sim/model/MRX13/on-ground</property>
-    <property>sim/model/MRX13/LaunchPosition</property>
+    <property>surface-positions/pilot_shift-z-norm</property>
     <table>
-     <property>controls/flight/pilot-attitude-deg</property>
-     <entry><ind> 75.</ind> <dep> 0.2</dep></entry>
-     <entry><ind>37.5</ind> <dep> -1.5</dep></entry>
-     <entry><ind> 0.0</ind> <dep> -1.6</dep></entry>
-     <entry><ind>-10.</ind> <dep>-1.5</dep></entry>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep> 0.35</dep></entry>
+     <entry><ind> 55.</ind> <dep>-0.40</dep></entry>
+     <entry><ind> 35.</ind> <dep>-0.55</dep></entry>
+     <entry><ind> 20.</ind> <dep>-0.50</dep></entry>
+     <entry><ind>  0.</ind> <dep>-0.40</dep></entry>
+     <entry><ind>-10.</ind> <dep>-0.34</dep></entry>
     </table>
    </product>
   </expression>
-  <factor>-1</factor>
-  <offset-m>-0.</offset-m>
   <center>
    <x-m>0.0</x-m>
    <y-m>0.0</y-m>
@@ -634,21 +635,15 @@
 
   <object-name>HangLever</object-name>
   <object-name>HangLoop</object-name>
-
+  <object-name>KarabinerAlu</object-name>
+  <object-name>Stubai5000</object-name>
   <expression>
    <product>
     <property>sim/model/MRX13/on-ground</property>
-    <property>sim/model/MRX13/LaunchPosition</property>
-    <table>
-     <property>controls/flight/pilot-attitude-deg</property>
-     <entry><ind> 75.</ind> <dep> -1.5</dep></entry>
-     <entry><ind>  0.</ind> <dep> -5.5</dep></entry>
-     <entry><ind>-10.</ind> <dep>-5.9</dep></entry>
-    </table>
+    <property>surface-positions/pilot_shift-z-norm</property>
+    <value>-1.35</value>
    </product>
   </expression>
-  <factor>-1</factor>
-  <offset-m>-0.</offset-m>
   <center>
    <x-m>0.0</x-m>
    <y-m>0.0</y-m>
@@ -677,6 +672,9 @@
 
   <object-name>HangLever</object-name>
   <object-name>HangLoop</object-name>
+  <object-name>KarabinerAlu</object-name>
+  <object-name>Stubai5000</object-name>
+
   <expression>
    <product>
     <property>surface-positions/left-aileron-pos-norm</property>
@@ -714,6 +712,9 @@
 
   <object-name>HangLever</object-name>
   <object-name>HangLoop</object-name>
+  <object-name>KarabinerAlu</object-name>
+  <object-name>Stubai5000</object-name>
+
   <expression>
    <product>
     <property>surface-positions/elevator-pos-norm</property>
@@ -734,9 +735,40 @@
   </axis>
  </animation>
 
-<!-- End Test On-Ground (Glider) -->
+ <!-- End On-Ground (Glider) -->
+
 
  <!-- __________________ Pilot __________________ -->
+
+ <!-- pilot-shift -->
+ <animation>
+  <type>translate</type>
+  <object-name>Pilot</object-name>
+  <object-name>HangStrap</object-name>
+  <object-name>TwoStageRelease</object-name>
+  <object-name>DrogueChute</object-name>
+  <expression>
+   <product>
+    <property>surface-positions/pilot_shift-z-norm</property>
+    <value>1.35</value>
+    <dif>
+     <value>1</value>
+     <property>sim/model/MRX13/on-ground</property>
+    </dif>
+   </product>
+  </expression>
+  <center>
+   <x-m>0.0</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.0</z-m>
+  </center>
+  <axis>
+   <x>-0.2588</x>
+   <y>0.0</y>
+   <z>0.9659</z>
+  </axis>
+ </animation>
+ <!-- end pilot-shift -->
 
  <animation>
   <type>rotate</type>
@@ -835,7 +867,6 @@
    <y>0.0</y>
    <z>1.0</z>
   </axis>
-  
  </animation>
 
  <!-- in air -->
@@ -846,7 +877,7 @@
   <object-name>DrogueChute</object-name>
   <expression>
    <product>
-    <property>controls/flight/pilot-attitude-deg</property>
+    <property>surface-positions/pilot-attitude-deg</property>
     <dif>
      <value>1</value>
      <property>sim/model/MRX13/on-ground</property>
@@ -871,9 +902,10 @@
   <object-name>Pilot</object-name>
   <object-name>TwoStageRelease</object-name>
   <object-name>DrogueChute</object-name>
+  <object-name>HangStrap</object-name>
   <expression>
    <product>
-    <property>controls/flight/pilot-attitude-deg</property>
+    <property>surface-positions/pilot-attitude-deg</property>
     <property>sim/model/MRX13/on-ground</property>
    </product>
   </expression>
@@ -890,24 +922,152 @@
  </animation>
 
 
- <!-- Test on-ground -->
+ <!-- _____________ Flexible Hang Strap Animation _____________ -->
+
+
+ <!-- in-air -->
+ <animation>
+  <type>rotate</type>
+  <object-name>HangLoop</object-name>
+  <object-name>Stubai5000</object-name>
+  <object-name>KarabinerAlu</object-name>
+  <property>surface-positions/pilot_shift-z-norm</property>
+  <factor>-106.2</factor>
+  <min-deg>-65</min-deg>
+  <max-deg>0</max-deg>
+  <center>
+   <x-m>1.31</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.0575</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <!-- on-ground -->
+ <animation>
+  <type>rotate</type>
+  <object-name>HangLever</object-name>
+  <object-name>HangLoop</object-name>
+  <object-name>KarabinerAlu</object-name>
+  <object-name>Stubai5000</object-name>
+   <expression>
+    <product>
+     <property>surface-positions/left-aileron-pos-norm</property>
+     <property>sim/model/MRX13/on-ground</property>
+     <property>sim/model/MRX13/RotateAboutPilot</property>
+     <value>-8</value>
+    </product>
+   </expression>
+   <center>
+    <x-m>1.31</x-m>
+    <y-m>0.0</y-m>
+    <z-m>0.0575</z-m>
+   </center>
+   <axis>
+    <x>0.9659258</x>
+    <y>0.0</y>
+    <z>0.2588190</z>
+   </axis>
+ </animation>
 
  <animation>
   <type>rotate</type>
+  <object-name>HangLever</object-name>
+  <object-name>HangLoop</object-name>
   <object-name>KarabinerAlu</object-name>
   <object-name>Stubai5000</object-name>
+
+  <expression>
+   <product>
+    <property>surface-positions/elevator-pos-norm</property>
+    <property>sim/model/MRX13/on-ground</property>
+    <property>sim/model/MRX13/RotateAboutPilot</property>
+    <value>10.</value>
+   </product>
+  </expression>
+  <center>
+   <x-m>1.31</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.0575</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>HangLever</object-name>
+  <object-name>HangLoop</object-name>
+  <object-name>KarabinerAlu</object-name>
+  <object-name>Stubai5000</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/on-ground</property>
+    <property>surface-positions/pilot_shift-z-norm</property>
+    <table>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>0</dep></entry>
+     <entry><ind> 60.</ind> <dep>15</dep></entry>
+     <entry><ind> 30.</ind> <dep>22</dep></entry>
+     <entry><ind>  0.</ind> <dep>25</dep></entry>
+     <entry><ind>-10.</ind> <dep>10</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m>1.31</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.0575</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <!-- adjust here for tight hang strap position -->
+ <animation>
+  <type>rotate</type>
   <object-name>HangStrap</object-name>
   <expression>
    <product>
     <property>sim/model/MRX13/on-ground</property>
-    <property>sim/model/MRX13/RotateAboutPilot</property>
-    <property>sim/model/MRX13/LaunchPosition</property>
-    <value>6</value>
+    <div>
+     <difference>
+      <property>surface-positions/pilot_shift-z-norm</property>
+      <table>
+       <property>surface-positions/pilot-attitude-deg</property>
+       <entry><ind> 75.</ind> <dep>0.1529</dep></entry>
+       <entry><ind> 60.</ind> <dep>0.2106</dep></entry>
+       <entry><ind> 30.</ind> <dep>0.3797</dep></entry>
+       <entry><ind>  0.</ind> <dep>0.5808</dep></entry>
+       <entry><ind>-10.</ind> <dep>0.6456</dep></entry>
+      </table>
+     </difference>
+     <table>
+      <property>surface-positions/pilot-attitude-deg</property>
+      <entry><ind> 75.</ind> <dep>-0.1529</dep></entry>
+      <entry><ind> 60.</ind> <dep>-0.2106</dep></entry>
+      <entry><ind> 30.</ind> <dep>-0.3797</dep></entry>
+      <entry><ind>  0.</ind> <dep>-0.5808</dep></entry>
+      <entry><ind>-10.</ind> <dep>-0.6456</dep></entry>
+     </table>
+    </div>
     <table>
-     <property>controls/flight/pilot-attitude-deg</property>
-     <entry><ind> 75.</ind> <dep> -0</dep></entry>
-     <entry><ind>  0.</ind> <dep> -60</dep></entry>
-     <entry><ind>-10.</ind> <dep>-70</dep></entry>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>-86</dep></entry>
+     <entry><ind> 60.</ind> <dep>-70</dep></entry>
+     <entry><ind> 30.</ind> <dep>-36</dep></entry>
+     <entry><ind>  0.</ind> <dep>0</dep></entry>
+     <entry><ind>-10.</ind> <dep>12.5</dep></entry>
     </table>
    </product>
   </expression>
@@ -923,8 +1083,204 @@
   </axis>
  </animation>
 
+ <!-- adjust here for loose hang strap position (glider on shoulder) -->
+ <animation>
+  <type>rotate</type>
+  <object-name>HangStrap</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/on-ground</property>
+    <property>sim/model/MRX13/RotateAboutPilot</property>
+    <div>
+     <property>surface-positions/pilot_shift-z-norm</property>
+     <table>
+      <property>surface-positions/pilot-attitude-deg</property>
+      <entry><ind> 75.</ind> <dep>0.1529</dep></entry>
+      <entry><ind> 60.</ind> <dep>0.2106</dep></entry>
+      <entry><ind> 30.</ind> <dep>0.3797</dep></entry>
+      <entry><ind>  0.</ind> <dep>0.5808</dep></entry>
+      <entry><ind>-10.</ind> <dep>0.6456</dep></entry>
+     </table>
+    </div>
+    <table>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>-80</dep></entry>
+     <entry><ind> 60.</ind> <dep>-73</dep></entry>
+     <entry><ind> 30.</ind> <dep>-58</dep></entry>
+     <entry><ind>  0.</ind> <dep>-38</dep></entry>
+     <entry><ind>-10.</ind> <dep>-18</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m>1.330</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-1.088</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
 
- <!-- new position -->
+ <!-- correction for transition hang strap position -->
+ <animation>
+  <type>rotate</type>
+  <object-name>HangStrap</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/on-ground</property>
+    <property>sim/model/MRX13/RotateAboutPilot</property>
+    <property>surface-positions/pilot_shift-z-norm</property>
+    <difference>
+     <property>surface-positions/pilot_shift-z-norm</property>
+     <table>
+      <property>surface-positions/pilot-attitude-deg</property>
+      <entry><ind> 75.</ind> <dep>0.1529</dep></entry>
+      <entry><ind> 60.</ind> <dep>0.2106</dep></entry>
+      <entry><ind> 30.</ind> <dep>0.3797</dep></entry>
+      <entry><ind>  0.</ind> <dep>0.5808</dep></entry>
+      <entry><ind>-10.</ind> <dep>0.6456</dep></entry>
+     </table>
+    </difference>
+    <table>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>0</dep></entry>
+     <entry><ind> 60.</ind> <dep>0</dep></entry>
+     <entry><ind> 30.</ind> <dep>0</dep></entry>
+     <entry><ind>  0.</ind> <dep>-150</dep></entry>
+     <entry><ind>-10.</ind> <dep>-100</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m>1.330</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-1.088</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>translate</type>
+  <object-name>HangStrap</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/on-ground</property>
+    <table>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>0.12</dep></entry>
+     <entry><ind> 60.</ind> <dep>0.08</dep></entry>
+     <entry><ind> 50.</ind> <dep>0.058</dep></entry>
+     <entry><ind> 20.</ind> <dep>0.0</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m>1.330</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-1.088</z-m>
+  </center>
+  <axis>
+   <x>0.</x>
+   <y>0.0</y>
+   <z>1.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>HangStrap</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/on-ground</property>
+    <property>sim/model/MRX13/RotateAboutPilot</property>
+    <table>
+     <property>surface-positions/elevator-pos-norm</property>
+     <entry><ind>-2.</ind> <dep>20</dep></entry>
+     <entry><ind>-1.</ind> <dep>10</dep></entry>
+     <entry><ind> 0.</ind> <dep>0</dep></entry>
+     <entry><ind>0.5</ind> <dep>-5</dep></entry>
+     <entry><ind> 1.</ind> <dep>-9</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m>1.330</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-1.088</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <!-- in air -->
+ <animation>
+  <type>rotate</type>
+  <object-name>HangStrap</object-name>
+  <!--
+  <property>surface-positions/pilot_shift-z-norm</property>
+  <factor>106.2</factor>
+  <min-deg>0</min-deg>
+  <max-deg>90</max-deg>
+  -->
+  <expression>
+   <max>
+    <product>
+     <dif>
+      <value>1</value>
+      <property>sim/model/MRX13/on-ground</property>
+     </dif>
+     <property>surface-positions/pilot_shift-z-norm</property>
+     <value>106.2</value>
+    </product>
+    <value>0</value>
+   </max>
+  </expression>
+  <center>
+   <x-m>1.330</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-1.088</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>scale</type>
+  <object-name>HangStrap</object-name>
+   <property>surface-positions/pilot_shift-z-norm</property>
+   <x-factor>0.</x-factor>
+   <x-offset>1.</x-offset>
+   <y-factor>0.</y-factor>
+   <y-offset>1.</y-offset>
+   <!-- <z-factor>-1.062</z-factor> -->
+   <z-factor>-0.9</z-factor>
+   <z-offset>1.</z-offset>
+   <z-min>0.</z-min>
+   <z-max>1.</z-max>
+  <center>
+   <x-m>1.330</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-1.088</z-m>
+  </center>
+ </animation>
+
+
+ <!-- __________________ Upper Arms __________________ -->
+
+ <!-- rotate about pilot -->
  <animation>
   <type>rotate</type>
   <object-name>LeftUpperArm</object-name>
@@ -937,15 +1293,15 @@
    <product>
     <property>sim/model/MRX13/RotateAboutPilot</property>
     <table>
-     <property>controls/flight/pilot-attitude-deg</property>
-     <entry><ind> 75.</ind> <dep>-40</dep></entry>
-     <entry><ind>  0.</ind> <dep>0.0</dep></entry>
-     <entry><ind>-10.</ind> <dep>15.</dep></entry>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>-40.</dep></entry>
+     <entry><ind>  0.</ind> <dep>  0.</dep></entry>
+     <entry><ind>-10.</ind> <dep> 15.</dep></entry>
     </table>
    </product>
   </expression>
   <center>
-   <x-m>0.8159</x-m>
+   <x-m> 0.8159</x-m>
    <y-m> 0.190</y-m>
    <z-m>-1.1982</z-m>
   </center>
@@ -966,16 +1322,14 @@
     <property>sim/model/MRX13/RotateAboutPilot</property>
     <table>
      <property>surface-positions/left-aileron-pos-norm</property>
-     <entry><ind>-1</ind> <dep> -20</dep></entry>
-     <entry><ind> 0.0</ind> <dep>-35</dep></entry>
-     <entry><ind> 1.0</ind> <dep> -60</dep></entry>
+     <entry><ind>-1.0</ind> <dep>-16</dep></entry>
+     <entry><ind> 0.0</ind> <dep>-30</dep></entry>
+     <entry><ind> 1.0</ind> <dep>-44</dep></entry>
     </table>
    </product>
   </expression>
-
-  <factor>-45</factor>
   <center>
-   <x-m>0.8159</x-m>
+   <x-m> 0.8159</x-m>
    <y-m>-0.190</y-m>
    <z-m>-1.1982</z-m>
   </center>
@@ -996,15 +1350,15 @@
     <property>sim/model/MRX13/RotateAboutPilot</property>
     <table>
      <property>surface-positions/left-aileron-pos-norm</property>
-     <entry><ind>-1</ind> <dep> 60</dep></entry>
-     <entry><ind> 0.0</ind> <dep>35</dep></entry>
-     <entry><ind> 1.0</ind> <dep> 20</dep></entry>
+     <entry><ind>-1.0</ind> <dep> 44</dep></entry>
+     <entry><ind> 0.0</ind> <dep> 30</dep></entry>
+     <entry><ind> 1.0</ind> <dep> 16</dep></entry>
     </table>
    </product>
   </expression>
   <factor>-45</factor>
   <center>
-   <x-m>0.8159</x-m>
+   <x-m> 0.8159</x-m>
    <y-m> 0.190</y-m>
    <z-m>-1.1982</z-m>
   </center>
@@ -1029,14 +1383,14 @@
     <table>
      <property>surface-positions/elevator-pos-norm</property>
      <entry><ind>-2.0 </ind> <dep>105.</dep></entry> <!-- pilot backward -->
-     <entry><ind>-1.0 </ind> <dep>85.</dep></entry> <!-- pilot backward -->
-     <entry><ind> 0.0 </ind> <dep>65.0</dep></entry>
-     <entry><ind> 1.0 </ind> <dep>35.</dep></entry> <!-- pilot forward -->
+     <entry><ind>-1.0 </ind> <dep> 85.</dep></entry> <!-- pilot backward -->
+     <entry><ind> 0.0 </ind> <dep> 65.</dep></entry>
+     <entry><ind> 1.0 </ind> <dep> 40.</dep></entry> <!-- pilot forward -->
     </table>
    </product>
   </expression>
   <center>
-   <x-m>0.8159</x-m>
+   <x-m> 0.8159</x-m>
    <y-m> 0.190</y-m>
    <z-m>-1.1982</z-m>
   </center>
@@ -1057,9 +1411,9 @@
    <product>
     <property>sim/model/MRX13/RotateAboutPilot</property>
     <table>
-     <property>controls/flight/pilot-attitude-deg</property>
-     <entry><ind> 75.</ind> <dep>-60</dep></entry>
-     <entry><ind>  0.</ind> <dep>-0.0</dep></entry>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>-60.</dep></entry>
+     <entry><ind>  0.</ind> <dep> -0.</dep></entry>
      <entry><ind>-10.</ind> <dep>-10.</dep></entry>
     </table>
    </product>
@@ -1076,10 +1430,173 @@
   </axis>
  </animation>
 
- <!-- End Test on-ground -->
+ <!-- rotate about hang point -->
+ <animation>
+  <type>rotate</type>
+  <object-name>LeftUpperArm</object-name>
+  <object-name>LeftForearm</object-name>
+  <object-name>LeftHand</object-name>
+  <object-name>RightUpperArm</object-name>
+  <object-name>RightForearm</object-name>
+  <object-name>RightHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutHangpoint</property>
+    <value>1</value>
+    <table>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>-75</dep></entry>
+     <entry><ind> 30.</ind> <dep>-30</dep></entry>
+     <entry><ind> 20.</ind> <dep> -0</dep></entry>
+     <entry><ind> 10.</ind> <dep> -8</dep></entry>
+     <entry><ind>  0.</ind> <dep>  0</dep></entry>
+     <entry><ind>-10.</ind> <dep>  4</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m> 0.8160</x-m>
+   <y-m> 0.0</y-m>
+   <z-m>-1.1973</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
 
+ <animation>
+  <type>rotate</type>
+  <object-name>LeftUpperArm</object-name>
+  <object-name>LeftForearm</object-name>
+  <object-name>LeftHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutHangpoint</property>
+    <value>1</value>
+    <table>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>-50</dep></entry>
+     <entry><ind> 30.</ind> <dep>-50</dep></entry>
+     <entry><ind> 25.</ind> <dep>-12</dep></entry>
+     <entry><ind> 20.</ind> <dep>-12</dep></entry>
+     <entry><ind> 10.</ind> <dep> -4</dep></entry>
+     <entry><ind>  0.</ind> <dep>-10</dep></entry>
+     <entry><ind>-10.</ind> <dep>  0</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m> 0.8160</x-m>
+   <y-m>-0.1460</y-m>
+   <z-m>-1.1973</z-m>
+  </center>
+  <axis>
+   <x>0.9659</x>
+   <y>0.0</y>
+   <z>0.2588</z>
+  </axis>
+ </animation>
 
- <!-- __________________ Upper Arms __________________ -->
+ <animation>
+  <type>rotate</type>
+  <object-name>RightUpperArm</object-name>
+  <object-name>RightForearm</object-name>
+  <object-name>RightHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutHangpoint</property>
+    <value>1</value>
+    <table>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>50</dep></entry>
+     <entry><ind> 30.</ind> <dep>50</dep></entry>
+     <entry><ind> 25.</ind> <dep>60</dep></entry>
+     <entry><ind> 20.</ind> <dep>12</dep></entry>
+     <entry><ind> 10.</ind> <dep> 4</dep></entry>
+     <entry><ind>  0.</ind> <dep>10</dep></entry>
+     <entry><ind>-10.</ind> <dep> 0</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m> 0.8160</x-m>
+   <y-m> 0.1460</y-m>
+   <z-m>-1.1973</z-m>
+  </center>
+  <axis>
+   <x>0.9659</x>
+   <y>0.0</y>
+   <z>0.2588</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>LeftUpperArm</object-name>
+  <object-name>LeftForearm</object-name>
+  <object-name>LeftHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutHangpoint</property>
+    <value>1</value>
+    <table>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>20</dep></entry>
+     <entry><ind> 30.</ind> <dep>0</dep></entry>
+     <entry><ind> 25.</ind> <dep>0</dep></entry>
+     <entry><ind> 20.</ind> <dep>0</dep></entry>
+     <entry><ind> 10.</ind> <dep>0</dep></entry>
+     <entry><ind>  0.</ind> <dep>0</dep></entry>
+     <entry><ind>-10.</ind> <dep>0</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m> 0.8160</x-m>
+   <y-m>-0.1460</y-m>
+   <z-m>-1.1973</z-m>
+  </center>
+  <axis>
+   <x>0.2588</x>
+   <y>0.0</y>
+   <z>0.9659</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>RightUpperArm</object-name>
+  <object-name>RightForearm</object-name>
+  <object-name>RightHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutHangpoint</property>
+    <value>1</value>
+    <table>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>-20</dep></entry>
+     <entry><ind> 30.</ind> <dep>0</dep></entry>
+     <entry><ind> 25.</ind> <dep>0</dep></entry>
+     <entry><ind> 20.</ind> <dep>0</dep></entry>
+     <entry><ind> 10.</ind> <dep>0</dep></entry>
+     <entry><ind>  0.</ind> <dep>0</dep></entry>
+     <entry><ind>-10.</ind> <dep>0</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m> 0.8160</x-m>
+   <y-m> 0.1460</y-m>
+   <z-m>-1.1973</z-m>
+  </center>
+  <axis>
+   <x>0.2588</x>
+   <y>0.0</y>
+   <z>0.9659</z>
+  </axis>
+ </animation>
 
  <animation>
   <type>rotate</type>
@@ -1093,7 +1610,65 @@
     <value>-45</value>
    </product>
   </expression>
-  <factor>-45</factor>
+  <center>
+   <x-m> 0.8160</x-m>
+   <y-m>-0.1460</y-m>
+   <z-m>-1.1973</z-m>
+  </center>
+  <axis>
+   <x>0.9659</x>
+   <y>0.0</y>
+   <z>0.2588</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>RightUpperArm</object-name>
+  <object-name>RightForearm</object-name>
+  <object-name>RightHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutHangpoint</property>
+    <property>surface-positions/left-aileron-pos-norm</property>
+    <value>-45</value>
+   </product>
+  </expression>
+  <center>
+   <x-m> 0.8160</x-m>
+   <y-m> 0.1460</y-m>
+   <z-m>-1.1973</z-m>
+  </center>
+  <axis>
+   <x>0.9659</x>
+   <y>0.0</y>
+   <z>0.2588</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>LeftUpperArm</object-name>
+  <object-name>LeftForearm</object-name>
+  <object-name>LeftHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutHangpoint</property>
+    <value>1</value>
+    <table>
+     <property>surface-positions/elevator-pos-norm</property>
+     <entry><ind>-2.0 </ind> <dep>30.</dep></entry>
+     <entry><ind>-1.0 </ind> <dep>0.</dep></entry> <!-- pilot backward -->
+     <entry><ind>-0.75</ind> <dep>0.</dep></entry>
+     <entry><ind>-0.5 </ind> <dep>0.</dep></entry>
+     <entry><ind> 0.0 </ind> <dep>0.</dep></entry>
+     <entry><ind> 0.25</ind> <dep>0.</dep></entry>
+     <entry><ind> 0.5 </ind> <dep>0.</dep></entry>
+     <entry><ind> 0.75</ind> <dep>0.</dep></entry>
+     <entry><ind> 1.00</ind> <dep>0.</dep></entry> <!-- pilot forward -->
+    </table>
+   </product>
+  </expression>
   <center>
    <x-m> 0.8160</x-m>
    <y-m>-0.1460</y-m>
@@ -1114,11 +1689,21 @@
   <expression>
    <product>
     <property>sim/model/MRX13/RotateAboutHangpoint</property>
-    <property>surface-positions/left-aileron-pos-norm</property>
-    <value>-45</value>
+    <value>1</value>
+    <table>
+     <property>surface-positions/elevator-pos-norm</property>
+     <entry><ind>-2.0 </ind> <dep>-30.</dep></entry>
+     <entry><ind>-1.0 </ind> <dep>0.</dep></entry> <!-- pilot backward -->
+     <entry><ind>-0.75</ind> <dep>0.</dep></entry>
+     <entry><ind>-0.5 </ind> <dep>0.</dep></entry>
+     <entry><ind> 0.0 </ind> <dep>0.</dep></entry>
+     <entry><ind> 0.25</ind> <dep>0.</dep></entry>
+     <entry><ind> 0.5 </ind> <dep>0.</dep></entry>
+     <entry><ind> 0.75</ind> <dep>0.</dep></entry>
+     <entry><ind> 1.00</ind> <dep>0.</dep></entry> <!-- pilot forward -->
+    </table>
    </product>
   </expression>
-  <factor>-45</factor>
   <center>
    <x-m> 0.8160</x-m>
    <y-m> 0.1460</y-m>
@@ -1143,18 +1728,18 @@
    <product>
     <property>sim/model/MRX13/RotateAboutHangpoint</property>
     <value>1</value>
-   <table>
-    <property>surface-positions/elevator-pos-norm</property>
-    <entry><ind>-2.0 </ind> <dep>150.</dep></entry>
-    <entry><ind>-1.0 </ind> <dep>160.</dep></entry> <!-- pilot backward -->
-    <entry><ind>-0.75</ind> <dep>115.</dep></entry>
-    <entry><ind>-0.5 </ind> <dep>90.</dep></entry>
-    <entry><ind> 0.0 </ind> <dep>33.0</dep></entry>
-    <entry><ind> 0.25</ind> <dep>15.</dep></entry>
-    <entry><ind> 0.5 </ind> <dep>-0.</dep></entry>
-    <entry><ind> 0.75</ind> <dep>0.</dep></entry>
-    <entry><ind> 1.00</ind> <dep>25.</dep></entry> <!-- pilot forward -->
-   </table>
+    <table>
+     <property>surface-positions/elevator-pos-norm</property>
+     <entry><ind>-2.0 </ind> <dep>150.</dep></entry>
+     <entry><ind>-1.0 </ind> <dep>160.</dep></entry> <!-- pilot backward -->
+     <entry><ind>-0.75</ind> <dep>115.</dep></entry>
+     <entry><ind>-0.5 </ind> <dep> 90.</dep></entry>
+     <entry><ind> 0.0 </ind> <dep> 33.</dep></entry>
+     <entry><ind> 0.25</ind> <dep> 15.</dep></entry>
+     <entry><ind> 0.5 </ind> <dep>  0.</dep></entry>
+     <entry><ind> 0.75</ind> <dep>  0.</dep></entry>
+     <entry><ind> 1.00</ind> <dep> 25.</dep></entry> <!-- pilot forward -->
+    </table>
    </product>
   </expression>
   <center>
@@ -1174,6 +1759,38 @@
   <object-name>LeftUpperArm</object-name>
   <object-name>LeftForearm</object-name>
   <object-name>LeftHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutHangpoint</property>
+    <value>1</value>
+    <table>
+     <property>surface-positions/elevator-pos-norm</property>
+     <entry><ind>-2.0 </ind> <dep>-20.</dep></entry>
+     <entry><ind>-1.0 </ind> <dep>0.</dep></entry> <!-- pilot backward -->
+     <entry><ind>-0.75</ind> <dep>0.</dep></entry>
+     <entry><ind>-0.5 </ind> <dep>0.</dep></entry>
+     <entry><ind> 0.0 </ind> <dep>0.</dep></entry>
+     <entry><ind> 0.25</ind> <dep>0.</dep></entry>
+     <entry><ind> 0.5 </ind> <dep>0.</dep></entry>
+     <entry><ind> 0.75</ind> <dep>0.</dep></entry>
+     <entry><ind> 1.00</ind> <dep>0.</dep></entry> <!-- pilot forward -->
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m> 0.8160</x-m>
+   <y-m>-0.1460</y-m>
+   <z-m>-1.1973</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
   <object-name>RightUpperArm</object-name>
   <object-name>RightForearm</object-name>
   <object-name>RightHand</object-name>
@@ -1182,27 +1799,30 @@
     <property>sim/model/MRX13/RotateAboutHangpoint</property>
     <value>1</value>
     <table>
-     <property>controls/flight/pilot-attitude-deg</property>
-     <entry><ind> 75.</ind> <dep> -40</dep></entry>
-     <entry><ind> 30.</ind> <dep>10</dep></entry>
-     <entry><ind>10.00</ind> <dep>-8</dep></entry>
-     <entry><ind>0.00</ind> <dep>+0</dep></entry>
-     <entry><ind>-10.</ind> <dep>+4</dep></entry>
+     <property>surface-positions/elevator-pos-norm</property>
+     <entry><ind>-2.0 </ind> <dep>20.</dep></entry>
+     <entry><ind>-1.0 </ind> <dep>0.</dep></entry> <!-- pilot backward -->
+     <entry><ind>-0.75</ind> <dep>0.</dep></entry>
+     <entry><ind>-0.5 </ind> <dep>0.</dep></entry>
+     <entry><ind> 0.0 </ind> <dep>0.</dep></entry>
+     <entry><ind> 0.25</ind> <dep>0.</dep></entry>
+     <entry><ind> 0.5 </ind> <dep>0.</dep></entry>
+     <entry><ind> 0.75</ind> <dep>0.</dep></entry>
+     <entry><ind> 1.00</ind> <dep>0.</dep></entry> <!-- pilot forward -->
     </table>
    </product>
   </expression>
   <center>
    <x-m> 0.8160</x-m>
-   <y-m> 0.0</y-m>
+   <y-m> 0.1460</y-m>
    <z-m>-1.1973</z-m>
   </center>
   <axis>
    <x>0.0</x>
-   <y>1.0</y>
-   <z>0.0</z>
+   <y>0.0</y>
+   <z>1.0</z>
   </axis>
  </animation>
-
 
  <!-- __________________ Lower Arms __________________ -->
 
@@ -1216,48 +1836,36 @@
    <product>
     <property>sim/model/MRX13/RotateAboutHangpoint</property>
     <value>1</value>
-    <table>
-     <property>surface-positions/elevator-pos-norm</property>
-     <entry><ind>-1.0 </ind> <dep>-60.</dep></entry> <!-- pilot backward -->
-     <entry><ind>-0.75</ind> <dep>10.</dep></entry>
-     <entry><ind>-0.5 </ind> <dep> 35.</dep></entry>
-     <entry><ind> 0.0 </ind> <dep>  55.</dep></entry>
-     <entry><ind> 0.5 </ind> <dep> 30.</dep></entry>
-     <entry><ind> 0.75</ind> <dep>   0.</dep></entry>
-     <entry><ind> 1.0 </ind> <dep>-70.</dep></entry> <!-- pilot forward -->
-    </table>
-   </product>
-  </expression>
-  <center>
-   <x-m> 1.1029</x-m>
-   <y-m> 0.1878</y-m>
-   <z-m>-1.2894</z-m>
-  </center>
-  <axis>
-   <x>0.0</x>
-   <y>1.0</y>
-   <z>0.0</z>
-  </axis>
-  </animation>
-
- <animation>
-  <type>rotate</type>
-  <object-name>LeftForearm</object-name>
-  <object-name>LeftHand</object-name>
-  <object-name>RightForearm</object-name>
-  <object-name>RightHand</object-name>
-  <expression>
-   <product>
-    <property>sim/model/MRX13/RotateAboutHangpoint</property>
-    <value>1</value>
-    <table>
-     <property>controls/flight/pilot-attitude-deg</property>
-     <entry><ind> 75.</ind> <dep> 50</dep></entry>
-     <entry><ind> 30.</ind> <dep>-80</dep></entry>
-     <entry><ind> 10.</ind> <dep>-20</dep></entry>
-     <entry><ind>0.00</ind> <dep>+0</dep></entry>
-     <entry><ind>-10.</ind> <dep>+20</dep></entry>
-    </table>
+    <min>
+     <max>
+      <sum>
+       <table>
+        <property>surface-positions/pilot-attitude-deg</property>
+        <entry><ind> 75.</ind> <dep>-40</dep></entry>
+        <entry><ind> 60.</ind> <dep>-40</dep></entry>
+        <entry><ind> 30.</ind> <dep>-80</dep></entry>
+        <entry><ind> 20.</ind> <dep>-50</dep></entry>
+        <entry><ind> 10.</ind> <dep>-20</dep></entry>
+        <entry><ind>  0.</ind> <dep>  0</dep></entry>
+        <entry><ind>-10.</ind> <dep> 20</dep></entry>
+       </table>
+       
+       <table>
+        <property>surface-positions/elevator-pos-norm</property>
+        <entry><ind>-2.0 </ind> <dep>  0.</dep></entry>
+        <entry><ind>-1.0 </ind> <dep>-60.</dep></entry> <!-- pilot backward -->
+        <entry><ind>-0.75</ind> <dep> 10.</dep></entry>
+        <entry><ind>-0.5 </ind> <dep> 35.</dep></entry>
+        <entry><ind> 0.0 </ind> <dep> 55.</dep></entry>
+        <entry><ind> 0.5 </ind> <dep> 30.</dep></entry>
+        <entry><ind> 0.75</ind> <dep>  0.</dep></entry>
+        <entry><ind> 1.0 </ind> <dep>-70.</dep></entry> <!-- pilot forward -->
+       </table>
+      </sum>
+      <value>-75</value>
+     </max>
+     <value>105</value>
+    </min>
    </product>
   </expression>
   <center>
@@ -1272,7 +1880,235 @@
   </axis>
  </animation>
 
+ <!-- __________________ Hands __________________ -->
 
+ <!-- rotate about pilot -->
+ <animation>
+  <type>rotate</type>
+  <object-name>LeftHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutPilot</property>
+    <table>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>60.</dep></entry>
+     <entry><ind>  0.</ind> <dep>60.</dep></entry>
+     <entry><ind>-10.</ind> <dep>60.</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m> 1.1207</x-m>
+   <y-m>-0.1857</y-m>
+   <z-m>-1.4762</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>LeftHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutPilot</property>
+    <table>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>-20.</dep></entry>
+     <entry><ind>  0.</ind> <dep>-10.</dep></entry>
+     <entry><ind>-10.</ind> <dep>  0.</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m> 1.1207</x-m>
+   <y-m>-0.1857</y-m>
+   <z-m>-1.4762</z-m>
+  </center>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>RightHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutPilot</property>
+    <table>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>-60.</dep></entry>
+     <entry><ind>  0.</ind> <dep>-60.</dep></entry>
+     <entry><ind>-10.</ind> <dep>-60.</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m> 1.1207</x-m>
+   <y-m> 0.1857</y-m>
+   <z-m>-1.4762</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>RightHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutPilot</property>
+    <table>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>20.</dep></entry>
+     <entry><ind>  0.</ind> <dep>10.</dep></entry>
+     <entry><ind>-10.</ind> <dep> 0.</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m> 1.1207</x-m>
+   <y-m> 0.1857</y-m>
+   <z-m>-1.4762</z-m>
+  </center>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <!-- rotate about hang point -->
+ <animation>
+  <type>rotate</type>
+  <object-name>LeftHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutHangpoint</property>
+    <table>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>120.</dep></entry>
+     <entry><ind> 30.</ind> <dep>120.</dep></entry>
+     <entry><ind> 25.</ind> <dep>  0.</dep></entry>
+     <entry><ind> 20.</ind> <dep>  0.</dep></entry>
+     <entry><ind> 10.</ind> <dep>  0.</dep></entry>
+     <entry><ind>  0.</ind> <dep>  0.</dep></entry>
+     <entry><ind>-10.</ind> <dep>  0.</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m> 1.1207</x-m>
+   <y-m>-0.1857</y-m>
+   <z-m>-1.4762</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>LeftHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutHangpoint</property>
+    <table>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>0.</dep></entry>
+     <entry><ind> 30.</ind> <dep>0.</dep></entry>
+     <entry><ind> 25.</ind> <dep>0.</dep></entry>
+     <entry><ind> 20.</ind> <dep>0.</dep></entry>
+     <entry><ind> 10.</ind> <dep>0.</dep></entry>
+     <entry><ind>  0.</ind> <dep>0.</dep></entry>
+     <entry><ind>-10.</ind> <dep>0.</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m> 1.1207</x-m>
+   <y-m>-0.1857</y-m>
+   <z-m>-1.4762</z-m>
+  </center>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>RightHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutHangpoint</property>
+    <table>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>-120.</dep></entry>
+     <entry><ind> 30.</ind> <dep>-120.</dep></entry>
+     <entry><ind> 25.</ind> <dep>-110.</dep></entry>
+     <entry><ind> 20.</ind> <dep>0.</dep></entry>
+     <entry><ind> 10.</ind> <dep>0.</dep></entry>
+     <entry><ind>  0.</ind> <dep>0.</dep></entry>
+     <entry><ind>-10.</ind> <dep>0.</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m> 1.1207</x-m>
+   <y-m> 0.1857</y-m>
+   <z-m>-1.4762</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>RightHand</object-name>
+  <expression>
+   <product>
+    <property>sim/model/MRX13/RotateAboutHangpoint</property>
+    <table>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>0.</dep></entry>
+     <entry><ind> 30.</ind> <dep>0.</dep></entry>
+     <entry><ind> 25.</ind> <dep>0.</dep></entry>
+     <entry><ind> 20.</ind> <dep>0.</dep></entry>
+     <entry><ind> 10.</ind> <dep>0.</dep></entry>
+     <entry><ind>  0.</ind> <dep>0.</dep></entry>
+     <entry><ind>-10.</ind> <dep>0.</dep></entry>
+    </table>
+   </product>
+  </expression>
+  <center>
+   <x-m> 1.1207</x-m>
+   <y-m> 0.1857</y-m>
+   <z-m>-1.4762</z-m>
+  </center>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+ 
+ 
  <!-- __________________ Helmet+Vizor __________________ -->
 
  <animation>
@@ -1280,11 +2116,11 @@
   <object-name>Helmet</object-name>
   <object-name>Vizor</object-name>
   <object-name>Head</object-name>
-  <property>controls/flight/pilot-attitude-deg</property>
+  <property>surface-positions/pilot-attitude-deg</property>
    <interpolation>
-    <entry><ind>75. </ind> <dep>-20.</dep></entry>
-    <entry><ind>0.0 </ind> <dep> 35.</dep></entry>
-    <entry><ind>-10.</ind> <dep>+45</dep></entry>
+    <entry><ind> 75.</ind> <dep>-20.</dep></entry>
+    <entry><ind>  0.</ind> <dep> 35.</dep></entry>
+    <entry><ind>-10.</ind> <dep> 45.</dep></entry>
    </interpolation>
    <center>
     <x-m>0.6492</x-m>
@@ -1296,6 +2132,60 @@
     <y>1.0</y>
     <z>0.0</z>
    </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Vizor</object-name>
+  <property>sim/model/MRX13/animation/vizor-pos-deg</property>
+  <factor type="double">1.0</factor>
+  <center>
+   <x-m>0.5903</x-m>
+   <y-m>0.</y-m>
+   <z-m>-1.2182</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>pick</type>
+   <object-name>Vizor</object-name>
+   <action>
+    <button>0</button>
+    <button>4</button>
+    <repeatable>false</repeatable>
+     <binding>
+      <command>property-adjust</command>
+      <property>sim/model/MRX13/animation/vizor-pos-deg</property>
+      <step>5</step>
+      <min>0</min>
+      <max>50</max>
+      <wrap>false</wrap>
+     </binding>
+   </action>
+ </animation>
+
+ <animation>
+  <type>pick</type>
+   <object-name>Vizor</object-name>
+   <action>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <repeatable>false</repeatable>
+     <binding>
+      <command>property-adjust</command>
+      <property>sim/model/MRX13/animation/vizor-pos-deg</property>
+      <step>-5</step>
+      <min>0</min>
+      <max>50</max>
+      <wrap>false</wrap>
+     </binding>
+   </action>
  </animation>
 
  <!-- hide helmet in Pilot-View  -->
@@ -1313,6 +2203,106 @@
  </animation>
 
 
+ <!-- __________________ Harness __________________ -->
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Harness_Seg2</object-name>
+  <object-name>Harness_Seg3</object-name>
+  <!-- <object-name>DrogueChute</object-name> -->
+  <expression>
+   <product>
+    <table>
+    <property>gear/gear[1]/position-norm</property>
+     <entry><ind>0.2</ind> <dep>0.</dep></entry>
+     <entry><ind>0.7</ind> <dep>1.</dep></entry>
+     <entry><ind>1.0</ind> <dep>1.</dep></entry>
+    </table>
+    <table>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>-20.</dep></entry>
+     <entry><ind>  0.</ind> <dep>  0.</dep></entry>
+     <entry><ind>-10.</ind> <dep>  0.</dep></entry>
+    </table>
+    </product>
+   </expression>
+   <center>
+    <x-m> 1.3076</x-m>
+    <y-m> 0.0</y-m>
+    <z-m>-1.3993</z-m>
+   </center>
+   <axis>
+    <x>0.0</x>
+    <y>1.0</y>
+    <z>0.0</z>
+   </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Harness_Seg3</object-name>
+  <expression>
+   <product>
+    <table>
+    <property>gear/gear[1]/position-norm</property>
+     <entry><ind>0.1</ind> <dep>0.</dep></entry>
+     <entry><ind>0.5</ind> <dep>1.</dep></entry>
+     <entry><ind>1.0</ind> <dep>1.</dep></entry>
+    </table>
+    <table>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep>-20.</dep></entry>
+     <entry><ind> 45.</ind> <dep>  0.</dep></entry>
+     <entry><ind>  0.</ind> <dep>  0.</dep></entry>
+     <entry><ind>-10.</ind> <dep>  0.</dep></entry>
+    </table>
+    </product>
+   </expression>
+   <center>
+    <x-m> 1.7477</x-m>
+    <y-m> 0.0</y-m>
+    <z-m>-1.4159</z-m>
+   </center>
+   <axis>
+    <x>0.0</x>
+    <y>1.0</y>
+    <z>0.0</z>
+   </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Harness_Seg3</object-name>
+  <expression>
+   <product>
+    <table>
+    <property>gear/gear[1]/position-norm</property>
+     <entry><ind>0.1</ind> <dep>0.</dep></entry>
+     <entry><ind>0.5</ind> <dep>1.</dep></entry>
+     <entry><ind>1.0</ind> <dep>1.</dep></entry>
+    </table>
+    <table>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <entry><ind> 75.</ind> <dep> 0.</dep></entry>
+     <entry><ind> 45.</ind> <dep> 0.</dep></entry>
+     <entry><ind>  0.</ind> <dep>10.</dep></entry>
+     <entry><ind>-10.</ind> <dep>15.</dep></entry>
+    </table>
+    </product>
+   </expression>
+   <center>
+    <x-m> 1.7477</x-m>
+    <y-m> 0.0</y-m>
+    <z-m>-1.0880</z-m>
+   </center>
+   <axis>
+    <x>0.0</x>
+    <y>1.0</y>
+    <z>0.0</z>
+   </axis>
+ </animation>
+
+
  <!-- __________________ Upper Legs __________________ -->
 
  <!-- left leg -->
@@ -1322,16 +2312,16 @@
   <object-name>LeftLowerLeg</object-name>
   <object-name>LeftFoot</object-name>
   <expression>
-   <product>
-    <dif>
-     <property>sim/model/MRX13/animation/running_leg_left</property>
-     <property>controls/flight/pilot-attitude-deg</property>
-    </dif>
-    <property>gear/gear[1]/position-norm</property>
-   </product>   
+   <dif>
+    <property>sim/model/MRX13/animation/running_leg_left</property>
+    <product>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <property>gear/gear[1]/position-norm</property>
+    </product>
+   </dif>
   </expression>
   <center>
-   <x-m>1.3456</x-m>
+   <x-m> 1.3456</x-m>
    <y-m>-0.07567</y-m>
    <z-m>-1.2492</z-m>
   </center>
@@ -1349,17 +2339,17 @@
   <object-name>RightLowerLeg</object-name>
   <object-name>RightFoot</object-name>
   <expression>
-   <product>
-    <dif>
-     <property>sim/model/MRX13/animation/running_leg_right</property>
-     <property>controls/flight/pilot-attitude-deg</property>
-    </dif>
-    <property>gear/gear[1]/position-norm</property>
-   </product>   
+   <dif>
+    <property>sim/model/MRX13/animation/running_leg_right</property>
+    <product>
+     <property>surface-positions/pilot-attitude-deg</property>
+     <property>gear/gear[1]/position-norm</property>
+    </product>
+   </dif>
   </expression>
   <center>
-   <x-m>1.3456</x-m>
-   <y-m>0.07567</y-m>
+   <x-m> 1.3456</x-m>
+   <y-m> 0.07567</y-m>
    <z-m>-1.2492</z-m>
   </center>
   <axis>
@@ -1385,13 +2375,8 @@
     <value>0</value>
    </greater-than-equals>
   </condition>
-  <interpolation>
-   <entry><ind>-30.0</ind> <dep>  0.0</dep></entry>
-   <entry><ind>  0.0</ind> <dep>-60.0</dep></entry>
-   <entry><ind> 30.0</ind> <dep>  0.0</dep></entry>
-  </interpolation>
   <center>
-   <x-m>1.6884</x-m>
+   <x-m> 1.6884</x-m>
    <y-m>-0.06863</y-m>
    <z-m>-1.2950</z-m>
   </center>
@@ -1408,20 +2393,15 @@
   <object-name>RightLowerLeg</object-name>
   <object-name>RightFoot</object-name>
   <property>sim/model/MRX13/animation/running_leg</property>
-  <factor type="double">-1.0</factor>
+  <factor type="double">1.0</factor>
   <condition>
    <less-than-equals>
     <property>sim/model/MRX13/animation/running_leg_sign</property>
     <value>0</value>
    </less-than-equals>
   </condition>
-  <interpolation>
-   <entry><ind>-30.0</ind> <dep>  0.0</dep></entry>
-   <entry><ind>  0.0</ind> <dep>-60.0</dep></entry>
-   <entry><ind> 30.0</ind> <dep>  0.0</dep></entry>
-  </interpolation>
   <center>
-   <x-m>1.6884</x-m>
+   <x-m> 1.6884</x-m>
    <y-m>-0.06863</y-m>
    <z-m>-1.2950</z-m>
   </center>
@@ -1443,11 +2423,12 @@
   <property>gear/gear[1]/position-norm</property>
   <interpolation>
    <entry><ind>0.0</ind> <dep> 0</dep></entry>
+   <entry><ind>0.1</ind> <dep> 0</dep></entry>
    <entry><ind>0.3</ind> <dep>35</dep></entry>
    <entry><ind>1.0</ind> <dep>35</dep></entry>
   </interpolation>
   <center>
-   <x-m>2.1090</x-m>
+   <x-m> 2.1090</x-m>
    <y-m>-0.05259</y-m>
    <z-m>-1.2659</z-m>
   </center>
@@ -1455,6 +2436,49 @@
    <x>0.0</x>
    <y>1.0</y>
    <z>0.0</z>
+  </axis>
+ </animation>
+
+
+ <!-- __________________ Legs Sidestep __________________ -->
+
+ <!-- left leg -->
+ <animation>
+  <type>rotate</type>
+  <object-name>LeftThigh</object-name>
+  <object-name>LeftLowerLeg</object-name>
+  <object-name>LeftFoot</object-name>
+  <property>sim/model/MRX13/animation/sidestep-deg</property>
+  <factor>-1</factor>
+  <center>
+   <x-m> 1.3456</x-m>
+   <y-m>-0.07567</y-m>
+   <z-m>-1.2492</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.0</z>
+  </axis>
+ </animation>
+
+ <!-- right leg -->
+ <animation>
+  <type>rotate</type>
+  <object-name>RightThigh</object-name>
+  <object-name>RightLowerLeg</object-name>
+  <object-name>RightFoot</object-name>
+  <property>sim/model/MRX13/animation/sidestep-deg</property>
+  <factor>1</factor>
+  <center>
+   <x-m> 1.3456</x-m>
+   <y-m>0.07567</y-m>
+   <z-m>-1.2492</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.0</z>
   </axis>
  </animation>
 
@@ -1581,8 +2605,8 @@
    <z>0.0</z>
   </axis>
   <center>
-   <x-m>1.2534</x-m>
-   <y-m>0.4860</y-m>
+   <x-m> 1.2534</x-m>
+   <y-m> 0.4860</y-m>
    <z-m>-1.5592</z-m>
   </center>
  </animation>
@@ -1609,8 +2633,8 @@
    <z>0.0</z>
   </axis>
   <center>
-   <x-m>1.2534</x-m>
-   <y-m>0.4860</y-m>
+   <x-m> 1.2534</x-m>
+   <y-m> 0.4860</y-m>
    <z-m>-1.5592</z-m>
   </center>
  </animation>
@@ -1627,8 +2651,8 @@
    <z>1.0</z>
   </axis>
   <center>
-   <x-m>1.2534</x-m>
-   <y-m>0.4860</y-m>
+   <x-m> 1.2534</x-m>
+   <y-m> 0.4860</y-m>
    <z-m>-1.5592</z-m>
   </center>
  </animation>
@@ -1638,8 +2662,8 @@
   <object-name>VG_Rope</object-name>
   <property>controls/flight/spoilers</property>
   <center>
-   <x-m>1.2534</x-m>
-   <y-m>0.4860</y-m>
+   <x-m> 1.2534</x-m>
+   <y-m> 0.4860</y-m>
    <z-m>-1.5592</z-m>
   </center>
   <x-min>0.525</x-min>
@@ -1722,7 +2746,7 @@
   <object-name>RescueHandle</object-name>
   <condition>
    <not>
-    <property>sim/model/Parachutes/parachute-pos-norm</property> 
+    <property>sim/model/Parachutes/parachute-pos-norm</property>
    </not>
   </condition>
  </animation>
@@ -1801,5 +2825,6 @@
      </binding>
    </action>
  </animation>
- 
+
+
 </PropertyList>
