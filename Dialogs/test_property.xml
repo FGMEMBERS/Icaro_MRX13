@@ -53,7 +53,7 @@
      <label>99999</label>
      <live>true</live>
      <format>% 2.2f</format>
-     <property>fdm/jsbsim/systems/weightshift/cg_pilot_shift-z-inch</property>
+     <property>sim/hitches/dampingfactor</property>
      <color>
       <red>0.2</red>
       <green>0.9</green>
@@ -65,15 +65,15 @@
     <group>
      <width>38</width>
      <text>
-      <label>-100</label>
+      <label>-100000</label>
      </text>
     </group>
     <slider>
-     <name>hsl</name>
+     <name>dampingfactor</name>
      <live>true</live>
-     <property>fdm/jsbsim/systems/weightshift/cg_pilot_shift-z-inch</property>
-     <min>-100</min>
-     <max>100</max>
+     <property>sim/hitches/dampingfactor</property>
+     <min>-100000</min>
+     <max>100000</max>
      <step>1.</step>
      <binding>
       <command>dialog-apply</command>
@@ -82,7 +82,7 @@
     <group>
      <width>38</width>
      <text>
-      <label>100</label>
+      <label>100000</label>
      </text>
     </group>
    </group>

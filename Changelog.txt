@@ -1,3 +1,10 @@
+Changes August 2017:
+
+- optional horizontal stabilizer (customizable: location, area, pitch and weight)
+- optional vertical stabilizer (customizable: location, area, deflection and weight)
+- wheels with weight (see weight and balance gui)
+
+
 Changes May 2017:
 
 - semiflexible hang strap (pilot can shift in z-direction)

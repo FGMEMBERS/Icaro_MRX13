@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!-- version: 2012-06-10 -->
+<!-- version: 2017-08-12 -->
 <PropertyList>
   <name>weight_and_balance_dialog</name>
   <layout>vbox</layout>
@@ -9,30 +9,30 @@
 
   <!-- Title bar with close button -->
   <group>
-    <layout>hbox</layout><equal>true</equal>
-    <default-padding>1</default-padding>
-    <empty>
-      <stretch>true</stretch>
-    </empty>
-    <text>
-      <label>Weight and Balance Settings</label>
-      <font>
-        <name>times_bold</name>
-      </font>
-    </text>
-    <empty>
-      <stretch>true</stretch>
-    </empty>
-    <button>
-      <legend/>
-      <key>Esc</key>
-      <pref-width>16</pref-width>
-      <pref-height>16</pref-height>
-      <border>2</border>
-      <binding>
-        <command>dialog-close</command>
-      </binding>
-    </button>
+   <layout>hbox</layout><equal>true</equal>
+   <default-padding>1</default-padding>
+   <empty>
+    <stretch>true</stretch>
+   </empty>
+   <text>
+    <label>Weight and Balance Settings</label>
+    <font>
+     <name>times_bold</name>
+    </font>
+   </text>
+   <empty>
+    <stretch>true</stretch>
+   </empty>
+   <button>
+    <legend/>
+    <key>Esc</key>
+    <pref-width>16</pref-width>
+    <pref-height>16</pref-height>
+    <border>2</border>
+    <binding>
+     <command>dialog-close</command>
+    </binding>
+   </button>
   </group>
 
   <hrule/>
@@ -40,212 +40,505 @@
 
   <!-- glider weight setting -->
   <group>
-    <layout>hbox</layout><equal>true</equal>
+   <layout>hbox</layout><equal>true</equal>
+   <frame>
+    <layout>hbox</layout>
+    <equal>true</equal>
+    <text>
+     <halign>left</halign>
+     <label>Glider Weight</label>
+    </text>
+   </frame>
+
+   <frame>
+    <layout>hbox</layout>
+    <equal>true</equal>
     <frame>
-      <layout>hbox</layout>
-      <equal>true</equal>
-      <text>
-        <halign>left</halign>
-        <label>Glider Weight</label>
-      </text>
+     <layout>hbox</layout>
+     <halign>center</halign>
+     <text>
+      <label>999999999</label>
+      <live>true</live>
+      <format>  %3.1f lbs</format>
+      <property>/fdm/jsbsim/inertia/empty-weight-lbs</property>
+      <color>
+       <red>0.</red>
+       <green>1.</green>
+       <blue>1.</blue>
+      </color>
+     </text>
     </frame>
 
     <frame>
-      <layout>hbox</layout>
-      <equal>true</equal>
-        <frame>
-          <layout>hbox</layout>
-          <halign>center</halign>
-          <text>
-            <label>999999999</label>
-            <live>true</live>
-            <format>  %3.1f lbs</format>
-            <property>/fdm/jsbsim/inertia/empty-weight-lbs</property>
-            <color>
-              <red>0.</red>
-              <green>1.</green>
-              <blue>1.</blue>
-            </color>
-          </text>
-        </frame>
-
-        <frame>
-          <layout>hbox</layout>
-          <halign>center</halign>
-          <text>
-            <label>9999999999</label>
-            <live>true</live>
-            <format>  %3.1f kg</format>
-            <property>/fdm/jsbsim/inertia/empty-weight-kg</property>
-            <color>
-              <red>0.</red>
-              <green>1.</green>
-              <blue>1.</blue>
-            </color>
-          </text>
-        </frame>
+     <layout>hbox</layout>
+     <halign>center</halign>
+     <text>
+      <label>9999999999</label>
+      <live>true</live>
+      <format>  %3.1f kg</format>
+      <property>/fdm/jsbsim/inertia/empty-weight-kg</property>
+      <color>
+       <red>0.</red>
+       <green>1.</green>
+       <blue>1.</blue>
+      </color>
+     </text>
     </frame>
+   </frame>
 
-    <group>
-      <layout>hbox</layout>
-      <equal>true</equal>
-      <empty>
-        <stretch>true</stretch>
-      </empty>
-    </group>
+   <group>
+    <layout>hbox</layout>
+    <equal>true</equal>
+    <empty>
+     <stretch>true</stretch>
+    </empty>
+   </group>
 
   </group>
 
 <!-- hook in weight (pilot + harness) configuration -->
   <group>
-    <layout>hbox</layout><equal>true</equal>
-    <frame>
-      <layout>hbox</layout>
-      <equal>true</equal>
-      <text>
-        <halign>left</halign>
-        <label>Hook-In Weight (Pilot + Harness)</label>
-      </text>
-    </frame>
-
-    <frame>
+   <layout>hbox</layout><equal>true</equal>
+   <frame>
     <layout>hbox</layout>
     <equal>true</equal>
+    <text>
+     <halign>left</halign>
+     <label>Hook-In Weight (Pilot + Harness)</label>
+    </text>
+   </frame>
 
-      <frame>
-        <layout>hbox</layout>
-        <halign>center</halign>
-        <text>
-          <label>9999999999</label>
-          <live>true</live>
-          <format>  %3.1f lbs</format>
-          <property>/fdm/jsbsim/inertia/pointmass-weight-lbs</property>
-          <color>
-            <red>0.</red>
-            <green>1.</green>
-            <blue>1.</blue>
-          </color>
-        </text>
-      </frame>
-
-      <frame>
-        <layout>hbox</layout>
-        <halign>center</halign>
-        <text>
-          <label>9999999999</label>
-          <live>true</live>
-          <format>  %3.1f kg</format>
-          <property>/fdm/jsbsim/inertia/pointmass-weight-kg</property>
-          <color>
-            <red>0.</red>
-            <green>1.</green>
-            <blue>1.</blue>
-          </color>
-        </text>
-      </frame>
+   <frame>
+    <layout>hbox</layout>
+    <equal>true</equal>
+    <frame>
+     <layout>hbox</layout>
+     <halign>center</halign>
+     <text>
+      <label>9999999999</label>
+      <live>true</live>
+      <format>  %3.1f lbs</format>
+      <property>/fdm/jsbsim/inertia/pointmass-weight-lbs</property>
+      <color>
+       <red>0.</red>
+       <green>1.</green>
+       <blue>1.</blue>
+      </color>
+     </text>
     </frame>
 
     <frame>
-      <layout>hbox</layout>
-      <equal>true</equal>
-      <halign>center</halign>
-      <slider>
-        <name>pilots_weight</name>
-         <live>true</live>
-        <property>/fdm/jsbsim/inertia/pointmass-weight-lbs</property>
-        <min>100.0</min>
-        <max>350.0</max>
-        <step>0.5</step>
-        <binding>
-          <command>dialog-apply</command>
-        </binding>
+     <layout>hbox</layout>
+     <halign>center</halign>
+     <text>
+      <label>9999999999</label>
+      <live>true</live>
+      <format>  %3.1f kg</format>
+      <property>/fdm/jsbsim/inertia/pointmass-weight-kg</property>
+      <color>
+       <red>0.</red>
+       <green>1.</green>
+       <blue>1.</blue>
+      </color>
+     </text>
+    </frame>
+   </frame>
 
-        <binding>
+   <frame>
+    <layout>hbox</layout>
+    <equal>true</equal>
+    <halign>center</halign>
+    <slider>
+     <name>pilots_weight</name>
+     <live>true</live>
+     <property>/fdm/jsbsim/inertia/pointmass-weight-lbs</property>
+     <min>100.0</min>
+     <max>350.0</max>
+     <step>0.5</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+
+     <binding>
       <command>nasal</command>
-          <script>
-            var weight_lbs = getprop("/fdm/jsbsim/inertia/empty-weight-lbs");
-            var weight_kg = weight_lbs * 0.453592;
-            setprop("/fdm/jsbsim/inertia/empty-weight-kg",weight_kg) ;
-          </script>
-        </binding>
-        <binding>
+      <script>
+       var weight_lbs = getprop("/fdm/jsbsim/inertia/empty-weight-lbs");
+       var weight_kg = weight_lbs * 0.453592;
+       setprop("/fdm/jsbsim/inertia/empty-weight-kg",weight_kg) ;
+      </script>
+     </binding>
+     <binding>
       <command>nasal</command>
-          <script>
-            var weight_lbs = getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs");
-            var weight_kg = weight_lbs * 0.453592;
-            setprop("/fdm/jsbsim/inertia/pointmass-weight-kg",weight_kg) ;
-          </script>
-        </binding>
-        <binding>
+      <script>
+       var weight_lbs = getprop("/fdm/jsbsim/inertia/pointmass-weight-lbs");
+       var weight_kg = weight_lbs * 0.453592;
+       setprop("/fdm/jsbsim/inertia/pointmass-weight-kg",weight_kg) ;
+      </script>
+     </binding>
+     <binding>
       <command>nasal</command>
-          <script>
-            var weight_lbs = getprop("/fdm/jsbsim/inertia/weight-lbs");
-            var weight_kg = weight_lbs * 0.453592;
-            setprop("/fdm/jsbsim/inertia/weight-kg",weight_kg) ;
-          </script>
-        </binding>
-      </slider>
+      <script>
+       var weight_lbs = getprop("/fdm/jsbsim/inertia/weight-lbs");
+       var weight_kg = weight_lbs * 0.453592;
+       setprop("/fdm/jsbsim/inertia/weight-kg",weight_kg) ;
+      </script>
+     </binding>
+    </slider>
+   </frame>
+
+  </group>
+
+<!-- wheel left -->
+  <group>
+   <layout>hbox</layout><equal>true</equal>
+   <frame>
+    <layout>hbox</layout>
+    <equal>true</equal>
+    <text>
+     <halign>left</halign>
+     <label>Wheel Left</label>
+    </text>
+   </frame>
+
+   <frame>
+    <layout>hbox</layout>
+    <equal>true</equal>
+    <frame>
+     <layout>hbox</layout>
+     <halign>center</halign>
+     <text>
+      <label>9999999999</label>
+      <live>true</live>
+      <format>  %4.2f lbs</format>
+      <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[1]</property>
+      <color>
+       <red>0.</red>
+       <green>1.</green>
+       <blue>1.</blue>
+      </color>
+     </text>
     </frame>
 
+    <frame>
+     <layout>hbox</layout>
+     <halign>center</halign>
+     <text>
+      <label>9999999999</label>
+      <live>true</live>
+      <format>  %4.2f kg</format>
+      <property>/sim/model/Wheels/wheel_left_weight-kg_used</property>
+      <color>
+       <red>0.</red>
+       <green>1.</green>
+       <blue>1.</blue>
+      </color>
+     </text>
+    </frame>
+   </frame>
+
+   <frame>
+    <layout>hbox</layout>
+    <equal>true</equal>
+    <halign>center</halign>
+    <slider>
+     <name>wheel_left_weight</name>
+     <live>true</live>
+     <property>/sim/model/Wheels/wheel_left_weight-kg</property>
+     <min>0.0</min>
+     <max>5.0</max>
+     <step>0.05</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+     <binding>
+      <command>nasal</command>
+      <script>
+       MRX13.Wheels();
+       MRX13.inertia_weight_to_kg();
+      </script>
+     </binding>
+    </slider>
+   </frame>
+
+  </group>
+
+<!-- wheel right -->
+  <group>
+   <layout>hbox</layout><equal>true</equal>
+   <frame>
+    <layout>hbox</layout>
+    <equal>true</equal>
+    <text>
+     <halign>left</halign>
+     <label>Wheel Right</label>
+    </text>
+   </frame>
+
+   <frame>
+    <layout>hbox</layout>
+    <equal>true</equal>
+    <frame>
+     <layout>hbox</layout>
+     <halign>center</halign>
+     <text>
+      <label>9999999999</label>
+      <live>true</live>
+      <format>  %4.2f lbs</format>
+      <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[2]</property>
+      <color>
+       <red>0.</red>
+       <green>1.</green>
+       <blue>1.</blue>
+      </color>
+     </text>
+    </frame>
+
+    <frame>
+     <layout>hbox</layout>
+     <halign>center</halign>
+     <text>
+      <label>9999999999</label>
+      <live>true</live>
+      <format>  %4.2f kg</format>
+      <property>/sim/model/Wheels/wheel_right_weight-kg_used</property>
+      <color>
+       <red>0.</red>
+       <green>1.</green>
+       <blue>1.</blue>
+      </color>
+     </text>
+    </frame>
+   </frame>
+
+   <frame>
+    <layout>hbox</layout>
+    <equal>true</equal>
+    <halign>center</halign>
+    <slider>
+     <name>wheel_right_weight</name>
+     <live>true</live>
+     <property>/sim/model/Wheels/wheel_right_weight-kg</property>
+     <min>0.0</min>
+     <max>5.0</max>
+     <step>0.05</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+     <binding>
+      <command>nasal</command>
+      <script>
+       MRX13.Wheels();
+       MRX13.inertia_weight_to_kg();
+      </script>
+     </binding>
+    </slider>
+   </frame>
+
+  </group>
+
+<!-- horizontal stabilizer -->
+  <group>
+   <layout>hbox</layout><equal>true</equal>
+   <frame>
+    <layout>hbox</layout>
+    <equal>true</equal>
+    <text>
+     <halign>left</halign>
+     <label>Horizontal Stabilizer</label>
+    </text>
+   </frame>
+
+   <frame>
+    <layout>hbox</layout>
+    <equal>true</equal>
+    <frame>
+     <layout>hbox</layout>
+     <halign>center</halign>
+     <text>
+      <label>9999999999</label>
+      <live>true</live>
+      <format>  %4.2f lbs</format>
+      <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[3]</property>
+      <color>
+       <red>0.</red>
+       <green>1.</green>
+       <blue>1.</blue>
+      </color>
+     </text>
+    </frame>
+
+    <frame>
+     <layout>hbox</layout>
+     <halign>center</halign>
+     <text>
+      <label>9999999999</label>
+      <live>true</live>
+      <format>  %4.2f kg</format>
+      <property>/sim/model/Stabilizer/hstab_weight-kg_used</property>
+      <color>
+       <red>0.</red>
+       <green>1.</green>
+       <blue>1.</blue>
+      </color>
+     </text>
+    </frame>
+   </frame>
+
+   <frame>
+    <layout>hbox</layout>
+    <equal>true</equal>
+    <halign>center</halign>
+    <slider>
+     <name>hstab_weight</name>
+     <live>true</live>
+     <property>sim/model/Stabilizer/hstab_weight-kg</property>
+     <min>0</min>
+     <max>20</max>
+     <step>0.05</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+     <binding>
+      <command>nasal</command>
+      <script>
+       MRX13.HorizontalStabilizer();
+       MRX13.inertia_weight_to_kg();
+      </script>
+     </binding>
+    </slider>
+   </frame>
+  </group>
+
+<!-- vertical stabilizer -->
+  <group>
+   <layout>hbox</layout><equal>true</equal>
+   <frame>
+    <layout>hbox</layout>
+    <equal>true</equal>
+    <text>
+     <halign>left</halign>
+     <label>Vertical Stabilizer</label>
+    </text>
+   </frame>
+
+   <frame>
+    <layout>hbox</layout>
+    <equal>true</equal>
+    <frame>
+     <layout>hbox</layout>
+     <halign>center</halign>
+     <text>
+      <label>9999999999</label>
+      <live>true</live>
+      <format>  %4.2f lbs</format>
+      <property>/fdm/jsbsim/inertia/pointmass-weight-lbs[4]</property>
+      <color>
+       <red>0.</red>
+       <green>1.</green>
+       <blue>1.</blue>
+      </color>
+     </text>
+    </frame>
+
+    <frame>
+     <layout>hbox</layout>
+     <halign>center</halign>
+     <text>
+      <label>9999999999</label>
+      <live>true</live>
+      <format>  %4.2f kg</format>
+      <property>/sim/model/Stabilizer/vstab_weight-kg_used</property>
+      <color>
+       <red>0.</red>
+       <green>1.</green>
+       <blue>1.</blue>
+      </color>
+     </text>
+    </frame>
+   </frame>
+
+   <frame>
+    <layout>hbox</layout>
+    <equal>true</equal>
+    <halign>center</halign>
+    <slider>
+     <name>vstab_weight</name>
+     <live>true</live>
+     <property>sim/model/Stabilizer/vstab_weight-kg</property>
+     <min>0</min>
+     <max>20</max>
+     <step>0.05</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+     <binding>
+      <command>nasal</command>
+      <script>
+       MRX13.VerticalStabilizer();
+       MRX13.inertia_weight_to_kg();
+      </script>
+     </binding>
+    </slider>
+   </frame>
   </group>
 
   <!-- <hrule/> -->
 
 <!-- total weight (= glider + hook in weight + fuel) configuration -->
   <group>
-    <layout>hbox</layout><equal>true</equal>
+   <layout>hbox</layout><equal>true</equal>
+   <frame>
+    <layout>hbox</layout>
+    <equal>true</equal>
+    <text>
+     <halign>left</halign>
+     <label>Total Weight</label>
+    </text>
+   </frame>
+
+   <frame>
+    <layout>hbox</layout>
+    <equal>true</equal>
     <frame>
-      <layout>hbox</layout>
-      <equal>true</equal>
-      <text>
-        <halign>left</halign>
-        <label>Total Weight</label>
-      </text>
+     <layout>hbox</layout>
+     <halign>center</halign>
+     <text>
+      <label>9999999999</label>
+      <live>true</live>
+      <format>  %3.1f lbs</format>
+      <property>/fdm/jsbsim/inertia/weight-lbs</property>
+      <color>
+       <red>0.</red>
+       <green>1.</green>
+       <blue>1.</blue>
+      </color>
+     </text>
     </frame>
 
     <frame>
-      <layout>hbox</layout>
-      <equal>true</equal>
-      <frame>
-        <layout>hbox</layout>
-        <halign>center</halign>
-        <text>
-          <label>9999999999</label>
-          <live>true</live>
-          <format>  %3.1f lbs</format>
-          <property>/fdm/jsbsim/inertia/weight-lbs</property>
-          <color>
-            <red>0.</red>
-            <green>1.</green>
-            <blue>1.</blue>
-          </color>
-        </text>
-      </frame>
-
-      <frame>
-        <layout>hbox</layout>
-        <halign>center</halign>
-        <text>
-          <label>9999999999</label>
-          <live>true</live>
-          <format>  %3.1f kg</format>
-          <property>/fdm/jsbsim/inertia/weight-kg</property>
-          <color>
-            <red>0.</red>
-            <green>1.</green>
-            <blue>1.</blue>
-          </color>
-        </text>
-      </frame>
+     <layout>hbox</layout>
+     <halign>center</halign>
+     <text>
+      <label>9999999999</label>
+      <live>true</live>
+      <format>  %3.1f kg</format>
+      <property>/fdm/jsbsim/inertia/weight-kg</property>
+      <color>
+       <red>0.</red>
+       <green>1.</green>
+       <blue>1.</blue>
+      </color>
+     </text>
     </frame>
+   </frame>
 
-    <group>
-      <layout>hbox</layout>
-       <equal>true</equal>
-       <empty>
-         <stretch>true</stretch>
-       </empty>
-    </group>
+   <group>
+    <layout>hbox</layout>
+    <equal>true</equal>
+    <empty>
+     <stretch>true</stretch>
+    </empty>
+   </group>
 
   </group>
 
@@ -253,76 +546,76 @@
 
   <!-- wing area configuration -->
   <group>
+   <layout>hbox</layout>
+   <frame>
     <layout>hbox</layout>
+    <equal>true</equal>
+    <text>
+     <halign>left</halign>
+     <label>Wing Area</label>
+    </text>
+   </frame>
+
+   <frame>
+    <layout>hbox</layout>
+    <equal>true</equal>
     <frame>
-      <layout>hbox</layout>
-      <equal>true</equal>
-      <text>
-        <halign>left</halign>
-        <label>Wing Area</label>
-      </text>
+     <layout>hbox</layout>
+     <halign>center</halign>
+     <text>
+      <label>9999999999</label>
+      <live>true</live>
+      <format>  %3.1f sqft</format>
+      <property>/fdm/jsbsim/metrics/Sw-sqft</property>
+      <color>
+       <red>0.2</red>
+       <green>0.9</green>
+       <blue>0.2</blue>
+      </color>
+     </text>
     </frame>
 
     <frame>
-      <layout>hbox</layout>
-      <equal>true</equal>
-      <frame>
-        <layout>hbox</layout>
-        <halign>center</halign>
-        <text>
-          <label>9999999999</label>
-          <live>true</live>
-          <format>  %3.1f sqft</format>
-          <property>/fdm/jsbsim/metrics/Sw-sqft</property>
-          <color>
-            <red>0.2</red>
-            <green>0.9</green>
-            <blue>0.2</blue>
-          </color>
-        </text>
-      </frame>
-
-      <frame>
-        <layout>hbox</layout>
-        <halign>center</halign>
-        <text>
-          <label>9999999999</label>
-          <live>true</live>
-          <format>  %3.1f m^2</format>
-          <property>/fdm/jsbsim/metrics/Sw-sqm</property>
-          <color>
-            <red>0.2</red>
-            <green>0.9</green>
-            <blue>0.2</blue>
-          </color>
-        </text>
-      </frame>
+     <layout>hbox</layout>
+     <halign>center</halign>
+     <text>
+      <label>9999999999</label>
+      <live>true</live>
+      <format>  %3.1f m^2</format>
+      <property>/fdm/jsbsim/metrics/Sw-sqm</property>
+      <color>
+       <red>0.2</red>
+       <green>0.9</green>
+       <blue>0.2</blue>
+      </color>
+     </text>
     </frame>
+   </frame>
 
-    <frame>
-      <layout>hbox</layout>
-      <equal>true</equal>
-      <halign>center</halign>
-      <slider>
-        <name>wing_area</name>
-        <live>true</live>
-        <property>/fdm/jsbsim/metrics/Sw-sqft</property>
-        <min>0.0</min>
-        <max>300.0</max>
-        <step>1.0</step>
-        <binding>
-          <command>dialog-apply</command>
-        </binding>
-        <binding>
+   <frame>
+    <layout>hbox</layout>
+    <equal>true</equal>
+    <halign>center</halign>
+    <slider>
+     <name>wing_area</name>
+     <live>true</live>
+     <property>/fdm/jsbsim/metrics/Sw-sqft</property>
+     <min>0.0</min>
+     <max>300.0</max>
+     <step>1.0</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+     <binding>
       <command>nasal</command>
-          <script>
-            var area_sqft = getprop("/fdm/jsbsim/metrics/Sw-sqft");
-        var area_sqm = area_sqft * 0.09290;
-            setprop("/fdm/jsbsim/metrics/Sw-sqm",area_sqm);
-          </script>
-        </binding>
-      </slider>
-    </frame>
+      <script>
+       var area_sqft = getprop("/fdm/jsbsim/metrics/Sw-sqft");
+       var area_sqm = area_sqft * 0.09290;
+       setprop("/fdm/jsbsim/metrics/Sw-sqm",area_sqm);
+      </script>
+     </binding>
+    </slider>
+   </frame>
   </group>
 
   <hrule/>
@@ -330,31 +623,31 @@
 
   <!-- bottom line -->
   <frame>
-    <layout>hbox</layout>
-    <default-padding>1</default-padding>
-    <empty>
-      <stretch>true</stretch>
-    </empty>
-    <button>
-      <legend>Set Defaults</legend>
+   <layout>hbox</layout>
+   <default-padding>1</default-padding>
+   <empty>
+    <stretch>true</stretch>
+   </empty>
+   <button>
+    <legend>Set Defaults</legend>
     <binding>
-          <command>nasal</command>
-          <script>MRX13.weight_and_balance_defaults()</script>
-        </binding>
-    </button>
-    <empty>
-      <stretch>true</stretch>
-    </empty>
+     <command>nasal</command>
+     <script>MRX13.weight_and_balance_defaults()</script>
+    </binding>
+   </button>
+   <empty>
+    <stretch>true</stretch>
+   </empty>
 
-    <button>
-      <legend>Close</legend>
-      <binding>
-        <command>dialog-close</command>
-      </binding>
-    </button>
-    <empty>
-      <stretch>true</stretch>
-    </empty>
+   <button>
+    <legend>Close</legend>
+    <binding>
+     <command>dialog-close</command>
+    </binding>
+   </button>
+   <empty>
+    <stretch>true</stretch>
+   </empty>
   </frame>
 
 </PropertyList>

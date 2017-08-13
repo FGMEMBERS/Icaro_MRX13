@@ -3,7 +3,7 @@
 ************************************************************************
 Weight shift controlled hang glider for FlightGear
 
-Last update: May 5th, 2017 D-NXKT, D_NXKT@yahoo.de
+Last update: August 12th, 2017 D-NXKT, D_NXKT@yahoo.de
 ************************************************************************
 -->
 
@@ -25,7 +25,8 @@ Last update: May 5th, 2017 D-NXKT, D_NXKT@yahoo.de
    <tag>unpowered</tag>
   </tags>
 
-  <aircraft-version>May 2017</aircraft-version>
+  <aircraft-version>August 2017</aircraft-version>
+  <minimum-fg-version>2016.1.0</minimum-fg-version>
 
   <status>early production</status>
   <rating>
@@ -148,13 +149,17 @@ Last update: May 5th, 2017 D-NXKT, D_NXKT@yahoo.de
     <with-wheels type="bool">true</with-wheels>
     <with-woolthread type="bool">true</with-woolthread>
     <with-TwoStageRelease type="bool">false</with-TwoStageRelease>
+    <with-HorizontalStabilizer type="bool">false</with-HorizontalStabilizer>
+    <with-VerticalStabilizer type="bool">false</with-VerticalStabilizer>
     <wing-failure-enable type="bool">true</wing-failure-enable>
     <hang-strap-flexible type="bool">true</hang-strap-flexible>
     <DrogueChute>0</DrogueChute>
 
-    <with-wheels_mp          alias="/sim/model/MRX13/with-wheels"/>          <!-- needed for multiplayer -->
-    <with-woolthread_mp      alias="/sim/model/MRX13/with-woolthread"/>      <!-- needed for multiplayer -->
-    <with-TwoStageRelease_mp alias="/sim/model/MRX13/with-TwoStageRelease"/> <!-- needed for multiplayer -->
+    <with-wheels_mp               alias="/sim/model/MRX13/with-wheels"/>               <!-- needed for multiplayer -->
+    <with-woolthread_mp           alias="/sim/model/MRX13/with-woolthread"/>           <!-- needed for multiplayer -->
+    <with-TwoStageRelease_mp      alias="/sim/model/MRX13/with-TwoStageRelease"/>      <!-- needed for multiplayer -->
+    <with-HorizontalStabilizer_mp alias="/sim/model/MRX13/with-HorizontalStabilizer"/> <!-- needed for multiplayer -->
+    <with-VerticalStabilizer_mp   alias="/sim/model/MRX13/with-VerticalStabilizer"/>   <!-- needed for multiplayer -->
 
     <handling>
      <Rookie  type="bool">false</Rookie>
@@ -248,6 +253,27 @@ Last update: May 5th, 2017 D-NXKT, D_NXKT@yahoo.de
     <CDxA-EmergencyChute-sqft type="float">843.89</CDxA-EmergencyChute-sqft>
    </Parachutes>
 
+   <Wheels>
+    <wheel_left_weight-kg type="float">0.420</wheel_left_weight-kg>
+    <wheel_right_weight-kg type="float">0.412</wheel_right_weight-kg>
+   </Wheels>
+
+   <Stabilizer>
+    <hstab_location-x-m type="float">2.4</hstab_location-x-m>
+    <hstab_location-z-m type="float">0.0</hstab_location-z-m>
+    <hstab_area-sqm type="float">0.25</hstab_area-sqm>
+    <hstab_area-scale type="float">1.</hstab_area-scale>
+    <hstab_pitch-deg type="float">-5.</hstab_pitch-deg>
+    <hstab_weight-kg type="float">0.75</hstab_weight-kg>
+
+    <vstab_location-x-m type="float">2.2</vstab_location-x-m>
+    <vstab_location-y-m type="float">0.0</vstab_location-y-m>
+    <vstab_area-sqm type="float">0.25</vstab_area-sqm>
+    <vstab_area-scale type="float">1.</vstab_area-scale>
+    <vstab_deflection-deg type="float">0.</vstab_deflection-deg>
+    <vstab_weight-kg type="float">0.25</vstab_weight-kg>
+   </Stabilizer>
+
    <aero>
     <alpha-deg type="float">0.</alpha-deg>
     <beta-deg type="float">0.</beta-deg>
@@ -280,6 +306,8 @@ Last update: May 5th, 2017 D-NXKT, D_NXKT@yahoo.de
     <int n="11" alias="/sim/model/SmokeTrail/ControlBarLeft/Smoke"/>
     <int n="12" alias="/sim/model/SmokeTrail/ControlBarRight/Smoke"/>
     <int n="13" alias="/sim/model/MRX13/animation/vizor-pos-deg"/>
+    <int n="14" alias="/sim/model/MRX13/with-HorizontalStabilizer_mp"/>
+    <int n="15" alias="/sim/model/MRX13/with-VerticalStabilizer_mp"/>
     <float n="0" alias="/sim/model/MRX13/animation/running_leg_left"/>
     <float n="1" alias="/sim/model/MRX13/animation/running_leg_right"/>
     <float n="2" alias="/sim/model/MRX13/animation/running_leg"/>
@@ -330,6 +358,14 @@ Last update: May 5th, 2017 D-NXKT, D_NXKT@yahoo.de
        <property>sim/model/MRX13/with-wheels</property>
        <value>0</value>
       </binding>
+      <!-- replaced by listener (to make Variants work properly)
+      <binding>
+       <command>nasal</command>
+       <script>
+        MRX13.Wheels()
+       </script>
+      </binding>
+      -->
      </item>
 
      <item>
@@ -545,6 +581,22 @@ Last update: May 5th, 2017 D-NXKT, D_NXKT@yahoo.de
               { setprop("sim/messages/atc", sprintf("hang strap is flexible")); }
          else { setprop("sim/messages/atc", sprintf("hang strap is rigid")); }
        </script>
+      </binding>
+     </item>
+
+     <item>
+      <label>Horizontal Stabilizer Configuration</label>
+      <binding>
+       <command>nasal</command>
+       <script>MRX13.horizontal_stabilizer_dialog.open()</script>
+      </binding>
+     </item>
+
+     <item>
+      <label>Vertical Stabilizer Configuration</label>
+      <binding>
+       <command>nasal</command>
+       <script>MRX13.vertical_stabilizer_dialog.open()</script>
       </binding>
      </item>
 
@@ -901,6 +953,23 @@ Last update: May 5th, 2017 D-NXKT, D_NXKT@yahoo.de
    <path>/sim/model/SmokeTrail/SmokeGrenade/green</path>
    <path>/sim/model/SmokeTrail/SmokeGrenade/blue</path>
 
+   <path>/sim/model/Wheels/wheel_left_weight-kg</path>
+   <path>/sim/model/Wheels/wheel_right_weight-kg</path>
+
+   <path>/sim/model/MRX13/with-HorizontalStabilizer</path>
+   <path>/sim/model/Stabilizer/hstab_location-x-m</path>
+   <path>/sim/model/Stabilizer/hstab_location-z-m</path>
+   <path>/sim/model/Stabilizer/hstab_area-sqm</path>
+   <path>/sim/model/Stabilizer/hstab_pitch-deg</path>
+   <path>/sim/model/Stabilizer/hstab_weight-kg</path>
+
+   <path>/sim/model/MRX13/with-VerticalStabilizer</path>
+   <path>/sim/model/Stabilizer/vstab_location-x-m</path>
+   <path>/sim/model/Stabilizer/vstab_location-y-m</path>
+   <path>/sim/model/Stabilizer/vstab_area-sqm</path>
+   <path>/sim/model/Stabilizer/vstab_deflection-deg</path>
+   <path>/sim/model/Stabilizer/vstab_weight-kg</path>
+   
   </aircraft-data>
 
   <spoilers>
@@ -1028,6 +1097,7 @@ Last update: May 5th, 2017 D-NXKT, D_NXKT@yahoo.de
    <file>Aircraft/Icaro_MRX13/Nasal/Animation.nas</file>
    <file>Aircraft/Icaro_MRX13/Nasal/liveries.nas</file>
    <file>Aircraft/Icaro_MRX13/Nasal/dialogs.nas</file>
+   <file>Aircraft/Icaro_MRX13/Nasal/WeightAndBalance.nas</file>
    <file>Aircraft/Icaro_MRX13/Nasal/SetDefaults.nas</file>
    <file>Aircraft/Icaro_MRX13/Nasal/TwoStageRelease.nas</file>
    <file>Aircraft/Icaro_MRX13/Nasal/WoolThread.nas</file>
@@ -1036,6 +1106,8 @@ Last update: May 5th, 2017 D-NXKT, D_NXKT@yahoo.de
    <file>Aircraft/Icaro_MRX13/Nasal/Handling.nas</file>
    <file>Aircraft/Icaro_MRX13/Nasal/ReplayWinch.nas</file>
    <file>Aircraft/Icaro_MRX13/Nasal/SmokeTrail.nas</file>
+   <file>Aircraft/Icaro_MRX13/Nasal/Wheel.nas</file>
+   <file>Aircraft/Icaro_MRX13/Nasal/Stabilizer.nas</file>
   </MRX13>
  </nasal>
 
