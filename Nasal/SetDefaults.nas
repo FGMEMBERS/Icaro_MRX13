@@ -104,6 +104,11 @@ var weight_and_balance_defaults = func {
   setprop("/fdm/jsbsim/inertia/pointmass-weight-kg",weight_kg) ;
   setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs",weight_lbs);
 
+  # wheels
+  setprop("sim/model/Wheels/wheel_left_weight-kg", 0.420 );
+  setprop("sim/model/Wheels/wheel_right_weight-kg", 0.412 );
+  Wheels();
+
   # wing area
   var area_sqm  = 13.5;
   var area_sqft = area_sqm / 0.09290;
@@ -259,10 +264,38 @@ var hang_strap_length_defaults = func {
 
 var test_property_defaults = func {
 
-#  setprop("sim/model/SmokeTrail/SmokeGrenade/burning-time-sec", 60);
+  setprop("sim/hitches/dampingfactor", 100);
 #  setprop("sim/model/SmokeTrail/SmokeGrenade/red", 1.0);
 #  setprop("sim/model/SmokeTrail/SmokeGrenade/green", 0.5);
 #  setprop("sim/model/SmokeTrail/SmokeGrenade/blue", 0.);
 
 }
 
+
+################################################################################################
+#
+# Set default stabilizer values
+#
+################################################################################################
+
+var HorizontalStabilizer_defaults = func {
+
+  setprop("sim/model/Stabilizer/hstab_location-x-m", 2.4);
+  setprop("sim/model/Stabilizer/hstab_location-z-m", 0.0);
+  setprop("sim/model/Stabilizer/hstab_area-sqm" , 0.25);
+  setprop("sim/model/Stabilizer/hstab_pitch-deg", -5.0);
+  setprop("sim/model/Stabilizer/hstab_weight-kg", 0.75);
+
+  HorizontalStabilizer();
+}
+
+var VerticalStabilizer_defaults = func {
+
+  setprop("sim/model/Stabilizer/vstab_location-x-m", 2.2);
+  setprop("sim/model/Stabilizer/vstab_location-y-m", 0.0);
+  setprop("sim/model/Stabilizer/vstab_area-sqm" , 0.25);
+  setprop("sim/model/Stabilizer/vstab_deflection-deg", 0.0);
+  setprop("sim/model/Stabilizer/vstab_weight-kg", 0.25);
+
+  VerticalStabilizer();
+}

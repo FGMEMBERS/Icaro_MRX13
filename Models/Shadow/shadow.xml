@@ -21,6 +21,12 @@
   <object-name>Pilot_Shadow</object-name>
  </effect>
 
+ <animation>
+  <type>noshadow</type>
+  <object-name>Glider_Shadow</object-name>
+  <object-name>Pilot_Shadow</object-name>
+ </animation>
+
  <!-- roll -->
  <animation>
   <type>rotate</type>

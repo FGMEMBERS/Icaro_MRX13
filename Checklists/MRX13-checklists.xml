@@ -100,7 +100,7 @@
     <item> <name>In real life a tumble starts, if the angle of attack becomes markedly negative.  </name><value></value></item>
     <item> <name>This could occur in strong turbulence or (failed) aerobatics. </name><value></value></item>
     <item> <name>A tumble is caused due to an unfavorable location of the center of gravity (weight shift control)  </name><value></value></item>
-    <item> <name>related to the position of the center of pressure (aerodynamik force).</name><value></value></item>
+    <item> <name>related to the position of the center of pressure (aerodynamic force).</name><value></value></item>
     <item> <name>Hence tumbling is a unique feature of hang gliders.</name><value></value></item>
     <item> <name>In the upside down phase the pilot falls into the sail. This often breaks the wing. </name><value></value></item>
     <item> <name>But even if the glider stays intact, it is nearly impossible to recover from a tumble.</name><value></value></item>
@@ -146,6 +146,9 @@
     <item> <name>   deep wingover with subsequent tumble or rollover.                                                                 </name><value></value></item>
     <item> <name>                                                                                                                     </name><value></value></item>
     <item> <name>- Spin entry is harder than in real life.                                                                            </name><value></value></item>
+    <item> <name>                                                                                                                     </name><value></value></item>
+    <item> <name>- Weight and Balance GUI: Update of value "Total Weight [kg]" is not reliable. Reopen GUI to get correct value.      </name><value></value></item>
+    <item> <name>   Update of value "Total Weight [lbs]" is correct!                                                                   </name><value></value></item>
   </checklist>
 
   <checklist>
@@ -165,10 +168,12 @@
     <item> <name>- Winch (incl. 2-stage release and step towing)</name><value></value></item>
     <item> <name>- Aerotowing (incl. balloon drop)</name><value></value></item>
     <item> <name>- Smoke system</name><value></value></item>
-    <item> <name>- Highly customizable (via GUI)</name><value></value></item>
+    <item> <name>- Optional horizontal stabilizer</name><value></value></item>
+    <item> <name>- Optional vertical stabilizer</name><value></value></item>
     <item> <name>- View of instantaneous flow vector, aerodynamic force vector and center of gravity location</name><value></value></item>
     <item> <name>- Drop test</name><value></value></item>
     <item> <name>- Flight recorder (incl. vector, c.g. and winch animation)</name><value></value></item>
+    <item> <name>- Highly customizable (via GUI)</name><value></value></item>
     <item> <name></name><value></value></item>
   </checklist>
 

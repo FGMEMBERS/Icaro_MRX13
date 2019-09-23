@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PropertyList>
+
+ <path>VerticalStabilizer.ac</path>
+ <nopreview/>
+
+ <animation>
+  <type>select</type>
+  <object-name>Vertical_Stabilizer</object-name>
+  <condition>
+   <property>sim/model/MRX13/with-VerticalStabilizer_mp</property>
+  </condition>
+ </animation>
+
+ <animation>
+  <type>translate</type>
+  <object-name>Vertical_Stabilizer</object-name>
+  <property>sim/model/Stabilizer/vstab_location-x-m</property>
+  <center>
+   <x-m>0.0</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.0</z-m>
+  </center>
+  <axis>
+   <x>1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>translate</type>
+  <object-name>Vertical_Stabilizer</object-name>
+  <property>sim/model/Stabilizer/vstab_location-y-m</property>
+  <center>
+   <x-m>0.0</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.0</z-m>
+  </center>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Vertical_Stabilizer</object-name>
+  <property>sim/model/Stabilizer/vstab_deflection-deg</property>
+  <center>
+   <x-m>0.2</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.0</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>scale</type>
+  <object-name>Vertical_Stabilizer</object-name>
+  <property>sim/model/Stabilizer/vstab_area-scale</property>
+  <center>
+   <x-m>0.2</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.0</z-m>
+  </center>
+  <axis>
+   <x-factor>1.0</x-factor>
+   <y-factor>1.0</y-factor>
+   <z-factor>1.0</z-factor>
+  </axis>
+ </animation>
+
+</PropertyList>

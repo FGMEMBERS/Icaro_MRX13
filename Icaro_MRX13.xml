@@ -29,6 +29,9 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
        Ref 6: Nickel Karl, Wohlfahrt Michael, "Schwanzlose Flugzeuge: Ihre Auslegung und ihre Eigenschaften",
               Basel, Boston, Berlin, Birkhaeuser, 1990, ISBN 3-7643-2502-X
        Ref 7: Seibel Steve, http://www.aeroexperiments.org/newhomepage.html
+       Ref 8: Robert E. Sheldahl, Paul C. Klimas, Aerodynamic Characteristics of Seven Symmetrical Airfoil Sections Through
+              180-Degree Angle of Attack for Use in Aerodynamic Analysis of Vertical Axis Wind Turbines, SANDS0-2114 
+              Unlimited Release UC-60, https://www.osti.gov/scitech/servlets/purl/6548367
     </reference>
   </fileheader>
 
@@ -90,6 +93,42 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
         <x>0.</x>
         <y>0.</y>
         <z>-1.35</z>
+      </location>
+    </pointmass>
+
+    <pointmass name="Wheel_Left">
+      <weight unit="KG">0.420</weight>
+      <location name="POINTMASS" unit="M">
+        <x>-0.475</x>
+        <y>-0.600</y>
+        <z>-1.560</z>
+      </location>
+    </pointmass>
+
+    <pointmass name="Wheel_Right">
+      <weight unit="KG">0.412</weight>
+      <location name="POINTMASS" unit="M">
+        <x>-0.475</x>
+        <y> 0.600</y>
+        <z>-1.560</z>
+      </location>
+    </pointmass>
+
+    <pointmass name="HorizontalStabilizer">
+      <weight unit="KG">0.</weight>
+      <location name="POINTMASS" unit="M">
+        <x>0.</x>
+        <y>0.</y>
+        <z>0.</z>
+      </location>
+    </pointmass>
+
+    <pointmass name="VerticalStabilizer">
+      <weight unit="KG">0.</weight>
+      <location name="POINTMASS" unit="M">
+        <x>0.</x>
+        <y>0.</y>
+        <z>0.</z>
       </location>
     </pointmass>
 
@@ -739,6 +778,14 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
         </product>
       </function>
 
+      <function name="aero/coefficient/CL-hstab">
+        <description>Lift_due_to_horizontal_stabilizer</description>
+        <product>
+          <property>systems/Stabilizer/CLalpha-hstab</property>
+          <property>systems/Stabilizer/hstab_enable</property>
+        </product>
+      </function>
+
     </axis>
 
     <axis name="DRAG">
@@ -811,6 +858,22 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
           </product>
       </function>
 
+      <function name="aero/coefficient/CD-hstab">
+        <description>Drag_due_to_horizontal_stabilizer</description>
+        <product>
+          <property>systems/Stabilizer/CDalpha-hstab</property>
+          <property>systems/Stabilizer/hstab_enable</property>
+        </product>
+      </function>
+
+      <function name="aero/coefficient/CD-vstab">
+        <description>Drag_due_to_vertical_stabilizer</description>
+        <product>
+          <property>systems/Stabilizer/CDbeta-vstab</property>
+          <property>systems/Stabilizer/vstab_enable</property>
+        </product>
+      </function>
+
     </axis>
 
     <axis name="SIDE">
@@ -846,6 +909,14 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
           <property>velocities/r-aero-rad_sec</property>
           <value>0.4</value>
           <property>/sim/model/MRX13/stability/factor-Cyr</property>
+        </product>
+      </function>
+
+      <function name="aero/coefficient/CY-vstab">
+        <description>Side_force_due_to_vertical_stabilizer</description>
+        <product>
+          <property>systems/Stabilizer/CYbeta-vstab</property>
+          <property>systems/Stabilizer/vstab_enable</property>
         </product>
       </function>
 
@@ -1045,6 +1116,14 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
         </product>
       </function>
 
+      <function name="aero/coefficient/Cm-hstab">
+        <description>Pitch_moment_due_to_horizontal_stabilizer</description>
+        <product>
+          <property>systems/Stabilizer/Cm-hstab</property>
+          <property>systems/Stabilizer/hstab_enable</property>
+        </product>
+      </function>
+
     </axis>
 
     <axis name="YAW">
@@ -1153,6 +1232,17 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
         </product>
       </function>
 
+      <function name="aero/coefficient/Cn-vstab">
+        <description>
+          yaw_moment_due_to_vertical_stabilizer
+          z-axis points downwards
+        </description>
+        <product>
+          <property>systems/Stabilizer/Cn-vstab</property>
+          <property>systems/Stabilizer/vstab_enable</property>
+        </product>
+      </function>
+
       <function name="aero/coefficient/CnWingFailure">
         <description>Yaw_moment_due_to_wing_failure</description>
         <product>
@@ -1175,5 +1265,7 @@ href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
   <system file="Wheels"/>
   <system file="GenericEngine"/>
   <system file="WingFailure"/>
+  <system file="HorizontalStabilizer"/>
+  <system file="VerticalStabilizer"/>
 
 </fdm_config>

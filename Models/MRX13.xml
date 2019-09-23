@@ -39,6 +39,10 @@
      alias(rplayer.getNode("sim/multiplay/generic/int[12]"));
    rplayer.getNode("sim/model/MRX13/animation/vizor-pos-deg", 1).
      alias(rplayer.getNode("sim/multiplay/generic/int[13]"));
+   rplayer.getNode("sim/model/MRX13/with-HorizontalStabilizer_mp", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/int[14]"));
+   rplayer.getNode("sim/model/MRX13/with-VerticalStabilizer_mp", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/int[15]"));
 
    rplayer.getNode("sim/model/MRX13/animation/running_leg_left", 1).
      alias(rplayer.getNode("sim/multiplay/generic/float[0]"));
@@ -89,6 +93,16 @@
    rplayer.getNode("sim/model/SmokeTrail/ControlBarRight/red", 1).setValue(0.8);
    rplayer.getNode("sim/model/SmokeTrail/ControlBarRight/green", 1).setValue(0.);
    rplayer.getNode("sim/model/SmokeTrail/ControlBarRight/blue", 1).setValue(0.);
+   # stabilizer
+   rplayer.getNode("sim/model/Stabilizer/hstab_location-x-m", 1).setValue(2.4);
+   rplayer.getNode("sim/model/Stabilizer/hstab_location-z-m", 1).setValue(0.0);
+   rplayer.getNode("sim/model/Stabilizer/hstab_area-scale", 1).setValue(1.0);
+   rplayer.getNode("sim/model/Stabilizer/hstab_pitch-deg", 1).setValue(-5.0);
+   rplayer.getNode("sim/model/Stabilizer/vstab_location-x-m", 1).setValue(2.2);
+   rplayer.getNode("sim/model/Stabilizer/vstab_location-z-m", 1).setValue(0.0);
+   rplayer.getNode("sim/model/Stabilizer/vstab_area-scale", 1).setValue(1.0);
+   rplayer.getNode("sim/model/Stabilizer/vstab_deflection", 1).setValue(0.0);
+
    # print("MRX13 loaded")
 
   </load>
@@ -111,6 +125,8 @@
    rplayer.getNode("sim/model/SmokeTrail/ControlBarLeft/Smoke", 1).unalias();
    rplayer.getNode("sim/model/SmokeTrail/ControlBarRight/Smoke", 1).unalias();
    rplayer.getNode("sim/model/MRX13/animation/vizor-pos-deg", 1).unalias();
+   rplayer.getNode("sim/model/MRX13/with-HorizontalStabilizer_mp", 1).unalias();
+   rplayer.getNode("sim/model/MRX13/with-VerticalStabilizer_mp", 1).unalias();
 
    # rplayer.getNode("sim/current-view/view-number", 1).unalias();
 
@@ -456,6 +472,32 @@
  </model>
 
 
+ <!-- __________________ Horizontal Stabilizer __________________ -->
+
+ <model>
+  <name>HorizontalStabilizer</name>
+  <path>Aircraft/Icaro_MRX13/Models/Stabilizer/HorizontalStabilizer.xml</path>
+  <offsets>
+   <x-m>1.12</x-m>
+   <z-m>0.0</z-m>
+   <pitch-deg>0.0</pitch-deg>
+  </offsets>
+ </model>
+
+
+ <!-- __________________ Vertical Stabilizer __________________ -->
+
+ <model>
+  <name>VerticalStabilizer</name>
+  <path>Aircraft/Icaro_MRX13/Models/Stabilizer/VerticalStabilizer.xml</path>
+  <offsets>
+   <x-m>1.05</x-m>
+   <z-m>0.0</z-m>
+   <pitch-deg>0.0</pitch-deg>
+  </offsets>
+ </model>
+
+
  <!-- __________________ Volumetric shadow object __________________ -->
 
  <model>
@@ -485,6 +527,8 @@
    <object-name>KeelSmokeGenerator</object-name>
    <object-name>LeftSmokeGenerator</object-name>
    <object-name>RightSmokeGenerator</object-name>
+   <object-name>HorizontalStabilizer</object-name>
+   <object-name>VerticalStabilizer</object-name>
    <expression>
     <product>
      <property>surface-positions/left-aileron-pos-norm</property>
@@ -518,6 +562,8 @@
    <object-name>KeelSmokeGenerator</object-name>
    <object-name>LeftSmokeGenerator</object-name>
    <object-name>RightSmokeGenerator</object-name>
+   <object-name>HorizontalStabilizer</object-name>
+   <object-name>VerticalStabilizer</object-name>
    <expression>
     <product>
      <property>surface-positions/elevator-pos-norm</property>
@@ -551,6 +597,8 @@
    <object-name>KeelSmokeGenerator</object-name>
    <object-name>LeftSmokeGenerator</object-name>
    <object-name>RightSmokeGenerator</object-name>
+   <object-name>HorizontalStabilizer</object-name>
+   <object-name>VerticalStabilizer</object-name>
    <expression>
     <product>
      <property>surface-positions/rudder-pos-norm</property>
@@ -586,6 +634,8 @@
   <object-name>KeelSmokeGenerator</object-name>
   <object-name>LeftSmokeGenerator</object-name>
   <object-name>RightSmokeGenerator</object-name>
+  <object-name>HorizontalStabilizer</object-name>
+  <object-name>VerticalStabilizer</object-name>
 
   <object-name>HangLever</object-name>
   <object-name>HangLoop</object-name>
@@ -632,6 +682,8 @@
   <object-name>KeelSmokeGenerator</object-name>
   <object-name>LeftSmokeGenerator</object-name>
   <object-name>RightSmokeGenerator</object-name>
+  <object-name>HorizontalStabilizer</object-name>
+  <object-name>VerticalStabilizer</object-name>
 
   <object-name>HangLever</object-name>
   <object-name>HangLoop</object-name>
@@ -669,6 +721,8 @@
   <object-name>KeelSmokeGenerator</object-name>
   <object-name>LeftSmokeGenerator</object-name>
   <object-name>RightSmokeGenerator</object-name>
+  <object-name>HorizontalStabilizer</object-name>
+  <object-name>VerticalStabilizer</object-name>
 
   <object-name>HangLever</object-name>
   <object-name>HangLoop</object-name>
@@ -709,6 +763,8 @@
   <object-name>KeelSmokeGenerator</object-name>
   <object-name>LeftSmokeGenerator</object-name>
   <object-name>RightSmokeGenerator</object-name>
+  <object-name>HorizontalStabilizer</object-name>
+  <object-name>VerticalStabilizer</object-name>
 
   <object-name>HangLever</object-name>
   <object-name>HangLoop</object-name>

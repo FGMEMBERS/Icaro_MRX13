@@ -1,0 +1,377 @@
+<?xml version="1.0"?>
+<!-- Version: 2017-06-15 -->
+
+<PropertyList>
+ <name>vertical_stabilizer_dialog</name>
+ <layout>vbox</layout>
+ <default-padding>2</default-padding>
+ <modal>false</modal>
+ <width>400</width>
+
+ <!-- title bar -->
+ <group>
+  <layout>hbox</layout>
+  <empty><stretch>true</stretch></empty>
+  <text>
+   <label>Vertical Stabilizer Configuration</label>
+  </text>
+  <empty><stretch>true</stretch></empty>
+  <button>
+   <legend/>
+   <key>Esc</key>
+   <pref-width>16</pref-width>
+   <pref-height>16</pref-height>
+   <border>2</border>
+   <binding>
+    <command>dialog-close</command>
+   </binding>
+  </button>
+ </group>
+
+ <hrule/>
+ <hrule/>
+
+ <frame>
+  <layout>vbox</layout>
+  <empty><stretch>true</stretch></empty>
+  <!-- Vertical Stabilizer on/off -->
+  <group>
+   <layout>hbox</layout>
+   <checkbox>
+    <halign>center</halign>
+    <label>Vertical Stabilizer enabled</label>
+    <live>true</live>
+    <property>sim/model/MRX13/with-VerticalStabilizer</property>
+    <binding>
+     <command>dialog-apply</command>
+    </binding>
+    <binding>
+     <command>nasal</command>
+     <script>
+      MRX13.VerticalStabilizer();
+     </script>
+    </binding>
+   </checkbox>
+  </group>
+  <empty><stretch>true</stretch></empty>
+ </frame>
+
+ <hrule/>
+
+ <!-- vertical stabilizer parameters -->
+ <frame>
+  <layout>vbox</layout>
+
+  <!-- Location X -->
+  <group>
+   <layout>hbox</layout>
+   <text>
+    <halign>left</halign>
+    <label>Location X</label>
+   </text>
+   <group>
+    <layout>hbox</layout>
+    <halign>right</halign>
+    <text>
+     <label>9999</label>
+     <live>true</live>
+     <format>% 2.1fm</format>
+     <property>sim/model/Stabilizer/vstab_location-x-m</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+    <empty><stretch>true</stretch></empty>
+    <vrule/>
+    <group>
+     <width>40</width>
+     <text>
+      <label>-5m</label>
+     </text>
+    </group>
+    <slider>
+     <name>vstab_locX</name>
+     <live>true</live>
+     <property>sim/model/Stabilizer/vstab_location-x-m</property>
+     <min>-5.1</min>
+     <max> 5.</max>
+     <step>0.1</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+     <binding>
+      <command>nasal</command>
+      <script>
+       MRX13.VerticalStabilizer()
+      </script>
+     </binding>
+    </slider>
+    <group>
+     <width>50</width>
+     <text>
+      <label>5m</label>
+     </text>
+    </group>
+   </group>
+  </group>
+
+
+  <!-- Location Y -->
+  <group>
+   <layout>hbox</layout>
+   <text>
+    <halign>left</halign>
+    <label>Location Y</label>
+   </text>
+   <group>
+    <layout>hbox</layout>
+    <halign>right</halign>
+    <text>
+     <label>9999</label>
+     <live>true</live>
+     <format>% 2.1fm</format>
+     <property>sim/model/Stabilizer/vstab_location-y-m</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+    <empty><stretch>true</stretch></empty>
+    <vrule/>
+    <group>
+     <width>40</width>
+     <text>
+      <label>-5m</label>
+     </text>
+    </group>
+    <slider>
+     <name>vstab_locZ</name>
+     <live>true</live>
+     <property>sim/model/Stabilizer/vstab_location-y-m</property>
+     <min>-5.01</min>
+     <max>5.01</max>
+     <step>0.1</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+     <binding>
+      <command>nasal</command>
+      <script>
+       MRX13.VerticalStabilizer()
+      </script>
+     </binding>
+    </slider>
+    <group>
+     <width>50</width>
+     <text>
+      <label>5m</label>
+     </text>
+    </group>
+   </group>
+  </group>
+
+
+  <!-- Area -->
+  <group>
+   <layout>hbox</layout>
+   <text>
+    <halign>left</halign>
+    <label>Area</label>
+   </text>
+   <group>
+    <layout>hbox</layout>
+    <halign>right</halign>
+    <text>
+     <label>99999</label>
+     <live>true</live>
+     <format>%2.2fsqm </format>
+     <property>sim/model/Stabilizer/vstab_area-sqm</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+    <empty><stretch>true</stretch></empty>
+    <vrule/>
+    <group>
+     <width>40</width>
+     <text>
+      <label>0sqm</label>
+     </text>
+    </group>
+    <slider>
+     <name>vstab_area</name>
+     <live>true</live>
+     <property>sim/model/Stabilizer/vstab_area-sqm</property>
+     <min>0</min>
+     <max>2</max>
+     <step>0.05</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+     <binding>
+      <command>nasal</command>
+      <script>
+       MRX13.VerticalStabilizer()
+      </script>
+     </binding>
+    </slider>
+    <group>
+     <width>50</width>
+     <text>
+      <label>2sqm</label>
+     </text>
+    </group>
+   </group>
+  </group>
+
+
+  <!-- Pitch -->
+  <group>
+   <layout>hbox</layout>
+   <text>
+    <halign>left</halign>
+    <label>Deflection</label>
+   </text>
+   <group>
+    <layout>hbox</layout>
+    <halign>right</halign>
+    <text>
+     <label>999999</label>
+     <live>true</live>
+     <format>%2.1fdeg </format>
+     <property>sim/model/Stabilizer/vstab_deflection-deg</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+    <empty><stretch>true</stretch></empty>
+    <vrule/>
+    <group>
+     <width>40</width>
+     <text>
+      <label>-90</label>
+     </text>
+    </group>
+    <slider>
+     <name>vstab_deflection</name>
+     <live>true</live>
+     <property>sim/model/Stabilizer/vstab_deflection-deg</property>
+     <min>-90</min>
+     <max>90</max>
+     <step>2.5</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+     <binding>
+      <command>nasal</command>
+      <script>
+       MRX13.VerticalStabilizer();
+      </script>
+     </binding>
+    </slider>
+    <group>
+     <width>50</width>
+     <text>
+      <label>90deg</label>
+     </text>
+    </group>
+   </group>
+  </group>
+
+
+  <!-- Weight -->
+  <group>
+   <layout>hbox</layout>
+   <text>
+    <halign>left</halign>
+    <label>Weight</label>
+   </text>
+   <group>
+    <layout>hbox</layout>
+    <halign>right</halign>
+    <text>
+     <label>99999</label>
+     <live>true</live>
+     <format>%2.3fkg </format>
+     <property>sim/model/Stabilizer/vstab_weight-kg</property>
+     <color>
+      <red>0.2</red>
+      <green>0.9</green>
+      <blue>0.2</blue>
+     </color>
+    </text>
+    <empty><stretch>true</stretch></empty>
+    <vrule/>
+    <group>
+     <width>40</width>
+     <text>
+      <label>0kg</label>
+     </text>
+    </group>
+    <slider>
+     <name>vstab_weight</name>
+     <live>true</live>
+     <property>sim/model/Stabilizer/vstab_weight-kg</property>
+     <min>0</min>
+     <max>20</max>
+     <step>0.05</step>
+     <binding>
+      <command>dialog-apply</command>
+     </binding>
+     <binding>
+      <command>nasal</command>
+      <script>
+       MRX13.VerticalStabilizer();
+       MRX13.inertia_weight_to_kg();
+      </script>
+     </binding>
+    </slider>
+    <group>
+     <width>50</width>
+     <text>
+      <label>20kg</label>
+     </text>
+    </group>
+   </group>
+  </group>
+ </frame>
+
+ <hrule/>
+ <hrule/>
+
+ <!-- bottom line -->
+ <frame>
+  <layout>vbox</layout>
+  <group>
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+   <button>
+    <legend>Set Defaults</legend>
+    <binding>
+     <command>nasal</command>
+      <script>MRX13.VerticalStabilizer_defaults()</script>
+    </binding>
+   </button>
+
+   <empty><stretch>true</stretch></empty>
+
+   <layout>hbox</layout>
+   <empty><stretch>true</stretch></empty>
+   <button>
+    <legend>Close</legend>
+    <binding>
+     <command>dialog-close</command>
+    </binding>
+   </button>
+   <empty><stretch>true</stretch></empty>
+  </group>
+ </frame>
+
+</PropertyList>
